@@ -1,0 +1,14 @@
+plugin.tx_psbtemplates {
+    settings {
+        resourcePath = EXT:psb_templates/Resources/Public/
+    }
+
+    view {
+        # cat=plugin.tx_psbtemplates/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:psb_templates/Resources/Private/Layouts/
+        # cat=plugin.tx_psbtemplates/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:psb_templates/Resources/Private/Partials/
+        # cat=plugin.tx_psbtemplates/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:psb_templates/Resources/Private/Templates/
+    }
+}

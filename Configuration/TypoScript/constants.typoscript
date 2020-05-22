@@ -1,0 +1,2 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:fluid_styled_content/Configuration/TypoScript/constants.typoscript">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:psb_templates/Configuration/TypoScript/Includes/Constants" extensions="typoscript">

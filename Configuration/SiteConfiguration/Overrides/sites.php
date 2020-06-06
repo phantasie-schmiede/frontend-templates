@@ -1,5 +1,23 @@
 <?php
-$ll = 'LLL:EXT:psb_foundation/Resources/Private/Language/Backend/Configuration/SiteConfiguration/Overrides/sites.xlf:';
+$ll = 'LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/SiteConfiguration/Overrides/sites.xlf:';
+
+$GLOBALS['SiteConfiguration']['site']['columns']['frontendUserPid'] = [
+    'config'      => [
+        'eval'        => 'int',
+        'type'        => 'input',
+    ],
+    'description' => $ll . 'frontendUserPid.description',
+    'label'       => $ll . 'frontendUserPid.label',
+];
+
+$GLOBALS['SiteConfiguration']['site']['columns']['resetPasswordPid'] = [
+    'config'      => [
+        'eval'        => 'int',
+        'type'        => 'input',
+    ],
+    'description' => $ll . 'resetPasswordPid.description',
+    'label'       => $ll . 'resetPasswordPid.label',
+];
 
 $GLOBALS['SiteConfiguration']['site']['columns']['websiteColor'] = [
     'config'      => [
@@ -31,4 +49,6 @@ $GLOBALS['SiteConfiguration']['site']['columns']['websiteSubtitle'] = [
     'label'       => $ll . 'websiteSubtitle.label',
 ];
 
-$GLOBALS['SiteConfiguration']['site']['palettes']['default']['showitem'] .= ', websiteSubtitle, --div--;Design, websiteLogo, websiteColor, --div--;FE-Login, frontendUserPid, resetPasswordPid';
+$GLOBALS['SiteConfiguration']['site']['palettes']['default']['showitem'] .= ', websiteSubtitle';
+$GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= ', --div--;Design, websiteLogo, websiteColor, --div--;FE-Login, frontendUserPid, resetPasswordPid';
+

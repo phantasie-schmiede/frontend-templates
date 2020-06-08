@@ -69,7 +69,7 @@ class GetTcaConfigurationViewHelper extends AbstractViewHelper
             $propertyName = $property->getName();
             $columnName = ExtensionInformationUtility::convertPropertyNameToColumnName($propertyName);
 
-            if (true === $configuration[$columnName]['editableInFrontend']) {
+            if (true === $configuration[$columnName]['config']['editableInFrontend']) {
                 $configuration[$columnName]['config']['type'] = ucfirst($configuration[$columnName]['config']['type']);
                 $result[$propertyName] = $configuration[$columnName]['config'];
             }

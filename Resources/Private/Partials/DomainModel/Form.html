@@ -13,10 +13,7 @@
     <div class="row">
         <div class="col-12">
             <f:form action="{action}" method="post" name="record" object="{record}">
-                <f:comment>
-                    <!-- @TODO: What about this line?! -->
-                </f:comment>
-                <psbTemplates:domainModel.getTcaConfiguration domainModel="\PSB\PsbRiskAssessment\Domain\Model\Location" />
+                <psbTemplates:domainModel.getTcaConfiguration domainModel="{domainModelClass}" />
 
                 <f:for as="configuration" each="{properties}" key="propertyName">
                     <div class="form-group">

@@ -10,7 +10,6 @@ $EM_CONF['psb_templates'] = [
         'conflicts' => [
         ],
         'depends'   => [
-            'fluid_styled_content' => '10.4.2-10.4.99',
             'php'                  => '7.4',
             'psb_foundation'       => '',
             'typo3'                => '10.4.2-10.4.99',

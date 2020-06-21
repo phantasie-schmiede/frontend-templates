@@ -14,10 +14,10 @@
 
                                     <f:variable name="domainModel" value="{psb:getClassName(object: record)}" />
 
-                                    <f:link.action action="delete" arguments="{record: record}" class="btn btn-light" controller="{domainModel}">
+                                    <f:link.action action="delete" arguments="{record: record, returnUrl: returnUrl}" class="btn btn-light" controller="{domainModel}">
                                         <core:icon identifier="actions-delete" size="small" />
                                     </f:link.action>
-                                    <f:link.action action="edit" arguments="{record: record}" class="btn btn-light" controller="{domainModel}">
+                                    <f:link.action action="edit" arguments="{record: record, returnUrl: returnUrl}" class="btn btn-light" controller="{domainModel}">
                                         <core:icon identifier="actions-document-open" size="small" />
                                     </f:link.action>
                                 </div>
@@ -36,7 +36,7 @@
                                     </f:else>
                                 </f:if>
 
-                                <f:link.action action="show" arguments="{record: record}" controller="{domainModel}">{displayName}</f:link.action>
+                                <f:link.action action="show" arguments="{record: record, returnUrl: returnUrl}" controller="{domainModel}">{displayName}</f:link.action>
                             </li>
                         </f:for>
                     </ul>
@@ -49,6 +49,15 @@
                     </div>
                 </f:else>
             </f:if>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <hr />
+            <f:link.action action="new" arguments="{returnUrl: returnUrl}" class="btn btn-success" controller="{domainModel}">
+                <psb:translate id="LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/list.xlf:new" />
+            </f:link.action>
         </div>
     </div>
 </section>

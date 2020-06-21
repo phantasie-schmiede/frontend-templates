@@ -3,6 +3,8 @@
 >
     <f:if condition="{record.{propertyName}}">
         <f:variable name="records" value="{record.{propertyName}}" />
-        <f:render arguments="{domainModel: domainModel, extensionKey: extensionKey, records: records}" partial="DomainModel/List" />
+        <f:variable name="returnUrl" value="{f:uri.page(absolute: 'true', addQueryString: 'true')}" />
+
+        <f:render arguments="{domainModel: linkedModelShortName, extensionKey: extensionKey, records: records, returnUrl: returnUrl}" partial="DomainModel/List" />
     </f:if>
 </section>

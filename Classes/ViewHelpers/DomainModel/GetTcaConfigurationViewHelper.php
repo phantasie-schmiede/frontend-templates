@@ -74,6 +74,13 @@ class GetTcaConfigurationViewHelper extends AbstractViewHelper
             if (true === $configuration[$columnName]['config']['editableInFrontend']) {
                 $result[$propertyName] = $configuration[$columnName]['config'];
 
+                if (Fields::FIELD_TYPES['INLINE'] === $configuration[$columnName]['config']['type']
+                    && isset($result[$propertyName]['linked_model'])
+                ) {
+                    $linkedModelClassNameParts = explode('\\', $result[$propertyName]['linked_model']);
+                    $result[$propertyName]['linkedModelShortName'] = array_pop($linkedModelClassNameParts);
+                }
+
                 if (Fields::FIELD_TYPES['SELECT'] === $configuration[$columnName]['config']['type']
                     || Fields::FIELD_TYPES['MM'] === $configuration[$columnName]['config']['type']
                 ) {

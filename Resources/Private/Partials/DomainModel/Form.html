@@ -29,6 +29,10 @@
                     </div>
                 </f:for>
 
+                <f:if condition="{returnUrl}">
+                    <f:form.hidden name="returnUrl" value="{returnUrl}" />
+                </f:if>
+
                 <f:variable name="submitButtonValue" value="{psb:translate(id: 'LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/{languageFile}.xlf:submit')}" />
                 <f:render arguments="{value: submitButtonValue}" partial="FormFields/Submit" />
             </f:form>

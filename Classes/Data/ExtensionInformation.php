@@ -35,6 +35,8 @@ use PSB\PsbFoundation\Data\AbstractExtensionInformation;
  */
 class ExtensionInformation extends AbstractExtensionInformation
 {
+    public const ALLOW_LANGUAGE_FILE_EDITING = true;
+
     public const DOKTYPES = [
         'MENU_DROPDOWN' => 100,
     ];

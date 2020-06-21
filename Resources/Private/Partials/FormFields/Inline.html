@@ -1,0 +1,8 @@
+<section data-namespace-typo3-fluid="true"
+         xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+>
+    <f:if condition="{record.{propertyName}}">
+        <f:variable name="records" value="{record.{propertyName}}" />
+        <f:render arguments="{domainModel: domainModel, extensionKey: extensionKey, records: records}" partial="DomainModel/List" />
+    </f:if>
+</section>

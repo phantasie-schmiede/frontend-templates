@@ -27,10 +27,12 @@ namespace PSB\PsbTemplates\ViewHelpers\DomainModel;
  ***************************************************************/
 
 use PSB\PsbFoundation\Exceptions\AnnotationException;
+use PSB\PsbFoundation\Service\Configuration\Fields;
 use PSB\PsbFoundation\Traits\InjectionTrait;
 use PSB\PsbFoundation\Utility\ExtensionInformationUtility;
 use ReflectionClass;
 use ReflectionException;
+use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Extbase\Object\Exception;
 use TYPO3\CMS\Extbase\Security\Exception\InvalidArgumentForHashGenerationException;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -70,8 +72,34 @@ class GetTcaConfigurationViewHelper extends AbstractViewHelper
             $columnName = ExtensionInformationUtility::convertPropertyNameToColumnName($propertyName);
 
             if (true === $configuration[$columnName]['config']['editableInFrontend']) {
-                $configuration[$columnName]['config']['type'] = ucfirst($configuration[$columnName]['config']['type']);
                 $result[$propertyName] = $configuration[$columnName]['config'];
+
+                if (Fields::FIELD_TYPES['SELECT'] === $configuration[$columnName]['config']['type']
+                    || Fields::FIELD_TYPES['MM'] === $configuration[$columnName]['config']['type']
+                ) {
+                    if (isset($result[$propertyName]['items'][0]) && is_array($result[$propertyName]['items'][0])) {
+                        // Convert TCA item structure to a frontend compatible array (remove one dimension).
+                        $items = [];
+
+                        foreach ($result[$propertyName]['items'] as $item) {
+                            $items[$item[0]] = $item[1];
+                        }
+
+                        $result[$propertyName]['items'] = $items;
+                    }
+
+                    if (isset($result[$propertyName]['linked_model'])) {
+                        $repositoryClassName = ClassNamingUtility::translateModelNameToRepositoryName($result[$propertyName]['linked_model']);
+                        $records = $this->get($repositoryClassName)->findTcaSelectItems();
+
+                        foreach ($records as $record) {
+                            $result[$propertyName]['items'][$record->getUid()] = $record->getDisplayName();
+                        }
+                    }
+                }
+
+                // To match partial names:
+                $result[$propertyName]['type'] = ucfirst($result[$propertyName]['type']);
             }
         }
 

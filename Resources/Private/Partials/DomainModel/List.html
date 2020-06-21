@@ -43,9 +43,7 @@
                 </f:then>
                 <f:else>
                     <div class="alert alert-info">
-                        <p>
-                            <psb:translate id="LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/list.xlf:noRecords" />
-                        </p>
+                        <psb:translate id="LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/list.xlf:noRecords" />
                     </div>
                 </f:else>
             </f:if>
@@ -54,7 +52,6 @@
 
     <div class="row">
         <div class="col-12">
-            <hr />
             <f:link.action action="new" arguments="{returnUrl: returnUrl}" class="btn btn-success" controller="{domainModel}">
                 <psb:translate id="LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/list.xlf:new" />
             </f:link.action>

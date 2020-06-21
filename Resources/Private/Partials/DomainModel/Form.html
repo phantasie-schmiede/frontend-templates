@@ -35,6 +35,15 @@
 
                 <f:variable name="submitButtonValue" value="{psb:translate(id: 'LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/{languageFile}.xlf:submit')}" />
                 <f:render arguments="{value: submitButtonValue}" partial="FormFields/Submit" />
+
+                <f:if condition="{returnUrl}">
+                    <f:then>
+                        <f:link.external class="btn btn-light" uri="{returnUrl}">Back</f:link.external>
+                    </f:then>
+                    <f:else>
+                        <button class="btn btn-light" onclick="window.history.back();">Back</button>
+                    </f:else>
+                </f:if>
             </f:form>
         </div>
     </div>

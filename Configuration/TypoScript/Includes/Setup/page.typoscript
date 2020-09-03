@@ -38,6 +38,11 @@ page {
         value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/OneColumn.html
       }
 
+      pagets__PsbBlank = TEXT
+      pagets__PsbBlank {
+        value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/Blank.html
+      }
+
       pagets__PsbOneColumn = TEXT
       pagets__PsbOneColumn {
         value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/OneColumn.html

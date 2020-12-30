@@ -19,11 +19,5 @@
             id="{propertyName}"
             property="{propertyName}"
         />
-
-        <f:variable name="helpText" value="{psb:translate(id: 'LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/formFields.xlf:{propertyName}.help')}" />
-
-        <f:if condition="{helpText}">
-            <small id="{propertyName}Help" class="form-text text-muted">{helpText}</small>
-        </f:if>
     </div>
 </section>

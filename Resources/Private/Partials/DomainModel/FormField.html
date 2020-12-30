@@ -1,0 +1,17 @@
+<section data-namespace-typo3-fluid="true"
+         xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+         xmlns:psb="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
+>
+    <div class="form-group">
+        <label for="{propertyName}">
+            <psb:translate id="LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/formFields.xlf:{propertyName}" />
+        </label>
+
+        <f:render arguments="{configuration: configuration, domainModel: domainModel, extensionKey: extensionKey, propertyName: propertyName, record: record}" partial="FormFields/{configuration.type}" />
+        <f:variable name="helpText" value="{psb:translate(id: 'LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/formFields.xlf:{propertyName}.help')}" />
+
+        <f:if condition="{helpText}">
+            <small class="form-text text-muted">{helpText}</small>
+        </f:if>
+    </div>
+</section>

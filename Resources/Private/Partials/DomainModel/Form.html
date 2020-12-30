@@ -12,21 +12,11 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <f:form action="{action}" method="post" name="record" object="{record}">
+            <f:form action="{action}" controller="{controller}" method="post" name="record" object="{record}">
                 <psbTemplates:domainModel.getTcaConfiguration domainModel="{domainModelClass}" />
 
                 <f:for as="configuration" each="{properties}" key="propertyName">
-                    <div class="form-group">
-                        <label for="{propertyName}">
-                            <psb:translate id="LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/formFields.xlf:{propertyName}" />
-                        </label>
-                        <f:render arguments="{configuration: configuration, domainModel: domainModel, extensionKey: extensionKey, propertyName: propertyName, record: record}" partial="FormFields/{configuration.type}" />
-                        <f:variable name="helpText" value="{psb:translate(id: 'LLL:EXT:{extensionKey}/Resources/Private/Language/Frontend/DomainModels/{domainModel}/formFields.xlf:{propertyName}.help')}" />
-
-                        <f:if condition="{helpText}">
-                            <small class="form-text text-muted">{helpText}</small>
-                        </f:if>
-                    </div>
+                    <f:render arguments="{_all}" partial="DomainModel/FormField" />
                 </f:for>
 
                 <f:if condition="{returnUrl}">

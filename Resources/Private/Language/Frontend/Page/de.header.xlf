@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file datatype="plaintext" date="2021-01-14T21:12:00+01:00" original="messages" product-name="psb_templates" source-language="en" target-language="de">
+		<header />
+		<body>
+			<trans-unit id="forgotPassword">
+				<source>Forgot password?</source>
+				<target>Passwort vergessen?</target>
+			</trans-unit>
+			<trans-unit id="login">
+				<source>Login</source>
+				<target>Anmelden</target>
+			</trans-unit>
+			<trans-unit id="logout">
+				<source>Logout</source>
+				<target>Abmelden</target>
+			</trans-unit>
+			<trans-unit id="password">
+				<source>Password</source>
+				<target>Passwort</target>
+			</trans-unit>
+			<trans-unit id="search">
+				<source>Search</source>
+				<target>Suchen</target>
+			</trans-unit>
+			<trans-unit id="username">
+				<source>Username</source>
+				<target>Benutzername</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

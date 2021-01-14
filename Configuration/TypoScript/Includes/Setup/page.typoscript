@@ -9,6 +9,7 @@ page {
 
   includeCSS {
     bootstrap = {$plugin.tx_psbtemplates.settings.resourcePath}Stylesheets/Vendors/bootstrap.min.css
+    bootstrapIcons = {$plugin.tx_psbtemplates.settings.resourcePath}Stylesheets/Vendors/bootstrap-icons-1.3.0/bootstrap-icons.css
     app = {$plugin.tx_psbtemplates.settings.resourcePath}Stylesheets/App.css
   }
 

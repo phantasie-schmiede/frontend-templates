@@ -5,9 +5,9 @@
         class="form-control"
         id="{propertyName}"
         multiple="{f:if(condition: configuration.MM, then: 'true', else: 'false')}"
-        options="{configuration.items}"
-        optionValueField="{f:if(condition: '{valueField}', then: '{valueField}', else: 'uid')}"
         optionLabelField="{labelField}"
+        optionValueField="{f:if(condition: '{valueField}', then: '{valueField}', else: 'uid')}"
+        options="{configuration.items}"
         property="{propertyName}"
     />
 </section>

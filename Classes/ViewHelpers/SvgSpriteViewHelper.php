@@ -48,10 +48,10 @@ class SvgSpriteViewHelper extends AbstractTagBasedViewHelper
     public function initializeArguments(): void
     {
         parent::initializeArguments();
-        $this->registerArgument('color', 'string', 'color of the icon', 'false');
-        $this->registerArgument('height', 'int', 'height of the icon', 'false', 32);
-        $this->registerArgument('icon', 'string', 'name of the icon', 'true');
-        $this->registerArgument('width', 'int', 'width of the icon', 'false', 32);
+        $this->registerArgument('color', 'string', 'color of the icon', false);
+        $this->registerArgument('height', 'int', 'height of the icon', false, 32);
+        $this->registerArgument('icon', 'string', 'name of the icon', true);
+        $this->registerArgument('width', 'int', 'width of the icon', false, 32);
     }
 
     /**

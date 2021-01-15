@@ -45,11 +45,15 @@
                                 </f:then>
                                 <f:else>
                                     <div class="form-group">
-                                        <label for="user">Username</label>
+                                        <label for="user">
+                                            <psbFoundation:translate id="{translationPath}username" />
+                                        </label>
                                         <input class="form-control" id="user" name="user" type="text">
                                     </div>
                                     <div class="form-group">
-                                        <label for="pass">Password</label> <input class="form-control" id="pass" name="pass" type="password">
+                                        <label for="pass">
+                                            <psbFoundation:translate id="{translationPath}password" />
+                                        </label> <input class="form-control" id="pass" name="pass" type="password">
                                     </div>
                                     <button class="btn btn-primary" type="submit">
                                         <psbFoundation:translate id="{translationPath}login" />

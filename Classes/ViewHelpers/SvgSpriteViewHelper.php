@@ -70,7 +70,6 @@ class SvgSpriteViewHelper extends AbstractTagBasedViewHelper
 
         $filePath = GeneralUtility::getFileAbsFileName('EXT:psb_templates/Resources/Public/Icons/Vendors/bootstrap-icons-1.3.0/bootstrap-icons.svg');
         $filePath = PathUtility::getAbsoluteWebPath($filePath);
-
         $this->tag->setContent('<use xlink:href="' . $filePath . '#' . $this->arguments['icon'] . '"/>');
 
         return $this->tag->render();

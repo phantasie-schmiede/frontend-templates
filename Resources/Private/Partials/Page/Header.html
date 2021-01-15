@@ -1,9 +1,10 @@
 <section data-namespace-typo3-fluid="true"
          xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-         xmlns:psb="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
+         xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
+         xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers"
 >
     <f:variable name="translationPath" value="LLL:EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf:" />
-    <f:variable name="siteConfiguration" value="{psb:globalVariables(path: 'siteConfiguration.configuration')}" />
+    <f:variable name="siteConfiguration" value="{psbFoundation:globalVariables(path: 'siteConfiguration.configuration')}" />
 
     <nav class="bg-dark fixed-top navbar navbar-dark navbar-expand-lg navbar-light">
         <f:link.page class="navbar-brand" pageUid="{siteConfiguration.rootPageId}">
@@ -21,23 +22,24 @@
             <f:cObject typoscriptObjectPath="lib.mainMenu" />
             <f:if condition="{siteConfiguration.searchResultPid}">
                 <form action="{f:uri.page(pageUid: siteConfiguration.searchResultPid)}" class="form-inline my-2 my-lg-0">
-                    <input aria-label="{psb:translate(id: '{translationPath}search')}" class="form-control mr-sm-2" placeholder="{psb:translate(id: '{translationPath}search')}" type="search">
+                    <input aria-label="{psbFoundation:translate(id: '{translationPath}search')}" class="form-control mr-sm-2" placeholder="{psbFoundation:translate(id: '{translationPath}search')}" type="search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                        <psb:translate id="{translationPath}search" />
+                        <psbFoundation:translate id="{translationPath}search" />
                     </button>
                 </form>
             </f:if>
             <f:if condition="{siteConfiguration.frontendUserPid}">
                 <div class="dropdown">
                 <span aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" id="dropdownLoginButton">
-                    <f:image alt="Login-Icon" src="EXT:psb_templates/Resources/Public/Icons/login-avatar.svg" width="50m" />
+                    <psbTemplates:svgSprite color="white" icon="person-circle" />
                 </span>
                     <div aria-labelledby="dropdownLoginButton" class="dropdown-menu dropdown-menu-right p-2">
                         <form action="/" method="post">
                             <f:security.ifAuthenticated>
                                 <f:then>
+                                    <p>{frontendUser.username}</p>
                                     <button class="btn btn-block btn-primary" type="submit">
-                                        <psb:translate id="{translationPath}logout" />
+                                        <psbFoundation:translate id="{translationPath}logout" />
                                     </button>
                                     <input name="logintype" type="hidden" value="logout">
                                 </f:then>
@@ -50,7 +52,7 @@
                                         <label for="pass">Password</label> <input class="form-control" id="pass" name="pass" type="password">
                                     </div>
                                     <button class="btn btn-primary" type="submit">
-                                        <psb:translate id="{translationPath}login" />
+                                        <psbFoundation:translate id="{translationPath}login" />
                                     </button>
                                     <input name="logintype" type="hidden" value="login">
                                     <input name="pid" type="hidden" value="{siteConfiguration.frontendUserPid}">
@@ -60,7 +62,7 @@
                                     <f:if condition="{siteConfiguration.resetPasswordPid}">
                                         <p>
                                             <f:link.page additionalParams="{tx_felogin_pi1: '{forgot: 1}'}" pageUid="{siteConfiguration.resetPasswordPid}" rel="nofollow">
-                                                <psb:translate id="{translationPath}forgotPassword" />
+                                                <psbFoundation:translate id="{translationPath}forgotPassword" />
                                             </f:link.page>
                                         </p>
                                     </f:if>

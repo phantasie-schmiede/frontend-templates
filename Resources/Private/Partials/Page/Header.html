@@ -41,13 +41,13 @@
                                         <div class="list-group list-group-flush text-center text-nowrap">
                                             <li class="list-group-item">{frontendUser.username}</li>
 
-                                            <psbFoundation:conditions.extensionLoaded extensionKey="fe_change_pwd">
+                                            <psbFoundation:condition.extensionLoaded extensionKey="fe_change_pwd">
                                                 <f:if condition="{siteConfiguration.changePasswordPid}">
                                                     <f:link.page class="list-group-item list-group-item-action" pageUid="{siteConfiguration.changePasswordPid}">
                                                         <psbFoundation:translate id="{translationPath}changePassword" />
                                                     </f:link.page>
                                                 </f:if>
-                                            </psbFoundation:conditions.extensionLoaded>
+                                            </psbFoundation:condition.extensionLoaded>
 
                                             <button class="active list-group-item list-group-item-action" type="submit">
                                                 <psbFoundation:translate id="{translationPath}logout" />

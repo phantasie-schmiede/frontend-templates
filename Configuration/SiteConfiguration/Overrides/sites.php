@@ -1,6 +1,8 @@
 <?php
+$frontendUserFields = [];
 $ll = 'LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/SiteConfiguration/Overrides/sites.xlf:';
 
+$frontendUserFields[] = 'frontendUserPid';
 $GLOBALS['SiteConfiguration']['site']['columns']['frontendUserPid'] = [
     'config'      => [
         'eval'        => 'int',
@@ -10,6 +12,19 @@ $GLOBALS['SiteConfiguration']['site']['columns']['frontendUserPid'] = [
     'label'       => $ll . 'frontendUserPid.label',
 ];
 
+if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('fe_change_pwd')) {
+    $frontendUserFields[] = 'changePasswordPid';
+    $GLOBALS['SiteConfiguration']['site']['columns']['changePasswordPid'] = [
+        'config'      => [
+            'eval'        => 'int',
+            'type'        => 'input',
+        ],
+        'description' => $ll . 'changePasswordPid.description',
+        'label'       => $ll . 'changePasswordPid.label',
+    ];
+}
+
+$frontendUserFields[] = 'resetPasswordPid';
 $GLOBALS['SiteConfiguration']['site']['columns']['resetPasswordPid'] = [
     'config'      => [
         'eval'        => 'int',
@@ -50,5 +65,5 @@ $GLOBALS['SiteConfiguration']['site']['columns']['websiteSubtitle'] = [
 ];
 
 $GLOBALS['SiteConfiguration']['site']['palettes']['default']['showitem'] .= ', websiteSubtitle';
-$GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= ', --div--;Design, websiteLogo, websiteColor, --div--;FE-Login, frontendUserPid, resetPasswordPid';
+$GLOBALS['SiteConfiguration']['site']['types']['0']['showitem'] .= ', --div--;Design, websiteLogo, websiteColor, --div--;FE-Login, ' . implode(', ', $frontendUserFields);
 

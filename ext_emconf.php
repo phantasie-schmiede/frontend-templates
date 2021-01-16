@@ -10,11 +10,12 @@ $EM_CONF['psb_templates'] = [
         'conflicts' => [
         ],
         'depends'   => [
-            'php'                  => '7.4',
-            'psb_foundation'       => '',
-            'typo3'                => '10.4.2-10.4.99',
+            'php'            => '7.4',
+            'psb_foundation' => '',
+            'typo3'          => '10.4.2-10.4.99',
         ],
         'suggests'  => [
+            'fe_change_pwd' => '',
         ],
     ],
     'createDirs'       => '',

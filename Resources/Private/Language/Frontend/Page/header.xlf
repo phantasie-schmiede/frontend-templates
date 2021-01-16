@@ -3,6 +3,9 @@
 	<file datatype="plaintext" date="2021-01-14T21:13:00+01:00" original="messages" product-name="psb_templates" source-language="en" >
 		<header />
 		<body>
+			<trans-unit id="changePassword">
+				<source>Change password</source>
+			</trans-unit>
 			<trans-unit id="forgotPassword">
 				<source>Forgot password?</source>
 			</trans-unit>

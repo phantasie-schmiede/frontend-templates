@@ -31,18 +31,29 @@
                 </f:if>
                 <f:if condition="{siteConfiguration.frontendUserPid}">
                     <div class="dropdown">
-                <span aria-expanded="false" aria-haspopup="true" data-bs-toggle="dropdown" id="dropdownLoginButton">
-                    <psbTemplates:svgSprite color="white" icon="person-circle" />
-                </span>
+                        <span aria-expanded="false" aria-haspopup="true" data-bs-toggle="dropdown" id="dropdownLoginButton">
+                            <psbTemplates:svgSprite color="white" icon="person-circle" />
+                        </span>
                         <div aria-labelledby="dropdownLoginButton" class="dropdown-menu dropdown-menu-end p-2">
                             <form action="/" method="post">
                                 <f:security.ifAuthenticated>
                                     <f:then>
-                                        <p>{frontendUser.username}</p>
-                                        <button class="btn btn-block btn-primary" type="submit">
-                                            <psbFoundation:translate id="{translationPath}logout" />
-                                        </button>
-                                        <input name="logintype" type="hidden" value="logout">
+                                        <div class="list-group list-group-flush text-center text-nowrap">
+                                            <li class="list-group-item">{frontendUser.username}</li>
+
+                                            <psbFoundation:conditions.extensionLoaded extensionKey="fe_change_pwd">
+                                                <f:if condition="{siteConfiguration.changePasswordPid}">
+                                                    <f:link.page class="list-group-item list-group-item-action" pageUid="{siteConfiguration.changePasswordPid}">
+                                                        <psbFoundation:translate id="{translationPath}changePassword" />
+                                                    </f:link.page>
+                                                </f:if>
+                                            </psbFoundation:conditions.extensionLoaded>
+
+                                            <button class="active list-group-item list-group-item-action" type="submit">
+                                                <psbFoundation:translate id="{translationPath}logout" />
+                                            </button>
+                                            <input name="logintype" type="hidden" value="logout">
+                                        </div>
                                     </f:then>
                                     <f:else>
                                         <div class="form-group">
@@ -54,23 +65,26 @@
                                         <div class="form-group">
                                             <label for="pass">
                                                 <psbFoundation:translate id="{translationPath}password" />
-                                            </label> <input class="form-control" id="pass" name="pass" type="password">
+                                            </label>
+                                            <input class="form-control" id="pass" name="pass" type="password">
                                         </div>
-                                        <button class="btn btn-primary" type="submit">
-                                            <psbFoundation:translate id="{translationPath}login" />
-                                        </button>
+
                                         <input name="logintype" type="hidden" value="login">
                                         <input name="pid" type="hidden" value="{siteConfiguration.frontendUserPid}">
                                         <input name="redirect_url" type="hidden" value="">
                                         <input name="tx_felogin_pi1[noredirect]" type="hidden" value="1">
 
-                                        <f:if condition="{siteConfiguration.resetPasswordPid}">
-                                            <p>
-                                                <f:link.page additionalParams="{tx_felogin_pi1: '{forgot: 1}'}" pageUid="{siteConfiguration.resetPasswordPid}" rel="nofollow">
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-primary mt-2" type="submit">
+                                                <psbFoundation:translate id="{translationPath}login" />
+                                            </button>
+
+                                            <f:if condition="{siteConfiguration.resetPasswordPid}">
+                                                <f:link.action action="recovery" class="btn btn-secondary text-nowrap" controller="PasswordRecovery" extensionName="FeLogin" pageUid="{siteConfiguration.resetPasswordPid}" pluginName="Login" rel="nofollow">
                                                     <psbFoundation:translate id="{translationPath}forgotPassword" />
-                                                </f:link.page>
-                                            </p>
-                                        </f:if>
+                                                </f:link.action>
+                                            </f:if>
+                                        </div>
                                     </f:else>
                                 </f:security.ifAuthenticated>
                             </form>

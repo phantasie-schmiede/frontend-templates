@@ -1,7 +1,9 @@
 # default page object
 page = PAGE
 page {
-#  bodyTagAdd = class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden"
+  bodyTag >
+  bodyTagCObject = TEXT
+  bodyTagCObject.stdWrap.dataWrap = <body class="bl-{field:backend_layout}" id="page-{field:uid}">
 
   meta {
     viewport = width=device-width, initial-scale=1, shrink-to-fit=no

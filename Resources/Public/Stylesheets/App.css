@@ -1,4 +1,4 @@
-body {
+body:not(.bl-pagets__PsbBlank) {
     padding-top: 5.5rem;
 }
 

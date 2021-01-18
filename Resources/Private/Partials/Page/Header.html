@@ -39,7 +39,7 @@
                                 <f:security.ifAuthenticated>
                                     <f:then>
                                         <div class="list-group list-group-flush text-center text-nowrap">
-                                            <li class="list-group-item">{frontendUser.username}</li>
+                                            <li class="list-group-item">{frontendUser.fullName}</li>
 
                                             <psbFoundation:condition.extensionLoaded extensionKey="fe_change_pwd">
                                                 <f:if condition="{siteConfiguration.changePasswordPid}">

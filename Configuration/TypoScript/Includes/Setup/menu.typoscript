@@ -47,7 +47,6 @@ lib.mainMenu {
     ACT < .NO
     ACT = 1
     ACT {
-      linkWrap = |<span class="sr-only">(current)</span>
       wrapItemAndSub = <li class="active nav-item">|</li>
     }
 

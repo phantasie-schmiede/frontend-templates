@@ -28,7 +28,7 @@ namespace PSB\PsbTemplates\Service\GlobalVariableProviders;
 
 use PSB\PsbFoundation\Service\GlobalVariableProviders\GlobalVariableProviderInterface;
 use PSB\PsbFoundation\Traits\InjectionTrait;
-use PSB\PsbFoundation\Utility\FrontendUserUtility;
+use PSB\PsbTemplates\Utility\FrontendUserUtility;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\Exception\AspectPropertyNotFoundException;
 use TYPO3\CMS\Extbase\Object\Exception;

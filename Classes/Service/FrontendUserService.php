@@ -14,31 +14,33 @@ declare(strict_types=1);
  * The TYPO3 project - inspiring people to share!
  */
 
-namespace PSB\PsbTemplates\Utility;
+namespace PSB\PsbTemplates\Service;
 
-use PSB\PsbFoundation\Utility\ObjectUtility;
 use PSB\PsbTemplates\Domain\Model\FrontendUser;
 use PSB\PsbTemplates\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\Exception\AspectPropertyNotFoundException;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\Exception;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
- * Class FrontendUserUtility
+ * Class FrontendUserService
  *
- * @package PSB\PsbTemplates\Utility
+ * @package PSB\PsbTemplates\Service
  */
-class FrontendUserUtility extends \PSB\PsbFoundation\Utility\FrontendUserUtility
+class FrontendUserService extends \PSB\PsbFoundation\Service\FrontendUserService
 {
     /**
      * @return FrontendUser|null
-     * @throws AspectNotFoundException
      * @throws AspectPropertyNotFoundException
      * @throws Exception
      */
-    public static function getCurrentUser(): ?FrontendUser
+    public function getCurrentUser(): ?FrontendUser
     {
-        return ObjectUtility::get(FrontendUserRepository::class)
-            ->findByUid(self::getCurrentUserId());
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $frontendUserRepository = $objectManager->get(FrontendUserRepository::class);
+
+        return $frontendUserRepository->findByUid($this->getCurrentUserId());
     }
 }

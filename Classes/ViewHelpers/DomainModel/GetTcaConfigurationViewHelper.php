@@ -16,15 +16,13 @@ declare(strict_types=1);
 
 namespace PSB\PsbTemplates\ViewHelpers\DomainModel;
 
-use PSB\PsbFoundation\Exceptions\AnnotationException;
 use PSB\PsbFoundation\Service\Configuration\Fields;
-use PSB\PsbFoundation\Traits\InjectionTrait;
-use PSB\PsbFoundation\Utility\ExtensionInformationUtility;
+use PSB\PsbFoundation\Service\ExtensionInformationService;
 use ReflectionClass;
-use ReflectionException;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\Exception;
-use TYPO3\CMS\Extbase\Security\Exception\InvalidArgumentForHashGenerationException;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -34,32 +32,29 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class GetTcaConfigurationViewHelper extends AbstractViewHelper
 {
-    use InjectionTrait;
-
     public function initializeArguments(): void
     {
         parent::initializeArguments();
-        $this->registerArgument('domainModel', 'string', 'full qualified class name', true,);
+        $this->registerArgument('domainModel', 'string', 'full qualified class name', true);
         $this->registerArgument('properties', 'string', 'variable name for the result', false, 'properties');
     }
 
     /**
-     * @throws AnnotationException
      * @throws Exception
-     * @throws InvalidArgumentForHashGenerationException
-     * @throws ReflectionException
      */
     public function render(): void
     {
-        $tableName = ExtensionInformationUtility::convertClassNameToTableName($this->arguments['domainModel']);
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $extensionInformationService = $objectManager->get(ExtensionInformationService::class);
+        $tableName = $extensionInformationService->convertClassNameToTableName($this->arguments['domainModel']);
         $configuration = $GLOBALS['TCA'][$tableName]['columns'];
-        $domainModelReflection = $this->get(ReflectionClass::class, $this->arguments['domainModel']);
+        $domainModelReflection = $objectManager->get(ReflectionClass::class, $this->arguments['domainModel']);
         $properties = $domainModelReflection->getProperties();
         $result = [];
 
         foreach ($properties as $property) {
             $propertyName = $property->getName();
-            $columnName = ExtensionInformationUtility::convertPropertyNameToColumnName($propertyName);
+            $columnName = $extensionInformationService->convertPropertyNameToColumnName($propertyName);
 
             if (true === $configuration[$columnName]['config']['editableInFrontend']) {
                 $result[$propertyName] = $configuration[$columnName]['config'];
@@ -87,7 +82,7 @@ class GetTcaConfigurationViewHelper extends AbstractViewHelper
 
                     if (isset($result[$propertyName]['linked_model'])) {
                         $repositoryClassName = ClassNamingUtility::translateModelNameToRepositoryName($result[$propertyName]['linked_model']);
-                        $records = $this->get($repositoryClassName)->findTcaSelectItems();
+                        $records = $objectManager->get($repositoryClassName)->findTcaSelectItems();
 
                         foreach ($records as $record) {
                             $result[$propertyName]['items'][$record->getUid()] = $record->getDisplayName();

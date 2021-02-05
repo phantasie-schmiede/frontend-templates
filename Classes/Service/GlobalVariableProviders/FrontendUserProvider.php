@@ -17,11 +17,10 @@ declare(strict_types=1);
 namespace PSB\PsbTemplates\Service\GlobalVariableProviders;
 
 use PSB\PsbFoundation\Service\GlobalVariableProviders\GlobalVariableProviderInterface;
-use PSB\PsbFoundation\Traits\InjectionTrait;
-use PSB\PsbTemplates\Utility\FrontendUserUtility;
+use PSB\PsbTemplates\Service\FrontendUserService;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\Exception\AspectPropertyNotFoundException;
-use TYPO3\CMS\Extbase\Object\Exception;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class FrontendUserProvider
@@ -30,8 +29,6 @@ use TYPO3\CMS\Extbase\Object\Exception;
  */
 class FrontendUserProvider implements GlobalVariableProviderInterface
 {
-    use InjectionTrait;
-
     /**
      * @var bool
      */
@@ -39,7 +36,6 @@ class FrontendUserProvider implements GlobalVariableProviderInterface
 
     /**
      * @return array
-     * @throws Exception
      * @throws AspectNotFoundException
      * @throws AspectPropertyNotFoundException
      */
@@ -52,7 +48,8 @@ class FrontendUserProvider implements GlobalVariableProviderInterface
             return [];
         }
 
-        $frontendUser = FrontendUserUtility::getCurrentUser();
+        $frontendUserService = GeneralUtility::makeInstance(FrontendUserService::class);
+        $frontendUser = $frontendUserService->getCurrentUser();
         $this->setCacheable(true);
 
         return ['frontendUser' => $frontendUser];

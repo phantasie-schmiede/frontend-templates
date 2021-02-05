@@ -16,9 +16,7 @@ declare(strict_types=1);
 
 namespace PSB\PsbTemplates\ViewHelpers\Bootstrap;
 
-use PSB\PsbFoundation\Utility\ObjectUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\Exception;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -44,7 +42,6 @@ class ProgessBarViewHelper extends AbstractViewHelper
 
     /**
      * @return string
-     * @throws Exception
      */
     public function render(): string
     {
@@ -74,7 +71,7 @@ class ProgessBarViewHelper extends AbstractViewHelper
             $classes .= ' progress-bar-striped';
         }
 
-        $standaloneView = ObjectUtility::get(StandaloneView::class);
+        $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
         $templatePath = GeneralUtility::getFileAbsFileName('EXT:psb_templates/Resources/Private/Templates/ViewHelpers/Bootstrap/ProgressBar.html');
 
         $standaloneView->setFormat('html');

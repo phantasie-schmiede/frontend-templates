@@ -18,9 +18,9 @@ namespace PSB\PsbTemplates\Service\GlobalVariableProviders;
 
 use PSB\PsbFoundation\Service\GlobalVariableProviders\GlobalVariableProviderInterface;
 use PSB\PsbTemplates\Service\FrontendUserService;
-use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\Exception\AspectPropertyNotFoundException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\Exception;
 
 /**
  * Class FrontendUserProvider
@@ -35,9 +35,17 @@ class FrontendUserProvider implements GlobalVariableProviderInterface
     protected bool $cacheable = false;
 
     /**
+     * @return bool
+     */
+    public static function isAvailableDuringBootProcess(): bool
+    {
+        return false;
+    }
+
+    /**
      * @return array
-     * @throws AspectNotFoundException
      * @throws AspectPropertyNotFoundException
+     * @throws Exception
      */
     public function getGlobalVariables(): array
     {

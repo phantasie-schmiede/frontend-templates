@@ -17,12 +17,9 @@ declare(strict_types=1);
 namespace PSB\PsbTemplates\Service;
 
 use PSB\PsbTemplates\Domain\Model\FrontendUser;
-use PSB\PsbTemplates\Domain\Repository\FrontendUserRepository;
+use PSB\PsbTemplates\Traits\Properties\FrontendUserRepositoryTrait;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\Exception\AspectPropertyNotFoundException;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\Exception;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * Class FrontendUserService
@@ -31,16 +28,15 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
  */
 class FrontendUserService extends \PSB\PsbFoundation\Service\FrontendUserService
 {
+    use FrontendUserRepositoryTrait;
+
     /**
      * @return FrontendUser|null
+     * @throws AspectNotFoundException
      * @throws AspectPropertyNotFoundException
-     * @throws Exception
      */
     public function getCurrentUser(): ?FrontendUser
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $frontendUserRepository = $objectManager->get(FrontendUserRepository::class);
-
-        return $frontendUserRepository->findByUid($this->getCurrentUserId());
+        return $this->overriddenFrontendUserRepository->findByUid($this->getCurrentUserId());
     }
 }

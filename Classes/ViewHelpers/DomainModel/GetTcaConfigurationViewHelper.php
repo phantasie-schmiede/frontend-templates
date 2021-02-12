@@ -16,13 +16,12 @@ declare(strict_types=1);
 
 namespace PSB\PsbTemplates\ViewHelpers\DomainModel;
 
+use PSB\PsbFoundation\Domain\Repository\AbstractRepository;
 use PSB\PsbFoundation\Service\Configuration\Fields;
-use PSB\PsbFoundation\Service\ExtensionInformationService;
+use PSB\PsbFoundation\Traits\Properties\TcaServiceTrait;
 use ReflectionClass;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\Exception;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -32,6 +31,8 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class GetTcaConfigurationViewHelper extends AbstractViewHelper
 {
+    use TcaServiceTrait;
+
     public function initializeArguments(): void
     {
         parent::initializeArguments();
@@ -39,22 +40,17 @@ class GetTcaConfigurationViewHelper extends AbstractViewHelper
         $this->registerArgument('properties', 'string', 'variable name for the result', false, 'properties');
     }
 
-    /**
-     * @throws Exception
-     */
     public function render(): void
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $extensionInformationService = $objectManager->get(ExtensionInformationService::class);
-        $tableName = $extensionInformationService->convertClassNameToTableName($this->arguments['domainModel']);
+        $tableName = $this->tcaService->convertClassNameToTableName($this->arguments['domainModel']);
         $configuration = $GLOBALS['TCA'][$tableName]['columns'];
-        $domainModelReflection = $objectManager->get(ReflectionClass::class, $this->arguments['domainModel']);
+        $domainModelReflection = GeneralUtility::makeInstance(ReflectionClass::class, $this->arguments['domainModel']);
         $properties = $domainModelReflection->getProperties();
         $result = [];
 
         foreach ($properties as $property) {
             $propertyName = $property->getName();
-            $columnName = $extensionInformationService->convertPropertyNameToColumnName($propertyName);
+            $columnName = $this->tcaService->convertPropertyNameToColumnName($propertyName);
 
             if (true === $configuration[$columnName]['config']['editableInFrontend']) {
                 $result[$propertyName] = $configuration[$columnName]['config'];
@@ -82,10 +78,14 @@ class GetTcaConfigurationViewHelper extends AbstractViewHelper
 
                     if (isset($result[$propertyName]['linked_model'])) {
                         $repositoryClassName = ClassNamingUtility::translateModelNameToRepositoryName($result[$propertyName]['linked_model']);
-                        $records = $objectManager->get($repositoryClassName)->findTcaSelectItems();
+                        $repository = GeneralUtility::makeInstance($repositoryClassName);
 
-                        foreach ($records as $record) {
-                            $result[$propertyName]['items'][$record->getUid()] = $record->getDisplayName();
+                        if ($repository instanceof AbstractRepository) {
+                            $records = $repository->findTcaSelectItems();
+
+                            foreach ($records as $record) {
+                                $result[$propertyName]['items'][$record->getUid()] = $record->getDisplayName();
+                            }
                         }
                     }
                 }

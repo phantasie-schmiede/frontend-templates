@@ -17,10 +17,9 @@ declare(strict_types=1);
 namespace PSB\PsbTemplates\Service\GlobalVariableProviders;
 
 use PSB\PsbFoundation\Service\GlobalVariableProviders\GlobalVariableProviderInterface;
-use PSB\PsbTemplates\Service\FrontendUserService;
+use PSB\PsbTemplates\Traits\Properties\FrontendUserServiceTrait;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\Exception\AspectPropertyNotFoundException;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\Exception;
 
 /**
  * Class FrontendUserProvider
@@ -29,6 +28,8 @@ use TYPO3\CMS\Extbase\Object\Exception;
  */
 class FrontendUserProvider implements GlobalVariableProviderInterface
 {
+    use FrontendUserServiceTrait;
+
     /**
      * @var bool
      */
@@ -45,7 +46,7 @@ class FrontendUserProvider implements GlobalVariableProviderInterface
     /**
      * @return array
      * @throws AspectPropertyNotFoundException
-     * @throws Exception
+     * @throws AspectNotFoundException
      */
     public function getGlobalVariables(): array
     {
@@ -56,8 +57,7 @@ class FrontendUserProvider implements GlobalVariableProviderInterface
             return [];
         }
 
-        $frontendUserService = GeneralUtility::makeInstance(FrontendUserService::class);
-        $frontendUser = $frontendUserService->getCurrentUser();
+        $frontendUser = $this->frontendUserService->getCurrentUser();
         $this->setCacheable(true);
 
         return ['frontendUser' => $frontendUser];

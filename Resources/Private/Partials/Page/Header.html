@@ -3,7 +3,7 @@
          xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
          xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers"
 >
-    <f:variable name="translationPath" value="LLL:EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf:" />
+    <psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf" />
     <f:variable name="siteConfiguration" value="{psbFoundation:globalVariables(path: 'siteConfiguration.configuration')}" />
 
     <nav class="bg-dark fixed-top navbar navbar-dark navbar-expand-lg">
@@ -23,9 +23,9 @@
                 <f:cObject typoscriptObjectPath="lib.mainMenu" />
                 <f:if condition="{siteConfiguration.searchResultPid}">
                     <form action="{f:uri.page(pageUid: siteConfiguration.searchResultPid)}" class="form-inline my-2 my-lg-0">
-                        <input aria-label="{psbFoundation:translate(id: '{translationPath}search')}" class="form-control mr-sm-2" placeholder="{psbFoundation:translate(id: '{translationPath}search')}" type="search">
+                        <input aria-label="{psbFoundation:translate(id: 'header:search')}" class="form-control mr-sm-2" placeholder="{psbFoundation:translate(id: 'header:search')}" type="search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                            <psbFoundation:translate id="{translationPath}search" />
+                            <psbFoundation:translate id="header:search" />
                         </button>
                     </form>
                 </f:if>
@@ -44,13 +44,13 @@
                                             <psbFoundation:condition.extensionLoaded extensionKey="fe_change_pwd">
                                                 <f:if condition="{siteConfiguration.changePasswordPid}">
                                                     <f:link.page class="list-group-item list-group-item-action" pageUid="{siteConfiguration.changePasswordPid}">
-                                                        <psbFoundation:translate id="{translationPath}changePassword" />
+                                                        <psbFoundation:translate id="header:changePassword" />
                                                     </f:link.page>
                                                 </f:if>
                                             </psbFoundation:condition.extensionLoaded>
 
                                             <button class="active list-group-item list-group-item-action" type="submit">
-                                                <psbFoundation:translate id="{translationPath}logout" />
+                                                <psbFoundation:translate id="header:logout" />
                                             </button>
                                             <input name="logintype" type="hidden" value="logout">
                                         </div>
@@ -58,13 +58,13 @@
                                     <f:else>
                                         <div class="form-group">
                                             <label for="user">
-                                                <psbFoundation:translate id="{translationPath}username" />
+                                                <psbFoundation:translate id="header:username" />
                                             </label>
                                             <input class="form-control" id="user" name="user" type="text">
                                         </div>
                                         <div class="form-group">
                                             <label for="pass">
-                                                <psbFoundation:translate id="{translationPath}password" />
+                                                <psbFoundation:translate id="header:password" />
                                             </label>
                                             <input class="form-control" id="pass" name="pass" type="password">
                                         </div>
@@ -76,12 +76,12 @@
 
                                         <div class="d-grid gap-2">
                                             <button class="btn btn-primary mt-2" type="submit">
-                                                <psbFoundation:translate id="{translationPath}login" />
+                                                <psbFoundation:translate id="header:login" />
                                             </button>
 
                                             <f:if condition="{siteConfiguration.resetPasswordPid}">
                                                 <f:link.action action="recovery" class="btn btn-secondary text-nowrap" controller="PasswordRecovery" extensionName="FeLogin" pageUid="{siteConfiguration.resetPasswordPid}" pluginName="Login" rel="nofollow">
-                                                    <psbFoundation:translate id="{translationPath}forgotPassword" />
+                                                    <psbFoundation:translate id="header:forgotPassword" />
                                                 </f:link.action>
                                             </f:if>
                                         </div>

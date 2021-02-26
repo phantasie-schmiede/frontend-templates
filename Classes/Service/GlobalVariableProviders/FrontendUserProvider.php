@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace PSB\PsbTemplates\Service\GlobalVariableProviders;
 
 use PSB\PsbFoundation\Service\GlobalVariableProviders\GlobalVariableProviderInterface;
+use PSB\PsbFoundation\Utility\ContextUtility;
 use PSB\PsbTemplates\Traits\Properties\FrontendUserServiceTrait;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\Exception\AspectPropertyNotFoundException;
@@ -51,7 +52,7 @@ class FrontendUserProvider implements GlobalVariableProviderInterface
     public function getGlobalVariables(): array
     {
         // not available in backend
-        if ('BE' === TYPO3_MODE) {
+        if (ContextUtility::isBackend()) {
             $this->setCacheable(true);
 
             return [];

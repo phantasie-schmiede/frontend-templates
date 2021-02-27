@@ -37,11 +37,11 @@ class FrontendUserProvider implements GlobalVariableProviderInterface
     protected bool $cacheable = false;
 
     /**
-     * @return bool
+     * @return bool|null
      */
-    public static function isAvailableDuringBootProcess(): bool
+    public static function isAvailable(): ?bool
     {
-        return false;
+        return ContextUtility::isBootProcessRunning() ? null : true;
     }
 
     /**

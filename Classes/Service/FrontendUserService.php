@@ -17,7 +17,7 @@ declare(strict_types=1);
 namespace PSB\PsbTemplates\Service;
 
 use PSB\PsbTemplates\Domain\Model\FrontendUser;
-use PSB\PsbTemplates\Traits\Properties\FrontendUserRepositoryTrait;
+use PSB\PsbTemplates\Traits\PropertyInjection\FrontendUserRepositoryTrait;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 use TYPO3\CMS\Core\Context\Exception\AspectPropertyNotFoundException;
 

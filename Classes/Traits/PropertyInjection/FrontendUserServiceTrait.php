@@ -14,27 +14,27 @@ declare(strict_types=1);
  * The TYPO3 project - inspiring people to share!
  */
 
-namespace PSB\PsbTemplates\Traits\Properties;
+namespace PSB\PsbTemplates\Traits\PropertyInjection;
 
-use PSB\PsbTemplates\Domain\Repository\FrontendUserRepository;
+use PSB\PsbTemplates\Service\FrontendUserService;
 
 /**
- * Trait FrontendUserRepositoryTrait
+ * Trait FrontendUserServiceTrait
  *
  * @package PSB\PsbTemplates\Traits\Properties
  */
-trait FrontendUserRepositoryTrait
+trait FrontendUserServiceTrait
 {
     /**
-     * @var FrontendUserRepository|null
+     * @var FrontendUserService|null
      */
-    protected ?FrontendUserRepository $overriddenFrontendUserRepository = null;
+    protected ?FrontendUserService $frontendUserService = null;
 
     /**
-     * @param FrontendUserRepository $frontendUserRepository
+     * @param FrontendUserService $frontendUserService
      */
-    public function injectOverriddenFrontendUserRepository(FrontendUserRepository $frontendUserRepository): void
+    public function injectFrontendUserService(FrontendUserService $frontendUserService): void
     {
-        $this->overriddenFrontendUserRepository = $frontendUserRepository;
+        $this->frontendUserService = $frontendUserService;
     }
 }

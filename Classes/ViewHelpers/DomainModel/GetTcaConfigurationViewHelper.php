@@ -18,7 +18,7 @@ namespace PSB\PsbTemplates\ViewHelpers\DomainModel;
 
 use PSB\PsbFoundation\Domain\Repository\AbstractRepository;
 use PSB\PsbFoundation\Service\Configuration\Fields;
-use PSB\PsbFoundation\Traits\Properties\TcaServiceTrait;
+use PSB\PsbFoundation\Traits\PropertyInjection\TcaServiceTrait;
 use ReflectionClass;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

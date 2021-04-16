@@ -14,6 +14,11 @@ body:not(.bl-pagets__PsbBlank) {
     display: inline-block;
 }
 
+td.fit, th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+
 /* icon styles from core */
 .icon {
     position: relative;

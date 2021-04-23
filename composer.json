@@ -1,0 +1,31 @@
+{
+	"authors": [
+		{
+			"email": "dn@phantasie-schmiede.de",
+			"name": "Daniel Ablass",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"PSB\\PsbTemplates\\": "Classes/"
+		}
+	},
+	"description": "Basic templates for TYPO3",
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "psb_templates"
+		}
+	},
+	"keywords": [
+		"extension",
+		"templates",
+		"typo3"
+	],
+	"license": "GPL-2.0-or-later",
+	"name": "psb/psb-templates",
+	"require": {
+		"psb/psb-foundation": "@dev"
+	},
+	"type": "typo3-cms-extension"
+}

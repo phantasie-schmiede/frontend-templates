@@ -10,18 +10,14 @@ $EM_CONF['psb_templates'] = [
         'conflicts' => [
         ],
         'depends'   => [
-            'php'            => '7.4',
-            'psb_foundation' => '',
-            'typo3'          => '10.4.2-10.4.99',
+            'psb_foundation' => '1.0.0',
         ],
         'suggests'  => [
             'fe_change_pwd' => '',
         ],
     ],
-    'createDirs'       => '',
     'description'      => 'Basic templates for TYPO3',
     'state'            => 'alpha',
     'title'            => 'PSbits | Templates',
-    'uploadfolder'     => false,
     'version'          => '0.0.0',
 ];

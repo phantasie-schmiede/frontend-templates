@@ -10,7 +10,8 @@ $EM_CONF['psb_templates'] = [
         'conflicts' => [
         ],
         'depends'   => [
-            'psb_foundation' => '1.0.0',
+            'psb_foundation'       => '1.0.0',
+            'fluid_styled_content' => '10.4.0-10.4.99',
         ],
         'suggests'  => [
             'fe_change_pwd' => '',

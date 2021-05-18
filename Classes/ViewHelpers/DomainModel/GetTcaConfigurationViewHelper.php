@@ -66,11 +66,11 @@ class GetTcaConfigurationViewHelper extends AbstractViewHelper
                     || Fields::FIELD_TYPES['MM'] === $configuration[$columnName]['config']['type']
                 ) {
                     if (isset($result[$propertyName]['items'][0]) && is_array($result[$propertyName]['items'][0])) {
-                        // Convert TCA item structure to a frontend compatible array (remove one dimension).
+                        // Convert TCA item structure to a frontend compatible array (remove one dimension and flip key <==> value).
                         $items = [];
 
                         foreach ($result[$propertyName]['items'] as $item) {
-                            $items[$item[0]] = $item[1];
+                            $items[$item[1]] = $item[0];
                         }
 
                         $result[$propertyName]['items'] = $items;

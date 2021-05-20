@@ -27,11 +27,11 @@
 [end]
 
 /*
-* Render the page title twice (first as dropdown header (COA) and second as first dropdown entry (linkWrap)) for all
-* page types except menu-dropdown (doktype 100).
-* In order to handle these two cases the dropdown-link is rendered explicitly with allWrap and the subpages-div is
-* openend in linkWrap and closed in wrapItemAndSub.
-*/
+ * Render the page title twice (first as dropdown header (COA) and second as first dropdown entry (linkWrap)) for all
+ * page types except menu-dropdown (doktype 100).
+ * In order to handle these two cases the dropdown-link is rendered explicitly with allWrap and the subpages-div is
+ * opened in linkWrap and closed in wrapItemAndSub.
+ */
 lib.mainMenu = HMENU
 lib.mainMenu {
   1 = TMENU

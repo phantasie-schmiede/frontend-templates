@@ -60,7 +60,7 @@ lib.mainMenu {
       allWrap.cObject = TEXT
       allWrap.cObject {
         field = nav_title // title
-        wrap = <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle nav-link" data-toggle="dropdown" href="" role="button">|</a>
+        wrap = <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" role="button">|</a>
       }
 
       before = <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left text-right text-lg-left">

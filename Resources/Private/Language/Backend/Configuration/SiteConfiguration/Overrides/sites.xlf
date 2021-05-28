@@ -3,24 +3,6 @@
 	<file datatype="plaintext" date="2020-04-29T08:40:00+01:00" original="messages" product-name="psb_foundation" source-language="en">
 		<header />
 		<body>
-			<trans-unit id="changePasswordPid.description">
-				<source>The ID of the page where the fe_change_pwd plugin is located which is used to execute the change-password-process. A "change password"-link is only rendered if this value is set.</source>
-			</trans-unit>
-			<trans-unit id="changePasswordPid.label">
-				<source>Change password PID</source>
-			</trans-unit>
-			<trans-unit id="frontendUserPid.description">
-				<source>The page ID of the SysFolder in which frontend user records are stored. Header dropdown for login will only be rendered if this value is set.</source>
-			</trans-unit>
-			<trans-unit id="frontendUserPid.label">
-				<source>Frontend user PID</source>
-			</trans-unit>
-			<trans-unit id="resetPasswordPid.description">
-				<source>The ID of the page where the fe_login plugin is located which is used to execute the reset-password-process. A "reset password"-link is only rendered if this value is set.</source>
-			</trans-unit>
-			<trans-unit id="resetPasswordPid.label">
-				<source>Reset password PID</source>
-			</trans-unit>
 			<trans-unit id="websiteColor.description">
 				<source>The color is used as the primary color of the layout.</source>
 			</trans-unit>

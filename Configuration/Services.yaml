@@ -6,6 +6,3 @@ services:
 
   PSB\PsbTemplates\:
     resource: '../Classes/*'
-
-  PSB\PsbTemplates\Service\GlobalVariableProviders\FrontendUserProvider:
-    public: true

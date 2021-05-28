@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file datatype="plaintext" date="2021-05-27T00:29:00+01:00" original="messages" product-name="psb_templates" source-language="en" target-language="de">
+		<header />
+		<body>
+			<trans-unit id="close">
+				<source>Close</source>
+				<target>Schließen</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

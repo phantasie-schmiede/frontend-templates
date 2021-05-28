@@ -1,0 +1,39 @@
+<section data-namespace-typo3-fluid="true"
+         xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+         xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
+         xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers"
+>
+    <psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Partials/flashMessages.xlf" />
+
+    <f:flashMessages as="flashMessages" queueIdentifier="{queueIdentifier}">
+        <div class="typo3-flashMessages">
+            <f:for as="flashMessage" each="{flashMessages}">
+                <f:switch expression="{flashMessage.severity}">
+                    <f:case value="-2">
+                        <f:variable name="alertLevel" value="notice" />
+                    </f:case>
+                    <f:case value="-1">
+                        <f:variable name="alertLevel" value="info" />
+                    </f:case>
+                    <f:case value="0">
+                        <f:variable name="alertLevel" value="success" />
+                    </f:case>
+                    <f:case value="1">
+                        <f:variable name="alertLevel" value="warning" />
+                    </f:case>
+                    <f:case value="2">
+                        <f:variable name="alertLevel" value="danger" />
+                    </f:case>
+                </f:switch>
+
+                <div class="alert alert-{alertLevel} alert-dismissible fade show" role="alert">
+                    <h4 class="alert-title">{flashMessage.title}</h4>
+                    <div class="alert-message">
+                        {flashMessage.message}
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{psbFoundation:translate(id: 'flashMessages:close')}"></button>
+                </div>
+            </f:for>
+        </div>
+    </f:flashMessages>
+</section>

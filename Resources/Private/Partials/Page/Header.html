@@ -4,8 +4,8 @@
          xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers"
 >
     <psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf" />
-    <f:variable name="frontendUser" value="{psbFoundation:globalVariables(path: 'frontendUser')}" />
-    <f:variable name="siteConfiguration" value="{psbFoundation:globalVariables(path: 'siteConfiguration.configuration')}" />
+    <f:variable name="frontendUser" value="{psbFoundation:globalVariables.frontendUser(path: 'user')}" />
+    <f:variable name="siteConfiguration" value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
 
     <nav class="bg-dark fixed-top navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid">

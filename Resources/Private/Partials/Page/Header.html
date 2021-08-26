@@ -6,8 +6,6 @@
     <psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf" />
     <f:variable name="frontendUser" value="{psbFoundation:globalVariables.frontendUser()}" />
     <f:variable name="siteConfiguration" value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
-<f:debug>{_all}</f:debug>
-
     <nav class="bg-dark fixed-top navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid">
             <f:link.page class="navbar-brand" pageUid="{siteConfiguration.rootPageId}">
@@ -85,7 +83,7 @@
                                             </button>
 
                                             <f:if condition="{frontendUser.loginPage.uid}">
-                                                <f:link.action action="recovery" class="btn btn-secondary text-nowrap" controller="PasswordRecovery" extensionName="FeLogin" pageUid="{siteConfiguration.feLoginPluginPid}" pluginName="Login" rel="nofollow">
+                                                <f:link.action action="recovery" class="btn btn-secondary text-nowrap" controller="PasswordRecovery" extensionName="FeLogin" pageUid="{psbFoundation:globalVariables.frontendUser(path: 'loginPage.uid')}" pluginName="Login" rel="nofollow">
                                                     <psbFoundation:translate id="header:forgotPassword" />
                                                 </f:link.action>
                                             </f:if>

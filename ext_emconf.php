@@ -11,7 +11,7 @@ $EM_CONF['psb_templates'] = [
         ],
         'depends'   => [
             'psb_foundation'       => '1.0.0',
-            'fluid_styled_content' => '10.4.0-11.2.99',
+            'fluid_styled_content' => '10.4.0-11.3.99',
         ],
         'suggests'  => [
             'fe_change_pwd' => '',

@@ -35,6 +35,7 @@ class ProgessBarViewHelper extends AbstractViewHelper
     public function initializeArguments(): void
     {
         parent::initializeArguments();
+        $this->registerArgument('classes', 'string', 'CSS classes');
         $this->registerArgument('maxValue', 'int', 'maximum value', false, 100);
         $this->registerArgument('minValue', 'int', 'minimum value', false, 0);
         $this->registerArgument('value', 'int', 'current value', true);
@@ -45,6 +46,7 @@ class ProgessBarViewHelper extends AbstractViewHelper
      */
     public function render(): string
     {
+        $classes = $this->arguments['classes'];
         $maxValue = $this->arguments['maxValue'];
         $minValue = $this->arguments['minValue'];
         $value = $this->arguments['value'];
@@ -52,23 +54,23 @@ class ProgessBarViewHelper extends AbstractViewHelper
         $percentage = 100 / ($maxValue - $minValue) * ($value - $minValue);
         $percentage = max(1, round($percentage));
 
-        $classes = 'bg-';
+        if (null === $classes) {
+            $classes = 'bg-';
 
-        switch ($percentage) {
-            case 74 < $percentage:
-                $classes .= 'success';
-                break;
-            case 24 < $percentage:
-                $classes .= 'warning';
-                break;
-            default:
-                $classes .= 'danger';
-        }
+            switch ($percentage) {
+                case 74 < $percentage:
+                    $classes .= 'success';
+                    break;
+                case 24 < $percentage:
+                    $classes .= 'warning';
+                    break;
+                default:
+                    $classes .= 'danger';
+            }
 
-        $classes .= ' progress-bar';
-
-        if (100 > $percentage) {
-            $classes .= ' progress-bar-striped';
+            if (100 > $percentage) {
+                $classes .= ' progress-bar-striped';
+            }
         }
 
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
@@ -78,6 +80,7 @@ class ProgessBarViewHelper extends AbstractViewHelper
         $standaloneView->setTemplatePathAndFilename($templatePath);
         $standaloneView->assignMultiple([
             'classes'    => $classes,
+            'content'    => $this->renderChildren(),
             'maxValue'   => $maxValue,
             'minValue'   => $minValue,
             'percentage' => $percentage,

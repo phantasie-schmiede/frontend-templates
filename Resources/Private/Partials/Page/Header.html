@@ -6,6 +6,7 @@
     <psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf" />
     <f:variable name="frontendUser" value="{psbFoundation:globalVariables.frontendUser()}" />
     <f:variable name="siteConfiguration" value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
+
     <nav class="bg-dark fixed-top navbar navbar-dark navbar-expand-lg">
         <div class="container-fluid">
             <f:link.page class="navbar-brand" pageUid="{siteConfiguration.rootPageId}">
@@ -38,7 +39,7 @@
                             <psbTemplates:svgSprite color="white" icon="person-circle" />
                         </span>
                         <div aria-labelledby="dropdownLoginButton" class="dropdown-menu dropdown-menu-end p-2">
-                            <form action="/" method="post">
+                            <form method="post">
                                 <f:security.ifAuthenticated>
                                     <f:then>
                                         <div class="list-group list-group-flush text-center text-nowrap">

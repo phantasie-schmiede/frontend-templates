@@ -17,7 +17,7 @@ declare(strict_types=1);
 namespace PSB\PsbTemplates\ViewHelpers\DomainModel;
 
 use PSB\PsbFoundation\Domain\Repository\AbstractRepository;
-use PSB\PsbFoundation\Service\Configuration\Fields;
+use PSB\PsbFoundation\Library\TcaFields;
 use PSB\PsbFoundation\Traits\PropertyInjection\TcaServiceTrait;
 use ReflectionClass;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
@@ -55,15 +55,15 @@ class GetTcaConfigurationViewHelper extends AbstractViewHelper
             if (true === $configuration[$columnName]['config']['editableInFrontend']) {
                 $result[$propertyName] = $configuration[$columnName]['config'];
 
-                if (Fields::FIELD_TYPES['INLINE'] === $configuration[$columnName]['config']['type']
+                if (TcaFields::TYPES['INLINE'] === $configuration[$columnName]['config']['type']
                     && isset($result[$propertyName]['linked_model'])
                 ) {
                     $linkedModelClassNameParts = explode('\\', $result[$propertyName]['linked_model']);
                     $result[$propertyName]['linkedModelShortName'] = array_pop($linkedModelClassNameParts);
                 }
 
-                if (Fields::FIELD_TYPES['SELECT'] === $configuration[$columnName]['config']['type']
-                    || Fields::FIELD_TYPES['MM'] === $configuration[$columnName]['config']['type']
+                if (TcaFields::TYPES['SELECT'] === $configuration[$columnName]['config']['type']
+                    || TcaFields::TYPES['MM'] === $configuration[$columnName]['config']['type']
                 ) {
                     if (isset($result[$propertyName]['items'][0]) && is_array($result[$propertyName]['items'][0])) {
                         // Convert TCA item structure to a frontend compatible array (remove one dimension and flip key <==> value).

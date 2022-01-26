@@ -21,11 +21,11 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Class ProgessBarViewHelper
+ * Class ProgressBarViewHelper
  *
  * @package PSB\PsbTemplates\ViewHelpers\Bootstrap
  */
-class ProgessBarViewHelper extends AbstractViewHelper
+class ProgressBarViewHelper extends AbstractViewHelper
 {
     /**
      * @var bool

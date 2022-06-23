@@ -25,8 +25,8 @@
 	"license": "GPL-2.0-or-later",
 	"name": "psb/psb-templates",
 	"require": {
-		"psb/psb-foundation": "@dev",
-		"typo3/cms-fluid-styled-content": "^10.4 || ^11.2"
+		"psb/psb-foundation": "^1.2.0",
+		"typo3/cms-fluid-styled-content": "^11.5"
 	},
 	"type": "typo3-cms-extension"
 }

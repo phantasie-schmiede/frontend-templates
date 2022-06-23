@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file datatype="plaintext" date="2020-04-27T14:01:00+01:00" original="messages" product-name="psb_templates" source-language="en">
+		<header />
+		<body>
+			<!-- bootstrapContainerType -->
+			<trans-unit id="bootstrapContainerType">
+				<source>Bootstrap container type</source>
+			</trans-unit>
+			<trans-unit id="bootstrapContainerType.default">
+				<source>Default</source>
+			</trans-unit>
+			<trans-unit id="bootstrapContainerType.sm">
+				<source>sm</source>
+			</trans-unit>
+			<trans-unit id="bootstrapContainerType.md">
+				<source>md</source>
+			</trans-unit>
+			<trans-unit id="bootstrapContainerType.lg">
+				<source>lg</source>
+			</trans-unit>
+			<trans-unit id="bootstrapContainerType.xl">
+				<source>xl</source>
+			</trans-unit>
+			<trans-unit id="bootstrapContainerType.xxl">
+				<source>xxl</source>
+			</trans-unit>
+			<trans-unit id="bootstrapContainerType.fluid">
+				<source>fluid</source>
+			</trans-unit>
+
+			<!-- Page types -->
+			<trans-unit id="pageType.menuDropdown">
+				<source>Menu-dropdown</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

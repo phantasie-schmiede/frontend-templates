@@ -2,7 +2,11 @@
          xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
     <f:render partial="Header" />
 
-    <div class="container-fluid">
+    <f:if condition="{data.tx_psbtemplates_bs_container_type}">
+        <f:variable name="containerType" value="-{data.tx_psbtemplates_bs_container_type}" />
+    </f:if>
+
+    <div class="container{containerType}">
         <f:render arguments="{queueIdentifier: 'psbFoundation.general'}" partial="../FlashMessages" />
         <f:render section="Main" />
         <f:render partial="Footer" />

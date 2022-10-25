@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 $ll = 'LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/SiteConfiguration/Overrides/sites.xlf:';
 
 $GLOBALS['SiteConfiguration']['site']['columns']['websiteColor'] = [

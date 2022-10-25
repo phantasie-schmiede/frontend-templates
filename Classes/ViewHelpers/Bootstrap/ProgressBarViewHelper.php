@@ -57,16 +57,11 @@ class ProgressBarViewHelper extends AbstractViewHelper
         if (null === $classes) {
             $classes = 'bg-';
 
-            switch ($percentage) {
-                case 74 < $percentage:
-                    $classes .= 'success';
-                    break;
-                case 24 < $percentage:
-                    $classes .= 'warning';
-                    break;
-                default:
-                    $classes .= 'danger';
-            }
+            $classes .= match ($percentage) {
+                74 < $percentage => 'success',
+                24 < $percentage => 'warning',
+                default => 'danger',
+            };
 
             if (100 > $percentage) {
                 $classes .= ' progress-bar-striped';

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use PSB\PsbTemplates\Data\ExtensionInformation;
 
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 (static function () {
     $columnsOverrides = [
@@ -25,6 +25,6 @@ defined('TYPO3_MODE') or die();
      * Pages of type menuDropdown shall never be indexed by search engines as they only serve as navigation
      * placeholders.
      */
-    $GLOBALS['TCA']['pages']['types'][ExtensionInformation::DOKTYPES['MENU_DROPDOWN']] = array_merge($GLOBALS['TCA']['pages']['types'][ExtensionInformation::DOKTYPES['MENU_DROPDOWN']],
+    $GLOBALS['TCA']['pages']['types'][ExtensionInformation::DOKTYPES['MENU_DROPDOWN']] = array_merge($GLOBALS['TCA']['pages']['types'][ExtensionInformation::DOKTYPES['MENU_DROPDOWN']] ?? [],
         ['columnsOverrides' => $columnsOverrides]);
 })();

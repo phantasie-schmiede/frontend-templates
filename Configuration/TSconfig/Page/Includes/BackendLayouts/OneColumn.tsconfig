@@ -1,7 +1,7 @@
 mod {
   web_layout {
     BackendLayouts {
-      PsbBlank {
+      PsbOneColumn {
         config {
           backend_layout {
             colCount = 1
@@ -12,7 +12,7 @@ mod {
                 columns {
                   1 {
                     colPos = 0
-                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TsConfig/Includes/BackendLayouts/blank.xlf:column1
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumn.xlf:column1
                   }
                 }
               }
@@ -21,7 +21,7 @@ mod {
         }
 
         icon = EXT:psb_templates/Resources/Public/Icons/BackendLayouts/OneColumn.svg
-        title = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TsConfig/Includes/BackendLayouts/blank.xlf:title
+        title = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumn.xlf:title
       }
     }
   }

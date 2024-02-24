@@ -6,7 +6,11 @@
          xmlns:psbViewHelpers="http://typo3.org/ns/PSB/PsbViewHelpers/ViewHelpers"
 >
     <psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf" />
-    <f:variable name="frontendUser" value="{psbFrontendUsers:globalVariables.frontendUser()}" />
+
+    <psbViewHelpers:condition.extensionLoaded extensionKey="psb_frontend_users">
+        <f:variable name="frontendUser" value="{psbFrontendUsers:globalVariables.frontendUser()}" />
+    </psbViewHelpers:condition.extensionLoaded>
+
     <f:variable name="siteConfiguration" value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
 
     <nav class="bg-dark fixed-top navbar navbar-dark navbar-expand-lg">
@@ -86,7 +90,7 @@
                                             </button>
 
                                             <f:if condition="{frontendUser.loginPage.uid}">
-                                                <f:link.action action="recovery" class="btn btn-secondary text-nowrap" controller="PasswordRecovery" extensionName="FeLogin" pageUid="{psbFrontendUsers:globalVariables.frontendUser(path: 'loginPage.uid')}" pluginName="Login" rel="nofollow">
+                                                <f:link.action action="recovery" class="btn btn-secondary text-nowrap" controller="PasswordRecovery" extensionName="FeLogin" pageUid="{frontendUser.loginPage.uid}" pluginName="Login" rel="nofollow">
                                                     <psbFoundation:translate id="header:forgotPassword" />
                                                 </f:link.action>
                                             </f:if>

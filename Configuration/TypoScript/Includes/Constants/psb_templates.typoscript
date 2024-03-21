@@ -1,7 +1,5 @@
 plugin.tx_psbtemplates {
-    settings {
-        resourcePath = EXT:psb_templates/Resources/Public/
-    }
+    resourcePath = EXT:psb_templates/Resources/Public/
 
     view {
         # cat=plugin.tx_psbtemplates/file; type=string; label=Path to template layouts (FE)

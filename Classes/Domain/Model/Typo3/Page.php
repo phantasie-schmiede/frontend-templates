@@ -16,7 +16,10 @@ declare(strict_types=1);
 
 namespace PSB\PsbTemplates\Domain\Model\Typo3;
 
-use PSB\PsbFoundation\Annotation\TCA\Column\Select;
+use PSB\PsbFoundation\Attribute\TCA\Column;
+use PSB\PsbFoundation\Attribute\TCA\ColumnType\Select;
+use PSB\PsbFoundation\Attribute\TCA\Mapping\Field;
+use PSB\PsbFoundation\Attribute\TCA\Mapping\Table;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
@@ -24,6 +27,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  *
  * @package PSB\PsbTemplates\Domain\Model\Typo3
  */
+#[Table(name: 'pages')]
 class Page extends AbstractEntity
 {
     public const BOOTSTRAP_CONTAINER_TYPES = [
@@ -38,7 +42,9 @@ class Page extends AbstractEntity
 
     /**
      * @var string
-     * @Select(items=self::BOOTSTRAP_CONTAINER_TYPES, position="after:layout")
      */
+    #[Column(position: 'after:layout')]
+    #[Field(name: 'tx_psbtemplates_bs_container_type')]
+    #[Select(items: self::BOOTSTRAP_CONTAINER_TYPES)]
     protected string $bootstrapContainerType = self::BOOTSTRAP_CONTAINER_TYPES['DEFAULT'];
 }

@@ -1,0 +1,38 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<ul class="navbar-nav flex-grow-1 pe-3">
+    <li class="nav-item">
+        <a
+            aria-current="page"
+            class="nav-link active"
+            href="#">
+            Home
+        </a>
+    </li>
+
+    <f:for
+        as="page"
+        each="{mobilemenu}">
+        <li class="nav-item">
+            <f:if condition="{page.isCurrentPage} == false">
+                <f:then>
+                    <f:link.page
+                        additionalAttributes="{aria-current: 'page'}"
+                        class="nav-link"
+                        pageUid="{page.uid}">
+                        {page.nav_title}
+                    </f:link.page>
+                </f:then>
+                <f:else>
+                    <f:link.page
+                        class="active nav-link"
+                        pageUid="{page.uid}">
+                        {page.nav_title}
+                    </f:link.page>
+                </f:else>
+            </f:if>
+        </li>
+    </f:for>
+</ul>
+</html>

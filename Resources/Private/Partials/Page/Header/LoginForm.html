@@ -1,0 +1,119 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
+    xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers"
+    xmlns:psbViewHelpers="http://typo3.org/ns/PSB/PsbViewHelpers/ViewHelpers">
+<psbViewHelpers:condition.extensionLoaded extensionKey="psb_frontend_users">
+    <f:variable
+        name="frontendUser"
+        value="{psbFrontendUsers:globalVariables.frontendUser()}" />
+</psbViewHelpers:condition.extensionLoaded>
+
+<f:if condition="{frontendUser.sysFolder.uid}">
+    <div class="dropdown">
+            <span
+                aria-expanded="false"
+                aria-haspopup="true"
+                data-bs-toggle="dropdown"
+                id="dropdownLoginButton">
+                <psbTemplates:svgSprite
+                    color="white"
+                    icon="person-circle" />
+            </span>
+        <div
+            aria-labelledby="dropdownLoginButton"
+            class="dropdown-menu dropdown-menu-end p-2">
+            <form method="post">
+                <f:security.ifAuthenticated>
+                    <f:then>
+                        <div class="list-group list-group-flush text-center text-nowrap">
+                            <li class="list-group-item">{frontendUser.user.fullName}</li>
+
+                            <psbViewHelpers:condition.extensionLoaded extensionKey="fe_change_pwd">
+                                <f:if condition="{siteConfiguration.changePasswordPid}">
+                                    <f:link.page
+                                        class="list-group-item list-group-item-action"
+                                        pageUid="{siteConfiguration.changePasswordPid}">
+                                        <psbFoundation:translate id="header:changePassword" />
+                                    </f:link.page>
+                                </f:if>
+                            </psbViewHelpers:condition.extensionLoaded>
+
+                            <button
+                                class="active list-group-item list-group-item-action"
+                                type="submit">
+                                <psbFoundation:translate id="header:logout" />
+                            </button>
+                            <input
+                                name="logintype"
+                                type="hidden"
+                                value="logout">
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <div class="form-group">
+                            <label for="user">
+                                <psbFoundation:translate id="header:username" />
+                            </label>
+                            <input
+                                class="form-control"
+                                id="user"
+                                name="user"
+                                type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">
+                                <psbFoundation:translate id="header:password" />
+                            </label>
+                            <input
+                                class="form-control"
+                                id="pass"
+                                name="pass"
+                                type="password">
+                        </div>
+
+                        <input
+                            name="logintype"
+                            type="hidden"
+                            value="login">
+                        <input
+                            name="pid"
+                            type="hidden"
+                            value="{frontendUser.sysFolder.uid}">
+                        <input
+                            name="redirect_url"
+                            type="hidden"
+                            value="">
+                        <input
+                            name="tx_felogin_pi1[noredirect]"
+                            type="hidden"
+                            value="1">
+
+                        <div class="d-grid gap-2">
+                            <button
+                                class="btn btn-primary mt-2"
+                                type="submit">
+                                <psbFoundation:translate id="header:login" />
+                            </button>
+
+                            <f:if condition="{frontendUser.loginPage.uid}">
+                                <f:link.action
+                                    action="recovery"
+                                    class="btn btn-secondary text-nowrap"
+                                    controller="PasswordRecovery"
+                                    extensionName="FeLogin"
+                                    pageUid="{frontendUser.loginPage.uid}"
+                                    pluginName="Login"
+                                    rel="nofollow">
+                                    <psbFoundation:translate id="header:forgotPassword" />
+                                </f:link.action>
+                            </f:if>
+                        </div>
+                    </f:else>
+                </f:security.ifAuthenticated>
+            </form>
+        </div>
+    </div>
+</f:if>
+</html>

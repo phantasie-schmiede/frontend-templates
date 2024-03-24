@@ -25,16 +25,4 @@ use PSB\PsbFoundation\Data\AbstractExtensionInformation;
  */
 class ExtensionInformation extends AbstractExtensionInformation
 {
-    public const ALLOW_LANGUAGE_FILE_EDITING = true;
-
-    public const DOKTYPES = [
-        'MENU_DROPDOWN' => 100,
-    ];
-
-    public const PAGE_TYPES = [
-        self::DOKTYPES['MENU_DROPDOWN'] => [
-            'allowedTables' => ['pages'],
-            'name'          => 'menuDropdown',
-        ],
-    ];
 }

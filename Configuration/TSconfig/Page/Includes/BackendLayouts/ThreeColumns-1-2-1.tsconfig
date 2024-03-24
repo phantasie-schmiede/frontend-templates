@@ -1,0 +1,36 @@
+mod {
+  web_layout {
+    BackendLayouts {
+      PsbTemplatesThreeColumns-1-2-1 {
+        config {
+          backend_layout {
+            colCount = 1
+            rowCount = 1
+
+            rows {
+              1 {
+                columns {
+                  1 {
+                    colPos = 0
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:column1
+                  }
+                  2 {
+                    colPos = 1
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:column2
+                  }
+                  3 {
+                    colPos = 2
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:column3
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        icon = EXT:psb_templates/Resources/Public/Icons/BackendLayouts/ThreeColumns-1-2-1.svg
+        title = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:title
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+mod {
+  web_layout {
+    BackendLayouts {
+      PsbTemplatesTwoColumns-3-1 {
+        config {
+          backend_layout {
+            colCount = 1
+            rowCount = 1
+
+            rows {
+              1 {
+                columns {
+                  1 {
+                    colPos = 0
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/twoColumns-3-1.xlf:column1
+                  }
+                  2 {
+                    colPos = 1
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/twoColumns-3-1.xlf:column2
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        icon = EXT:psb_templates/Resources/Public/Icons/BackendLayouts/TwoColumns-3-1.svg
+        title = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/twoColumns-3-1.xlf:title
+      }
+    }
+  }
+}

@@ -1,104 +1,54 @@
-<section data-namespace-typo3-fluid="true"
-         xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-         xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
-         xmlns:psbFrontendUsers="http://typo3.org/ns/PSB/PsbFrontendUsers/ViewHelpers"
-         xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers"
-         xmlns:psbViewHelpers="http://typo3.org/ns/PSB/PsbViewHelpers/ViewHelpers"
->
-    <psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf" />
-    <f:variable name="frontendUser" value="{psbFrontendUsers:globalVariables.frontendUser()}" />
-    <f:variable name="siteConfiguration" value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers">
+<psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf" />
 
-    <nav class="bg-dark fixed-top navbar navbar-dark navbar-expand-lg">
+<f:variable
+    name="siteConfiguration"
+    value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
+
+<header>
+    <nav class="bg-body-tertiary fixed-top navbar navbar-expand-lg">
         <div class="container-fluid">
-            <f:link.page class="navbar-brand" pageUid="{siteConfiguration.rootPageId}">
-                <f:if condition="{siteConfiguration.websiteLogo}">
-                    <img alt="{siteConfiguration.websiteTitle}" class="d-inline-block align-top" src="{f:uri.image(height: '100m', src: siteConfiguration.websiteLogo)}" />
-                </f:if>
-
+            <f:link.page
+                class="navbar-brand"
+                pageUid="{siteConfiguration.rootPageId}">
                 {siteConfiguration.websiteTitle}
             </f:link.page>
 
-            <button aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarToggler" data-bs-toggle="collapse" type="button">
+            <button
+                aria-controls="offcanvasNavbar"
+                aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#offcanvasNavbar"
+                data-bs-toggle="offcanvas"
+                type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarToggler">
-                <f:cObject typoscriptObjectPath="lib.mainMenu" />
-
-                <f:if condition="{siteConfiguration.searchResultPid}">
-                    <form action="{f:uri.page(pageUid: siteConfiguration.searchResultPid)}" class="form-inline my-2 my-lg-0">
-                        <input aria-label="{psbFoundation:translate(id: 'header:search')}" class="form-control mr-sm-2" placeholder="{psbFoundation:translate(id: 'header:search')}" type="search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                            <psbFoundation:translate id="header:search" />
-                        </button>
-                    </form>
-                </f:if>
-
-                <f:if condition="{frontendUser.sysFolder.uid}">
-                    <div class="dropdown">
-                        <span aria-expanded="false" aria-haspopup="true" data-bs-toggle="dropdown" id="dropdownLoginButton">
-                            <psbTemplates:svgSprite color="white" icon="person-circle" />
-                        </span>
-                        <div aria-labelledby="dropdownLoginButton" class="dropdown-menu dropdown-menu-end p-2">
-                            <form method="post">
-                                <f:security.ifAuthenticated>
-                                    <f:then>
-                                        <div class="list-group list-group-flush text-center text-nowrap">
-                                            <li class="list-group-item">{frontendUser.user.fullName}</li>
-
-                                            <psbViewHelpers:condition.extensionLoaded extensionKey="fe_change_pwd">
-                                                <f:if condition="{siteConfiguration.changePasswordPid}">
-                                                    <f:link.page class="list-group-item list-group-item-action" pageUid="{siteConfiguration.changePasswordPid}">
-                                                        <psbFoundation:translate id="header:changePassword" />
-                                                    </f:link.page>
-                                                </f:if>
-                                            </psbViewHelpers:condition.extensionLoaded>
-
-                                            <button class="active list-group-item list-group-item-action" type="submit">
-                                                <psbFoundation:translate id="header:logout" />
-                                            </button>
-                                            <input name="logintype" type="hidden" value="logout">
-                                        </div>
-                                    </f:then>
-                                    <f:else>
-                                        <div class="form-group">
-                                            <label for="user">
-                                                <psbFoundation:translate id="header:username" />
-                                            </label>
-                                            <input class="form-control" id="user" name="user" type="text">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pass">
-                                                <psbFoundation:translate id="header:password" />
-                                            </label>
-                                            <input class="form-control" id="pass" name="pass" type="password">
-                                        </div>
-
-                                        <input name="logintype" type="hidden" value="login">
-                                        <input name="pid" type="hidden" value="{frontendUser.sysFolder.uid}">
-                                        <input name="redirect_url" type="hidden" value="">
-                                        <input name="tx_felogin_pi1[noredirect]" type="hidden" value="1">
-
-                                        <div class="d-grid gap-2">
-                                            <button class="btn btn-primary mt-2" type="submit">
-                                                <psbFoundation:translate id="header:login" />
-                                            </button>
-
-                                            <f:if condition="{frontendUser.loginPage.uid}">
-                                                <f:link.action action="recovery" class="btn btn-secondary text-nowrap" controller="PasswordRecovery" extensionName="FeLogin" pageUid="{psbFrontendUsers:globalVariables.frontendUser(path: 'loginPage.uid')}" pluginName="Login" rel="nofollow">
-                                                    <psbFoundation:translate id="header:forgotPassword" />
-                                                </f:link.action>
-                                            </f:if>
-                                        </div>
-                                    </f:else>
-                                </f:security.ifAuthenticated>
-                            </form>
-                        </div>
-                    </div>
-                </f:if>
+            <div
+                aria-labelledby="offcanvasNavbarLabel"
+                class="offcanvas offcanvas-end"
+                id="offcanvasNavbar"
+                tabindex="-1">
+                <div class="offcanvas-header">
+                    <h5
+                        class="offcanvas-title"
+                        id="offcanvasNavbarLabel">Offcanvas</h5>
+                    <button
+                        aria-label="Close"
+                        class="btn-close"
+                        data-bs-dismiss="offcanvas"
+                        type="button"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <f:render
+                        arguments="{mobileMenu: mobileMenu}"
+                        partial="Navigation/Main" />
+                </div>
             </div>
         </div>
     </nav>
-    <f:cObject typoscriptObjectPath="lib.breadcrumb" />
-</section>
+</header>
+</html>

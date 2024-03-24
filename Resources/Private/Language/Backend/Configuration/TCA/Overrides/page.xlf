@@ -28,11 +28,6 @@
 			<trans-unit id="bootstrapContainerType.fluid">
 				<source>fluid</source>
 			</trans-unit>
-
-			<!-- Page types -->
-			<trans-unit id="pageType.menuDropdown">
-				<source>Menu-dropdown</source>
-			</trans-unit>
 		</body>
 	</file>
 </xliff>

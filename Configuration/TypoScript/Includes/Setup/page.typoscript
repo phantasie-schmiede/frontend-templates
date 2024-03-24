@@ -10,50 +10,58 @@ page {
   }
 
   includeCSS {
-    bootstrap = {$plugin.tx_psbtemplates.settings.resourcePath}Stylesheets/Vendors/bootstrap.min.css
-    bootstrapIcons = {$plugin.tx_psbtemplates.settings.resourcePath}Icons/Vendors/bootstrap-icons-1.3.0/bootstrap-icons.css
-    app = {$plugin.tx_psbtemplates.settings.resourcePath}Stylesheets/App.css
+    bootstrap = {$plugin.tx_psbtemplates.resourcePath}Stylesheets/Vendors/bootstrap.min.css
+    app = {$plugin.tx_psbtemplates.resourcePath}Stylesheets/App.css
   }
 
   includeJSFooterlibs {
-    10 = {$plugin.tx_psbtemplates.settings.resourcePath}JavaScript/Vendors/jquery-3.3.1.min.js
-    20 = {$plugin.tx_psbtemplates.settings.resourcePath}JavaScript/Vendors/bootstrap.bundle.min.js
+    bootstrap = {$plugin.tx_psbtemplates.resourcePath}JavaScript/Vendors/bootstrap.bundle.min.js
   }
 
   includeJSFooter {
-    app = {$plugin.tx_psbtemplates.settings.resourcePath}JavaScript/App.js
+    app = {$plugin.tx_psbtemplates.resourcePath}JavaScript/App.js
   }
 
   10 = FLUIDTEMPLATE
   10 {
     format = html
-    templateRootPaths.0 = {$plugin.tx_psbtemplates.view.templateRootPath}Page
-    partialRootPaths.0 = {$plugin.tx_psbtemplates.view.partialRootPath}Page
-    layoutRootPaths.0 = {$plugin.tx_psbtemplates.view.layoutRootPath}Page
+    templateRootPaths.0 = {$plugin.tx_psbtemplates.view.templateRootPath}Page/
+    partialRootPaths.0 = {$plugin.tx_psbtemplates.view.partialRootPath}Page/
+    layoutRootPaths.0 = {$plugin.tx_psbtemplates.view.layoutRootPath}Page/
 
     file.stdWrap.cObject = CASE
     file.stdWrap.cObject {
-      key.data = levelfield:-1, backend_layout, slide
-      key.override.field = backend_layout
+      key.data = pagelayout
 
       default = TEXT
-      default {
-        value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/OneColumn.html
-      }
+      default.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/OneColumn.html
 
-      pagets__PsbBlank = TEXT
-      pagets__PsbBlank {
-        value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/Blank.html
-      }
+      pagets__PsbTemplatesBlank = TEXT
+      pagets__PsbTemplatesBlank.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/Blank.html
 
-      pagets__PsbOneColumn = TEXT
-      pagets__PsbOneColumn {
-        value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/OneColumn.html
-      }
-    }
+      pagets__PsbTemplatesOneColumn = TEXT
+      pagets__PsbTemplatesOneColumn.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/OneColumn.html
 
-    variables {
-      mainContent < styles.content.get
+      pagets__PsbTemplatesThreeColumns-1-1-1 = TEXT
+      pagets__PsbTemplatesThreeColumns-1-1-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/ThreeColumns-1-1-1.html
+
+      pagets__PsbTemplatesThreeColumns-1-2-1 = TEXT
+      pagets__PsbTemplatesThreeColumns-1-2-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/ThreeColumns-1-2-1.html
+
+      pagets__PsbTemplatesTwoColumns-1-1 = TEXT
+      pagets__PsbTemplatesTwoColumns-1-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-1-1.html
+
+      pagets__PsbTemplatesTwoColumns-1-2 = TEXT
+      pagets__PsbTemplatesTwoColumns-1-2.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-1-2.html
+
+      pagets__PsbTemplatesTwoColumns-1-3 = TEXT
+      pagets__PsbTemplatesTwoColumns-1-3.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-1-3.html
+
+      pagets__PsbTemplatesTwoColumns-2-1 = TEXT
+      pagets__PsbTemplatesTwoColumns-2-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-2-1.html
+
+      pagets__PsbTemplatesTwoColumns-3-1 = TEXT
+      pagets__PsbTemplatesTwoColumns-3-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-3-1.html
     }
   }
 }

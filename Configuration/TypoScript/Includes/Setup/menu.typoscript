@@ -1,25 +1,22 @@
 page.10.dataProcessing {
-  10 = B13\Menus\DataProcessing\TreeMenu
-  10 {
+  1711319401 = menu
+  1711319401 {
     as = mobileMenu
-    depth = 1
-    entryPoints = 1
-    # excludePages =
-
-    # 0: default, 1 to include nav_hide = 1 pages
-    # includeNotInMenu = 0
+    expandAll = 1
+    includeSpacer = 1
+    levels = 1
+    titleField = nav_title // title
   }
 }
 
 [tree.level > 1]
   page.10.dataProcessing {
-    20 = B13\Menus\DataProcessing\BreadcrumbsMenu
-    20 {
+    1711319409 = menu
+    1711319409 {
       as = breadcrumbs
-      # excludePages =
-
-      # 0: default, 1 to include nav_hide = 1 pages
-      # includeNotInMenu = 0
+      includeNotInMenu = 0
+      special = rootline
+      special.range = 0|-1
     }
   }
 [end]

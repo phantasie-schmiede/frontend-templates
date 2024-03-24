@@ -1,0 +1,25 @@
+page.10.dataProcessing {
+  1711319420 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+  1711319420 {
+    table = tt_content
+    orderBy = sorting
+    where = colPos = 0
+    as = column1
+  }
+
+  1711319426 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+  1711319426 {
+    table = tt_content
+    orderBy = sorting
+    where = colPos = 1
+    as = column2
+  }
+
+  1711319433 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+  1711319433 {
+    table = tt_content
+    orderBy = sorting
+    where = colPos = 2
+    as = column3
+  }
+}

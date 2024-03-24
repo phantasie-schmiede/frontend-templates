@@ -6,7 +6,9 @@
 <f:section name="Main">
     <div class="row">
         <div class="col">
-            <f:format.raw>{mainContent}</f:format.raw>
+            <f:render
+                arguments="{column: column1}"
+                partial="Column" />
         </div>
     </div>
 </f:section>

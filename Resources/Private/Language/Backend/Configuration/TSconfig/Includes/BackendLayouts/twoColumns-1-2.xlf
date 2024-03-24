@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2024-03-24T23:04:00+01:00"
+        original="messages"
+        product-name="psb_templates"
+        source-language="en">
+        <header />
+        <body>
+            <trans-unit id="column1">
+                <source>Left side content</source>
+            </trans-unit>
+            <trans-unit id="column2">
+                <source>Main content</source>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>Two columns (1-2)</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -4,6 +4,8 @@
 <f:layout name="Blank" />
 
 <f:section name="Main">
-    <f:format.raw>{mainContent}</f:format.raw>
+    <f:render
+        arguments="{column: column1}"
+        partial="Column" />
 </f:section>
 </html>

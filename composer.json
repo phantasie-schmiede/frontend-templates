@@ -25,7 +25,6 @@
 	"license": "GPL-2.0-or-later",
 	"name": "psb/psb-templates",
 	"require": {
-		"b13/menues": "^1",
 		"psb/psb-foundation": "@dev",
 		"typo3/cms-fluid-styled-content": "^12"
 	},

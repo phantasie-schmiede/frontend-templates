@@ -1,7 +1,7 @@
 mod {
   web_layout {
     BackendLayouts {
-      PsbBlank {
+      PsbTemplatesBlank {
         config {
           backend_layout {
             colCount = 1
@@ -20,7 +20,7 @@ mod {
           }
         }
 
-        icon = EXT:psb_templates/Resources/Public/Icons/BackendLayouts/OneColumn.svg
+        icon = EXT:psb_templates/Resources/Public/Icons/BackendLayouts/Blank.svg
         title = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/blank.xlf:title
       }
     }

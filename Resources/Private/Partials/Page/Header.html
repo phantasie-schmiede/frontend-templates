@@ -35,7 +35,7 @@
                 <div class="offcanvas-header">
                     <h5
                         class="offcanvas-title"
-                        id="offcanvasNavbarLabel">Offcanvas</h5>
+                        id="offcanvasNavbarLabel">{siteConfiguration.websiteTitle}</h5>
                     <button
                         aria-label="Close"
                         class="btn-close"
@@ -44,7 +44,7 @@
                 </div>
                 <div class="offcanvas-body">
                     <f:render
-                        arguments="{mobileMenu: mobileMenu}"
+                        arguments="{mainNavigation: mainNavigation}"
                         partial="Navigation/Main" />
                 </div>
             </div>

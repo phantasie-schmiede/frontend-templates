@@ -13,7 +13,11 @@
     <f:render
         arguments="{queueIdentifier: 'psbFoundation.general'}"
         partial="../FlashMessages" />
-    <f:render partial="Navigation/Breadcrumb" />
+
+    <f:if condition="{breadcrumbs}">
+        <f:render partial="Navigation/Breadcrumb" />
+    </f:if>
+
     <f:render section="Main" />
     <f:render partial="Footer" />
 </div>

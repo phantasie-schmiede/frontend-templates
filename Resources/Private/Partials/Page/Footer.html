@@ -1,0 +1,23 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers">
+<f:variable
+    name="siteConfiguration"
+    value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
+
+<div class="container">
+    <footer class="py-3 my-4">
+        <f:render
+            arguments="{footerNavigation: footerNavigation}"
+            partial="Navigation/Footer" />
+        <p class="text-center text-muted">
+            ©
+            <f:format.date
+                date="now"
+                format="Y" />
+            {siteConfiguration.websiteTitle}
+        </p>
+    </footer>
+</div>
+</html>

@@ -1,0 +1,15 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+    <f:for
+        as="page"
+        each="{footerNavigation}">
+        <li class="nav-item">
+            <a href="{page.link}"{f:if(condition: page.target, then: ' target="{page.target}"')}{f:if(condition: page.current, then: ' aria-current="page"')} title="{page.title}">
+            {page.title}
+            </a>
+        </li>
+    </f:for>
+</ul>
+</html>

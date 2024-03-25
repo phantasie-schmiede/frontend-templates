@@ -1,11 +1,20 @@
 page.10.dataProcessing {
   1711319401 = menu
   1711319401 {
-    as = mobileMenu
+    as = mainNavigation
     expandAll = 1
     includeSpacer = 1
     levels = 1
     titleField = nav_title // title
+  }
+}
+
+page.10.dataProcessing {
+  1711402035 = menu
+  1711402035 {
+    as = footerNavigation
+    special = directory
+    special.value = {$plugin.tx_psbtemplates.settings.navigation.footer}
   }
 }
 

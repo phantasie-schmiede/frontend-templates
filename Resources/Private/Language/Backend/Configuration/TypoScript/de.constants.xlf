@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2024-03-25T23:01:00+01:00"
+        original="messages"
+        product-name="psb_templates"
+        source-language="en"
+        target-language="de">
+        <header />
+        <body>
+            <trans-unit id="settings.navigation.footer">
+                <source>Parent ID of the footer menu items</source>
+                <target>PID der Footer-Menü-Elemente</target>
+            </trans-unit>
+            <trans-unit id="subCategory.navigation">
+                <source>Navigation</source>
+                <target>Navigation</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

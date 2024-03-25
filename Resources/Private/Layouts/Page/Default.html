@@ -19,6 +19,8 @@
     </f:if>
 
     <f:render section="Main" />
-    <f:render partial="Footer" />
+    <f:render
+        arguments="{footerNavigation: footerNavigation}"
+        partial="Footer" />
 </div>
 </html>

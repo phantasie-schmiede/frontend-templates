@@ -6,7 +6,12 @@
         as="page"
         each="{footerNavigation}">
         <li class="nav-item">
-            <a href="{page.link}"{f:if(condition: page.target, then: ' target="{page.target}"')}{f:if(condition: page.current, then: ' aria-current="page"')} title="{page.title}">
+            <a
+                {f:if(condition: page.current, then: ' aria-current="page"')}
+                class="nav-link px-2 text-muted"
+                href="{page.link}"
+                {f:if(condition: page.target, then: ' target="{page.target}"')}
+                title="{page.title}">
             {page.title}
             </a>
         </li>

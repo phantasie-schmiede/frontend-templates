@@ -7,14 +7,11 @@ $EM_CONF['psb_templates'] = [
     'category'         => 'misc',
     'clearCacheOnLoad' => true,
     'constraints'      => [
-        'conflicts' => [
-        ],
+        'conflicts' => [],
         'depends'   => [
-            'psb_foundation'       => '1.0.0',
-            'fluid_styled_content' => '10.4.0-11.3.99',
-        ],
-        'suggests'  => [
-            'fe_change_pwd' => '',
+            'psb_foundation'       => '2.0.0-2.99.99',
+            'fluid_styled_content' => '12.0.0-12.99.99',
+            'ws_scss'              => '12.0.0-12.99.99',
         ],
     ],
     'description'      => 'Basic templates for TYPO3',

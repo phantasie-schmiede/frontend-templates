@@ -1,7 +1,8 @@
 # customsubcategory=navigation=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:subCategory.navigation
 
 plugin.tx_psbtemplates {
-    resourcePath = EXT:psb_templates/Resources/Public/
+    privateResourcePath = EXT:psb_templates/Resources/Private/
+    publicResourcePath = EXT:psb_templates/Resources/Public/
 
     settings {
       navigation {

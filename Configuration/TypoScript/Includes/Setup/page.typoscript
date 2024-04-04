@@ -10,16 +10,17 @@ page {
   }
 
   includeCSS {
-    bootstrap = {$plugin.tx_psbtemplates.resourcePath}Stylesheets/Vendors/bootstrap.min.css
-    app = {$plugin.tx_psbtemplates.resourcePath}Stylesheets/App.css
+    bootstrap = {$plugin.tx_psbtemplates.privateResourcePath}Scss/Bootstrap/bootstrap.scss
+    bootstrap.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/bootstrap.min.css
+    app = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/App.css
   }
 
   includeJSFooterlibs {
-    bootstrap = {$plugin.tx_psbtemplates.resourcePath}JavaScript/Vendors/bootstrap.bundle.min.js
+    bootstrap = {$plugin.tx_psbtemplates.publicResourcePath}JavaScript/Vendors/bootstrap.bundle.min.js
   }
 
   includeJSFooter {
-    app = {$plugin.tx_psbtemplates.resourcePath}JavaScript/App.js
+    app = {$plugin.tx_psbtemplates.publicResourcePath}JavaScript/App.js
   }
 
   10 = FLUIDTEMPLATE

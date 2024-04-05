@@ -10,9 +10,10 @@ page {
   }
 
   includeCSS {
+    app = {$plugin.tx_psbtemplates.privateResourcePath}Scss/app.scss
+    app.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/app.min.css
     bootstrap = {$plugin.tx_psbtemplates.privateResourcePath}Scss/Bootstrap/bootstrap.scss
     bootstrap.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/bootstrap.min.css
-    app = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/App.css
   }
 
   includeJSFooterlibs {
@@ -25,11 +26,6 @@ page {
 
   10 = FLUIDTEMPLATE
   10 {
-    format = html
-    templateRootPaths.0 = {$plugin.tx_psbtemplates.view.templateRootPath}Page/
-    partialRootPaths.0 = {$plugin.tx_psbtemplates.view.partialRootPath}Page/
-    layoutRootPaths.0 = {$plugin.tx_psbtemplates.view.layoutRootPath}Page/
-
     file.stdWrap.cObject = CASE
     file.stdWrap.cObject {
       key.data = pagelayout
@@ -64,5 +60,10 @@ page {
       pagets__PsbTemplatesTwoColumns-3-1 = TEXT
       pagets__PsbTemplatesTwoColumns-3-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-3-1.html
     }
+
+    format = html
+    layoutRootPaths.0 = {$plugin.tx_psbtemplates.view.layoutRootPath}Page/
+    partialRootPaths.0 = {$plugin.tx_psbtemplates.view.partialRootPath}Page/
+    templateRootPaths.0 = {$plugin.tx_psbtemplates.view.templateRootPath}Page/
   }
 }

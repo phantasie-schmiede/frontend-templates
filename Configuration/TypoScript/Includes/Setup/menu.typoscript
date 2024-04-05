@@ -9,6 +9,7 @@ page.10.dataProcessing {
   }
 }
 
+[{$plugin.tx_psbtemplates.settings.navigation.footer}]
 page.10.dataProcessing {
   1711402035 = menu
   1711402035 {
@@ -17,6 +18,7 @@ page.10.dataProcessing {
     special.value = {$plugin.tx_psbtemplates.settings.navigation.footer}
   }
 }
+[END]
 
 [tree.level > 1]
   page.10.dataProcessing {
@@ -28,4 +30,4 @@ page.10.dataProcessing {
       special.range = 0|-1
     }
   }
-[end]
+[END]

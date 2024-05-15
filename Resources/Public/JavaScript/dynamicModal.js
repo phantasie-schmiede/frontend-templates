@@ -1,39 +1,39 @@
-var ready = (callback) => {
-    if (document.readyState != "loading") {
-        callback();
-    } else {
-        document.addEventListener("DOMContentLoaded", callback);
+class DynamicModal {
+    constructor() {
+        this.elements = document.querySelectorAll('[data-bs-target="#dynamicModal"]');
+        this.bindEvents();
     }
-}
 
-ready(() => {
-    // Bind click events to all elements with #dynamicModal as target modal.
-    var elements = document.querySelectorAll('[data-bs-target="#dynamicModal"]');
-    elements.forEach((element) => {
-        element.addEventListener('click', function(event) {
-            event.preventDefault();
-
-            // XHR request to the href attribute of the clicked element
-            let xhr = new XMLHttpRequest();
-            xhr.open('GET', element.href, true);
-            xhr.responseType = 'json';
-            xhr.send();
-            xhr.onload = function() {
-                if (xhr.status != 200) {
-                    console.error(`Error ${xhr.status}: ${xhr.statusText}`);
-                } else {
-                    let modal = checkIfModalExists();
-                    let response = xhr.response;
-
-                    modal.querySelector('.modal-title').textContent = response.title;
-                    modal.querySelector('.modal-body').innerHTML = response.body;
-                    modal.querySelector('.modal-footer').innerHTML = response.footer;
-                }
-            }
+    bindEvents() {
+        this.elements.forEach((element) => {
+            element.addEventListener('click', this.handleClick.bind(this));
         });
-    });
+    }
 
-    function checkIfModalExists() {
+    handleClick(event) {
+        event.preventDefault();
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', event.target.href, true);
+        xhr.responseType = 'json';
+        xhr.send();
+        xhr.onload = this.handleResponse.bind(this);
+    }
+
+    handleResponse(event) {
+        if (event.target.status != 200) {
+            console.error(`Error ${event.target.status}: ${event.target.statusText}`);
+        } else {
+            let modal = this.getModal();
+            let response = event.target.response;
+
+            modal.querySelector('.modal-title').textContent = response.title;
+            modal.querySelector('.modal-body').innerHTML = response.body;
+            modal.querySelector('.modal-footer').innerHTML = response.footer;
+        }
+    }
+
+    getModal() {
         let modal = document.getElementById("dynamicModal");
 
         if (null === modal) {
@@ -43,7 +43,7 @@ ready(() => {
         return modal;
     }
 
-    function createModal() {
+    createModal() {
         var modal = document.createElement("div");
         modal.classList.add("fade", "modal");
         modal.id = "dynamicModal";
@@ -74,4 +74,8 @@ ready(() => {
 
         return modal;
     }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new DynamicModal();
 });

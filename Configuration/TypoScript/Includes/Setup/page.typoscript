@@ -20,10 +20,6 @@ page {
     bootstrap = {$plugin.tx_psbtemplates.publicResourcePath}JavaScript/Vendors/bootstrap.bundle.min.js
   }
 
-  includeJSFooter {
-    app = {$plugin.tx_psbtemplates.publicResourcePath}JavaScript/App.js
-  }
-
   10 = FLUIDTEMPLATE
   10 {
     file.stdWrap.cObject = CASE

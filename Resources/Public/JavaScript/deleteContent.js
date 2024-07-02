@@ -1,17 +1,30 @@
+import Rebind from './Modules/rebind.js';
+
 class DeleteContent {
     constructor() {
-        this.elements = document.querySelectorAll('[data-psb-delete-target]');
+        this.registeredElements = [];
+        this.selector = '[data-psb-delete-target]';
         this.bindEvents();
+        Rebind.registerBindFunction(this.bindEvents.bind(this));
     }
 
-    bindEvents() {
-        this.elements.forEach((element) => {
-            element.addEventListener('click', this.handleClick.bind(this));
+    bindEvents(rootNode = null) {
+        if (!rootNode) {
+            rootNode = document;
+        }
+
+        rootNode.querySelectorAll(this.selector).forEach((element) => {
+            if (!this.registeredElements.includes(element)) {
+                element.addEventListener('click', this.handleClick.bind(this));
+                this.registeredElements.push(element);
+            }
         });
     }
 
     handleClick(event) {
-        const targetElement = document.querySelector(event.target.dataset.psbDeleteTarget);
+        const data = event.target.dataset;
+        const mode = document.querySelector(data.psbDeleteMode);
+        const targetElement = document.querySelector(data.psbDeleteTarget);
 
         if (!targetElement) {
             console.log('Target element not found!');
@@ -19,7 +32,11 @@ class DeleteContent {
             return;
         }
 
-        targetElement.remove();
+        if ('closest' === mode) {
+            targetElement.closest(targetElement).remove();
+        } else {
+            targetElement.remove();
+        }
     }
 }
 

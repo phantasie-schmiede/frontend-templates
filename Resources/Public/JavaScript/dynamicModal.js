@@ -1,12 +1,24 @@
+import Rebind from './Modules/rebind.js';
+
 class DynamicModal {
     constructor() {
-        this.elements = document.querySelectorAll('[data-bs-target="#dynamicModal"]');
+        this.registeredElements = [];
+        this.selector = '[data-psb-modal="#dynamicModal"]';
+        this.modal = null;
         this.bindEvents();
+        Rebind.registerBindFunction(this.bindEvents.bind(this));
     }
 
-    bindEvents() {
-        this.elements.forEach((element) => {
-            element.addEventListener('click', this.handleClick.bind(this));
+    bindEvents(rootNode = null) {
+        if (!rootNode) {
+            rootNode = document;
+        }
+
+        rootNode.querySelectorAll(this.selector).forEach((element) => {
+            if (!this.registeredElements.includes(element)) {
+                element.addEventListener('click', this.handleClick.bind(this));
+                this.registeredElements.push(element);
+            }
         });
     }
 
@@ -24,12 +36,18 @@ class DynamicModal {
         if (event.target.status != 200) {
             console.error(`Error ${event.target.status}: ${event.target.statusText}`);
         } else {
-            let modal = this.getModal();
+            let modalElement = this.getModal();
             let response = event.target.response;
 
-            modal.querySelector('.modal-title').textContent = response.title;
-            modal.querySelector('.modal-body').innerHTML = response.body;
-            modal.querySelector('.modal-footer').innerHTML = response.footer;
+            if (!this.modal) {
+                this.modal = new bootstrap.Modal(modalElement);
+            }
+
+            modalElement.querySelector('.modal-title').innerHTML = response.title;
+            modalElement.querySelector('.modal-body').innerHTML = response.body;
+            modalElement.querySelector('.modal-footer').innerHTML = response.footer;
+            Rebind.rebindEvents(modalElement);
+            this.modal.show();
         }
     }
 
@@ -37,14 +55,14 @@ class DynamicModal {
         let modal = document.getElementById("dynamicModal");
 
         if (null === modal) {
-            return createModal();
+            return this.createModal();
         }
 
         return modal;
     }
 
     createModal() {
-        var modal = document.createElement("div");
+        let modal = document.createElement("div");
         modal.classList.add("fade", "modal");
         modal.id = "dynamicModal";
         modal.setAttribute("aria-hidden", "true");
@@ -70,6 +88,7 @@ class DynamicModal {
                 </div>
             </div>
         `;
+
         document.body.appendChild(modal);
 
         return modal;

@@ -1,12 +1,23 @@
+import Rebind from './Modules/rebind.js';
+
 class CopyContent {
     constructor() {
-        this.elements = document.querySelectorAll('[data-psb-copy-target]');
+        this.registeredElements = [];
+        this.selector = '[data-psb-copy-target]';
         this.bindEvents();
+        Rebind.registerBindFunction(this.bindEvents.bind(this));
     }
 
-    bindEvents() {
-        this.elements.forEach((element) => {
-            element.addEventListener('click', this.handleClick.bind(this));
+    bindEvents(rootNode = null) {
+        if (!rootNode) {
+            rootNode = document;
+        }
+
+        rootNode.querySelectorAll(this.selector).forEach((element) => {
+            if (!this.registeredElements.includes(element)) {
+                element.addEventListener('click', this.handleClick.bind(this));
+                this.registeredElements.push(element);
+            }
         });
     }
 
@@ -22,13 +33,17 @@ class CopyContent {
             return;
         }
 
+        const content = sourceElement.innerHTML;
+
         if ('append' === targetMode) {
-            targetElement.append(content);
+            targetElement.insertAdjacentHTML('beforeend', content);
         } else if ('prepend' === targetMode) {
-            targetElement.prepend(content);
+            targetElement.insertAdjacentHTML('afterbegin', content);
         } else {
             targetElement.innerHTML = content;
         }
+
+        Rebind.rebindEvents();
     }
 }
 

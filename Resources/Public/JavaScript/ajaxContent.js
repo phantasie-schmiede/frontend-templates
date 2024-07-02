@@ -1,12 +1,23 @@
+import Rebind from './Modules/rebind.js';
+
 class AjaxContent {
     constructor() {
-        this.elements = document.querySelectorAll('[data-psb-ajax-target]');
+        this.registeredElements = [];
+        this.selector = '[data-psb-ajax-target]';
         this.bindEvents();
+        Rebind.registerBindFunction(this.bindEvents.bind(this));
     }
 
-    bindEvents() {
-        this.elements.forEach((element) => {
-            element.addEventListener('click', this.handleClick.bind(this));
+    bindEvents(rootNode = null) {
+        if (!rootNode) {
+            rootNode = document;
+        }
+
+        rootNode.querySelectorAll(this.selector).forEach((element) => {
+            if (!this.registeredElements.includes(element)) {
+                element.addEventListener('click', this.handleClick.bind(this));
+                this.registeredElements.push(element);
+            }
         });
     }
 
@@ -43,6 +54,8 @@ class AjaxContent {
             } else {
                 targetElement.innerHTML = content;
             }
+
+            Rebind.rebindEvents(content);
         }
     }
 }

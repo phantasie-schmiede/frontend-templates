@@ -10,11 +10,7 @@ class DynamicModal {
     }
 
     bindEvents(rootNode = null) {
-        if (!rootNode) {
-            rootNode = document;
-        }
-
-        rootNode.querySelectorAll(this.selector).forEach((element) => {
+        document.querySelectorAll(this.selector).forEach((element) => {
             if (!this.registeredElements.includes(element)) {
                 element.addEventListener('click', this.handleClick.bind(this));
                 this.registeredElements.push(element);
@@ -46,7 +42,7 @@ class DynamicModal {
             modalElement.querySelector('.modal-title').innerHTML = response.title;
             modalElement.querySelector('.modal-body').innerHTML = response.body;
             modalElement.querySelector('.modal-footer').innerHTML = response.footer;
-            Rebind.rebindEvents(modalElement);
+            Rebind.rebindEvents();
             this.modal.show();
         }
     }

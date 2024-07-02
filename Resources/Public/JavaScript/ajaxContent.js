@@ -8,12 +8,8 @@ class AjaxContent {
         Rebind.registerBindFunction(this.bindEvents.bind(this));
     }
 
-    bindEvents(rootNode = null) {
-        if (!rootNode) {
-            rootNode = document;
-        }
-
-        rootNode.querySelectorAll(this.selector).forEach((element) => {
+    bindEvents() {
+        document.querySelectorAll(this.selector).forEach((element) => {
             if (!this.registeredElements.includes(element)) {
                 element.addEventListener('click', this.handleClick.bind(this));
                 this.registeredElements.push(element);
@@ -55,7 +51,7 @@ class AjaxContent {
                 targetElement.innerHTML = content;
             }
 
-            Rebind.rebindEvents(content);
+            Rebind.rebindEvents();
         }
     }
 }

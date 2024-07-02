@@ -9,11 +9,7 @@ class DeleteContent {
     }
 
     bindEvents(rootNode = null) {
-        if (!rootNode) {
-            rootNode = document;
-        }
-
-        rootNode.querySelectorAll(this.selector).forEach((element) => {
+        document.querySelectorAll(this.selector).forEach((element) => {
             if (!this.registeredElements.includes(element)) {
                 element.addEventListener('click', this.handleClick.bind(this));
                 this.registeredElements.push(element);
@@ -26,13 +22,6 @@ class DeleteContent {
         const data = clickedElement.dataset;
         const mode = data.psbDeleteMode;
         const targetSelector = data.psbDeleteTarget;
-
-        return;
-        if (!targetElement) {
-            console.log('Target element not found!');
-
-            return;
-        }
 
         if ('self' === targetSelector) {
             clickedElement.remove();

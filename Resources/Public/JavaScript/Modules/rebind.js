@@ -3,9 +3,9 @@ class Rebind {
         this.bindFunctions = [];
     }
 
-    rebindEvents(rootNode = null) {
+    rebindEvents() {
         this.bindFunctions.forEach((bindFunction) => {
-            bindFunction(rootNode);
+            bindFunction();
         });
     }
 

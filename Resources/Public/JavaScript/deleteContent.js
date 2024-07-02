@@ -22,20 +22,26 @@ class DeleteContent {
     }
 
     handleClick(event) {
-        const data = event.target.dataset;
-        const mode = document.querySelector(data.psbDeleteMode);
-        const targetElement = document.querySelector(data.psbDeleteTarget);
+        const clickedElement = event.target;
+        const data = clickedElement.dataset;
+        const mode = data.psbDeleteMode;
+        const targetSelector = data.psbDeleteTarget;
 
+        return;
         if (!targetElement) {
             console.log('Target element not found!');
 
             return;
         }
 
-        if ('closest' === mode) {
-            targetElement.closest(targetElement).remove();
+        if ('self' === targetSelector) {
+            clickedElement.remove();
+        } else if ('closest' === mode) {
+            clickedElement.closest(targetSelector).remove();
         } else {
-            targetElement.remove();
+            document.querySelectorAll(targetSelector).forEach((element) => {
+                element.remove();
+            });
         }
     }
 }

@@ -29,7 +29,8 @@ class CopyContent {
             return;
         }
 
-        const content = sourceElement.innerHTML;
+        // Replace ###uid### with a unique identifier.
+        const content = sourceElement.innerHTML.split('###uid###').join(Date.now());
 
         if ('append' === targetMode) {
             targetElement.insertAdjacentHTML('beforeend', content);

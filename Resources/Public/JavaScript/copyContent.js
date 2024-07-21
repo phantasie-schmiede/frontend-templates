@@ -1,5 +1,21 @@
 import Rebind from './Modules/rebind.js';
 
+/*
+ * Applies to all elements with the attribute data-psb-copy-target (even those which are inserted dynamically).
+ * This element listens to click events and copies the content of the source element to the target element.
+ * Attributes:
+ * - data-psb-copy-source: Selector of the source element.
+ * - data-psb-copy-target: Selector of the target element.
+ * - data-psb-copy-mode: Mode of the copy. Possible values: replace, append, prepend. Default: replace.
+ *
+ * Examples:
+ * Replace the target element with the source element:
+ * <button data-psb-copy-source="#source" data-psb-copy-target="#target">Copy</button>
+ * Append the source element to the target element:
+ * <button data-psb-copy-source="#source" data-psb-copy-target="#target" data-psb-copy-mode="append">Copy</button>
+ * Prepend the source element to the target element:
+ * <button data-psb-copy-source="#source" data-psb-copy-target="#target" data-psb-copy-mode="prepend">Copy</button>
+ */
 class CopyContent {
     constructor() {
         this.registeredElements = [];

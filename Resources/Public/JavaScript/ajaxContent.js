@@ -1,5 +1,25 @@
 import Rebind from './Modules/rebind.js';
 
+/*
+ * Applies to all elements with the attribute data-psb-modal (even those which are inserted dynamically).
+ * This element listens to click events and inserts the response of the href attribute into the target element.
+ * The response must be a JSON object with the following structure:
+ * {
+ *   html: 'Content'
+ * }
+ *
+ * Attributes:
+ * - data-psb-ajax-target: Selector of the target element.
+ * - data-psb-ajax-mode: Mode of the insertion. Possible values: replace, append, prepend. Default: replace.
+ *
+ * Examples:
+ * Replace the target element with the response:
+ * <a href="/content" data-psb-ajax-target="#target">Load</a>
+ * Append the response to the target element:
+ * <a href="/content" data-psb-ajax-target="#target" data-psb-ajax-mode="append">Load</a>
+ * Prepend the response to the target element:
+ * <a href="/content" data-psb-ajax-target="#target" data-psb-ajax-mode="prepend">Load</a>
+ */
 class AjaxContent {
     constructor() {
         this.registeredElements = [];

@@ -1,9 +1,23 @@
 import Rebind from './Modules/rebind.js';
 
+/*
+ * Applies to all elements with the attribute data-psb-modal (even those which are inserted dynamically).
+ * This element listens to click events and opens a modal with the content of the href attribute.
+ * The response must be a JSON object with the following structure:
+ * {
+ *   title: 'Modal title',
+ *   body: 'Modal body',
+ *   footer: 'Modal footer'
+ * }
+ * The modal is created dynamically if it does not exist and has the id dynamic-modal.
+ *
+ * Example:
+ * <a href="/modal-content" data-psb-modal="#dynamic-modal">Open Modal</a>
+ */
 class DynamicModal {
     constructor() {
         this.registeredElements = [];
-        this.selector = '[data-psb-modal="#dynamicModal"]';
+        this.selector = '[data-psb-modal="#dynamic-modal"]';
         this.modal = null;
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));
@@ -48,7 +62,7 @@ class DynamicModal {
     }
 
     getModal() {
-        let modal = document.getElementById("dynamicModal");
+        let modal = document.getElementById("dynamic-modal");
 
         if (null === modal) {
             return this.createModal();
@@ -60,9 +74,9 @@ class DynamicModal {
     createModal() {
         let modal = document.createElement("div");
         modal.classList.add("fade", "modal");
-        modal.id = "dynamicModal";
+        modal.id = "dynamic-modal";
         modal.setAttribute("aria-hidden", "true");
-        modal.setAttribute("aria-labelledby", "dynamicModalLabel");
+        modal.setAttribute("aria-labelledby", "dynamic-modal-label");
         modal.tabIndex = -1;
         modal.innerHTML = `
             <div class="modal-dialog">
@@ -70,7 +84,7 @@ class DynamicModal {
                     <div class="modal-header">
                         <h1
                             class="modal-title fs-5"
-                            id="dynamicModalLabel"></h1>
+                            id="dynamic-modal-label"></h1>
                         <button
                             aria-label="Close"
                             class="btn-close"

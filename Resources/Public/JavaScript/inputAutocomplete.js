@@ -37,13 +37,38 @@ class InputAutocomplete {
     }
 
     bindEvents() {
-        document.querySelectorAll(this.selectors.input).forEach((element) => {
-            if (!this.registeredElements.includes(element)) {
-                element.addEventListener('click', this.handleEvent.bind(this));
-                element.addEventListener('input', this.handleEvent.bind(this));
-                this.registeredElements.push(element);
+        document.querySelectorAll(this.selectors.input).forEach((input) => {
+            if (!this.registeredElements.includes(input)) {
+                input.addEventListener('click', this.handleEvent.bind(this));
+                input.addEventListener('input', this.handleEvent.bind(this));
+
+                if (input.dataset.psbAutocompletePreselection) {
+                    this.setPreselection(input);
+                }
+
+                this.registeredElements.push(input);
             }
         });
+    }
+
+    setPreselection(input) {
+        const preselection = JSON.parse(input.dataset.psbAutocompletePreselection);
+
+        preselection.forEach((item) => {
+            this.activeInput = input;
+            this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteSelectionTarget);
+            this.activeSelectionTarget.setAttribute('data-psb-autocomplete-value-target', this.activeInput.dataset.psbAutocompleteValueTarget);
+            this.activeValueTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteValueTarget);
+
+            if ('string' === typeof item) {
+                this.selectItem(item);
+            } else {
+                this.selectItem(item.label, item.value);
+            }
+        });
+
+        this.updateValue(this.activeSelectionTarget, this.activeValueTarget);
+        this.resetAll();
     }
 
     handleEvent(event) {
@@ -117,7 +142,7 @@ class InputAutocomplete {
     }
 
     handleItemClick(event) {
-        this.selectItem(event.target);
+        this.selectItem(event.target.textContent, event.target.dataset.value);
     }
 
     handleKeyDown(event) {
@@ -133,7 +158,7 @@ class InputAutocomplete {
                 }
             }
 
-            this.selectItem(this.activeItem);
+            this.selectItem(this.activeItem.textContent, this.activeItem.dataset.value);
         }
 
         // Close when escape key is pressed.
@@ -187,12 +212,12 @@ class InputAutocomplete {
         }
     }
 
-    selectItem(item) {
+    selectItem(itemLabel, itemValue = null) {
         if (this.activeSelectionTarget) {
             const selectedItem = document.createElement('li');
 
             selectedItem.classList.add('list-group-item');
-            selectedItem.textContent = item.textContent;
+            selectedItem.textContent = itemLabel;
 
             selectedItem.addEventListener('click', (event) => {
                 const list = event.target.parentNode;
@@ -202,15 +227,15 @@ class InputAutocomplete {
                 this.updateValue(list, valueTarget);
             });
 
-            if (item.dataset.value) {
-                selectedItem.setAttribute('data-value', item.dataset.value);
+            if (itemValue) {
+                selectedItem.setAttribute('data-value', itemValue);
             }
 
             this.activeSelectionTarget.appendChild(selectedItem);
             this.updateValue(this.activeSelectionTarget, this.activeValueTarget);
             this.activeInput.value = '';
         } else {
-            this.activeInput.value = item.textContent;
+            this.activeInput.value = itemLabel;
         }
 
         this.resetAll();

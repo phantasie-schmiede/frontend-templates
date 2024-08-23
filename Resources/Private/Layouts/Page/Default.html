@@ -8,7 +8,9 @@
 </f:if>
 
 <div class="container{containerType}">
-    <f:render partial="Header" />
+    <f:render
+        arguments="{mainNavigation: mainNavigation}"
+        partial="Header" />
 
     <f:render
         arguments="{queueIdentifier: 'psbFoundation.general'}"

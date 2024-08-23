@@ -8,19 +8,19 @@
         <li class="nav-item">
             <f:if condition="{page.isCurrentPage}">
                 <f:then>
-                    <f:link.page
-                        additionalAttributes="{aria-current: 'page'}"
+                    <a
+                        aria-current="page"
                         class="active nav-link"
-                        pageUid="{page.uid}">
-                        {page.nav_title}
-                    </f:link.page>
+                        href="{page.link}">
+                        {page.title}
+                    </a>
                 </f:then>
                 <f:else>
-                    <f:link.page
+                    <a
                         class="nav-link"
-                        pageUid="{page.uid}">
-                        {page.nav_title}
-                    </f:link.page>
+                        href="{page.link}">
+                        {page.title}
+                    </a>
                 </f:else>
             </f:if>
         </li>

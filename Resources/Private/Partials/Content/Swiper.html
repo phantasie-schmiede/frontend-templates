@@ -1,0 +1,39 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:asset.css
+    href="EXT:psb_templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
+    identifier="swiper" />
+<f:asset.script
+    identifier="swiper"
+    src="EXT:psb_templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
+
+<div class="swiper" id="swiper-{id}">
+    <div class="swiper-wrapper">
+        <f:for
+            as="slide"
+            each="{slides}">
+            <div class="swiper-slide">
+                {slide}
+            </div>
+        </f:for>
+    </div>
+
+    <f:if condition="{showPagination}">
+        <div class="swiper-pagination"></div>
+    </f:if>
+
+    <f:if condition="{showNavigation}">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </f:if>
+
+    <f:if condition="{showScrollbar}">
+        <div class="swiper-scrollbar"></div>
+    </f:if>
+</div>
+
+<script>
+
+</script>
+</html>

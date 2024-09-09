@@ -10,8 +10,8 @@ page {
   }
 
   includeCSS {
-    app = {$plugin.tx_psbtemplates.privateResourcePath}Scss/app.scss
-    app.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/app.min.css
+    psbTemplates = {$plugin.tx_psbtemplates.privateResourcePath}Scss/app.scss
+    psbTemplates.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/app.min.css
     bootstrap = {$plugin.tx_psbtemplates.privateResourcePath}Scss/Bootstrap/bootstrap.scss
     bootstrap.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/bootstrap.min.css
   }

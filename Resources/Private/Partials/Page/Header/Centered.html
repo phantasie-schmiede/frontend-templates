@@ -4,15 +4,11 @@
     xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers">
 <psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Page/header.xlf" />
 
-<f:variable
-    name="siteConfiguration"
-    value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
-
-<header>
-    <nav class="bg-body-tertiary fixed-top navbar navbar-expand-lg">
-        <div class="container-fluid">
+<header class="fixed-top">
+    <nav class="bg-body-tertiary flex-nowrap flex-lg-wrap navbar navbar-expand-lg">
+        <div class="container-fluid text-center">
             <f:link.page
-                class="navbar-brand"
+                class="flex-lg-shrink-0 navbar-brand mx-lg-auto w-100"
                 pageUid="{siteConfiguration.rootPageId}">
                 {siteConfiguration.websiteTitle}
             </f:link.page>
@@ -42,10 +38,12 @@
                         data-bs-dismiss="offcanvas"
                         type="button"></button>
                 </div>
-                <div class="offcanvas-body">
-                    <f:render
-                        arguments="{mainNavigation: mainNavigation}"
-                        partial="Navigation/Main" />
+                <div class="justify-content-center offcanvas-body">
+                    <ul class="navbar-nav text-end">
+                        <f:render
+                            arguments="{mainNavigation: mainNavigation}"
+                            partial="Navigation/Main" />
+                    </ul>
                 </div>
             </div>
         </div>

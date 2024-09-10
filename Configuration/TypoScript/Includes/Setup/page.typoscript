@@ -61,5 +61,10 @@ page {
     layoutRootPaths.0 = {$plugin.tx_psbtemplates.view.layoutRootPath}Page/
     partialRootPaths.0 = {$plugin.tx_psbtemplates.view.partialRootPath}Page/
     templateRootPaths.0 = {$plugin.tx_psbtemplates.view.templateRootPath}Page/
+
+    variables {
+      headerTemplate = TEXT
+      headerTemplate.value = {$plugin.tx_psbtemplates.settings.templates.header}
+    }
   }
 }

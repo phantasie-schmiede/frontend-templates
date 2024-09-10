@@ -10,8 +10,20 @@
             <trans-unit id="settings.navigation.footer">
                 <source>Parent ID of the footer menu items</source>
             </trans-unit>
+            <trans-unit id="settings.templates.header">
+                <source>Template variant of the header</source>
+            </trans-unit>
+            <trans-unit id="settings.templates.header.centered">
+                <source>Centered</source>
+            </trans-unit>
+            <trans-unit id="settings.templates.header.leftAligned">
+                <source>Left aligned</source>
+            </trans-unit>
             <trans-unit id="subCategory.navigation">
                 <source>Navigation</source>
+            </trans-unit>
+            <trans-unit id="subCategory.templates">
+                <source>Templates</source>
             </trans-unit>
         </body>
     </file>

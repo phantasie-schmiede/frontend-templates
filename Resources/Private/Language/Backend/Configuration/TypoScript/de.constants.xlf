@@ -12,9 +12,25 @@
                 <source>Parent ID of the footer menu items</source>
                 <target>PID der Footer-Menü-Elemente</target>
             </trans-unit>
+            <trans-unit id="settings.templates.header">
+                <source>Template variant of the header</source>
+                <target>Header-Template-Variante</target>
+            </trans-unit>
+            <trans-unit id="settings.templates.header.centered">
+                <source>Centered</source>
+                <target>Zentriert</target>
+            </trans-unit>
+            <trans-unit id="settings.templates.header.leftAligned">
+                <source>Left aligned</source>
+                <target>Linksbündig</target>
+            </trans-unit>
             <trans-unit id="subCategory.navigation">
                 <source>Navigation</source>
                 <target>Navigation</target>
+            </trans-unit>
+            <trans-unit id="subCategory.templates">
+                <source>Templates</source>
+                <target>Templates</target>
             </trans-unit>
         </body>
     </file>

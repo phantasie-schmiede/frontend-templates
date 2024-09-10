@@ -1,6 +1,11 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers">
+<f:variable
+    name="siteConfiguration"
+    value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
+
 <f:if condition="{data.tx_psbtemplates_bs_container_type}">
     <f:variable
         name="containerType"
@@ -9,8 +14,8 @@
 
 <div class="container{containerType}">
     <f:render
-        arguments="{mainNavigation: mainNavigation}"
-        partial="Header" />
+        arguments="{mainNavigation: mainNavigation, siteConfiguration: siteConfiguration}"
+        partial="Header/{headerTemplate}" />
 
     <f:render
         arguments="{queueIdentifier: 'psbFoundation.general'}"

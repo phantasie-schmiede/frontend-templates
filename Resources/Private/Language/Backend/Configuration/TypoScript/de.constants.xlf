@@ -24,6 +24,14 @@
                 <source>Left aligned</source>
                 <target>Linksbündig</target>
             </trans-unit>
+            <trans-unit id="subCategory.logos">
+                <source>Logos</source>
+                <target>Logos</target>
+            </trans-unit>
+            <trans-unit id="settings.logo.default">
+                <source>Default</source>
+                <target>Standard</target>
+            </trans-unit>
             <trans-unit id="subCategory.navigation">
                 <source>Navigation</source>
                 <target>Navigation</target>

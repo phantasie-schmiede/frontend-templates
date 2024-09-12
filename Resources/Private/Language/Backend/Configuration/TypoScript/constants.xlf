@@ -19,6 +19,12 @@
             <trans-unit id="settings.templates.header.leftAligned">
                 <source>Left aligned</source>
             </trans-unit>
+            <trans-unit id="subCategory.logos">
+                <source>Logos</source>
+            </trans-unit>
+            <trans-unit id="settings.logo.default">
+                <source>Default</source>
+            </trans-unit>
             <trans-unit id="subCategory.navigation">
                 <source>Navigation</source>
             </trans-unit>

@@ -1,3 +1,4 @@
+# customsubcategory=logos=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:subCategory.logos
 # customsubcategory=navigation=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:subCategory.navigation
 # customsubcategory=templates=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:subCategory.templates
 
@@ -6,6 +7,11 @@ plugin.tx_psbtemplates {
     publicResourcePath = EXT:psb_templates/Resources/Public/
 
     settings {
+      logos {
+        # cat=plugin.tx_psbtemplates/logos; type=string; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logo.default
+        default = EXT:site_package/Resources/Public/Images/logo.svg
+      }
+
       navigation {
         # cat=plugin.tx_psbtemplates/navigation; type=int+; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.navigation.footer
         footer =

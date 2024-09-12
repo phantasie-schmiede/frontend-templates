@@ -10,7 +10,9 @@
             <f:link.page
                 class="navbar-brand"
                 pageUid="{siteConfiguration.rootPageId}">
-                {siteConfiguration.websiteTitle}
+                <f:render
+                    arguments="{siteConfiguration: siteConfiguration}"
+                    partial="Header/Components/Logo" />
             </f:link.page>
 
             <button

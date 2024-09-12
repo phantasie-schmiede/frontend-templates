@@ -16,5 +16,11 @@
 }
 
 body:not(.bl-pagets__PsbBlank) {
-  padding-top: 5.5rem;
+  padding-top: 5rem;
+}
+
+@media (min-width: 992px) {
+  body:not(.bl-pagets__PsbBlank)[data-template-header="Centered"] {
+    padding-top: 8rem;
+  }
 }

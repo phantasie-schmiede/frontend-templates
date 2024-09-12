@@ -8,6 +8,26 @@
         target-language="de">
         <header />
         <body>
+            <trans-unit id="settings.logos.default.file">
+                <source>Logo file</source>
+                <target>Logo-Datei</target>
+            </trans-unit>
+            <trans-unit id="settings.logos.default.height">
+                <source>Height</source>
+                <target>Höhe</target>
+            </trans-unit>
+            <trans-unit id="settings.logos.default.showWebsiteTitle">
+                <source>Show website title in header</source>
+                <target>Webseitentitel in Header anzeigen</target>
+            </trans-unit>
+            <trans-unit id="settings.logos.default.width">
+                <source>Width</source>
+                <target>Breite</target>
+            </trans-unit>
+            <trans-unit id="settings.logos.favicon">
+                <source>Favicon</source>
+                <target>Favicon</target>
+            </trans-unit>
             <trans-unit id="settings.navigation.footer">
                 <source>Parent ID of the footer menu items</source>
                 <target>PID der Footer-Menü-Elemente</target>
@@ -27,10 +47,6 @@
             <trans-unit id="subCategory.logos">
                 <source>Logos</source>
                 <target>Logos</target>
-            </trans-unit>
-            <trans-unit id="settings.logo.default">
-                <source>Default</source>
-                <target>Standard</target>
             </trans-unit>
             <trans-unit id="subCategory.navigation">
                 <source>Navigation</source>

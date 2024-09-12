@@ -1,1 +1,7 @@
-@import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/'
+// Needs to be imported before page.typoscript to make sure the settings are available.
+@import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/psb_templates.typoscript'
+
+@import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/content.typoscript'
+@import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/menu.typoscript'
+@import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/page.typoscript'
+@import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/ws_scss.typoscript'

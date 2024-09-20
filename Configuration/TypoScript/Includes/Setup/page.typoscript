@@ -1,25 +1,6 @@
 # default page object
 page = PAGE
 page {
-  bodyTag >
-  bodyTagCObject = TEXT
-  bodyTagCObject.stdWrap.dataWrap = <body class="bl-{field:backend_layout}" id="page-{field:uid}">
-
-  meta {
-    viewport = width=device-width, initial-scale=1, shrink-to-fit=no
-  }
-
-  includeCSS {
-    app = {$plugin.tx_psbtemplates.privateResourcePath}Scss/app.scss
-    app.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/app.min.css
-    bootstrap = {$plugin.tx_psbtemplates.privateResourcePath}Scss/Bootstrap/bootstrap.scss
-    bootstrap.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/bootstrap.min.css
-  }
-
-  includeJSFooterlibs {
-    bootstrap = {$plugin.tx_psbtemplates.publicResourcePath}JavaScript/Vendors/bootstrap.bundle.min.js
-  }
-
   10 = FLUIDTEMPLATE
   10 {
     file.stdWrap.cObject = CASE
@@ -60,6 +41,30 @@ page {
     format = html
     layoutRootPaths.0 = {$plugin.tx_psbtemplates.view.layoutRootPath}Page/
     partialRootPaths.0 = {$plugin.tx_psbtemplates.view.partialRootPath}Page/
+
+    settings < plugin.tx_psbtemplates.settings
+
     templateRootPaths.0 = {$plugin.tx_psbtemplates.view.templateRootPath}Page/
   }
+
+  bodyTag >
+  bodyTagCObject = TEXT
+  bodyTagCObject.stdWrap.dataWrap = <body class="bl-{field:layout}" data-template-header="{$plugin.tx_psbtemplates.settings.templates.header}" id="page-{field:uid}">
+
+  meta {
+    viewport = width=device-width, initial-scale=1, shrink-to-fit=no
+  }
+
+  includeCSS {
+    psbTemplates = {$plugin.tx_psbtemplates.privateResourcePath}Scss/app.scss
+    psbTemplates.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/app.min.css
+    bootstrap = {$plugin.tx_psbtemplates.privateResourcePath}Scss/Bootstrap/bootstrap.scss
+    bootstrap.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/bootstrap.min.css
+  }
+
+  includeJSFooterlibs {
+    bootstrap = {$plugin.tx_psbtemplates.publicResourcePath}JavaScript/Vendors/bootstrap.bundle.min.js
+  }
+
+  shortcutIcon = {$plugin.tx_psbtemplates.settings.logos.favicon}
 }

@@ -1,7 +1,7 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applis to all elements with the attribute data-psb-form-condition-field (even those which are inserted dynamically).
+ * Applies to all elements with the attribute data-psb-form-condition-field (even those which are inserted dynamically).
  * This element listens to value changes of another field of the same form and is either shown or hidden.
  *
  * Attributes:

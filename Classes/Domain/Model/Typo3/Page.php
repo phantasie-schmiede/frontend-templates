@@ -34,9 +34,6 @@ class Page extends AbstractEntity
         'FLUID'   => 'fluid',
     ];
 
-    /**
-     * @var string
-     */
     #[Column(position: 'after:layout')]
     #[Field(name: 'tx_psbtemplates_bs_container_type')]
     #[Select(items: self::BOOTSTRAP_CONTAINER_TYPES)]

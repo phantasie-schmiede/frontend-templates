@@ -1,3 +1,26 @@
+.autocomplete-list {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  max-height: 20rem;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 1000;
+
+  .autocomplete-list-item {
+    cursor: pointer;
+
+    &.autocomplete-list-item__active,
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+}
+
 body:not(.bl-pagets__PsbBlank) {
-    padding-top: 5.5rem;
+  padding-top: 5rem;
+}
+
+@media (min-width: 992px) {
+  body:not(.bl-pagets__PsbBlank)[data-template-header="Centered"] {
+    padding-top: 8rem;
+  }
 }

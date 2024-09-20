@@ -26,8 +26,8 @@
 	"name": "psb/psb-templates",
 	"require": {
 		"psb/psb-foundation": "@dev",
-		"typo3/cms-fluid-styled-content": "^12",
-		"wapplersystems/ws-scss": "^12"
+		"typo3/cms-fluid-styled-content": "^12|^13",
+		"wapplersystems/ws-scss": "^12|^dev-release/v13"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest"

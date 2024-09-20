@@ -26,7 +26,7 @@
 	"name": "psb/psb-templates",
 	"require": {
 		"psb/psb-foundation": "@dev",
-		"typo3/cms-fluid-styled-content": "^12|^13",
+		"typo3/cms-fluid-styled-content": "^12|^13"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest"

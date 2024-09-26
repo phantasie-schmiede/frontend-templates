@@ -46,7 +46,19 @@ class CopyContent {
         }
 
         // Replace ###uid### with a unique identifier.
-        const content = sourceElement.innerHTML.split('###uid###').join(Date.now());
+        const uniqueId = Date.now();
+        let content = sourceElement.innerHTML.replace(/###uid###/g, uniqueId);
+        let isAccordionItem = false;
+
+        /*
+         * Attribute data-bs-target has to be "hidden" initially to avoid JS errors within Bootstrap caused by invalid
+         * IDs (...###uid###).
+         */
+        if (content.includes('_data-bs-target="')) {
+            isAccordionItem = true;
+
+            content = content.replace(/_data-bs-target="/g, 'data-bs-target="');
+        }
 
         if ('append' === targetMode) {
             targetElement.insertAdjacentHTML('beforeend', content);
@@ -54,6 +66,15 @@ class CopyContent {
             targetElement.insertAdjacentHTML('afterbegin', content);
         } else {
             targetElement.innerHTML = content;
+        }
+
+        // Open new accordion item
+        if (isAccordionItem) {
+            const newAccordionItemToggle = targetElement.querySelector('[data-bs-target*="' + uniqueId + '"]');
+
+            if (newAccordionItemToggle) {
+                newAccordionItemToggle.click();
+            }
         }
 
         Rebind.rebindEvents();

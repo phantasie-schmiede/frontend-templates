@@ -15,12 +15,16 @@
   }
 }
 
-body:not(.bl-pagets__PsbBlank) {
+body:not(.bl-pagets__PsbBlank, .bl-pagets__PsbTemplatesGrid-2x2) {
   padding-top: 5rem;
 }
 
+body.bl-pagets__PsbTemplatesGrid-2x2 {
+  height: 100vh;
+}
+
 @media (min-width: 992px) {
-  body:not(.bl-pagets__PsbBlank)[data-template-header="Centered"] {
+  body:not(.bl-pagets__PsbBlank, .bl-pagets__PsbTemplatesGrid-2x2)[data-template-header="Centered"] {
     padding-top: 8rem;
   }
 }

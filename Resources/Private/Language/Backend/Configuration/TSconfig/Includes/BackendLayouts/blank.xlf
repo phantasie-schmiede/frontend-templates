@@ -5,14 +5,14 @@
         original="messages"
         product-name="psb_templates"
         source-language="en">
-        <header />
         <body>
-            <trans-unit id="column1">
+            <trans-unit id="content1">
                 <source>Main content</source>
             </trans-unit>
             <trans-unit id="title">
                 <source>One column (no header/footer)</source>
             </trans-unit>
         </body>
+        <header />
     </file>
 </xliff>

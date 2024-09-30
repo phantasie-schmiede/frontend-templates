@@ -1,0 +1,27 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:layout name="Grid" />
+
+<f:section name="Main">
+    <div class="row h-100">
+        <f:for
+            as="content"
+            each="{0: content1, 1: content2, 2: content3, 3: content4}">
+            <f:render
+                arguments="{content: content}"
+                section="Tile" />
+        </f:for>
+    </div>
+</f:section>
+
+<f:section name="Tile">
+    <div class="col-12 col-md-6 h-50 p-2">
+        <div class="border border-secondary-subtle h-100 overflow-auto p-4 pb-2 rounded">
+        <f:render
+            arguments="{column: content}"
+            partial="Column" />
+        </div>
+    </div>
+</f:section>
+</html>

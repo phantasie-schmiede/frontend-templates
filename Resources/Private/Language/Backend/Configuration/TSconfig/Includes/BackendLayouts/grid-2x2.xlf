@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2024-09-30T16:52:00+01:00"
+        original="messages"
+        product-name="psb_templates"
+        source-language="en">
+        <body>
+            <trans-unit id="content1.1">
+                <source>top left</source>
+            </trans-unit>
+            <trans-unit id="content1.2">
+                <source>top right</source>
+            </trans-unit>
+            <trans-unit id="content2.1">
+                <source>bottom left</source>
+            </trans-unit>
+            <trans-unit id="content2.2">
+                <source>bottom right</source>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>2x2 grid</source>
+            </trans-unit>
+        </body>
+        <header />
+    </file>
+</xliff>

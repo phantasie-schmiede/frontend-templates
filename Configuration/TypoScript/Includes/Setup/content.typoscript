@@ -1,25 +1,33 @@
 page.10.dataProcessing {
   1711319420 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   1711319420 {
-    table = tt_content
+    as = content1
     orderBy = sorting
+    table = tt_content
     where = colPos = 0
-    as = column1
   }
 
   1711319426 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   1711319426 {
-    table = tt_content
+    as = content2
     orderBy = sorting
+    table = tt_content
     where = colPos = 1
-    as = column2
   }
 
   1711319433 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   1711319433 {
-    table = tt_content
+    as = content3
     orderBy = sorting
+    table = tt_content
     where = colPos = 2
-    as = column3
+  }
+
+  1727709333 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+  1727709333 {
+    as = content4
+    orderBy = sorting
+    table = tt_content
+    where = colPos = 3
   }
 }

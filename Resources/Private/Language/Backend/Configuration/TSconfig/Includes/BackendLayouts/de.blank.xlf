@@ -6,9 +6,8 @@
         product-name="psb_templates"
         source-language="en"
         target-language="de">
-        <header />
         <body>
-            <trans-unit id="column1">
+            <trans-unit id="content1">
                 <source>Main content</source>
                 <target>Hauptbereich</target>
             </trans-unit>
@@ -17,5 +16,6 @@
                 <target>Eine Spalte (kein Header/Footer)</target>
             </trans-unit>
         </body>
+        <header />
     </file>
 </xliff>

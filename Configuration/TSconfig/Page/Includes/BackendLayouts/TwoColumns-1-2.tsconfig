@@ -4,7 +4,7 @@ mod {
       PsbTemplatesTwoColumns-1-2 {
         config {
           backend_layout {
-            colCount = 1
+            colCount = 2
             rowCount = 1
 
             rows {
@@ -12,11 +12,12 @@ mod {
                 columns {
                   1 {
                     colPos = 0
-                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/twoColumns-1-2.xlf:column1
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/twoColumns-1-2.xlf:content1
                   }
+
                   2 {
                     colPos = 1
-                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/twoColumns-1-2.xlf:column2
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/twoColumns-1-2.xlf:content2
                   }
                 }
               }

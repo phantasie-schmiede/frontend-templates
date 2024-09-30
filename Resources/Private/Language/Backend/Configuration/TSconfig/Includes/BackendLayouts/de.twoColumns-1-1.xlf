@@ -6,13 +6,12 @@
         product-name="psb_templates"
         source-language="en"
         target-language="de">
-        <header />
         <body>
-            <trans-unit id="column1">
+            <trans-unit id="content1">
                 <source>Left side content</source>
                 <target>Linker Bereich</target>
             </trans-unit>
-            <trans-unit id="column2">
+            <trans-unit id="content2">
                 <source>Right side content</source>
                 <target>Rechter Bereich</target>
             </trans-unit>
@@ -21,5 +20,6 @@
                 <target>Zwei Spalten (1-1)</target>
             </trans-unit>
         </body>
+        <header />
     </file>
 </xliff>

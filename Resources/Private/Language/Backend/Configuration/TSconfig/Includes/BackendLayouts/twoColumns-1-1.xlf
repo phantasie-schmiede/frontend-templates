@@ -5,17 +5,17 @@
         original="messages"
         product-name="psb_templates"
         source-language="en">
-        <header />
         <body>
-            <trans-unit id="column1">
+            <trans-unit id="content1">
                 <source>Left side content</source>
             </trans-unit>
-            <trans-unit id="column2">
+            <trans-unit id="content2">
                 <source>Right side content</source>
             </trans-unit>
             <trans-unit id="title">
                 <source>Two columns (1-1)</source>
             </trans-unit>
         </body>
+        <header />
     </file>
 </xliff>

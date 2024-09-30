@@ -13,6 +13,9 @@ page {
       pagets__PsbTemplatesBlank = TEXT
       pagets__PsbTemplatesBlank.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/Blank.html
 
+      pagets__PsbTemplatesGrid-2x2 = TEXT
+      pagets__PsbTemplatesGrid-2x2.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/Grid-2x2.html
+
       pagets__PsbTemplatesOneColumn = TEXT
       pagets__PsbTemplatesOneColumn.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/OneColumn.html
 
@@ -49,7 +52,7 @@ page {
 
   bodyTag >
   bodyTagCObject = TEXT
-  bodyTagCObject.stdWrap.dataWrap = <body class="bl-{field:layout}" data-template-header="{$plugin.tx_psbtemplates.settings.templates.header}" id="page-{field:uid}">
+  bodyTagCObject.stdWrap.dataWrap = <body class="bl-{field:backend_layout}" data-template-header="{$plugin.tx_psbtemplates.settings.templates.header}" id="page-{field:uid}">
 
   meta {
     viewport = width=device-width, initial-scale=1, shrink-to-fit=no

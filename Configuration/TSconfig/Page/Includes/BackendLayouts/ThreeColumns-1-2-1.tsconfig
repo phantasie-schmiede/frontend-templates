@@ -4,7 +4,7 @@ mod {
       PsbTemplatesThreeColumns-1-2-1 {
         config {
           backend_layout {
-            colCount = 1
+            colCount = 3
             rowCount = 1
 
             rows {
@@ -12,15 +12,17 @@ mod {
                 columns {
                   1 {
                     colPos = 0
-                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:column1
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:content1
                   }
+
                   2 {
                     colPos = 1
-                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:column2
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:content2
                   }
+
                   3 {
                     colPos = 2
-                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:column3
+                    name = LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/threeColumns-1-2-1.xlf:content3
                   }
                 }
               }

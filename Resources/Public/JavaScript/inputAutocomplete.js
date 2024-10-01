@@ -2,7 +2,7 @@ import Rebind from './Modules/rebind.js';
 
 /*
  * Applies to all input elements with the attribute data-psb-autocomplete (even those which are inserted dynamically).
- * The elements listen to input events and show a list of items filtered by the input value. The input value can
+ * The elements listen to input events and shows a list of items filtered by the input value. The input value can
  * contain multiple search values separated by spaces. The search is case-insensitive.
  * The list of items has to be present in the data-psb-autocomplete attribute as a JSON array.
  *

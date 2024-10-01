@@ -10,10 +10,7 @@ declare(strict_types=1);
 
 namespace PSB\PsbTemplates\ViewHelpers\Data;
 
-use Locale;
-use PSB\PsbFoundation\Utility\ContextUtility;
-use Symfony\Component\Intl\Countries;
-use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
+use PSB\PsbTemplates\Service\CountryNamesService;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -23,16 +20,9 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class CountryNamesViewHelper extends AbstractViewHelper
 {
-    /**
-     * @throws AspectNotFoundException
-     */
-    public function __construct()
-    {
-        Locale::setDefault(
-            ContextUtility::getCurrentFrontendLanguage()
-                ->getLocale()
-                ->getLanguageCode()
-        );
+    public function __construct(
+        protected readonly CountryNamesService $countryNamesService,
+    ) {
     }
 
     public function initializeArguments(): void
@@ -44,9 +34,9 @@ class CountryNamesViewHelper extends AbstractViewHelper
     public function render(): array|string
     {
         if ($this->arguments['countryCode']) {
-            return Countries::getName($this->arguments['countryCode']);
+            return $this->countryNamesService->getFromCode($this->arguments['countryCode']);
         }
 
-        return Countries::getNames();
+        return $this->countryNamesService->getAll();
     }
 }

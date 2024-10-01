@@ -2,14 +2,14 @@ import Rebind from './Modules/rebind.js';
 
 /*
  * Applies to all input elements with the attribute data-psb-filter-target (even those which are inserted dynamically).
- * The elements listen to input events and filter a target list of items by the input value. The input value can
+ * The elements listen to input events and filter a list of target items by the input value. The input value can
  * contain multiple search values separated by spaces. The search is case-insensitive.
  * The items will be filtered by an attribute value referenced by the optional data-psb-filter-value attribute. If no
  * value is defined for data-psb-filter-value, the text content of the item will be used.
  *
  * Examples:
- * <input type="text" data-psb-filter-target="#list-of-items">
- * <input type="text" data-psb-filter-target="#list-of-items" data-psb-filter-value="data-categories">
+ * <input type="text" data-psb-filter-target=".item">
+ * <input type="text" data-psb-filter-target=".item" data-psb-filter-value="data-categories">
  */
 class Filter {
     constructor() {
@@ -31,12 +31,11 @@ class Filter {
     handleEvent(event) {
         const input = event.target;
         const filterValue = input.dataset.psbFilterValue;
-        const target = document.querySelector(input.dataset.psbFilterTarget);
-        const items = target.querySelectorAll('*');
+        const items = document.querySelectorAll(input.dataset.psbFilterTarget);
         const searchValues = input.value.trim().toLowerCase().split(' ');
 
         items.forEach((item) => {
-            let value;
+            let value = '';
 
             if (filterValue) {
                 value = item.getAttribute(filterValue);

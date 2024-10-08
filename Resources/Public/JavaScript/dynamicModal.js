@@ -34,9 +34,14 @@ class DynamicModal {
 
     handleClick(event) {
         event.preventDefault();
+        let target = event.target;
+
+        if (!target.href) {
+            target = event.target.closest(this.selector);
+        }
 
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', event.target.href, true);
+        xhr.open('GET', target.href, true);
         xhr.responseType = 'json';
         xhr.send();
         xhr.onload = this.handleResponse.bind(this);

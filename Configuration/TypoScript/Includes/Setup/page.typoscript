@@ -52,7 +52,7 @@ page {
 
   bodyTag >
   bodyTagCObject = TEXT
-  bodyTagCObject.stdWrap.dataWrap = <body class="bl-{field:backend_layout}" data-template-header="{$plugin.tx_psbtemplates.settings.templates.header}" id="page-{field:uid}">
+  bodyTagCObject.stdWrap.dataWrap = <body class="bl-{pagelayout}" data-template-header="{$plugin.tx_psbtemplates.settings.templates.header}" id="page-{field:uid}">
 
   meta {
     viewport = width=device-width, initial-scale=1, shrink-to-fit=no

@@ -25,6 +25,11 @@ class Filter {
                 input.addEventListener('input', this.handleEvent.bind(this));
                 this.registeredElements.push(input);
             }
+
+            if ('' === input.value) {
+                input.value = localStorage.getItem('searchitem-' + input.id);
+                input.dispatchEvent(new Event('input'));
+            }
         });
     }
 
@@ -32,7 +37,10 @@ class Filter {
         const input = event.target;
         const filterValue = input.dataset.psbFilterValue;
         const items = document.querySelectorAll(input.dataset.psbFilterTarget);
-        const searchValues = input.value.trim().toLowerCase().split(' ');
+        const searchValue = input.value.trim()
+        const searchValues = searchValue.toLowerCase().split(' ');
+
+        localStorage.setItem('searchitem-' + input.id, searchValue);
 
         items.forEach((item) => {
             let value = '';

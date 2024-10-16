@@ -37,7 +37,15 @@ body {
   line-height: 0;
   position: absolute;
   right: 1rem;
-  top: 50%;
   transform: translateY(-50%);
   z-index: 5;
+}
+
+ul[data-psb-autocomplete-value-target] .list-group-item {
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+    text-decoration: line-through;
+  }
 }

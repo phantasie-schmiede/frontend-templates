@@ -15,16 +15,29 @@
   }
 }
 
-body:not(.bl-pagets__PsbTemplatesBlank, .bl-pagets__PsbTemplatesGrid-2x2) {
-  padding-top: 5rem;
-}
-
-body.bl-pagets__PsbTemplatesGrid-2x2 {
-  height: 100vh;
-}
-
-@media (min-width: 992px) {
-  body:not(.bl-pagets__PsbTemplatesBlank, .bl-pagets__PsbTemplatesGrid-2x2)[data-template-header="Centered"] {
-    padding-top: 8rem;
+body {
+  &:not(.bl-pagets__PsbTemplatesBlank, .bl-pagets__PsbTemplatesGrid-2x2) {
+    padding-top: 5rem;
   }
+
+  &.bl-pagets__PsbTemplatesGrid-2x2 {
+    height: 100vh;
+  }
+
+  @media (min-width: 992px) {
+    &:not(.bl-pagets__PsbTemplatesBlank, .bl-pagets__PsbTemplatesGrid-2x2)[data-template-header="Centered"] {
+      padding-top: 8rem;
+    }
+  }
+}
+
+.js-clear-icon {
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 0;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
 }

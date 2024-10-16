@@ -45,7 +45,7 @@ ul[data-psb-autocomplete-value-target] .list-group-item {
   cursor: pointer;
 
   &:hover {
-    color: red;
+    color: $danger;
     text-decoration: line-through;
   }
 }

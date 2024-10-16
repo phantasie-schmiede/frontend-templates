@@ -77,10 +77,6 @@ class InputAutocomplete {
 
         const value = this.activeInput.value;
 
-        if (0 === value.length) {
-            return;
-        }
-
         if (this.activeInput.dataset.psbAutocompleteSelectionTarget && this.activeInput.dataset.psbAutocompleteValueTarget) {
             this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteSelectionTarget);
             this.activeSelectionTarget.setAttribute('data-psb-autocomplete-value-target', this.activeInput.dataset.psbAutocompleteValueTarget);

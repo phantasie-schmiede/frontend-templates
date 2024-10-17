@@ -13,6 +13,7 @@ import Rebind from './Modules/rebind.js';
  */
 class Filter {
     constructor() {
+        this.cacheDuration = 3600; // 1 hour
         this.registeredElements = [];
         this.selector = 'input[data-psb-filter-target]';
         this.bindEvents();
@@ -27,7 +28,12 @@ class Filter {
             }
 
             if ('' === input.value) {
-                input.value = localStorage.getItem('searchitem-' + input.id);
+                const cachedValue = JSON.parse(localStorage.getItem('searchitem-' + input.id));
+
+                if (cachedValue && cachedValue.timestamp + this.cacheDuration * 1000 > Date.now()) {
+                    input.value = cachedValue.value;
+                }
+
                 input.dispatchEvent(new Event('input'));
             }
         });
@@ -40,7 +46,7 @@ class Filter {
         const searchValue = input.value.trim()
         const searchValues = searchValue.toLowerCase().split(' ');
 
-        localStorage.setItem('searchitem-' + input.id, searchValue);
+        localStorage.setItem('searchitem-' + input.id, JSON.stringify({value: searchValue, timestamp: Date.now()}));
 
         items.forEach((item) => {
             let value = '';

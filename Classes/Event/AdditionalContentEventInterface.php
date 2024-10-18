@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace PSB\PsbTemplates\Event;
 
+use Psr\Http\Message\ServerRequestInterface;
+
 /**
  * Interface AdditionalContentEventInterface
  *
@@ -19,5 +21,7 @@ interface AdditionalContentEventInterface
 {
     public function getContent(): string;
 
-    public function setParameters(array $parameters): void;
+    public function setParameters(array $parameters): static;
+
+    public function setRequest(?ServerRequestInterface $request): static;
 }

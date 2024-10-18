@@ -12,6 +12,7 @@ namespace PSB\PsbTemplates\ViewHelpers;
 
 use InvalidArgumentException;
 use PSB\PsbTemplates\Event\AdditionalContentEventInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -68,9 +69,19 @@ class AdditionalContentViewHelper extends AbstractViewHelper
             );
         }
 
-        $event->setParameters($this->arguments['parameters']);
+        $event->setParameters($this->arguments['parameters'])
+            ->setRequest($this->getRequest());
 
         return $this->eventDispatcher->dispatch($event)
             ->getContent();
+    }
+
+    private function getRequest(): ?ServerRequestInterface
+    {
+        if ($this->renderingContext->hasAttribute(ServerRequestInterface::class)) {
+            return $this->renderingContext->getAttribute(ServerRequestInterface::class);
+        }
+
+        return null;
     }
 }

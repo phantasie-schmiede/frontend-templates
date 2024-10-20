@@ -8,16 +8,18 @@
         <f:for
             as="content"
             each="{0: content1, 1: content2, 2: content3, 3: content4}">
-            <f:render
-                arguments="{content: content}"
-                section="Tile" />
+            <f:if condition="{content}">
+                <f:render
+                    arguments="{content: content}"
+                    section="Tile" />
+            </f:if>
         </f:for>
     </div>
 </f:section>
 
 <f:section name="Tile">
-    <div class="col-12 col-md-6 h-50 p-2">
-        <div class="border border-secondary-subtle h-100 overflow-auto p-4 pb-2 rounded">
+    <div class="col-12 col-md-6 grid-2x2 p-2">
+        <div class="border border-secondary-subtle d-flex flex-column h-100 p-4 pb-2 rounded">
         <f:render
             arguments="{column: content}"
             partial="Column" />

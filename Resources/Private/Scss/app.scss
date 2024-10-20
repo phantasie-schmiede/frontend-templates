@@ -1,3 +1,7 @@
+@import "Bootstrap/mixins";
+@import "Bootstrap/functions";
+@import "Bootstrap/variables";
+
 .autocomplete-list {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   max-height: 20rem;
@@ -24,10 +28,16 @@ body {
     height: 100vh;
   }
 
-  @media (min-width: 992px) {
+  @include media-breakpoint-up(lg) {
     &:not(.bl-pagets__PsbTemplatesBlank, .bl-pagets__PsbTemplatesGrid-2x2)[data-template-header="Centered"] {
       padding-top: 8rem;
     }
+  }
+}
+
+.grid-2x2 {
+  @include media-breakpoint-up(md) {
+    height: 50%;
   }
 }
 

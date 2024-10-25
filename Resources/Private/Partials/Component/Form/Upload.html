@@ -1,0 +1,64 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
+    xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers">
+<psbFoundation:translation.registerLanguageFile file="EXT:" />
+
+<f:asset.script
+    identifier="uploadPreview"
+    src="EXT:psb_templates/Resources/Public/JavaScript/uploadPreview.js"
+    type="module" />
+
+<f:if condition="!{accept}">
+    <f:variable
+        name="accept"
+        value="image/*" />
+</f:if>
+
+<f:if condition="!{borderColor}">
+    <f:variable
+        name="borderColor"
+        value="secondary-subtle" />
+</f:if>
+
+<f:if condition="!{capture}">
+    <f:variable
+        name="capture"
+        value="camera" />
+</f:if>
+
+<f:if condition="!{propertyName}">
+    <f:variable
+        name="propertyName"
+        value="image" />
+</f:if>
+
+<div class="align-items-center border border-2 border-{borderColor} d-flex flex-column position-relative psb-templates-upload rounded">
+    <f:form.upload
+        additionalAttributes="{accept: accept, capture: capture}"
+        class="h-100 opacity-0 position-absolute start-0 top-0 w-100"
+        id="{propertyName}"
+        name="{propertyName}" />
+    <span class="d-flex flex-column mt-5 upload-placeholder">
+         <psbTemplates:svgIcon
+             height="64"
+             identifier="psb-templates-cloud-upload"
+             width="64" />
+        <psbTemplates:svgIcon
+            height="64"
+            identifier="psb-templates-image"
+            width="64" />
+        <p>
+            <span class="d-none show-on-touch-device">
+                <psbFoundation:translate
+                    id="upload:hint.touch" />
+            </span>
+            <span class="hide-on-touch-device">
+                <psbFoundation:translate
+                    id="upload:hint.noTouch" />
+            </span>
+        </p>
+    </span>
+</div>
+</html>

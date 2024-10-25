@@ -51,6 +51,41 @@ body {
   z-index: 5;
 }
 
+.psb-templates-upload {
+  &.border {
+    border-style: dashed !important;
+  }
+
+  .remove-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--bs-danger);
+      }
+    }
+
+    &::before {
+      content: '\f1f8';
+    }
+  }
+
+  input[type="file"] {
+    cursor: pointer;
+
+    &:hover + span {
+      color: var(--bs-secondary);
+    }
+  }
+
+  span {
+    color: var(--bs-secondary-border-subtle);
+  }
+}
+
 ul[data-psb-autocomplete-value-target] .list-group-item {
   cursor: pointer;
 
@@ -59,5 +94,15 @@ ul[data-psb-autocomplete-value-target] .list-group-item {
       color: $danger;
       text-decoration: line-through;
     }
+  }
+}
+
+@media (hover: none) {
+  .hide-on-touch-device {
+    display: none;
+  }
+
+  .show-on-touch-device {
+    display: block;
   }
 }

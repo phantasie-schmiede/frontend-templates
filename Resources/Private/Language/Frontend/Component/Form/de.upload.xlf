@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2024-10-24T15:07:00+01:00"
+        original="messages"
+        product-name="psb_templates"
+        source-language="en"
+        target-language="de">
+        <body>
+            <trans-unit id="hint.desktop">
+                <source>Drag image here or click to select an image from your device or to take a photo</source>
+                <target>Ziehe ein Bild hierhin</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -23,39 +23,51 @@ class UploadPreview {
 
     handleEvent(event) {
         const input = event.target;
+        const uploadContainer = input.closest('.psb-templates-upload');
+        const uploadPlaceholder = uploadContainer.querySelector('.upload-placeholder');
+
+        // Delete old preview image tag
+        const oldPreview = uploadContainer.querySelector('img');
+        const oldRemoveIcon = uploadContainer.querySelector('.remove-icon');
+
+        if (oldPreview) {
+            oldPreview.remove();
+        }
+
+        if (oldRemoveIcon) {
+            oldRemoveIcon.remove();
+        }
 
         if (input.files.length === 0) {
-            const previewTarget = input.closest('.psb-templates-upload').querySelector('img');
+            uploadPlaceholder.classList.remove('d-none');
 
-            if (previewTarget) {
-                previewTarget.remove();
-            }
-
-            input.closest('.psb-templates-upload').querySelector('.upload-placeholder').classList.remove('d-none');
             return;
         }
 
-        // Create preview image tag
+        // Create new preview image tag
         const preview = document.createElement('img');
+
+        preview.classList.add('mw-100');
         preview.src = URL.createObjectURL(input.files[0]);
         preview.onload = () => {
             URL.revokeObjectURL(preview.src);
         };
-        input.parentElement.querySelector('.upload-placeholder').classList.add('d-none');
-        input.closest('.psb-templates-upload').appendChild(preview);
+        uploadPlaceholder.classList.add('d-none');
+        uploadContainer.appendChild(preview);
 
         // Add remove icon
         const removeIcon = document.createElement('span');
+
         removeIcon.classList.add('remove-icon');
 
         removeIcon.addEventListener('click', () => {
             input.value = '';
             preview.remove();
             removeIcon.remove();
-            input.closest('.psb-templates-upload').querySelector('.upload-placeholder').classList.remove('d-none');
+            uploadPlaceholder.classList.remove('d-none');
         });
 
-        input.closest('.psb-templates-upload').appendChild(removeIcon);
+        uploadContainer.appendChild(removeIcon);
     }
 }
 

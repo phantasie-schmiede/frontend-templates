@@ -28,18 +28,12 @@
         value="camera" />
 </f:if>
 
-<f:if condition="!{propertyName}">
-    <f:variable
-        name="propertyName"
-        value="image" />
-</f:if>
-
 <div class="align-items-center border border-2 border-{borderColor} d-flex flex-column position-relative psb-templates-upload rounded">
     <f:form.upload
         additionalAttributes="{accept: accept, capture: capture}"
         class="h-100 opacity-0 position-absolute start-0 top-0 w-100"
-        id="{propertyName}"
-        name="{propertyName}" />
+        id="{id}"
+        name="{name}" />
     <span class="d-flex flex-column mt-5 upload-placeholder">
          <psbTemplates:svgIcon
              height="64"

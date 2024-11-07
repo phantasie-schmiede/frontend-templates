@@ -13,7 +13,7 @@
 <f:if condition="!{accept}">
     <f:variable
         name="accept"
-        value="image/*" />
+        value="image/*;capture=camera" />
 </f:if>
 
 <f:if condition="!{borderColor}">
@@ -25,7 +25,7 @@
 <f:if condition="!{capture}">
     <f:variable
         name="capture"
-        value="camera" />
+        value="environment" />
 </f:if>
 
 <div class="align-items-center border border-2 border-{borderColor} d-flex flex-column position-relative psb-templates-upload rounded">

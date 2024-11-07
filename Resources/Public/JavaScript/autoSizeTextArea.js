@@ -6,6 +6,7 @@ import Rebind from './Modules/rebind.js';
  */
 class AutoSizeTextArea {
     constructor() {
+        this.postponedElements = [];
         this.registeredElements = [];
         this.selector = 'textarea.psb-templates-auto-size';
         this.bindEvents();
@@ -15,6 +16,20 @@ class AutoSizeTextArea {
     bindEvents() {
         document.querySelectorAll(this.selector).forEach((element) => {
             if (!this.registeredElements.includes(element)) {
+                // If the text area is in a collapsed accordion, wait until it is shown to calculate the correct height.
+                if (0 === element.scrollHeight) {
+                    const accordionParent = element.closest('.accordion-collapse');
+
+                    if (null !== accordionParent && !this.postponedElements.includes(element)) {
+                        accordionParent.addEventListener('shown.bs.collapse', () => {
+                            this.bindEvents();
+                        });
+                        this.postponedElements.push(element);
+                    }
+
+                    return;
+                }
+
                 element.style.height = element.scrollHeight + 'px';
                 element.style.overflowY = 'hidden';
                 element.addEventListener('input', (event) => {

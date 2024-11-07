@@ -35,10 +35,24 @@ class PsbSwiper {
             if (!this.registeredElements.includes(swiperContainer)) {
                 const dataset = swiperContainer.dataset;
                 const swiper = new Swiper(swiperContainer, {
+                    autoHeight: dataset.psbSwiperAutoHeight,
                     autoplay: dataset.psbSwiperAutoplay === 'true' ? {
                         delay: dataset.psbSwiperAutoplayDelay || 5000,
                     } : false,
                     loop: dataset.psbSwiperLoop === 'true',
+                    navigation: dataset.psbSwiperNavigation || {
+                        nextEl: dataset.psbSwiperNavigationNextEl || '.swiper-button-next',
+                        prevEl: dataset.psbSwiperNavigationPrevEl || '.swiper-button-prev',
+                    },
+                    pagination: dataset.psbSwiperPagination || {
+                        clickable: dataset.psbSwiperPaginationClickable || true,
+                        el: dataset.psbSwiperPaginationEl || '.swiper-pagination',
+                        type: dataset.psbSwiperPaginationType || 'bullets',
+                    },
+                    scrollbar: dataset.psbSwiperScrollbar || {
+                        draggable: dataset.psbSwiperScrollbarDraggable || true,
+                        el: dataset.psbSwiperScrollbarEl || '.swiper-scrollbar',
+                    },
                     slidesPerView: dataset.psbSwiperSlidesPerView || 1,
                     spaceBetween: dataset.psbSwiperSpaceBetween || 0,
                     speed: dataset.psbSwiperSpeed || 500,

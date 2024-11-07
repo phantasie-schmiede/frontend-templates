@@ -6,8 +6,8 @@ import Rebind from './Modules/rebind.js';
  */
 class ClearInput {
     constructor() {
-        this.registeredElements = [];
         this.postponedElements = [];
+        this.registeredElements = [];
         this.selector = '.psb-templates-clear-input';
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));

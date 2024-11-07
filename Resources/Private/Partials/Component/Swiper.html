@@ -1,22 +1,135 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:comment>
+    <!--
+        In order to use this partial, the slides must be rendered inside the f:render-tag. The value of the contentAs
+        attribute must be "slides".
+        Make sure that your slides are wrapped in an element with the class "swiper-slide".
+
+        Example:
+        <f:render
+            arguments="{id: 'images', showNavigation: true}"
+            contentAs="slides"
+            partial="Component/Swiper">
+            <f:for
+                as="image"
+                each="{images}">
+                <f:image
+                    class="swiper-slide"
+                    image="{image}" />
+            </f:for>
+        </f:render>
+    -->
+</f:comment>
+
 <f:asset.css
     href="EXT:psb_templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
     identifier="swiper" />
 <f:asset.script
     identifier="swiper"
+    src="EXT:psb_templates/Resources/Public/JavaScript/swiper.js"
+    type="module" />
+<f:asset.script
+    identifier="swiper-bundle"
     src="EXT:psb_templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
 
-<div class="swiper" id="swiper-{id}">
+<f:if condition="{autoHeight}">
+    <f:variable
+        name="autoHeightAttribute"
+        value='data-psb-swiper-auto-height="{autoHeight}"' />
+</f:if>
+
+<f:if condition="{autoplay}">
+    <f:variable
+        name="autoplayAttribute"
+        value='data-psb-swiper-autoplay="{autoplay}"' />
+</f:if>
+
+<f:if condition="{autoplayDelay}">
+    <f:variable
+        name="autoplayDelayAttribute"
+        value='data-psb-swiper-autoplay-delay="{autoplayDelay}"' />
+</f:if>
+
+<f:if condition="{loop}">
+    <f:variable
+        name="loopAttribute"
+        value='data-psb-swiper-loop="{loop}"' />
+</f:if>
+
+<f:if condition="{paginationClickable}">
+    <f:variable
+        name="paginationClickableAttribute"
+        value='data-psb-pagination-clickable="{paginationClickable}"' />
+</f:if>
+
+<f:if condition="{paginationType}">
+    <f:variable
+        name="paginationTypeAttribute"
+        value='data-psb-pagination-type="{paginationType}"' />
+</f:if>
+
+<f:if condition="{scrollbarDraggable}">
+    <f:variable
+        name="scrollbarDraggableAttribute"
+        value='data-psb-scrollbar-draggable="{scrollbarDraggable}"' />
+</f:if>
+
+<f:if condition="!{showNavigation}">
+    <f:variable
+        name="navigationAttribute"
+        value='data-psb-swiper-navigation="false"' />
+</f:if>
+
+<f:if condition="!{showPagination}">
+    <f:variable
+        name="paginationAttribute"
+        value='data-psb-swiper-pagination="false"' />
+</f:if>
+
+<f:if condition="!{showScrollbar}">
+    <f:variable
+        name="scrollbarAttribute"
+        value='data-psb-swiper-scrollbar="false"' />
+</f:if>
+
+<f:if condition="{slidesPerView}">
+    <f:variable
+        name="slidesPerViewAttribute"
+        value='data-psb-swiper-slides-per-view="{slidesPerView}"' />
+</f:if>
+
+<f:if condition="{spaceBetween}">
+    <f:variable
+        name="spaceBetweenAttribute"
+        value='data-psb-swiper-space-between="{spaceBetween}"' />
+</f:if>
+
+<f:if condition="{speed}">
+    <f:variable
+        name="speedAttribute"
+        value='data-psb-swiper-speed="{speed}"' />
+</f:if>
+
+<div
+    class="swiper"
+    <f:format.raw>{autoHeightAttribute}</f:format.raw>
+    <f:format.raw>{autoplayAttribute}</f:format.raw>
+    <f:format.raw>{autoplayDelayAttribute}</f:format.raw>
+    <f:format.raw>{loopAttribute}</f:format.raw>
+    <f:format.raw>{navigationAttribute}</f:format.raw>
+    <f:format.raw>{paginationAttribute}</f:format.raw>
+    <f:format.raw>{paginationClickableAttribute}</f:format.raw>
+    <f:format.raw>{paginationTypeAttribute}</f:format.raw>
+    <f:format.raw>{scrollbarAttribute}</f:format.raw>
+    <f:format.raw>{scrollbarDraggableAttribute}</f:format.raw>
+    <f:format.raw>{slidesPerViewAttribute}</f:format.raw>
+    <f:format.raw>{spaceBetween}</f:format.raw>
+    <f:format.raw>{speedAttribute}</f:format.raw>
+    id="swiper-{id}">
     <div class="swiper-wrapper">
-        <f:for
-            as="slide"
-            each="{slides}">
-            <div class="swiper-slide">
-                {slide}
-            </div>
-        </f:for>
+        <f:format.raw>{slides}</f:format.raw>
     </div>
 
     <f:if condition="{showPagination}">

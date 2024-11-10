@@ -6,14 +6,24 @@ import Rebind from './Modules/rebind.js';
  */
 class UploadPreview {
     constructor() {
+        this.classes = {
+            preview: 'preview',
+            removeIcon: 'remove-icon',
+        },
         this.registeredElements = [];
-        this.selector = '.psb-templates-upload:has(input[type="file"])';
+        this.selectors = {
+            placeholder: '.upload-placeholder',
+            preview: '.' + this.classes.preview,
+            removeIcon: '.' + this.classes.removeIcon,
+            wrapper: '.psb-templates-upload',
+            wrapperWithInput: '.psb-templates-upload:has(input[type="file"])',
+        };
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));
     }
 
     bindEvents() {
-        document.querySelectorAll(this.selector).forEach((uploadContainer) => {
+        document.querySelectorAll(this.selectors.wrapperWithInput).forEach((uploadContainer) => {
             if (!this.registeredElements.includes(uploadContainer)) {
                 uploadContainer.querySelector('input[type="file"]').addEventListener('change', this.handleEvent.bind(this));
                 this.registeredElements.push(uploadContainer);
@@ -21,14 +31,77 @@ class UploadPreview {
         });
     }
 
+    createAudioPreview(url) {
+        const preview = document.createElement('audio');
+
+        preview.src = url;
+        preview.controls = true;
+
+        return preview;
+    }
+
+    createDefaultPreview(url) {
+        // const preview = document.createElement('div');
+        //
+        // preview.classList.add('img-fluid');
+        // preview.style.backgroundImage = `url(${url})`;
+        //
+        // return preview;
+    }
+
+    createImagePreview(url) {
+        const preview = document.createElement('img');
+
+        preview.classList.add('img-fluid');
+        preview.src = url;
+
+        return preview;
+    }
+
+    createPdfPreview(url) {
+        const preview = document.createElement('object');
+
+        preview.data = url;
+        preview.style.aspectRatio = '1 / calc(pow(2, 0.5))'; // DIN A4
+        preview.type = 'application/pdf';
+        preview.width = '100%';
+        return preview;
+    }
+
+    createPreviewByType(type, url) {
+        const baseType = type.split('/')[0];
+
+        if ('application/pdf' === type) {
+            return this.createPdfPreview(url);
+        } else if ('audio' === baseType) {
+            return this.createAudioPreview(url);
+        } else if ('image' === baseType) {
+            return this.createImagePreview(url);
+        } else if ('video' === baseType) {
+            return this.createVideoPreview(url);
+        } else {
+            return this.createDefaultPreview(url);
+        }
+    }
+
+    createVideoPreview(url) {
+        const preview = document.createElement('video');
+
+        preview.classList.add('img-fluid');
+        preview.src = url;
+        preview.controls = true;
+
+        return preview;
+    }
+
     handleEvent(event) {
         const input = event.target;
-        const uploadContainer = input.closest('.psb-templates-upload');
-        const uploadPlaceholder = uploadContainer.querySelector('.upload-placeholder');
+        const uploadContainer = input.closest(this.selectors.wrapper);
+        const uploadPlaceholder = uploadContainer.querySelector(this.selectors.placeholder);
 
         // Delete old preview image tag
-        const oldPreview = uploadContainer.querySelector('img');
-        const oldRemoveIcon = uploadContainer.querySelector('.remove-icon');
+        const oldPreview = uploadContainer.querySelector(this.selectors.preview);
+        const oldRemoveIcon = uploadContainer.querySelector(this.selectors.removeIcon);
 
         if (oldPreview) {
             oldPreview.remove();
@@ -44,11 +117,12 @@ class UploadPreview {
             return;
         }
 
-        // Create new preview image tag
-        const preview = document.createElement('img');
+        // Create new preview
+        const type = input.files[0].type;
+        const url = URL.createObjectURL(input.files[0]);
+        const preview = this.createPreviewByType(type, url);
 
-        preview.classList.add('mw-100');
-        preview.src = URL.createObjectURL(input.files[0]);
+        preview.classList.add(this.classes.preview);
         preview.onload = () => {
             URL.revokeObjectURL(preview.src);
         };
@@ -58,8 +132,7 @@ class UploadPreview {
         // Add remove icon
         const removeIcon = document.createElement('span');
 
-        removeIcon.classList.add('remove-icon');
-
+        removeIcon.classList.add(this.classes.removeIcon);
         removeIcon.addEventListener('click', () => {
             input.value = '';
             preview.remove();

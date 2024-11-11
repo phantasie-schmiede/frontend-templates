@@ -40,13 +40,20 @@ class UploadPreview {
         return preview;
     }
 
-    createDefaultPreview(url) {
-        // const preview = document.createElement('div');
-        //
-        // preview.classList.add('img-fluid');
-        // preview.style.backgroundImage = `url(${url})`;
-        //
-        // return preview;
+    createDefaultPreview(file) {
+        const preview = document.createElement('div');
+        const previewText = document.createElement('span');
+
+        preview.classList.add('d-flex', 'p-2', 'pe-5');
+        preview.style.alignItems = 'center';
+        preview.style.minHeight = '3rem';
+
+        previewText.textContent = file.name;
+        previewText.classList.add('text-break');
+
+        preview.appendChild(previewText);
+
+        return preview;
     }
 
     createImagePreview(url) {
@@ -68,7 +75,7 @@ class UploadPreview {
         return preview;
     }
 
-    createPreviewByType(type, url) {
+    createPreviewByType(file, type, url) {
         const baseType = type.split('/')[0];
 
         if ('application/pdf' === type) {
@@ -80,7 +87,7 @@ class UploadPreview {
         } else if ('video' === baseType) {
             return this.createVideoPreview(url);
         } else {
-            return this.createDefaultPreview(url);
+            return this.createDefaultPreview(file);
         }
     }
 
@@ -118,9 +125,10 @@ class UploadPreview {
         }
 
         // Create new preview
-        const type = input.files[0].type;
-        const url = URL.createObjectURL(input.files[0]);
-        const preview = this.createPreviewByType(type, url);
+        const file = input.files[0];
+        const type = file.type;
+        const url = URL.createObjectURL(file);
+        const preview = this.createPreviewByType(file, type, url);
 
         preview.classList.add(this.classes.preview);
         preview.onload = () => {

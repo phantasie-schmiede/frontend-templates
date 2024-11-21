@@ -1,15 +1,18 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:psbViewHelpers="http://typo3.org/ns/PSB/PsbViewHelpers/ViewHelpers">
 <f:comment>
     <!--
         In order to use this partial, the slides must be rendered inside the f:render-tag. The value of the contentAs
         attribute must be "slides".
         Make sure that your slides are wrapped in an element with the class "swiper-slide".
+        Setting the configuration is optional. If you want to use the default configuration, you can omit the argument.
+        Setting pagination, navigation or scrollbar to true will automatically create the corresponding elements.
 
         Example:
         <f:render
-            arguments="{id: 'images', showNavigation: true}"
+            arguments="{configuration: {navigation: true}, id: 'images'}"
             contentAs="slides"
             partial="Component/Swiper">
             <f:for
@@ -34,114 +37,66 @@
     identifier="swiper-bundle"
     src="EXT:psb_templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
 
-<f:if condition="{autoHeight}">
+<f:if condition="{configuration.pagination} && !{configuration.pagination.el}">
     <f:variable
-        name="autoHeightAttribute"
-        value='data-psb-swiper-auto-height="{autoHeight}"' />
+        name="createPagination"
+        value="true" />
+    <psbViewHelpers:variable.arrayMerge
+        arrays="{0: configuration.pagination, 1: {el: '.swiper-pagination'}}"
+        as="pagination"
+        overwrite="true" />
+    <psbViewHelpers:variable.arrayMerge
+        arrays="{0: configuration, 1: {pagination: pagination}}"
+        as="configuration"
+        overwrite="true" />
 </f:if>
 
-<f:if condition="{autoplay}">
+<f:if condition="{configuration.navigation} && !{configuration.navigation.nextEl} && !{configuration.navigation.prevEl}">
     <f:variable
-        name="autoplayAttribute"
-        value='data-psb-swiper-autoplay="{autoplay}"' />
+        name="createNavigation"
+        value="true" />
+    <psbViewHelpers:variable.arrayMerge
+        arrays="{0: configuration.scrollbar, 1: {nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev'}}"
+        as="navigation"
+        overwrite="true" />
+    <psbViewHelpers:variable.arrayMerge
+        arrays="{0: configuration, 1: {navigation: navigation}}"
+        as="configuration"
+        overwrite="true" />
 </f:if>
 
-<f:if condition="{autoplayDelay}">
+<f:if condition="{configuration.scrollbar} && !{configuration.scrollbar.el}">
     <f:variable
-        name="autoplayDelayAttribute"
-        value='data-psb-swiper-autoplay-delay="{autoplayDelay}"' />
-</f:if>
-
-<f:if condition="{loop}">
-    <f:variable
-        name="loopAttribute"
-        value='data-psb-swiper-loop="{loop}"' />
-</f:if>
-
-<f:if condition="{paginationClickable}">
-    <f:variable
-        name="paginationClickableAttribute"
-        value='data-psb-pagination-clickable="{paginationClickable}"' />
-</f:if>
-
-<f:if condition="{paginationType}">
-    <f:variable
-        name="paginationTypeAttribute"
-        value='data-psb-pagination-type="{paginationType}"' />
-</f:if>
-
-<f:if condition="{scrollbarDraggable}">
-    <f:variable
-        name="scrollbarDraggableAttribute"
-        value='data-psb-scrollbar-draggable="{scrollbarDraggable}"' />
-</f:if>
-
-<f:if condition="!{showNavigation}">
-    <f:variable
-        name="navigationAttribute"
-        value='data-psb-swiper-navigation="false"' />
-</f:if>
-
-<f:if condition="!{showPagination}">
-    <f:variable
-        name="paginationAttribute"
-        value='data-psb-swiper-pagination="false"' />
-</f:if>
-
-<f:if condition="!{showScrollbar}">
-    <f:variable
-        name="scrollbarAttribute"
-        value='data-psb-swiper-scrollbar="false"' />
-</f:if>
-
-<f:if condition="{slidesPerView}">
-    <f:variable
-        name="slidesPerViewAttribute"
-        value='data-psb-swiper-slides-per-view="{slidesPerView}"' />
-</f:if>
-
-<f:if condition="{spaceBetween}">
-    <f:variable
-        name="spaceBetweenAttribute"
-        value='data-psb-swiper-space-between="{spaceBetween}"' />
-</f:if>
-
-<f:if condition="{speed}">
-    <f:variable
-        name="speedAttribute"
-        value='data-psb-swiper-speed="{speed}"' />
+        name="createScrollbar"
+        value="true" />
+    <psbViewHelpers:variable.arrayMerge
+        arrays="{0: configuration.scrollbar, 1: {el: '.swiper-scrollbar'}}"
+        as="scrollbar"
+        overwrite="true" />
+    <psbViewHelpers:variable.arrayMerge
+        arrays="{0: configuration, 1: {scrollbar: scrollbar}}"
+        as="configuration"
+        overwrite="true" />
 </f:if>
 
 <div
     class="swiper"
-    <f:format.raw>{autoHeightAttribute}</f:format.raw>
-    <f:format.raw>{autoplayAttribute}</f:format.raw>
-    <f:format.raw>{autoplayDelayAttribute}</f:format.raw>
-    <f:format.raw>{loopAttribute}</f:format.raw>
-    <f:format.raw>{navigationAttribute}</f:format.raw>
-    <f:format.raw>{paginationAttribute}</f:format.raw>
-    <f:format.raw>{paginationClickableAttribute}</f:format.raw>
-    <f:format.raw>{paginationTypeAttribute}</f:format.raw>
-    <f:format.raw>{scrollbarAttribute}</f:format.raw>
-    <f:format.raw>{scrollbarDraggableAttribute}</f:format.raw>
-    <f:format.raw>{slidesPerViewAttribute}</f:format.raw>
-    <f:format.raw>{spaceBetween}</f:format.raw>
-    <f:format.raw>{speedAttribute}</f:format.raw>
+    data-psb-swiper-configuration="{configuration -> f:format.json()}"
     id="swiper-{id}">
     <div class="swiper-wrapper">
         <f:format.raw>{slides}</f:format.raw>
     </div>
 
-    <f:if condition="{showPagination}">
+    <f:if condition="{createPagination}">
         <div class="swiper-pagination"></div>
     </f:if>
 
-    <f:if condition="{showNavigation}">
+    <f:if condition="{createNavigation}">
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>
     </f:if>
 
-    <f:if condition="{showScrollbar}">
+    <f:if condition="{createScrollbar}">
         <div class="swiper-scrollbar"></div>
     </f:if>
 </div>

@@ -4,18 +4,30 @@ import Rebind from './Modules/rebind.js';
  * Applies to all elements with the class swiper (even those which are inserted dynamically).
  * The elements will be transformed into a swiper slider.
  * The following data attributes are supported:
- * - data-psb-swiper-autoplay: true or false
- * - data-psb-swiper-autoplay-delay: delay in milliseconds
- * - data-psb-swiper-loop: true or false
- * - data-psb-swiper-slides-per-view: number of slides per view
- * - data-psb-swiper-space-between: space between slides in pixels
- * - data-psb-swiper-speed: speed in milliseconds
+ * - data-psb-swiper-configuration: JSON object with the swiper configuration (optional)
  *
- * Example:
+ * Example with array:
  * <div
  *     class="swiper"
- *     data-psb-swiper-autoplay="true"
- *     data-psb-swiper-autoplay-delay="7000">
+ *     data-psb-swiper-configuration="{configuration -> f:format.json()}">
+ *     <div class="swiper-wrapper">
+ *         <div class="swiper-slide">Slide 1</div>
+ *         <div class="swiper-slide">Slide 2</div>
+ *     </div>
+ * </div>
+ *
+ * Example with inline JSON:
+ * <div
+ *     class="swiper"
+ *     data-psb-swiper-configuration='{
+ *         "slidesPerView": 1,
+ *         "spaceBetween": 10,
+ *         "loop": true,
+ *         "pagination": {
+ *             "el": ".swiper-pagination",
+ *             "clickable": true
+ *         }
+ *     }'>
  *     <div class="swiper-wrapper">
  *         <div class="swiper-slide">Slide 1</div>
  *         <div class="swiper-slide">Slide 2</div>
@@ -34,29 +46,7 @@ class PsbSwiper {
         document.querySelectorAll(this.selector).forEach((swiperContainer) => {
             if (!this.registeredElements.includes(swiperContainer)) {
                 const dataset = swiperContainer.dataset;
-                const swiper = new Swiper(swiperContainer, {
-                    autoHeight: dataset.psbSwiperAutoHeight,
-                    autoplay: dataset.psbSwiperAutoplay === 'true' ? {
-                        delay: dataset.psbSwiperAutoplayDelay || 5000,
-                    } : false,
-                    loop: dataset.psbSwiperLoop === 'true',
-                    navigation: dataset.psbSwiperNavigation || {
-                        nextEl: dataset.psbSwiperNavigationNextEl || '.swiper-button-next',
-                        prevEl: dataset.psbSwiperNavigationPrevEl || '.swiper-button-prev',
-                    },
-                    pagination: dataset.psbSwiperPagination || {
-                        clickable: dataset.psbSwiperPaginationClickable || true,
-                        el: dataset.psbSwiperPaginationEl || '.swiper-pagination',
-                        type: dataset.psbSwiperPaginationType || 'bullets',
-                    },
-                    scrollbar: dataset.psbSwiperScrollbar || {
-                        draggable: dataset.psbSwiperScrollbarDraggable || true,
-                        el: dataset.psbSwiperScrollbarEl || '.swiper-scrollbar',
-                    },
-                    slidesPerView: dataset.psbSwiperSlidesPerView || 1,
-                    spaceBetween: dataset.psbSwiperSpaceBetween || 0,
-                    speed: dataset.psbSwiperSpeed || 500,
-                });
+                const swiper = new Swiper(swiperContainer, JSON.parse(dataset.psbSwiperConfiguration || '{}'));
             }
         });
     }

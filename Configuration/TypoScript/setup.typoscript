@@ -4,4 +4,3 @@
 @import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/content.typoscript'
 @import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/menu.typoscript'
 @import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/page.typoscript'
-@import 'EXT:psb_templates/Configuration/TypoScript/Includes/Setup/ws_scss.typoscript'

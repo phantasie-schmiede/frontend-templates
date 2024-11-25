@@ -25,11 +25,11 @@
 	"license": "GPL-3.0-or-later",
 	"name": "psb/psb-templates",
 	"require": {
+		"bk2k/bootstrap-package": "^15.0",
 		"ext-intl": "*",
 		"psb/psb-foundation": "@dev",
 		"symfony/intl": "^7.1",
-		"typo3/cms-fluid-styled-content": "^12|^13",
-		"wapplersystems/ws-scss": "^12|^13"
+		"typo3/cms-fluid-styled-content": "^12|^13"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest"

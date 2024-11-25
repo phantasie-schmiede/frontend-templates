@@ -1,4 +1,6 @@
 plugin.tx_psbtemplates {
+    # Import settings from benjaminkott/#bootstrap_package
+    settings < page.10.settings
     settings {
         logos {
             default {

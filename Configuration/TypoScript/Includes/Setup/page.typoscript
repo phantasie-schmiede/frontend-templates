@@ -1,73 +1,13 @@
 # default page object
-page = PAGE
 page {
-  10 = FLUIDTEMPLATE
   10 {
-    file.stdWrap.cObject = CASE
-    file.stdWrap.cObject {
-      key.data = pagelayout
-
-      default = TEXT
-      default.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/OneColumn.html
-
-      pagets__PsbTemplatesBlank = TEXT
-      pagets__PsbTemplatesBlank.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/Blank.html
-
-      pagets__PsbTemplatesGrid-2x2 = TEXT
-      pagets__PsbTemplatesGrid-2x2.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/Grid-2x2.html
-
-      pagets__PsbTemplatesOneColumn = TEXT
-      pagets__PsbTemplatesOneColumn.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/OneColumn.html
-
-      pagets__PsbTemplatesThreeColumns-1-1-1 = TEXT
-      pagets__PsbTemplatesThreeColumns-1-1-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/ThreeColumns-1-1-1.html
-
-      pagets__PsbTemplatesThreeColumns-1-2-1 = TEXT
-      pagets__PsbTemplatesThreeColumns-1-2-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/ThreeColumns-1-2-1.html
-
-      pagets__PsbTemplatesTwoColumns-1-1 = TEXT
-      pagets__PsbTemplatesTwoColumns-1-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-1-1.html
-
-      pagets__PsbTemplatesTwoColumns-1-2 = TEXT
-      pagets__PsbTemplatesTwoColumns-1-2.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-1-2.html
-
-      pagets__PsbTemplatesTwoColumns-1-3 = TEXT
-      pagets__PsbTemplatesTwoColumns-1-3.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-1-3.html
-
-      pagets__PsbTemplatesTwoColumns-2-1 = TEXT
-      pagets__PsbTemplatesTwoColumns-2-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-2-1.html
-
-      pagets__PsbTemplatesTwoColumns-3-1 = TEXT
-      pagets__PsbTemplatesTwoColumns-3-1.value = {$plugin.tx_psbtemplates.view.templateRootPath}Page/TwoColumns-3-1.html
-    }
-
-    format = html
-    layoutRootPaths.0 = {$plugin.tx_psbtemplates.view.layoutRootPath}Page/
-    partialRootPaths.0 = {$plugin.tx_psbtemplates.view.partialRootPath}Page/
-
+    layoutRootPaths.2 = {$plugin.tx_psbtemplates.view.layoutRootPath}Page/
+    partialRootPaths.2 = {$plugin.tx_psbtemplates.view.partialRootPath}Page/
     settings < plugin.tx_psbtemplates.settings
-
-    templateRootPaths.0 = {$plugin.tx_psbtemplates.view.templateRootPath}Page/
-  }
-
-  bodyTag >
-  bodyTagCObject = TEXT
-  bodyTagCObject.stdWrap.dataWrap = <body class="bl-{pagelayout}" data-template-header="{$plugin.tx_psbtemplates.settings.templates.header}" id="page-{field:uid}">
-
-  meta {
-    viewport = width=device-width, initial-scale=1, shrink-to-fit=no
+    templateRootPaths.2 = {$plugin.tx_psbtemplates.view.templateRootPath}Page/
   }
 
   includeCSS {
     psbTemplates = {$plugin.tx_psbtemplates.privateResourcePath}Scss/app.scss
-    psbTemplates.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/app.min.css
-    bootstrap = {$plugin.tx_psbtemplates.privateResourcePath}Scss/Bootstrap/bootstrap.scss
-    bootstrap.outputfile = {$plugin.tx_psbtemplates.publicResourcePath}Stylesheets/Vendors/bootstrap.min.css
   }
-
-  includeJSFooterlibs {
-    bootstrap = {$plugin.tx_psbtemplates.publicResourcePath}JavaScript/Vendors/bootstrap.bundle.min.js
-  }
-
-  shortcutIcon = {$plugin.tx_psbtemplates.settings.logos.favicon}
 }

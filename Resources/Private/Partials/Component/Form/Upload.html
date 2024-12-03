@@ -2,9 +2,16 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
-    xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers">
+    xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers"
+    xmlns:psbViewHelpers="http://typo3.org/ns/PSB/PsbViewHelpers/ViewHelpers">
 <psbFoundation:translation.registerLanguageFile file="EXT:" />
 
+<f:asset.css
+    href="EXT:psb_templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
+    identifier="swiper" />
+<f:asset.script
+    identifier="swiper-bundle"
+    src="EXT:psb_templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
 <f:asset.script
     identifier="uploadPreview"
     src="EXT:psb_templates/Resources/Public/JavaScript/uploadPreview.js"
@@ -23,11 +30,24 @@
 </f:if>
 
 <div class="align-items-center border border-2 border-{borderColor} d-flex flex-column position-relative psb-templates-upload rounded">
-    <f:form.upload
-        additionalAttributes="{accept: accept}"
-        class="h-100 opacity-0 position-absolute start-0 top-0 w-100"
-        id="{id}"
-        name="{name}" />
+    <f:if condition="{multiple}">
+        <f:then>
+            <f:form.upload
+                additionalAttributes="{accept: accept}"
+                class="h-100 opacity-0 position-absolute start-0 top-0 w-100"
+                id="{id}"
+                multiple="multiple"
+                name="{name}" />
+        </f:then>
+        <f:else>
+            <f:form.upload
+                additionalAttributes="{accept: accept}"
+                class="h-100 opacity-0 position-absolute start-0 top-0 w-100"
+                id="{id}"
+                name="{name}" />
+        </f:else>
+    </f:if>
+
     <span class="d-flex flex-column mt-4 upload-placeholder">
          <psbTemplates:svgIcon
              height="64"

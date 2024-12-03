@@ -7,10 +7,11 @@ import Rebind from './Modules/rebind.js';
 class UploadPreview {
     constructor() {
         this.classes = {
-            preview: 'preview',
+            preview: 'swiper-slide',
             removeIcon: 'remove-icon',
         },
         this.registeredElements = [];
+        this.files = [];
         this.selectors = {
             placeholder: '.upload-placeholder',
             preview: '.' + this.classes.preview,
@@ -72,23 +73,59 @@ class UploadPreview {
         preview.style.aspectRatio = '1 / calc(pow(2, 0.5))'; // DIN A4
         preview.type = 'application/pdf';
         preview.width = '100%';
+
         return preview;
     }
 
-    createPreviewByType(file, type, url) {
+    createPreviewByType(file, input, swiper, type, uploadContainer, url) {
         const baseType = type.split('/')[0];
+        let slideContent;
 
         if ('application/pdf' === type) {
-            return this.createPdfPreview(url);
+            slideContent = this.createPdfPreview(url);
         } else if ('audio' === baseType) {
-            return this.createAudioPreview(url);
+            slideContent = this.createAudioPreview(url);
         } else if ('image' === baseType) {
-            return this.createImagePreview(url);
+            slideContent = this.createImagePreview(url);
         } else if ('video' === baseType) {
-            return this.createVideoPreview(url);
+            slideContent = this.createVideoPreview(url);
         } else {
-            return this.createDefaultPreview(file);
+            slideContent = this.createDefaultPreview(file);
         }
+
+        const previewSlide = document.createElement('div');
+
+        previewSlide.appendChild(slideContent);
+        previewSlide.classList.add(this.classes.preview);
+        previewSlide.onload = () => {
+            URL.revokeObjectURL(preview.src);
+        };
+
+        // Add remove icon
+        const removeIcon = document.createElement('span');
+
+        removeIcon.classList.add(this.classes.removeIcon);
+        removeIcon.addEventListener('click', () => {
+            const dataTransfer = new DataTransfer();
+            const files = this.files[input.id];
+            const indexToDelete = swiper.slides.indexOf(previewSlide);
+
+            // Delete index from files array
+            this.files[input.id] = files.filter((file, index) => index !== indexToDelete);
+
+            // Add files to dataTransfer
+            this.files[input.id].forEach(file => dataTransfer.items.add(file));
+
+            // Update file input
+            input.files = dataTransfer.files;
+
+            // Remove preview
+            swiper.removeSlide(indexToDelete);
+        });
+
+        previewSlide.appendChild(removeIcon);
+
+        return previewSlide;
     }
 
     createVideoPreview(url) {
@@ -101,54 +138,76 @@ class UploadPreview {
         return preview;
     }
 
+    getSwiper(id, parent) {
+        const existingSwiper = document.querySelector('#' + id);
+
+        if (null !== existingSwiper) {
+            return existingSwiper.swiper;
+        }
+
+        parent.insertAdjacentHTML('afterend', `
+            <div class="mt-3 swiper" id="${id}">
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        `);
+
+        const newSwiper = new Swiper('#' + id, {
+            autoHeight: true,
+            breakpoints: {
+                576: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+                1200: {
+                    slidesPerView: 4,
+                    spaceBetween: 40
+                }
+            },
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        return newSwiper;
+    }
+
     handleEvent(event) {
         const input = event.target;
+        const swiperId = 'swiper-' + input.id;
         const uploadContainer = input.closest(this.selectors.wrapper);
         const uploadPlaceholder = uploadContainer.querySelector(this.selectors.placeholder);
 
-        // Delete old preview image tag
-        const oldPreview = uploadContainer.querySelector(this.selectors.preview);
-        const oldRemoveIcon = uploadContainer.querySelector(this.selectors.removeIcon);
-
-        if (oldPreview) {
-            oldPreview.remove();
+        const swiper = this.getSwiper(swiperId, uploadContainer);
+        // Store files in a property to merge them with later selected files
+        if (!this.files[input.id]) {
+            this.files[input.id] = [];
         }
 
-        if (oldRemoveIcon) {
-            oldRemoveIcon.remove();
+        const dataTransfer = new DataTransfer();
+        const files = this.files[input.id];
+
+        for (let index = 0; index < input.files.length; index++) {
+            let file = input.files[index];
+            let type = file.type;
+            let url = URL.createObjectURL(file);
+            let preview = this.createPreviewByType(file, input, swiper, type, uploadContainer, url);
+
+            dataTransfer.items.add(file);
+            this.files[input.id].push(file);
+            swiper.appendSlide(preview);
         }
 
-        if (input.files.length === 0) {
-            uploadPlaceholder.classList.remove('d-none');
-
-            return;
-        }
-
-        // Create new preview
-        const file = input.files[0];
-        const type = file.type;
-        const url = URL.createObjectURL(file);
-        const preview = this.createPreviewByType(file, type, url);
-
-        preview.classList.add(this.classes.preview);
-        preview.onload = () => {
-            URL.revokeObjectURL(preview.src);
-        };
-        uploadPlaceholder.classList.add('d-none');
-        uploadContainer.appendChild(preview);
-
-        // Add remove icon
-        const removeIcon = document.createElement('span');
-
-        removeIcon.classList.add(this.classes.removeIcon);
-        removeIcon.addEventListener('click', () => {
-            input.value = '';
-            preview.remove();
-            removeIcon.remove();
-            uploadPlaceholder.classList.remove('d-none');
-        });
-
-        uploadContainer.appendChild(removeIcon);
+        // Update file input
+        input.files = dataTransfer.files;
     }
 }
 

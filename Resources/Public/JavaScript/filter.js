@@ -57,7 +57,18 @@ class Filter {
                 value = item.textContent;
             }
 
-            if (searchValues.every((searchValue) => value.toLowerCase().includes(searchValue))) {
+            /*
+             * If the search value starts with a minus or exclamation mark, the search will be inverted. This means
+             * that the item will be shown if the value does not contain the search value.
+             * Example: Search value: "-foo", Item value: "foobar" => Item will be hidden.
+             */
+            if (searchValues.every((searchValue) => {
+                if (searchValue.startsWith('-') || searchValue.startsWith('!')) {
+                    return !value.toLowerCase().includes(searchValue.substring(1));
+                }
+
+                return value.toLowerCase().includes(searchValue);
+            })) {
                 item.classList.remove('d-none');
             } else {
                 item.classList.add('d-none');

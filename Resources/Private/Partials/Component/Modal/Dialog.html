@@ -1,0 +1,60 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers">
+<f:variable
+    name="modalClasses"
+    value="modal-dialog" />
+
+<f:if condition="{classes}">
+    <f:variable
+        name="modalClasses"
+        value="{modalClasses} {classes}" />
+</f:if>
+
+<f:if condition="!{titleClasses}">
+    <f:variable
+        name="titleClasses"
+        value="fs-5" />
+</f:if>
+
+<f:if condition="!{titleId}">
+    <f:variable
+        name="titleId"
+        value="{id}-title" />
+</f:if>
+
+<div
+    aria-labelledby="{titleId}"
+    aria-modal="true"
+    class="fade modal"
+    id="{id}"
+    role="dialog"
+    tabindex="-1">
+    <div class="{modalClasses}">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1
+                    class="modal-title {titleClasses}"
+                    id="{titleId}">
+                    {title}
+                </h1>
+                <button
+                    aria-label="Close"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    type="button"></button>
+            </div>
+            <div class="modal-body">
+                <f:format.raw>{body}</f:format.raw>
+            </div>
+
+            <f:if condition="{footer}">
+                <div class="modal-footer">
+                    <f:format.raw>{footer}</f:format.raw>
+                </div>
+            </f:if>
+        </div>
+    </div>
+</div>
+</html>

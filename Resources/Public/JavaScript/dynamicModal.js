@@ -81,7 +81,7 @@ class DynamicModal {
         modal.classList.add("fade", "modal");
         modal.id = "dynamic-modal";
         modal.setAttribute("aria-hidden", "true");
-        modal.setAttribute("aria-labelledby", "dynamic-modal-label");
+        modal.setAttribute("aria-labelledby", "dynamic-modal-title");
         modal.tabIndex = -1;
         modal.innerHTML = `
             <div class="modal-dialog">
@@ -89,7 +89,7 @@ class DynamicModal {
                     <div class="modal-header">
                         <h1
                             class="modal-title fs-5"
-                            id="dynamic-modal-label"></h1>
+                            id="dynamic-modal-title"></h1>
                         <button
                             aria-label="Close"
                             class="btn-close"

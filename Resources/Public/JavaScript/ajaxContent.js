@@ -1,7 +1,7 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applies to all elements with the attribute data-psb-modal (even those which are inserted dynamically).
+ * Applies to all elements with the attribute data-psb-ajax-target (even those which are inserted dynamically).
  * This element listens to click events and inserts the response of the href attribute into the target element.
  * The response must be a JSON object with the following structure:
  * {

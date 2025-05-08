@@ -2,13 +2,20 @@ import Rebind from './Modules/rebind.js';
 
 /*
  * Applies to all input elements with the attribute data-psb-autocomplete (even those which are inserted dynamically).
- * The elements listen to input events and shows a list of items filtered by the input value. The input value can
+ * The elements listen to input events and show a list of items filtered by the input value. The input value can
  * contain multiple search values separated by spaces. The search is case-insensitive.
  * The list of items has to be present in the data-psb-autocomplete attribute as a JSON array.
  *
  * Example:
  * <input type="text" data-psb-autocomplete='["Item 1", "Item 2", "Item 3"]'>
  *
+ * The items can be simple strings (label and value are identical), but also objects.
+ *
+ * Examples:
+ * <input type="text" data-psb-autocomplete='[{"label": "Item 1", "value": "item1"}, {"label": "Item 2", "value": "item2"}]'>
+ * <input type="text" data-psb-autocomplete='[{"label": "Item 1", "value": "item1", "searchTerms": "item1, item 1"}, {"label": "Item 2", "value": "item2"}]'>
+ *
+ * If the optional searchTerms attribute is present, the search is performed on the search terms instead of the label.
  * An item can be selected by mouse click or by navigating with the arrow keys and selecting with the enter key.
  * The input value is replaced with the selected item.
  * The list is closed with the escape key, when the input loses focus or when the input value is empty.
@@ -96,7 +103,7 @@ class InputAutocomplete {
         this.list.style.width = `${this.activeInput.offsetWidth}px`;
 
         items.forEach((item) => {
-            let label, value;
+            let label, searchTerms, value;
 
             if ('string' !== typeof item && ('object' !== typeof item || !item.hasOwnProperty('label') || !item.hasOwnProperty('value'))) {
                 return;
@@ -104,18 +111,23 @@ class InputAutocomplete {
 
             if ('object' === typeof item && item.hasOwnProperty('label')) {
                 label = item.label;
+                searchTerms = item.searchTerms;
                 value = item.value;
             } else {
                 label = item;
             }
 
             // Check if all search values are included in the label and if item is not already selected.
-            if (!alreadySelectedItems.includes(value.toString()) && searchValues.every((searchValue) => label.toLowerCase().includes(searchValue.toLowerCase()))) {
+            if (!alreadySelectedItems.includes(value.toString()) && searchValues.every((searchValue) => (searchTerms ?? label).toLowerCase().includes(searchValue.toLowerCase()))) {
                 const listItem = document.createElement('li');
 
                 listItem.classList.add(...this.classes.listItem);
                 listItem.textContent = label;
                 listItem.addEventListener('mousedown', this.handleItemClick.bind(this));
+
+                if (searchTerms) {
+                    listItem.setAttribute('data-search-terms', searchTerms);
+                }
 
                 if (value) {
                     listItem.setAttribute('data-value', value);

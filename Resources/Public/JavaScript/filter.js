@@ -33,9 +33,10 @@ class Filter {
                 if (cachedValue && cachedValue.timestamp + this.cacheDuration * 1000 > Date.now()) {
                     input.value = cachedValue.value;
                 }
-
-                input.dispatchEvent(new Event('input'));
             }
+
+            // Always trigger the input event to ensure the filter is also applied on content changes (e.g. via AJAX).
+            input.dispatchEvent(new Event('input'));
         });
     }
 

@@ -9,13 +9,13 @@ $EM_CONF['psb_templates'] = [
     'constraints'      => [
         'conflicts' => [],
         'depends'   => [
-            'psb_foundation'       => '2.0.0-2.99.99',
+            'foundation'       => '3.0',
             'fluid_styled_content' => '12.0.0-12.99.99',
             'ws_scss'              => '12.0.0-12.99.99',
         ],
     ],
     'description'      => 'Basic templates for TYPO3',
     'state'            => 'alpha',
-    'title'            => 'PSbits | Templates',
+    'title'            => 'PSBits | Templates',
     'version'          => '0.0.0',
 ];

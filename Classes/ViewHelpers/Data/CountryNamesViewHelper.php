@@ -2,21 +2,21 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSB Templates.
+ * This file is part of PSBits Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSB\PsbTemplates\ViewHelpers\Data;
+namespace PSBits\Templates\ViewHelpers\Data;
 
-use PSB\PsbTemplates\Service\CountryNamesService;
+use PSBits\Templates\Service\CountryNamesService;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Class CountryNamesViewHelper
  *
- * @package PSB\PsbTemplates\ViewHelpers\Data
+ * @package PSBits\Templates\ViewHelpers\Data
  */
 class CountryNamesViewHelper extends AbstractViewHelper
 {

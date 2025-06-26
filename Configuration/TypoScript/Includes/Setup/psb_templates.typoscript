@@ -1,30 +1,30 @@
-plugin.tx_psbtemplates {
+plugin.tx_templates {
     # Import settings from benjaminkott/#bootstrap_package
     settings < page.10.settings
     settings {
         logos {
             default {
-                file = {$plugin.tx_psbtemplates.settings.logos.default.file}
-                height = {$plugin.tx_psbtemplates.settings.logos.default.height}
-                showWebsiteTitle = {$plugin.tx_psbtemplates.settings.logos.default.showWebsiteTitle}
-                width = {$plugin.tx_psbtemplates.settings.logos.default.width}
+                file = {$plugin.tx_templates.settings.logos.default.file}
+                height = {$plugin.tx_templates.settings.logos.default.height}
+                showWebsiteTitle = {$plugin.tx_templates.settings.logos.default.showWebsiteTitle}
+                width = {$plugin.tx_templates.settings.logos.default.width}
             }
 
-            favicon = {$plugin.tx_psbtemplates.settings.logos.favicon}
+            favicon = {$plugin.tx_templates.settings.logos.favicon}
         }
 
         navigation {
-            footer = {$plugin.tx_psbtemplates.settings.navigation.footer}
+            footer = {$plugin.tx_templates.settings.navigation.footer}
         }
 
         templates {
-            header = {$plugin.tx_psbtemplates.settings.templates.header}
+            header = {$plugin.tx_templates.settings.templates.header}
         }
     }
 
     view {
-        layoutRootPaths.0 = {$plugin.tx_psbtemplates.view.layoutRootPath}
-        partialRootPaths.0 = {$plugin.tx_psbtemplates.view.partialRootPath}
-        templateRootPaths.0 = {$plugin.tx_psbtemplates.view.templateRootPath}
+        layoutRootPaths.0 = {$plugin.tx_templates.view.layoutRootPath}
+        partialRootPaths.0 = {$plugin.tx_templates.view.partialRootPath}
+        templateRootPaths.0 = {$plugin.tx_templates.view.templateRootPath}
     }
 }

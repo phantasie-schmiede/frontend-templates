@@ -2,13 +2,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSB Templates.
+ * This file is part of PSBits Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSB\PsbTemplates\ViewHelpers\Bootstrap;
+namespace PSBits\Templates\ViewHelpers\Bootstrap;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -17,7 +17,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * Class ProgressBarViewHelper
  *
- * @package PSB\PsbTemplates\ViewHelpers\Bootstrap
+ * @package PSBits\Templates\ViewHelpers\Bootstrap
  */
 class ProgressBarViewHelper extends AbstractViewHelper
 {

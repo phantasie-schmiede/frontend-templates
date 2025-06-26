@@ -1,15 +1,15 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers">
+    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
 <f:variable
     name="siteConfiguration"
-    value="{psbFoundation:globalVariables.siteConfiguration(path: 'configuration')}" />
+    value="{foundation:globalVariables.siteConfiguration(path: 'configuration')}" />
 
-<f:if condition="{data.tx_psbtemplates_bs_container_type}">
+<f:if condition="{data.tx_templates_bs_container_type}">
     <f:variable
         name="containerType"
-        value="-{data.tx_psbtemplates_bs_container_type}" />
+        value="-{data.tx_templates_bs_container_type}" />
 </f:if>
 
 <div class="container{containerType}">
@@ -18,7 +18,7 @@
         partial="Header/{settings.templates.header}" />
 
     <f:render
-        arguments="{queueIdentifier: 'psbFoundation.general'}"
+        arguments="{queueIdentifier: 'foundation.general'}"
         partial="../FlashMessages" />
 
     <f:if condition="{breadcrumbs}">

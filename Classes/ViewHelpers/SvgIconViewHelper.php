@@ -2,13 +2,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSB Templates.
+ * This file is part of PSBits Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSB\PsbTemplates\ViewHelpers;
+namespace PSBits\Templates\ViewHelpers;
 
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconProvider\AbstractSvgIconProvider;
@@ -17,7 +17,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * Class SvgIconViewHelper
  *
- * @package PSB\PsbTemplates\ViewHelpers
+ * @package PSBits\Templates\ViewHelpers
  */
 class SvgIconViewHelper extends AbstractViewHelper
 {

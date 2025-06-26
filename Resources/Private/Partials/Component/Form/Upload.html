@@ -1,10 +1,10 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
-    xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers"
+    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
+    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
     xmlns:psbViewHelpers="http://typo3.org/ns/PSB/PsbViewHelpers/ViewHelpers">
-<psbFoundation:translation.registerLanguageFile file="EXT:psb-templates/Resources/Private/Language/Frontend/Component/Form/upload.xlf" />
+<foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/Form/upload.xlf" />
 
 <f:asset.css
     href="EXT:psb_templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
@@ -46,21 +46,21 @@
         name="{name}" />
 
     <span class="d-flex flex-column mt-4 upload-placeholder">
-         <psbTemplates:svgIcon
+         <templates:svgIcon
              height="64"
              identifier="psb-templates-cloud-upload"
              width="64" />
-        <psbTemplates:svgIcon
+        <templates:svgIcon
             height="64"
             identifier="psb-templates-image"
             width="64" />
         <p>
             <span class="d-none show-on-touch-device">
-                <psbFoundation:translate
+                <foundation:translate
                     id="upload:hint.touch" />
             </span>
             <span class="hide-on-touch-device">
-                <psbFoundation:translate
+                <foundation:translate
                     id="upload:hint.noTouch" />
             </span>
         </p>

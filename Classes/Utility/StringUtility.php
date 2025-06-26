@@ -2,16 +2,16 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSB Templates.
+ * This file is part of PSBits Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSB\PsbTemplates\Utility;
+namespace PSBits\Templates\Utility;
 
 use JsonException;
-use PSB\PsbFoundation\Utility\LocalizationUtility;
+use PSBits\Foundation\Utility\LocalizationUtility;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
@@ -19,7 +19,7 @@ use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 /**
  * Class StringUtility
  *
- * @package PSB\PsbTemplates\Utility
+ * @package PSBits\Templates\Utility
  */
 class StringUtility
 {

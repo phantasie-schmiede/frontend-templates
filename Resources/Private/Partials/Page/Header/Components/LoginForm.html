@@ -1,8 +1,8 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers"
-    xmlns:psbTemplates="http://typo3.org/ns/PSB/PsbTemplates/ViewHelpers"
+    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
+    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
     xmlns:psbViewHelpers="http://typo3.org/ns/PSB/PsbViewHelpers/ViewHelpers">
 <psbViewHelpers:condition.extensionLoaded extensionKey="psb_frontend_users">
     <f:variable
@@ -17,7 +17,7 @@
                 aria-haspopup="true"
                 data-bs-toggle="dropdown"
                 id="dropdownLoginButton">
-                <psbTemplates:svgSprite
+                <templates:svgSprite
                     color="white"
                     icon="person-circle" />
             </span>
@@ -35,7 +35,7 @@
                                     <f:link.page
                                         class="list-group-item list-group-item-action"
                                         pageUid="{siteConfiguration.changePasswordPid}">
-                                        <psbFoundation:translate id="header:changePassword" />
+                                        <foundation:translate id="header:changePassword" />
                                     </f:link.page>
                                 </f:if>
                             </psbViewHelpers:condition.extensionLoaded>
@@ -43,7 +43,7 @@
                             <button
                                 class="active list-group-item list-group-item-action"
                                 type="submit">
-                                <psbFoundation:translate id="header:logout" />
+                                <foundation:translate id="header:logout" />
                             </button>
                             <input
                                 name="logintype"
@@ -54,7 +54,7 @@
                     <f:else>
                         <div class="form-group">
                             <label for="user">
-                                <psbFoundation:translate id="header:username" />
+                                <foundation:translate id="header:username" />
                             </label>
                             <input
                                 class="form-control"
@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <label for="pass">
-                                <psbFoundation:translate id="header:password" />
+                                <foundation:translate id="header:password" />
                             </label>
                             <input
                                 class="form-control"
@@ -94,7 +94,7 @@
                             <button
                                 class="btn btn-primary mt-2"
                                 type="submit">
-                                <psbFoundation:translate id="header:login" />
+                                <foundation:translate id="header:login" />
                             </button>
 
                             <f:if condition="{frontendUser.loginPage.uid}">
@@ -106,7 +106,7 @@
                                     pageUid="{frontendUser.loginPage.uid}"
                                     pluginName="Login"
                                     rel="nofollow">
-                                    <psbFoundation:translate id="header:forgotPassword" />
+                                    <foundation:translate id="header:forgotPassword" />
                                 </f:link.action>
                             </f:if>
                         </div>

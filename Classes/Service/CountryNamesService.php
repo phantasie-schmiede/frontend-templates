@@ -2,23 +2,23 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSB Templates.
+ * This file is part of PSBits Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSB\PsbTemplates\Service;
+namespace PSBits\Templates\Service;
 
 use Locale;
-use PSB\PsbFoundation\Utility\ContextUtility;
+use PSBits\Foundation\Utility\ContextUtility;
 use Symfony\Component\Intl\Countries;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 
 /**
  * Class CountryNamesService
  *
- * @package PSB\PsbTemplates\Service
+ * @package PSBits\Templates\Service
  */
 class CountryNamesService
 {

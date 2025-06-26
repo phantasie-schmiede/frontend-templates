@@ -2,13 +2,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSB Templates.
+ * This file is part of PSBits Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSB\PsbTemplates\Utility;
+namespace PSBits\Templates\Utility;
 
 use Doctrine\DBAL\Exception;
 use TYPO3\CMS\Core\Database\Connection;
@@ -22,7 +22,7 @@ use function in_array;
 /**
  * Class SlugUtility
  *
- * @package PSB\PsbTemplates\Utility
+ * @package PSBits\Templates\Utility
  */
 class SlugUtility
 {

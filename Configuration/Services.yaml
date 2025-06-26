@@ -4,5 +4,5 @@ services:
     autoconfigure: true
     public: false
 
-  PSB\PsbTemplates\:
+  PSBits\Templates\:
     resource: '../Classes/*'

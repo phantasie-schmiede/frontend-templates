@@ -2,44 +2,44 @@
 # customsubcategory=navigation=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:subCategory.navigation
 # customsubcategory=templates=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:subCategory.templates
 
-plugin.tx_psbtemplates {
+plugin.tx_templates {
     privateResourcePath = EXT:psb_templates/Resources/Private/
     publicResourcePath = EXT:psb_templates/Resources/Public/
 
     settings {
       logos {
         default {
-          # cat=plugin.tx_psbtemplates/logos; type=string; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.file
+          # cat=plugin.tx_templates/logos; type=string; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.file
           file =
-          # cat=plugin.tx_psbtemplates/logos; type=int+; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.height
+          # cat=plugin.tx_templates/logos; type=int+; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.height
           height =
-          # cat=plugin.tx_psbtemplates/logos; type=boolean; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.showWebsiteTitle
+          # cat=plugin.tx_templates/logos; type=boolean; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.showWebsiteTitle
           showWebsiteTitle = 0
-          # cat=plugin.tx_psbtemplates/logos; type=int+; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.width
+          # cat=plugin.tx_templates/logos; type=int+; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.width
           width =
         }
 
-        # cat=plugin.tx_psbtemplates/logos; type=string; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.favicon
+        # cat=plugin.tx_templates/logos; type=string; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.favicon
         favicon =
       }
 
       navigation {
-        # cat=plugin.tx_psbtemplates/navigation; type=int+; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.navigation.footer
+        # cat=plugin.tx_templates/navigation; type=int+; label=LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.navigation.footer
         footer =
       }
 
       templates {
-        # cat=plugin.tx_psbtemplates/templates; type=options[LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.templates.header.centered=Centered, LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.templates.header.leftAligned=LeftAligned]; label= LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.templates.header
+        # cat=plugin.tx_templates/templates; type=options[LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.templates.header.centered=Centered, LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.templates.header.leftAligned=LeftAligned]; label= LLL:EXT:psb_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.templates.header
         header = Centered
       }
     }
 
     view {
-        # cat=plugin.tx_psbtemplates/file; type=string; label=Path to template layouts (FE)
+        # cat=plugin.tx_templates/file; type=string; label=Path to template layouts (FE)
         layoutRootPath = EXT:psb_templates/Resources/Private/Layouts/
-        # cat=plugin.tx_psbtemplates/file; type=string; label=Path to template partials (FE)
+        # cat=plugin.tx_templates/file; type=string; label=Path to template partials (FE)
         partialRootPath = EXT:psb_templates/Resources/Private/Partials/
-        # cat=plugin.tx_psbtemplates/file; type=string; label=Path to template root (FE)
+        # cat=plugin.tx_templates/file; type=string; label=Path to template root (FE)
         templateRootPath = EXT:psb_templates/Resources/Private/Templates/
     }
 }

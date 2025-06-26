@@ -1,8 +1,8 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:psbFoundation="http://typo3.org/ns/PSB/PsbFoundation/ViewHelpers">
-<psbFoundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Component/alert.xlf" />
+    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
+<foundation:translation.registerLanguageFile file="EXT:psb_templates/Resources/Private/Language/Frontend/Component/alert.xlf" />
 
 <div
     class="alert alert-{type}{f:if(condition: dismissable, then: ' alert-dismissible fade show')}"
@@ -17,7 +17,7 @@
 
     <f:if condition="{dismissable}">
         <button
-            aria-label="{psbFoundation:translate(id: 'alert:close')}"
+            aria-label="{foundation:translate(id: 'alert:close')}"
             class="btn-close"
             data-bs-dismiss="alert"
             type="button"></button>

@@ -1,13 +1,13 @@
 # default page object
 page {
   10 {
-    layoutRootPaths.2 = {$plugin.tx_psbtemplates.view.layoutRootPath}Page/
-    partialRootPaths.2 = {$plugin.tx_psbtemplates.view.partialRootPath}Page/
-    settings < plugin.tx_psbtemplates.settings
-    templateRootPaths.2 = {$plugin.tx_psbtemplates.view.templateRootPath}Page/
+    layoutRootPaths.2 = {$plugin.tx_templates.view.layoutRootPath}Page/
+    partialRootPaths.2 = {$plugin.tx_templates.view.partialRootPath}Page/
+    settings < plugin.tx_templates.settings
+    templateRootPaths.2 = {$plugin.tx_templates.view.templateRootPath}Page/
   }
 
   includeCSS {
-    psbTemplates = {$plugin.tx_psbtemplates.privateResourcePath}Scss/app.scss
+    templates = {$plugin.tx_templates.privateResourcePath}Scss/app.scss
   }
 }

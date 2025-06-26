@@ -1,5 +1,5 @@
 # Extend pages table
 CREATE TABLE pages
 (
-	tx_psbtemplates_bs_container_type varchar(255) DEFAULT '' NOT NULL,
+	tx_templates_bs_container_type varchar(255) DEFAULT '' NOT NULL,
 );

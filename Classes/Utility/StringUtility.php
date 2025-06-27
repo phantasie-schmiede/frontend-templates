@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
  */
 class StringUtility
 {
-    public const LL = 'LLL:EXT:psb_templates/Resources/Private/Language/Utility/stringUtility.xlf:';
+    public const LL = 'LLL:EXT:templates/Resources/Private/Language/Utility/stringUtility.xlf:';
 
     /**
      * @throws AspectNotFoundException

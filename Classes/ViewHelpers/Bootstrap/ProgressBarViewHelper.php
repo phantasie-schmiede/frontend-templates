@@ -63,7 +63,7 @@ class ProgressBarViewHelper extends AbstractViewHelper
         }
 
         $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
-        $templatePath = GeneralUtility::getFileAbsFileName('EXT:psb_templates/Resources/Private/Templates/ViewHelpers/Bootstrap/ProgressBar.html');
+        $templatePath = GeneralUtility::getFileAbsFileName('EXT:templates/Resources/Private/Templates/ViewHelpers/Bootstrap/ProgressBar.html');
 
         $standaloneView->setFormat('html');
         $standaloneView->setTemplatePathAndFilename($templatePath);

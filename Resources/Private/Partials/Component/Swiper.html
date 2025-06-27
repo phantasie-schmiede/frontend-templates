@@ -1,7 +1,7 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:psbViewHelpers="http://typo3.org/ns/PSB/PsbViewHelpers/ViewHelpers">
+    xmlns:psbViewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
 <f:comment>
     <!--
         In order to use this partial, the slides must be rendered inside the f:render-tag. The value of the contentAs
@@ -27,15 +27,15 @@
 </f:comment>
 
 <f:asset.css
-    href="EXT:psb_templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
+    href="EXT:templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
     identifier="swiper" />
 <f:asset.script
     identifier="swiper"
-    src="EXT:psb_templates/Resources/Public/JavaScript/swiper.js"
+    src="EXT:templates/Resources/Public/JavaScript/swiper.js"
     type="module" />
 <f:asset.script
     identifier="swiper-bundle"
-    src="EXT:psb_templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
+    src="EXT:templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
 
 <f:if condition="{configuration.pagination} && !{configuration.pagination.el}">
     <f:variable

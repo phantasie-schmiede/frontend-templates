@@ -25,13 +25,13 @@
 	"license": "GPL-3.0-or-later",
 	"name": "psbits/templates",
 	"require": {
-		"bk2k/bootstrap-package": "^15.0",
 		"ext-intl": "*",
 		"php": "^8.3",
 		"psbits/foundation": "^3.0",
 		"symfony/intl": "^7.1",
-		"typo3/cms-core": "^13.4",
-		"typo3/cms-fluid-styled-content": "^13"
+        "typo3/cms-core": "^13.4",
+        "typo3/cms-fluid-styled-content": "^13",
+        "wapplersystems/ws-scss": "^13"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-latest"

@@ -1,7 +1,7 @@
 mod {
   web_layout {
     BackendLayouts {
-      PsbTemplatesThreeColumns-1-1-1 {
+      threeColumns-1-1-1 {
         config {
           backend_layout {
             colCount = 3

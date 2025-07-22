@@ -20,16 +20,16 @@
 }
 
 body {
-  &:not(.bl-pagets__PsbTemplatesBlank, .bl-pagets__PsbTemplatesGrid-2x2) {
+  &:not(.bl-pagets__blank, .bl-pagets__grid-2x2) {
     padding-top: 5rem;
   }
 
-  &.bl-pagets__PsbTemplatesGrid-2x2 {
+  &.bl-pagets__grid-2x2 {
     height: 100vh;
   }
 
   @include media-breakpoint-up(lg) {
-    &:not(.bl-pagets__PsbTemplatesBlank, .bl-pagets__PsbTemplatesGrid-2x2)[data-template-header="Centered"] {
+    &:not(.bl-pagets__blank, .bl-pagets__grid-2x2)[data-template-header="Centered"] {
       padding-top: 8rem;
     }
   }

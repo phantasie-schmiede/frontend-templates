@@ -1,0 +1,28 @@
+plugin.tx_psbtemplates {
+    settings {
+        logos {
+            default {
+                file = {$plugin.tx_psbtemplates.settings.logos.default.file}
+                height = {$plugin.tx_psbtemplates.settings.logos.default.height}
+                showWebsiteTitle = {$plugin.tx_psbtemplates.settings.logos.default.showWebsiteTitle}
+                width = {$plugin.tx_psbtemplates.settings.logos.default.width}
+            }
+
+            favicon = {$plugin.tx_psbtemplates.settings.logos.favicon}
+        }
+
+        navigation {
+            footer = {$plugin.tx_psbtemplates.settings.navigation.footer}
+        }
+
+        templates {
+            header = {$plugin.tx_psbtemplates.settings.templates.header}
+        }
+    }
+
+    view {
+        layoutRootPaths.0 = {$plugin.tx_psbtemplates.view.layoutRootPath}
+        partialRootPaths.0 = {$plugin.tx_psbtemplates.view.partialRootPath}
+        templateRootPaths.0 = {$plugin.tx_psbtemplates.view.templateRootPath}
+    }
+}

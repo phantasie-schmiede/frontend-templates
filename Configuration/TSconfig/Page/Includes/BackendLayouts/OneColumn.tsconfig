@@ -1,7 +1,7 @@
 mod {
   web_layout {
     BackendLayouts {
-      one_column {
+      PsbTemplatesOneColumn {
         config {
           backend_layout {
             colCount = 1

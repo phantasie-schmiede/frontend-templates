@@ -1,6 +1,6 @@
-@import "../../../../../bk2k/bootstrap-package/Resources/Public/Contrib/bootstrap5/scss/mixins";
-@import "../../../../../bk2k/bootstrap-package/Resources/Public/Contrib/bootstrap5/scss/functions";
-@import "../../../../../bk2k/bootstrap-package/Resources/Public/Contrib/bootstrap5/scss/variables";
+@import "Bootstrap/mixins";
+@import "Bootstrap/functions";
+@import "Bootstrap/variables";
 
 .autocomplete-list {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -20,16 +20,16 @@
 }
 
 body {
-  &:not(.backendlayout-blank, .backendlayout-grid-2x2) {
+  &:not(.bl-pagets__PsbTemplatesBlank, .bl-pagets__PsbTemplatesGrid-2x2) {
     padding-top: 5rem;
   }
 
-  &.backendlayout-grid-2x2 {
+  &.bl-pagets__PsbTemplatesGrid-2x2 {
     height: 100vh;
   }
 
   @include media-breakpoint-up(lg) {
-    &:not(.backendlayout-blank, .backendlayout-grid-2x2)[data-template-header="Centered"] {
+    &:not(.bl-pagets__PsbTemplatesBlank, .bl-pagets__PsbTemplatesGrid-2x2)[data-template-header="Centered"] {
       padding-top: 8rem;
     }
   }

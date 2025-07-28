@@ -1,7 +1,7 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applies to all elements with the class psb-templates-upload that contain an input element of type file (even those
+ * Applies to all elements with the class psbits-upload that contain an input element of type file (even those
  * which are inserted dynamically).
  */
 class UploadPreview {
@@ -16,8 +16,8 @@ class UploadPreview {
             placeholder: '.upload-placeholder',
             preview: '.' + this.classes.preview,
             removeIcon: '.' + this.classes.removeIcon,
-            wrapper: '.psb-templates-upload',
-            wrapperWithInput: '.psb-templates-upload:has(input[type="file"])',
+            wrapper: '.psbits-upload',
+            wrapperWithInput: '.psbits-upload:has(input[type="file"])',
         };
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));

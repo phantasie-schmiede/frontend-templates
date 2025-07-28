@@ -1,7 +1,7 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applies to all elements with the attribute data-psb-ajax-url (even those which are inserted dynamically).
+ * Applies to all elements with the attribute data-psbits-ajax-url (even those which are inserted dynamically).
  * This element can listen to click events or fire immediately and inserts the response of the url into the target
  * element.
  * The response must be a JSON object with the following structure:
@@ -10,36 +10,36 @@ import Rebind from './Modules/rebind.js';
  * }
  *
  * Attributes:
- * - data-psb-ajax-mode: Mode of the insertion. Possible values: replace, append, prepend. Default: replace.
- * - data-psb-ajax-target: Selector of the target element(s). Default: self.
- * - data-psb-ajax-trigger: Trigger for ajax request. Possible values: click, onload. Default: "onload" if target is self, otherwise "click".
- * - data-psb-ajax-url: URL to be called.
+ * - data-psbits-ajax-mode: Mode of the insertion. Possible values: replace, append, prepend. Default: replace.
+ * - data-psbits-ajax-target: Selector of the target element(s). Default: self.
+ * - data-psbits-ajax-trigger: Trigger for ajax request. Possible values: click, onload. Default: "onload" if target is self, otherwise "click".
+ * - data-psbits-ajax-url: URL to be called.
  *
  * Examples:
  * Replace the content of a container with the response immediately after page load:
- * <div data-psb-ajax-url="/content">Load</div>
+ * <div data-psbits-ajax-url="/content">Load</div>
  *
  * Append the response inside the target element on click:
  * <button
- *     data-psb-ajax-mode="append"
- *     data-psb-ajax-target="#target"
- *     data-psb-ajax-url="/content">
+ *     data-psbits-ajax-mode="append"
+ *     data-psbits-ajax-target="#target"
+ *     data-psbits-ajax-url="/content">
  *     Load
  * </button>
  *
  * Prepend the response inside the target elements immediately after page load and on click:
  * <button
- *     data-psb-ajax-mode="prepend"
- *     data-psb-ajax-target=".target"
- *     data-psb-ajax-trigger="click, onload"
- *     data-psb-ajax-url="/content">
+ *     data-psbits-ajax-mode="prepend"
+ *     data-psbits-ajax-target=".target"
+ *     data-psbits-ajax-trigger="click, onload"
+ *     data-psbits-ajax-url="/content">
  *     Load
  * </button>
  */
 class AjaxContent {
     constructor() {
         this.registeredElements = [];
-        this.selector = '[data-psb-ajax-url]';
+        this.selector = '[data-psbits-ajax-url]';
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));
     }

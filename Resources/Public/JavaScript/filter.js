@@ -1,21 +1,21 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applies to all input elements with the attribute data-psb-filter-target (even those which are inserted dynamically).
+ * Applies to all input elements with the attribute data-psbits-filter-target (even those which are inserted dynamically).
  * The elements listen to input events and filter a list of target items by the input value. The input value can
  * contain multiple search values separated by spaces. The search is case-insensitive.
- * The items will be filtered by an attribute value referenced by the optional data-psb-filter-value attribute. If no
- * value is defined for data-psb-filter-value, the text content of the item will be used.
+ * The items will be filtered by an attribute value referenced by the optional data-psbits-filter-value attribute. If no
+ * value is defined for data-psbits-filter-value, the text content of the item will be used.
  *
  * Examples:
- * <input type="text" data-psb-filter-target=".item">
- * <input type="text" data-psb-filter-target=".item" data-psb-filter-value="data-categories">
+ * <input type="text" data-psbits-filter-target=".item">
+ * <input type="text" data-psbits-filter-target=".item" data-psbits-filter-value="data-categories">
  */
 class Filter {
     constructor() {
         this.cacheDuration = 3600; // 1 hour
         this.registeredElements = [];
-        this.selector = 'input[data-psb-filter-target]';
+        this.selector = 'input[data-psbits-filter-target]';
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));
     }

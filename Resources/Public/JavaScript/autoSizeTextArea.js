@@ -1,14 +1,14 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applies to all textarea-elements with the class psb-templates-auto-size (even those which are inserted dynamically).
+ * Applies to all textarea-elements with the class psbits-auto-size (even those which are inserted dynamically).
  * Those elements listen to input events and get resized automatically.
  */
 class AutoSizeTextArea {
     constructor() {
         this.postponedElements = [];
         this.registeredElements = [];
-        this.selector = 'textarea.psb-templates-auto-size';
+        this.selector = 'textarea.psbits-auto-size';
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));
     }

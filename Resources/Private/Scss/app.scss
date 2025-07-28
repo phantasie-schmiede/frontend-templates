@@ -41,7 +41,7 @@ body {
   }
 }
 
-.psb-templates-clear-icon {
+.psbits-clear-icon {
   border-radius: 50%;
   cursor: pointer;
   line-height: 0;
@@ -51,7 +51,7 @@ body {
   z-index: 5;
 }
 
-.psb-templates-upload {
+.psbits-upload {
   &.border {
     border-style: dashed !important;
   }
@@ -94,7 +94,7 @@ body {
   }
 }
 
-ul[data-psb-autocomplete-value-target] .list-group-item {
+ul[data-psbits-autocomplete-value-target] .list-group-item {
   cursor: pointer;
 
   @media (hover: hover) {

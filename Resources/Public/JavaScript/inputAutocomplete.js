@@ -1,19 +1,19 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applies to all input elements with the attribute data-psb-autocomplete (even those which are inserted dynamically).
+ * Applies to all input elements with the attribute data-psbits-autocomplete (even those which are inserted dynamically).
  * The elements listen to input events and show a list of items filtered by the input value. The input value can
  * contain multiple search values separated by spaces. The search is case-insensitive.
- * The list of items has to be present in the data-psb-autocomplete attribute as a JSON array.
+ * The list of items has to be present in the data-psbits-autocomplete attribute as a JSON array.
  *
  * Example:
- * <input type="text" data-psb-autocomplete='["Item 1", "Item 2", "Item 3"]'>
+ * <input type="text" data-psbits-autocomplete='["Item 1", "Item 2", "Item 3"]'>
  *
  * The items can be simple strings (label and value are identical), but also objects.
  *
  * Examples:
- * <input type="text" data-psb-autocomplete='[{"label": "Item 1", "value": "item1"}, {"label": "Item 2", "value": "item2"}]'>
- * <input type="text" data-psb-autocomplete='[{"label": "Item 1", "value": "item1", "searchTerms": "item1, item 1"}, {"label": "Item 2", "value": "item2"}]'>
+ * <input type="text" data-psbits-autocomplete='[{"label": "Item 1", "value": "item1"}, {"label": "Item 2", "value": "item2"}]'>
+ * <input type="text" data-psbits-autocomplete='[{"label": "Item 1", "value": "item1", "searchTerms": "item1, item 1"}, {"label": "Item 2", "value": "item2"}]'>
  *
  * If the optional searchTerms attribute is present, the search is performed on the search terms instead of the label.
  * An item can be selected by mouse click or by navigating with the arrow keys and selecting with the enter key.
@@ -35,7 +35,7 @@ class InputAutocomplete {
         this.list = null;
         this.registeredElements = [];
         this.selectors = {
-            input: 'input[data-psb-autocomplete-items]',
+            input: 'input[data-psbits-autocomplete-items]',
             list: '.autocomplete-list',
             listItem: '.autocomplete-list-item',
         };
@@ -64,7 +64,7 @@ class InputAutocomplete {
         preselection.forEach((item) => {
             this.activeInput = input;
             this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteSelectionTarget);
-            this.activeSelectionTarget.setAttribute('data-psb-autocomplete-value-target', this.activeInput.dataset.psbAutocompleteValueTarget);
+            this.activeSelectionTarget.setAttribute('data-psbits-autocomplete-value-target', this.activeInput.dataset.psbAutocompleteValueTarget);
             this.activeValueTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteValueTarget);
 
             if ('string' === typeof item) {
@@ -86,7 +86,7 @@ class InputAutocomplete {
 
         if (this.activeInput.dataset.psbAutocompleteSelectionTarget && this.activeInput.dataset.psbAutocompleteValueTarget) {
             this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteSelectionTarget);
-            this.activeSelectionTarget.setAttribute('data-psb-autocomplete-value-target', this.activeInput.dataset.psbAutocompleteValueTarget);
+            this.activeSelectionTarget.setAttribute('data-psbits-autocomplete-value-target', this.activeInput.dataset.psbAutocompleteValueTarget);
             this.activeValueTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteValueTarget);
         }
 

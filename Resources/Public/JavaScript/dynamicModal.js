@@ -1,7 +1,7 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applies to all elements with the attribute data-psb-modal (even those which are inserted dynamically).
+ * Applies to all elements with the attribute data-psbits-modal (even those which are inserted dynamically).
  * This element listens to click events and opens a modal with the content of the href attribute.
  * The response must be a JSON object with the following structure:
  * {
@@ -12,12 +12,12 @@ import Rebind from './Modules/rebind.js';
  * The modal is created dynamically if it does not exist and has the id dynamic-modal.
  *
  * Example:
- * <a href="/modal-content" data-psb-modal="#dynamic-modal">Open Modal</a>
+ * <a href="/modal-content" data-psbits-modal="#dynamic-modal">Open Modal</a>
  */
 class DynamicModal {
     constructor() {
         this.registeredElements = [];
-        this.selector = '[data-psb-modal="#dynamic-modal"]';
+        this.selector = '[data-psbits-modal="#dynamic-modal"]';
         this.modal = null;
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));

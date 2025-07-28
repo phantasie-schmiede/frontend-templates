@@ -1,18 +1,18 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applies to all elements with the attribute data-psb-form-condition-field (even those which are inserted dynamically).
+ * Applies to all elements with the attribute data-psbits-form-condition-field (even those which are inserted dynamically).
  * This element listens to value changes of another field of the same form and is either shown or hidden.
  *
  * Attributes:
- * - data-psb-form-condition-field: Selector of the field that is listened to.
- * - data-psb-form-condition-mode: Mode of the condition. Possible values: show, hide. Default: show.
- * - data-psb-form-condition-value: Value that triggers the condition. Default: true.
+ * - data-psbits-form-condition-field: Selector of the field that is listened to.
+ * - data-psbits-form-condition-mode: Mode of the condition. Possible values: show, hide. Default: show.
+ * - data-psbits-form-condition-value: Value that triggers the condition. Default: true.
  */
 class FormFieldSwitch {
     constructor() {
         this.registeredElements = [];
-        this.selector = '[data-psb-form-condition-field]';
+        this.selector = '[data-psbits-form-condition-field]';
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));
     }

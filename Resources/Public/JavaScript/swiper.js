@@ -4,12 +4,12 @@ import Rebind from './Modules/rebind.js';
  * Applies to all elements with the class swiper (even those which are inserted dynamically).
  * The elements will be transformed into a swiper slider.
  * The following data attributes are supported:
- * - data-psb-swiper-configuration: JSON object with the swiper configuration (optional)
+ * - data-psbits-swiper-configuration: JSON object with the swiper configuration (optional)
  *
  * Example with array:
  * <div
  *     class="swiper"
- *     data-psb-swiper-configuration="{configuration -> f:format.json()}">
+ *     data-psbits-swiper-configuration="{configuration -> f:format.json()}">
  *     <div class="swiper-wrapper">
  *         <div class="swiper-slide">Slide 1</div>
  *         <div class="swiper-slide">Slide 2</div>
@@ -19,7 +19,7 @@ import Rebind from './Modules/rebind.js';
  * Example with inline JSON:
  * <div
  *     class="swiper"
- *     data-psb-swiper-configuration='{
+ *     data-psbits-swiper-configuration='{
  *         "slidesPerView": 1,
  *         "spaceBetween": 10,
  *         "loop": true,

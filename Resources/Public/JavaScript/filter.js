@@ -42,8 +42,8 @@ class Filter {
 
     handleEvent(event) {
         const input = event.target;
-        const filterValue = input.dataset.psbFilterValue;
-        const items = document.querySelectorAll(input.dataset.psbFilterTarget);
+        const filterValue = input.dataset.psbitsFilterValue;
+        const items = document.querySelectorAll(input.dataset.psbitsFilterTarget);
         const searchValue = input.value.trim()
         const searchValues = searchValue.toLowerCase().split(' ');
 

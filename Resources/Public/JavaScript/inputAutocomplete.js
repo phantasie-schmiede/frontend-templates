@@ -49,7 +49,7 @@ class InputAutocomplete {
                 input.addEventListener('click', this.handleEvent.bind(this));
                 input.addEventListener('input', this.handleEvent.bind(this));
 
-                if (input.dataset.psbAutocompletePreselection) {
+                if (input.dataset.psbitsAutocompletePreselection) {
                     this.setPreselection(input);
                 }
 
@@ -59,13 +59,13 @@ class InputAutocomplete {
     }
 
     setPreselection(input) {
-        const preselection = JSON.parse(input.dataset.psbAutocompletePreselection);
+        const preselection = JSON.parse(input.dataset.psbitsAutocompletePreselection);
 
         preselection.forEach((item) => {
             this.activeInput = input;
-            this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteSelectionTarget);
-            this.activeSelectionTarget.setAttribute('data-psbits-autocomplete-value-target', this.activeInput.dataset.psbAutocompleteValueTarget);
-            this.activeValueTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteValueTarget);
+            this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbitsAutocompleteSelectionTarget);
+            this.activeSelectionTarget.setAttribute('data-psbits-autocomplete-value-target', this.activeInput.dataset.psbitsAutocompleteValueTarget);
+            this.activeValueTarget = document.querySelector(this.activeInput.dataset.psbitsAutocompleteValueTarget);
 
             if ('string' === typeof item) {
                 this.selectItem(item);
@@ -84,13 +84,13 @@ class InputAutocomplete {
 
         const value = this.activeInput.value;
 
-        if (this.activeInput.dataset.psbAutocompleteSelectionTarget && this.activeInput.dataset.psbAutocompleteValueTarget) {
-            this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteSelectionTarget);
-            this.activeSelectionTarget.setAttribute('data-psbits-autocomplete-value-target', this.activeInput.dataset.psbAutocompleteValueTarget);
-            this.activeValueTarget = document.querySelector(this.activeInput.dataset.psbAutocompleteValueTarget);
+        if (this.activeInput.dataset.psbitsAutocompleteSelectionTarget && this.activeInput.dataset.psbitsAutocompleteValueTarget) {
+            this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbitsAutocompleteSelectionTarget);
+            this.activeSelectionTarget.setAttribute('data-psbits-autocomplete-value-target', this.activeInput.dataset.psbitsAutocompleteValueTarget);
+            this.activeValueTarget = document.querySelector(this.activeInput.dataset.psbitsAutocompleteValueTarget);
         }
 
-        const items = JSON.parse(this.activeInput.dataset.psbAutocompleteItems);
+        const items = JSON.parse(this.activeInput.dataset.psbitsAutocompleteItems);
         const searchValues = value.split(' ');
         let alreadySelectedItems = [];
 
@@ -231,7 +231,7 @@ class InputAutocomplete {
 
             selectedItem.addEventListener('click', (event) => {
                 const list = event.target.parentNode;
-                const valueTarget = document.querySelector(list.dataset.psbAutocompleteValueTarget);
+                const valueTarget = document.querySelector(list.dataset.psbitsAutocompleteValueTarget);
 
                 selectedItem.remove();
                 this.updateValue(list, valueTarget);

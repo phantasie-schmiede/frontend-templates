@@ -49,9 +49,9 @@ class AjaxContent {
 
         document.querySelectorAll(this.selector).forEach((element) => {
             if (!this.registeredElements.includes(element)) {
-                target = element.dataset.psbAjaxTarget ? element.dataset.psbAjaxTarget : element;
+                target = element.dataset.psbitsAjaxTarget ? element.dataset.psbitsAjaxTarget : element;
                 // Set trigger. If data attribute is set, split by comma and trim. If attribute is not set, default to onload if target is self, otherwise click.
-                trigger = element.dataset.psbAjaxTrigger ? element.dataset.psbAjaxTrigger.split(',').map((item) => item.trim()) : (target === element ? ['onload'] : ['click']);
+                trigger = element.dataset.psbitsAjaxTrigger ? element.dataset.psbitsAjaxTrigger.split(',').map((item) => item.trim()) : (target === element ? ['onload'] : ['click']);
 
                 if (trigger.includes('onload')) {
                     this.sendRequest(element);
@@ -77,8 +77,8 @@ class AjaxContent {
             console.error(`Error ${event.target.status}: ${event.target.statusText}`);
         } else {
             const content = event.target.response.html;
-            const mode = this.dataset.psbAjaxMode ? this.dataset.psbAjaxMode : 'replace';
-            const target = this.dataset.psbAjaxTarget ? this.dataset.psbAjaxTarget : this;
+            const mode = this.dataset.psbitsAjaxMode ? this.dataset.psbitsAjaxMode : 'replace';
+            const target = this.dataset.psbitsAjaxTarget ? this.dataset.psbitsAjaxTarget : this;
             let targetElements;
 
             if (this === target) {
@@ -138,7 +138,7 @@ class AjaxContent {
     sendRequest(element) {
         let xhr = new XMLHttpRequest();
 
-        xhr.open('GET', element.dataset.psbAjaxUrl, true);
+        xhr.open('GET', element.dataset.psbitsAjaxUrl, true);
         xhr.responseType = 'json';
         xhr.send();
         xhr.onload = this.handleResponse.bind(element);

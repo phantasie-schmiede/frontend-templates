@@ -19,7 +19,7 @@ class FormFieldSwitch {
 
     bindEvents(rootNode = null) {
         document.querySelectorAll(this.selector).forEach((element) => {
-            let conditionField = element.closest('form').querySelector(element.dataset.psbFormConditionField);
+            let conditionField = element.closest('form').querySelector(element.dataset.psbitsFormConditionField);
 
             if (!this.registeredElements.includes(element)) {
                 conditionField.addEventListener('change', this.handleChange.bind(element));

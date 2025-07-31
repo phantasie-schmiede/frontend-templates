@@ -1,4 +1,5 @@
 import Rebind from './Modules/rebind.js';
+import LoadingSpinnerHelper from './Modules/loadingSpinnerHelper.js';
 
 /*
  * Applies to all elements with the attribute data-psbits-modal (even those which are inserted dynamically).
@@ -33,18 +34,17 @@ class DynamicModal {
     }
 
     handleClick(event) {
-        event.preventDefault();
-        let target = event.target;
-
-        if (!target.href) {
-            target = event.target.closest(this.selector);
-        }
-
+        const dynamicModalInstance = this;
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', target.href, true);
+
+        event.preventDefault();
+        xhr.open('GET', event.currentTarget.href, true);
+        xhr.addEventListener('load', (loadEvent) => {
+            this.handleResponse.call(dynamicModalInstance, loadEvent);
+            LoadingSpinnerHelper.phaseInElements(event.currentTarget);
+        });
         xhr.responseType = 'json';
         xhr.send();
-        xhr.onload = this.handleResponse.bind(this);
     }
 
     handleResponse(event) {
@@ -58,9 +58,9 @@ class DynamicModal {
                 this.modal = new bootstrap.Modal(modalElement);
             }
 
-            modalElement.querySelector('.modal-title').innerHTML = response.title;
             modalElement.querySelector('.modal-body').innerHTML = response.body;
             modalElement.querySelector('.modal-footer').innerHTML = response.footer;
+            modalElement.querySelector('.modal-title').innerHTML = response.title;
             Rebind.rebindEvents();
             this.modal.show();
         }

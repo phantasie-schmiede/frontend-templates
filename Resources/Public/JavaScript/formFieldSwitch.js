@@ -31,10 +31,10 @@ class FormFieldSwitch {
     handleChange(event) {
         const listeningElement = this;
         const data = listeningElement.dataset;
-        const mode = data.psbFormConditionMode;
+        const mode = data.psbitsFormConditionMode;
         const targetElement = event.target;
 
-        if (targetElement.value === data.psbFormConditionValue) {
+        if (targetElement.value === data.psbitsFormConditionValue) {
             if ('hide' === mode) {
                 listeningElement.classList.add('visually-hidden');
             } else {

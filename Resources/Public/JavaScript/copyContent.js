@@ -34,10 +34,10 @@ class CopyContent {
     }
 
     handleClick(event) {
-        const data = event.target.dataset;
-        const sourceElement = document.querySelector(data.psbCopySource);
-        const targetElement = document.querySelector(data.psbCopyTarget);
-        const targetMode = data.psbCopyMode ? data.psbCopyMode : 'replace';
+        const data = event.currentTarget.dataset;
+        const sourceElement = document.querySelector(data.psbitsCopySource);
+        const targetElement = document.querySelector(data.psbitsCopyTarget);
+        const targetMode = data.psbitsCopyMode ? data.psbitsCopyMode : 'replace';
 
         if (!sourceElement || !targetElement) {
             console.error('Source or target element not found!');

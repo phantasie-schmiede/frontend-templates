@@ -1,4 +1,5 @@
 import Rebind from './Modules/rebind.js';
+import LoadingSpinnerHelper from './Modules/loadingSpinnerHelper.js';
 
 /*
  * Applies to all elements with the attribute data-psbits-spinner (even those which are inserted dynamically).
@@ -34,35 +35,38 @@ class LoadingSpinner {
         spinnerText.setAttribute('role', 'status');
 
         if (element.dataset.psbitsSpinnerText) {
-            element.setAttribute('data-psbits-original-text', element.textContent);
-            element.textContent = '';
+            spinnerElement.classList.add('me-1');
             spinnerText.textContent = element.dataset.psbitsSpinnerText;
         } else {
             spinnerText.className = 'visually-hidden';
             spinnerText.textContent = element.dataset.psbitsSpinnerTextHidden || this.defaultText;
         }
 
+        LoadingSpinnerHelper.phaseOutElements(element);
         element.prepend(spinnerElement, spinnerText);
     }
 
     handleClickEvent(event) {
-        const target = event.target;
+        const element = event.currentTarget;
 
-        if ('button' === target.tagName.toLowerCase()) {
-            if (target.disabled) {
-                return; // Prevent action if button is already disabled.
+        // Disable the element to prevent multiple clicks.
+        if ('button' === element.tagName.toLowerCase()) {
+            if (element.disabled) {
+                event.preventDefault();
+                return;
             }
 
-            target.disabled = true; // Disable the button to prevent multiple clicks
+            element.disabled = true;
         } else {
-            if (target.classList.contains('disabled')) {
-                return; // Prevent action if element is already disabled.
+            if (element.classList.contains('disabled')) {
+                event.preventDefault();
+                return;
             }
 
-            target.classList.add('disabled');
+            element.classList.add('disabled');
         }
 
-        this.createInlineSpinner(target);
+        this.createInlineSpinner(element);
     }
 }
 

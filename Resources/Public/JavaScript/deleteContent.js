@@ -36,8 +36,8 @@ class DeleteContent {
     handleClick(event) {
         const clickedElement = event.target;
         const data = clickedElement.dataset;
-        const mode = data.psbDeleteMode;
-        const targetSelector = data.psbDeleteTarget;
+        const mode = data.psbitsDeleteMode;
+        const targetSelector = data.psbitsDeleteTarget;
 
         if ('self' === targetSelector) {
             clickedElement.remove();

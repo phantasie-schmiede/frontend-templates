@@ -1,4 +1,5 @@
 import Rebind from './Modules/rebind.js';
+import LoadingSpinnerHelper from './Modules/loadingSpinnerHelper.js';
 
 /*
  * Applies to all elements with the attribute data-psbits-ajax-url (even those which are inserted dynamically).
@@ -68,7 +69,7 @@ class AjaxContent {
 
     handleClickEvent(event) {
         event.preventDefault();
-        this.sendRequest(event.target);
+        this.sendRequest(event.currentTarget);
     }
 
     // this = trigger element
@@ -139,9 +140,12 @@ class AjaxContent {
         let xhr = new XMLHttpRequest();
 
         xhr.open('GET', element.dataset.psbitsAjaxUrl, true);
+        xhr.addEventListener('load', (event) => {
+            this.handleResponse.call(element, event);
+            LoadingSpinnerHelper.phaseInElements(element);
+        });
         xhr.responseType = 'json';
         xhr.send();
-        xhr.onload = this.handleResponse.bind(element);
     }
 }
 

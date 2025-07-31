@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2025-07-29T11:01:00+01:00"
+        original="messages"
+        product-name="templates"
+        source-language="en"
+        target-language="de">
+        <body>
+            <trans-unit id="contentLoading">
+                <source>Content is loading ...</source>
+                <target>Inhalt wird geladen ...</target>
+            </trans-unit>
+            <trans-unit id="loading">
+                <source>Loading ...</source>
+                <target>Laden ...</target>
+            </trans-unit>
+            <trans-unit id="pageLoading">
+                <source>Page is loading ...</source>
+                <target>Seite wird geladen ...</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,21 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+<psbvh:tag
+    additionalAttributes="{additionalAttributes}"
+    aria-controls="{id}"
+    aria-expanded="false"
+    class="collapsed{f:if(condition: classes, then: ' {classes}')}"
+    data-bs-target="#{id}"
+    data-bs-toggle="collapse"
+    tag="{tag}">
+    {label}
+</psbvh:tag>
+<div
+    class="collapse"
+    id="{id}">
+    <f:format.raw>
+        {content}
+    </f:format.raw>
+</div>
+</html>

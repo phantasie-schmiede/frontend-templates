@@ -2,8 +2,34 @@ import Rebind from './Modules/rebind.js';
 import LoadingSpinnerHelper from './Modules/loadingSpinnerHelper.js';
 
 /*
- * Applies to all elements with the attribute data-psbits-spinner (even those which are inserted dynamically).
- * This element listens to click events and shows a loading spinner while the request is being processed.
+ * Applies to all elements with the attribute data-psbits-spinner-text or data-psbits-spinner-text-hidden (even those
+ * which are inserted dynamically). This element listens to click events and shows a loading spinner inside the clicked
+ * element while the request is being processed.
+ *
+ * Attributes:
+ * data-psbits-spinner-text: Text to be displayed next to the spinner.
+ * data-psbits-spinner-text-hidden: Text that is visually hidden but used for screen readers.
+ *
+ * It is possible to hide content inside the element while the spinner is shown by adding the attribute
+ * data-psbits-spinner-phase-out to the element (all content is hidden) or any of its children. The original content
+ * will be restored after operations of ajaxContent.js or dynamicModal.js are finished.
+ *
+ * Example 1 (spinner will show in front of the button text "Click me"):
+ * <button
+ *     class="btn btn-primary"
+ *     data-psbits-spinner-text-hidden="Loading..."
+ *     type="button">
+ *     Click me
+ * </button>
+ *
+ * Example 2 (The button text will be replaced by the spinner and the text "Loading..."):
+ * <button
+ *    class="btn btn-primary"
+ *    data-psbits-spinner-text="Loading..."
+ *    data-psbits-spinner-phase-out
+ *    type="button">
+ *    Click me
+ * </button>
  */
 class LoadingSpinner {
     constructor() {

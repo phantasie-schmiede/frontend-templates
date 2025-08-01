@@ -33,7 +33,7 @@ import LoadingSpinnerHelper from './Modules/loadingSpinnerHelper.js';
  */
 class LoadingSpinner {
     constructor() {
-        this.defaultText = 'Loading...';
+        this.defaultText = 'Loading ...';
         this.registeredElements = [];
         this.selector = '[data-psbits-spinner-text], [data-psbits-spinner-text-hidden]';
         this.bindEvents();
@@ -93,6 +93,14 @@ class LoadingSpinner {
         }
 
         this.createInlineSpinner(element);
+
+        /*
+         * Submit form if the element is a form submit button. This is necessary because the element is disabled before
+         * the form is submitted.
+         */
+        if ('submit' === element.type && element.form) {
+            element.form.requestSubmit(element);
+        }
     }
 }
 

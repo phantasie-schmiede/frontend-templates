@@ -1,0 +1,65 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+<f:if condition="{vertical}">
+    <f:then>
+        <div class="align-items-start d-flex">
+            <f:render
+                arguments="{additionalAttributes: {aria-orientation: 'vertical'}, tabs: tabs, vertical: vertical}"
+                section="InnerContainer" />
+        </div>
+    </f:then>
+    <f:else>
+        <f:render
+            arguments="{tabs: tabs}"
+            section="InnerContainer" />
+    </f:else>
+</f:if>
+
+<f:section name="InnerContainer">
+    <nav>
+        <psbvh:tag
+            additionalAttributes="{additionalAttributes}"
+            class="nav {f:if(condition: vertical, then: 'flex-column me-3 nav-pills', else: 'nav-tabs')}"
+            role="tablist"
+            tag="div">
+            <f:for
+                as="tab"
+                each="{tabs}"
+                iteration="iteration">
+                <button
+                    aria-controls="{tab.id}-content"
+                    aria-selected="{f:if(condition: iteration.isFirst, then: 'true', else: 'false')}"
+                    class="nav-link{f:if(condition: iteration.isFirst, then: ' active', else: '')}"
+                    data-bs-target="#{tab.id}-content"
+                    data-bs-toggle="{f:if(condition: vertical, then: 'pill', else: 'tab')}"
+                    id="{tab-id}-tab"
+                    role="tab"
+                    type="button">
+                    <f:format.raw>
+                        {tab.label}
+                    </f:format.raw>
+                </button>
+            </f:for>
+        </psbvh:tag>
+    </nav>
+    <div class="tab-content{f:if(condition: vertical, then: ' flex-grow-1', else: '')}">
+        <f:for
+            as="tab"
+            each="{tabs}"
+            iteration="iteration">
+            <div
+                aria-labelledby="{tab.id}-tab"
+                class="fade tab-pane{f:if(condition: iteration.isFirst, then: ' active show', else: '')}"
+                id="{tab.id}-content"
+                role="tabpanel"
+                tabindex="0">
+                <f:format.raw>
+                    {tab.content}
+                </f:format.raw>
+            </div>
+        </f:for>
+    </div>
+</f:section>
+</html>

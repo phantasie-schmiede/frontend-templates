@@ -6,7 +6,7 @@
     <f:then>
         <div class="align-items-start d-flex">
             <f:render
-                arguments="{additionalAttributes: {aria-orientation: 'vertical'}, tabs: tabs, vertical: vertical}"
+                arguments="{additionalAttributes: {aria-orientation: 'vertical'}, tabClass: tabClass, tabs: tabs, vertical: vertical}"
                 section="InnerContainer" />
         </div>
     </f:then>
@@ -21,26 +21,45 @@
     <nav>
         <psbvh:tag
             additionalAttributes="{additionalAttributes}"
-            class="nav {f:if(condition: vertical, then: 'flex-column me-3 nav-pills', else: 'nav-tabs')}"
+            class="nav {f:if(condition: vertical, then: 'border-end flex-column me-2 nav-pills pe-1', else: 'nav-tabs')}"
             role="tablist"
             tag="div">
             <f:for
                 as="tab"
                 each="{tabs}"
                 iteration="iteration">
-                <button
-                    aria-controls="{tab.id}-content"
-                    aria-selected="{f:if(condition: iteration.isFirst, then: 'true', else: 'false')}"
-                    class="nav-link{f:if(condition: iteration.isFirst, then: ' active', else: '')}"
-                    data-bs-target="#{tab.id}-content"
-                    data-bs-toggle="{f:if(condition: vertical, then: 'pill', else: 'tab')}"
+                <f:if condition="{tab.content -> f:format.trim()}">
+                    <f:then>
+                        <f:variable
+                            name="additionalAttributes"
+                            value="" />
+                    </f:then>
+                    <f:else>
+                        <f:variable
+                            name="additionalAttributes"
+                            value="{disabled: 'disabled'}" />
+                    </f:else>
+                </f:if>
+
+                <psbvh:tag
+                    additionalAttributes="{additionalAttributes}"
+                    aria="{
+                        controls: '{tab.id}-content',
+                        selected: '{f:if(condition: iteration.isFirst, then: \'true\', else: \'false\')}'
+                    }"
+                    class="nav-link{f:if(condition: tabClass, then: ' {tabClass}', else: '')}{f:if(condition: iteration.isFirst, then: ' active', else: '')}"
+                    data="{
+                        bs-target: '#{tab.id}-content',
+                        bs-toggle: '{f:if(condition: vertical, then: \'pill\', else: \'tab\')}'
+                    }"
                     id="{tab-id}-tab"
                     role="tab"
+                    tag="button"
                     type="button">
                     <f:format.raw>
                         {tab.label}
                     </f:format.raw>
-                </button>
+                </psbvh:tag>
             </f:for>
         </psbvh:tag>
     </nav>

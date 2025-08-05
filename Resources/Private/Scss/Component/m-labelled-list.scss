@@ -1,0 +1,21 @@
+.m-labelled-list {
+  container-type: inline-size;
+
+  &__item-label {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+
+  &__item-value:not(:last-child) {
+    margin-bottom: .5rem;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @container (min-width: 576px) {
+      grid-template-columns: auto 1fr;
+    }
+  }
+}

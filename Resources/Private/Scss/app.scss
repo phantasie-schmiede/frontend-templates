@@ -2,6 +2,8 @@
 @import "Bootstrap/functions";
 @import "Bootstrap/variables";
 
+@import "Component/m-labelled-list";
+
 .autocomplete-list {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   max-height: 20rem;
@@ -39,6 +41,10 @@ body {
   @include media-breakpoint-up(md) {
     height: 50%;
   }
+}
+
+.nav button[disabled] {
+  opacity: 0.25;
 }
 
 .psbits-clear-icon {

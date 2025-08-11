@@ -50,15 +50,12 @@ class CopyContent {
         let content = sourceElement.innerHTML.replace(/###uid###/g, uniqueId);
         let isAccordionItem = false;
 
-        /*
-         * Attribute data-bs-target has to be "hidden" initially to avoid JS errors within Bootstrap caused by invalid
-         * IDs (...###uid###).
-         */
         if (content.includes('_data-bs-target="')) {
             isAccordionItem = true;
-
-            content = content.replace(/_data-bs-target="/g, 'data-bs-target="');
         }
+
+        // Some data attributes have to be "hidden" initially to avoid JS errors caused by invalid IDs (...###uid###).
+        content = content.replaceAll('_data-', 'data-');
 
         if ('append' === targetMode) {
             targetElement.insertAdjacentHTML('beforeend', content);

@@ -51,6 +51,7 @@ class AjaxContent {
         document.querySelectorAll(this.selector).forEach((element) => {
             if (!this.registeredElements.includes(element)) {
                 target = element.dataset.psbitsAjaxTarget ? element.dataset.psbitsAjaxTarget : element;
+
                 // Set trigger. If data attribute is set, split by comma and trim. If attribute is not set, default to onload if target is self, otherwise click.
                 trigger = element.dataset.psbitsAjaxTrigger ? element.dataset.psbitsAjaxTrigger.split(',').map((item) => item.trim()) : (target === element ? ['onload'] : ['click']);
 

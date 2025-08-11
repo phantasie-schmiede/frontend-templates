@@ -9,6 +9,12 @@ import Rebind from './Modules/rebind.js';
  * The items can be filtered by an attribute value referenced by the optional data-psbits-filter-value attribute. If it
  * is not set or no value is defined for data-psbits-filter-value, the text content of the item will be used.
  *
+ * Items matching the filter will be marked with the attribute data-psbits-filter-match="true", otherwise with
+ * data-psbits-filter-match="false". This allows custom CSS styles to be applied to the filter results.
+ *
+ * The filter will only consider items that are not marked with the attribute data-psbits-autocomplete-selected (see
+ * inputAutocomplete.js). This allows to use the filter in combination with an autocomplete input field.
+ *
  * If data-psbits-filter-prefer-text is set on the input element, the search will consider both the
  * data-psbits-filter-value attribute and the text content of the item. Elements whose text content matches the search
  * value will be shown in front of elements whose filter value attribute matches the search value.
@@ -31,6 +37,9 @@ import Rebind from './Modules/rebind.js';
  *     <span data-psbits-filter-count-number>10</span>
  *     <span data-psbits-filter-count-text="of 10 items found">items in total</span>
  * </div>
+ *
+ * The filter will cache the last search value for 1 hour in localStorage. If the input field is empty, the cached
+ * value will be used if it is still valid.
  */
 class Filter {
     constructor() {
@@ -45,20 +54,6 @@ class Filter {
     bindEvents() {
         document.querySelectorAll(this.selector).forEach((input) => {
             if (!this.registeredElements.includes(input)) {
-                if (input.dataset.psbitsFilterPreferText) {
-                    /*
-                     * Store the original order (if set) of the items to restore it later. This is necessary because the
-                     * filter might change the order of the items.
-                     */
-                    document.querySelectorAll(input.dataset.psbitsFilterTarget).forEach((item) => {
-                        let order = window.getComputedStyle(item).getPropertyValue('order');
-
-                        if (order && order !== '0') {
-                            item.dataset.originalOrder = order;
-                        }
-                    });
-                }
-
                 input.addEventListener('input', this.handleEvent.bind(this));
                 this.registeredElements.push(input);
             }
@@ -79,7 +74,7 @@ class Filter {
     handleEvent(event) {
         const input = event.target;
         const filterValueAttribute = input.dataset.psbitsFilterValue;
-        const items = document.querySelectorAll(input.dataset.psbitsFilterTarget);
+        const items = document.querySelectorAll(input.dataset.psbitsFilterTarget + ':not([data-psbits-autocomplete-selected])');
         const preferText = input.hasAttribute('data-psbits-filter-prefer-text');
         const searchValue = input.value.trim()
         const searchValues = searchValue.toLowerCase().split(' ');
@@ -90,19 +85,15 @@ class Filter {
             let filterValue = null;
             let textContent = item.textContent.toLowerCase();
 
-            if (filterValueAttribute) {
+            if (filterValueAttribute && item.hasAttribute(filterValueAttribute)) {
                 filterValue = item.getAttribute(filterValueAttribute).toLowerCase();
             }
 
             if (preferText) {
-                // Reset the order for each new seach to ensure the items are sorted correctly.
                 item.classList.remove(this.preferTextClass);
 
-                if (item.dataset.originalOrder) {
-                    item.style.order = item.dataset.originalOrder;
-                } else {
-                    item.style.order = '';
-                }
+                // Reset the order for each new seach to ensure the items are sorted correctly.
+                item.style.order = '';
             }
 
             /*
@@ -120,7 +111,7 @@ class Filter {
 
                 if (preferText && ((!negation && textContent.includes(searchValue)) || (negation && !textContent.includes(searchValue)))) {
                     item.classList.add(this.preferTextClass);
-                    item.style.order = '-1'; // Ensure items with matching text are shown first.
+                    item.style.order = -1; // Ensure items with matching text are shown first.
 
                     return true;
                 }
@@ -132,9 +123,9 @@ class Filter {
                 // If no filter value is set, use the text content of the item.
                 return (!negation && textContent.toLowerCase().includes(searchValue)) || (negation && !textContent.toLowerCase().includes(searchValue));
             })) {
-                item.classList.remove('d-none');
+                item.setAttribute('data-psbits-filter-match', 'true');
             } else {
-                item.classList.add('d-none');
+                item.setAttribute('data-psbits-filter-match', 'false');
             }
         });
 
@@ -143,10 +134,10 @@ class Filter {
             const countElement = document.querySelector(input.dataset.psbitsFilterCount);
             const countNumber = countElement.querySelector('[data-psbits-filter-count-number]');
             const countText = countElement.querySelector('[data-psbits-filter-count-text]');
-            const visibleItems = Array.from(items).filter(item => !item.classList.contains('d-none')).length;
+            const matchingItems = Array.from(items).filter(item => 'true' === item.getAttribute('data-psbits-filter-match')).length;
 
             if (countNumber) {
-                countNumber.textContent = visibleItems;
+                countNumber.textContent = matchingItems;
             }
 
             if (countText) {

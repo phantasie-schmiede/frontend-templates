@@ -6,14 +6,15 @@ import Rebind from './Modules/rebind.js';
  * contain multiple search values separated by spaces. The search is case-insensitive.
  * The list of items has to be present in the data-psbits-autocomplete attribute as a JSON array.
  *
- * Example:
+ * Examples:
  * <input type="text" data-psbits-autocomplete='["Item 1", "Item 2", "Item 3"]'>
+ * <input type="text" data-psbits-autocomplete="[&quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;]'>
  *
  * The items can be simple strings (label and value are identical), but also objects.
  *
  * Examples:
  * <input type="text" data-psbits-autocomplete='[{"label": "Item 1", "value": "item1"}, {"label": "Item 2", "value": "item2"}]'>
- * <input type="text" data-psbits-autocomplete='[{"label": "Item 1", "value": "item1", "searchTerms": "item1, item 1"}, {"label": "Item 2", "value": "item2"}]'>
+ * <input type="text" data-psbits-autocomplete='[{"label": "Item 1", "value": "item1", "searchTerms": "item1, item one"}, {"label": "Item 2", "value": "item2"}]'>
  *
  * If the optional searchTerms attribute is present, the search is performed on the search terms instead of the label.
  * An item can be selected by mouse click or by navigating with the arrow keys and selecting with the enter key.
@@ -24,20 +25,25 @@ class InputAutocomplete {
     constructor() {
         this.activeInput = null;
         this.activeItem = null;
+        this.activeItemList = null;
         this.activeSelectionTarget = null;
         this.activeValueTarget = null;
         this.classes = {
-            list: ['autocomplete-list', 'list-group'],
-            listItem: ['autocomplete-list-item', 'list-group-item'],
-            listItemActive: 'autocomplete-list-item__active',
+            listItemActive: 'psbits-autocomplete-list-item__active',
         };
-        this.eventListenerFunctions = {};
-        this.list = null;
+        this.listItemObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList') {
+                    this.bindMouseDownEvent(mutation.target);
+                }
+            });
+        });
         this.registeredElements = [];
         this.selectors = {
             input: 'input[data-psbits-autocomplete-items]',
-            list: '.autocomplete-list',
-            listItem: '.autocomplete-list-item',
+            list: '.psbits-autocomplete-list',
+            listItem: '.psbits-autocomplete-list-item',
+            selected: '[psbits-autocomplete-selected]',
         };
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));
@@ -46,11 +52,20 @@ class InputAutocomplete {
     bindEvents() {
         document.querySelectorAll(this.selectors.input).forEach((input) => {
             if (!this.registeredElements.includes(input)) {
-                input.addEventListener('click', this.handleEvent.bind(this));
-                input.addEventListener('input', this.handleEvent.bind(this));
+                this.setActiveInput(input);
+                this.bindMouseDownEvent(this.activeItemList);
+                this.listItemObserver.observe(this.activeItemList, {
+                    childList: true,
+                });
 
-                if (input.dataset.psbitsAutocompletePreselection) {
-                    this.setPreselection(input);
+                input.addEventListener('blur', () => {
+                    this.reset();
+                });
+                input.addEventListener('focus', this.handleFocus.bind(this));
+                input.addEventListener('keydown', this.handleKeyDown.bind(this));
+
+                if (0 < this.getPreselectedItems().length) {
+                    this.setPreselection();
                 }
 
                 this.registeredElements.push(input);
@@ -58,223 +73,202 @@ class InputAutocomplete {
         });
     }
 
-    setPreselection(input) {
-        const preselection = JSON.parse(input.dataset.psbitsAutocompletePreselection);
-
-        preselection.forEach((item) => {
-            this.activeInput = input;
-            this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbitsAutocompleteSelectionTarget);
-            this.activeSelectionTarget.setAttribute('data-psbits-autocomplete-value-target', this.activeInput.dataset.psbitsAutocompleteValueTarget);
-            this.activeValueTarget = document.querySelector(this.activeInput.dataset.psbitsAutocompleteValueTarget);
-
-            if ('string' === typeof item) {
-                this.selectItem(item);
-            } else {
-                this.selectItem(item.label, item.value);
+    bindMouseDownEvent(activeItemList) {
+        activeItemList.querySelectorAll(this.selectors.listItem).forEach((item) => {
+            if (!item.dataset.attachedMousedownEvent) {
+                item.addEventListener('mousedown', this.handleItemClick.bind(this));
+                item.dataset.attachedMousedownEvent = true;
             }
         });
-
-        this.updateValue(this.activeSelectionTarget, this.activeValueTarget);
-        this.resetAll();
     }
 
-    handleEvent(event) {
-        this.resetAll();
-        this.activeInput = event.target;
+    getPreselectedItems() {
+        return document.querySelectorAll(this.activeInput.dataset.psbitsAutocompleteItems + ' ' + this.selectors.selected);
+    }
 
-        const value = this.activeInput.value;
-
-        if (this.activeInput.dataset.psbitsAutocompleteSelectionTarget && this.activeInput.dataset.psbitsAutocompleteValueTarget) {
-            this.activeSelectionTarget = document.querySelector(this.activeInput.dataset.psbitsAutocompleteSelectionTarget);
-            this.activeSelectionTarget.setAttribute('data-psbits-autocomplete-value-target', this.activeInput.dataset.psbitsAutocompleteValueTarget);
-            this.activeValueTarget = document.querySelector(this.activeInput.dataset.psbitsAutocompleteValueTarget);
-        }
-
-        const items = JSON.parse(this.activeInput.dataset.psbitsAutocompleteItems);
-        const searchValues = value.split(' ');
-        let alreadySelectedItems = [];
-
-        if (this.activeValueTarget && this.activeValueTarget.value) {
-            alreadySelectedItems = JSON.parse(this.activeValueTarget.value);
-        }
-
-        this.list = document.createElement('ul');
-        this.list.classList.add(...this.classes.list);
-        this.list.style.width = `${this.activeInput.offsetWidth}px`;
-
-        items.forEach((item) => {
-            let label, searchTerms, value;
-
-            if ('string' !== typeof item && ('object' !== typeof item || !item.hasOwnProperty('label') || !item.hasOwnProperty('value'))) {
-                return;
-            }
-
-            if ('object' === typeof item && item.hasOwnProperty('label')) {
-                label = item.label;
-                searchTerms = item.searchTerms;
-                value = item.value;
-            } else {
-                label = item;
-            }
-
-            // Check if all search values are included in the label and if item is not already selected.
-            if (!alreadySelectedItems.includes(value.toString()) && searchValues.every((searchValue) => (searchTerms ?? label).toLowerCase().includes(searchValue.toLowerCase()))) {
-                const listItem = document.createElement('li');
-
-                listItem.classList.add(...this.classes.listItem);
-                listItem.textContent = label;
-                listItem.addEventListener('mousedown', this.handleItemClick.bind(this));
-
-                if (searchTerms) {
-                    listItem.setAttribute('data-search-terms', searchTerms);
-                }
-
-                if (value) {
-                    listItem.setAttribute('data-value', value);
-                }
-
-                this.list.appendChild(listItem);
-            }
-        });
-
-        this.activeInput.insertAdjacentElement('afterend', this.list);
-
-        this.eventListenerFunctions = {
-            blur: this.resetAll.bind(this), focus: this.handleEvent.bind(this), keydown: this.handleKeyDown.bind(this),
-        };
-
-        this.activeInput.addEventListener('blur', this.eventListenerFunctions.blur);
-        this.activeInput.addEventListener('focus', this.eventListenerFunctions.focus);
-        this.activeInput.addEventListener('keydown', this.eventListenerFunctions.keydown);
-
+    handleFocus(event) {
+        this.setActiveInput(event.currentTarget);
+        this.activeItemList.classList.remove('d-none');
     }
 
     handleItemClick(event) {
-        this.selectItem(event.target.textContent, event.target.dataset.value);
+        this.selectItem(event.currentTarget);
     }
 
     handleKeyDown(event) {
-        // Select active or first item when enter key is pressed.
+        this.setActiveInput(event.currentTarget);
+
+        // Select active item when enter key is pressed.
         if (13 === event.keyCode) {
             event.preventDefault();
 
-            if (!this.activeItem) {
-                const firstItem = this.list.querySelector(this.selectors.listItem);
-
-                if (firstItem) {
-                    this.setActive(firstItem);
-                }
+            if (this.activeItem) {
+                this.selectItem(this.activeItem);
             }
 
-            this.selectItem(this.activeItem.textContent, this.activeItem.dataset.value);
+            return;
         }
 
         // Close when escape key is pressed.
         if (27 === event.keyCode) {
-            this.resetAll();
+            this.activeInput.blur();
+
+            return;
         }
 
-        // Focus previous or last item when up key is pressed.
-        if (38 === event.keyCode) {
-            if (!this.activeItem || this.activeItem === this.list.querySelector(this.selectors.listItem)) {
-                const lastItem = this.list.querySelector(this.selectors.listItem + ':last-child');
+        // Navigate with keys up and down and take the visible order of the items into account.
+        if (38 === event.keyCode || 40 === event.keyCode) {
+            const visibleItems = Array.from(this.activeItemList.querySelectorAll(this.selectors.listItem)).filter(item => item.checkVisibility());
+            const itemsOrderedByPositionOnScreen = visibleItems
+                .map(el => ({el, rect: el.getBoundingClientRect()}))
+                .sort((a, b) => {
+                    // Sort from top to bottom first, then from left to right.
+                    if (a.rect.top !== b.rect.top) {
+                        return a.rect.top - b.rect.top;
+                    }
 
-                if (lastItem) {
-                    this.setActive(lastItem);
-                }
-            } else {
-                this.setActive(this.activeItem.previousElementSibling);
+                    return a.rect.left - b.rect.left;
+                })
+                .map(item => item.el);
+            let newIndex = null;
+
+            event.preventDefault();
+
+            /*
+             * If no item is currently active or the active element is not visible, select the first visible item if
+             * down arrow is pressed, select the last visible item if up arrow is pressed.
+             */
+            if (38 === event.keyCode && (!this.activeItem || !itemsOrderedByPositionOnScreen.includes(this.activeItem))) {
+                newIndex = itemsOrderedByPositionOnScreen.length - 1;
             }
-        }
-
-        // Focus next or first item when down key is pressed.
-        if (40 === event.keyCode) {
-            if (!this.activeItem || this.activeItem === this.list.querySelector(this.selectors.listItem + ':last-child')) {
-                const firstItem = this.list.querySelector(this.selectors.listItem);
-
-                if (firstItem) {
-                    this.setActive(firstItem);
-                }
-            } else {
-                this.setActive(this.activeItem.nextElementSibling);
+            else if (40 === event.keyCode && (!this.activeItem || !itemsOrderedByPositionOnScreen.includes(this.activeItem))) {
+                newIndex = 0;
             }
+
+            /*
+             * If an item is already active, navigate through the visible items. If the active element is on the top
+             * and the up arrow is pressed, select the last visible item and vice versa.
+             */
+            else {
+                const currentIndex = itemsOrderedByPositionOnScreen.indexOf(this.activeItem);
+
+                if (38 === event.keyCode) {
+                    newIndex = currentIndex > 0 ? currentIndex - 1 : itemsOrderedByPositionOnScreen.length - 1;
+                } else if (40 === event.keyCode) {
+                    newIndex = currentIndex < itemsOrderedByPositionOnScreen.length - 1 ? currentIndex + 1 : 0;
+                }
+            }
+
+            this.setActiveItem(itemsOrderedByPositionOnScreen[newIndex]);
         }
     }
 
-    resetAll() {
-        if (this.activeInput) {
-            this.activeInput.removeEventListener('blur', this.eventListenerFunctions.blur);
-            this.activeInput.removeEventListener('focus', this.eventListenerFunctions.focus);
-            this.activeInput.removeEventListener('keydown', this.eventListenerFunctions.keydown);
-            this.activeInput = null;
-            this.activeSelectionTarget = null;
-            this.activeValueTarget = null;
-        }
+    reset() {
+        this.activeItemList.classList.add('d-none');
+        this.activeInput = null;
+        this.activeSelectionTarget = null;
+        this.activeValueTarget = null;
 
-        this.activeItem = null;
-        this.eventListenerFunctions = {};
-
-        if (this.list) {
-            this.list.parentNode.removeChild(this.list);
-            this.list = null;
+        if (this.activeItem) {
+            this.activeItem.classList.remove(this.classes.listItemActive);
+            this.activeItem = null;
         }
     }
 
-    selectItem(itemLabel, itemValue = null) {
+    restoreUnselectedItemByValue(value) {
+        const item = this.activeItemList.querySelector(this.selectors.listItem + '[data-psbits-autocomplete-value="' + value + '"]');
+
+        if (item) {
+            item.classList.remove('d-none');
+            item.removeAttribute('data-psbits-autocomplete-selected');
+        } else {
+            // If the item is not found, try to find it by text content.
+            const items = this.activeItemList.querySelectorAll(this.selectors.listItem);
+            const textContent = value.toLowerCase();
+
+            items.forEach((item) => {
+                if (item.textContent.toLowerCase() === textContent) {
+                    item.classList.remove('d-none');
+                    item.removeAttribute('psbits-autocomplete-selected');
+
+                    return;
+                }
+            });
+        }
+    }
+
+    selectItem(item) {
         if (this.activeSelectionTarget) {
             const selectedItem = document.createElement('li');
+            const that = this;
 
-            selectedItem.classList.add('d-flex', 'list-group-item');
-            selectedItem.innerHTML = itemLabel + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill ms-auto" viewBox="0 0 16 16">\n' +
+            selectedItem.classList.add('d-flex', 'list-group-item', 'psbits-autocomplete-selected-item');
+            selectedItem.setAttribute('data-origin-input', this.activeInput.id);
+            selectedItem.innerHTML = item.textContent.trim() + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill ms-auto" viewBox="0 0 16 16">\n' +
                 '  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>\n' +
                 '</svg>';
 
-            selectedItem.addEventListener('click', (event) => {
-                const list = event.target.parentNode;
-                const valueTarget = document.querySelector(list.dataset.psbitsAutocompleteValueTarget);
-
-                selectedItem.remove();
-                this.updateValue(list, valueTarget);
-            });
-
-            if (itemValue) {
-                selectedItem.setAttribute('data-value', itemValue);
+            if (item.dataset.psbitsAutocompleteValue) {
+                selectedItem.setAttribute('data-value', item.dataset.psbitsAutocompleteValue);
             }
 
-            this.activeSelectionTarget.appendChild(selectedItem);
-            this.updateValue(this.activeSelectionTarget, this.activeValueTarget);
-            this.activeInput.value = '';
-            this.activeInput.dispatchEvent(new Event('input'));
-        } else {
-            this.activeInput.value = itemLabel;
-        }
+            selectedItem.addEventListener('click', (event) => {
+                const value = (event.currentTarget.dataset.value || event.currentTarget.textContent).trim();
 
-        this.resetAll();
+                that.setActiveInput(document.getElementById(event.currentTarget.dataset.originInput));
+                that.restoreUnselectedItemByValue(value);
+                selectedItem.remove();
+                that.updateValueTarget();
+            });
+
+            item.classList.add('d-none');
+            item.setAttribute('data-psbits-autocomplete-selected', '');
+            this.activeSelectionTarget.appendChild(selectedItem);
+            this.updateValueTarget();
+
+            if (this.activeItem) {
+                this.activeItem.classList.remove(this.classes.listItemActive);
+                this.activeItem = null;
+            }
+        } else {
+            this.activeValueTarget.value = item.dataset.value || item.textContent;
+        }
     }
 
-    setActive(element) {
+    setActiveInput(input) {
+        this.activeInput = input;
+        this.activeItemList = document.querySelector(this.activeInput.dataset.psbitsAutocompleteItems);
+        this.activeSelectionTarget = document.querySelector(input.dataset.psbitsAutocompleteSelectionTarget) || null;
+        this.activeValueTarget = document.querySelector(input.dataset.psbitsAutocompleteValueTarget) || input;
+    }
+
+    setActiveItem(item) {
         if (this.activeItem) {
             this.activeItem.classList.remove(this.classes.listItemActive);
         }
 
-        this.activeItem = element;
+        this.activeItem = item;
         this.activeItem.classList.add(this.classes.listItemActive);
     }
 
-    /*
-     * Target elements have to be passed as arguments because they are not always present (the list is resetted before
-     * you can remove an item)!
-     */
-    updateValue(selectionTarget, valueTarget) {
-        if (selectionTarget && valueTarget) {
-            const values = [];
+    setPreselection() {
+        this.getPreselectedItems().forEach((item) => {
+            this.selectItem(item);
+        });
 
-            selectionTarget.querySelectorAll('li').forEach((element) => {
-                values.push(element.dataset.value ? element.dataset.value : element.textContent);
-            });
-
-            valueTarget.value = JSON.stringify(values);
+        if (this.activeValueTarget) {
+            this.updateValueTarget();
         }
+    }
+
+    updateValueTarget() {
+        const values = [];
+
+        this.activeSelectionTarget.querySelectorAll('li').forEach((element) => {
+            values.push(element.dataset.value || element.textContent);
+        });
+
+        this.activeValueTarget.value = JSON.stringify(values);
     }
 }
 

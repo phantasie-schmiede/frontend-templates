@@ -9,6 +9,10 @@
     identifier="filter"
     src="EXT:templates/Resources/Public/JavaScript/filter.js"
     type="module" />
+<f:asset.script
+    identifier="inputAutocomplete"
+    src="EXT:templates/Resources/Public/JavaScript/inputAutocomplete.js"
+    type="module" />
 
 <f:variable
     name="additionalAttributes"
@@ -59,6 +63,13 @@
         overwrite="1" />
 </f:if>
 
+<f:if condition="{preselection}">
+    <psbvh:variable.arrayMerge
+        arrays="{0: dataAttributes, 1: {psbits-autocomplete-preselection: preselection}}"
+        as="dataAttributes"
+        overwrite="1" />
+</f:if>
+
 <f:if condition="{altValueField}">
     <f:then>
         <psbvh:variable.arrayMerge
@@ -89,7 +100,7 @@
 </label>
 
 <ul
-    class="psbits-autocomplete-list d-none list-group{f:if(condition: listClass, then: ' {listClass}')}"
+    class="d-none list-group psbits-autocomplete-list{f:if(condition: listClass, then: ' {listClass}')}"
     id="{id}-items">
     <f:render
         arguments="{id: id, itemLabelField: itemLabelField, items: items, itemSearchField: itemSearchField, itemValueField: itemValueField, renderedItems: renderedItems}"

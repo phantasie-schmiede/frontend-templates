@@ -96,14 +96,14 @@ class Filter {
                 item.style.order = '';
             }
 
-            /*
-             * If the search value starts with a minus or exclamation mark, the search will be inverted. This means
-             * that the item will be shown if the value does not contain the search value.
-             * Example: Search value: "-foo", Item value: "foobar" => Item will be hidden.
-             */
             if ('' == searchValues || searchValues.every((searchValue) => {
                 let negation = false;
 
+                /*
+                 * If the search value starts with a minus or exclamation mark, the search will be inverted. This means
+                 * that the item will be shown if the value does not contain the search value.
+                 * Example: Search value: "-foo", Item value: "foobar" => Item will be hidden.
+                 */
                 if (searchValue.startsWith('-') || searchValue.startsWith('!')) {
                     negation = true;
                     searchValue = searchValue.substring(1);
@@ -116,7 +116,7 @@ class Filter {
                     return true;
                 }
 
-                if (filterValueAttribute) {
+                if (filterValueAttribute && filterValue) {
                     return (!negation && filterValue.includes(searchValue)) || (negation && !filterValue.includes(searchValue));
                 }
 

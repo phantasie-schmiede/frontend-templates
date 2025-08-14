@@ -1,10 +1,9 @@
 @import "Bootstrap/mixins";
 @import "Bootstrap/functions";
 @import "Bootstrap/variables";
-
 @import "Component/m-labelled-list";
 
-*[data-psbits-filter-match="false"] {
+li[data-psbits-filter-match="false"] {
   display: none !important;
 }
 
@@ -25,7 +24,7 @@
   }
 }
 
-.psbits-autocomplete-selected-item {
+.psbits-autocomplete-list-item__selected {
   @media (hover: hover) {
     cursor: pointer;
 

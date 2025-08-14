@@ -1,25 +1,89 @@
 import Rebind from './Modules/rebind.js';
 
 /*
- * Applies to all input elements with the attribute data-psbits-autocomplete (even those which are inserted dynamically).
- * The elements listen to input events and show a list of items filtered by the input value. The input value can
- * contain multiple search values separated by spaces. The search is case-insensitive.
- * The list of items has to be present in the data-psbits-autocomplete attribute as a JSON array.
+ * Applies to all input elements with the attribute data-psbits-autocomplete-items (even those which are inserted
+ * dynamically). The elements listen to focus and keydown events and show a list of available options. Options can be
+ * selected by clicking on them or by navigating with the arrow keys and confirming with the enter key. Pressing the
+ * escape key closes the list without selecting an item.
  *
- * Examples:
- * <input type="text" data-psbits-autocomplete='["Item 1", "Item 2", "Item 3"]'>
- * <input type="text" data-psbits-autocomplete="[&quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;]'>
+ * Mandatory attributes:
+ * - data-psbits-autocomplete-items: Selector for the container containing the items to show. This container must
+ *   contain items with the class psbits-autocomplete-list-item. (This does not have to be a list.) This component
+ *   only toggles the visibility of the container (via class "d-none"). No special styling is applied. You can use the
+ *   class psbits-autocomplete-list for a predefined style the container.
  *
- * The items can be simple strings (label and value are identical), but also objects.
+ * Optional attributes:
+ * - data-psbits-autocomplete-preselection: The value must be an HTML escaped JSON array of values that should be
+ *   preselected when the items are initialited.
+ * - data-psbits-autocomplete-selection-target: Selector for the container where selected items should be added. The
+ *   target element must be an empty list (ul or ol). This attribute must be set if multiple items can be selected.
+ * - data-psbits-autocomplete-value-target: Selector for the input element where the selected items' values should be
+ *   stored (as JSON array). If this attribute is not set, the value of the input element itself will be used.
  *
- * Examples:
- * <input type="text" data-psbits-autocomplete='[{"label": "Item 1", "value": "item1"}, {"label": "Item 2", "value": "item2"}]'>
- * <input type="text" data-psbits-autocomplete='[{"label": "Item 1", "value": "item1", "searchTerms": "item1, item one"}, {"label": "Item 2", "value": "item2"}]'>
+ * Items:
+ * - must have the class psbits-autocomplete-list-item.
+ * - can have the attribute data-psbits-autocomplete-value which will be used as the value of the item. If this
+ *   attribute is not set, the text content of the item will be used as the value.
  *
- * If the optional searchTerms attribute is present, the search is performed on the search terms instead of the label.
- * An item can be selected by mouse click or by navigating with the arrow keys and selecting with the enter key.
- * The input value is replaced with the selected item.
- * The list is closed with the escape key, when the input loses focus or when the input value is empty.
+ * If only one item should be selected, you should add the class psbits-clear-input to the input element. Without
+ * data-psbits-autocomplete-selection-target the input element will be made readonly after the first item is selected.
+ * The class psbits-clear-input will add a clear icon to the input field which allows to clear the input and remove
+ * the readonly attribute.
+ *
+ * Combinations:
+ * This script uses MutationObserver to bind mouse down events to items that are added dynamically. That way, items
+ * can be loaded dynamically via an AJAX request (see ./ajaxContent.js) to improve performance.
+ * It is also possible to use this script in combination with ./filter.js. In this case, the input element's value is
+ * used to filter the items in the list.
+ *
+ * Full example:
+ * <input
+ *     class="psbits-clear-input"
+ *     data-psbits-autocomplete-items="#myItemList"
+ *     data-psbits-autocomplete-preselection="[&quot;value1&quot;, &quot;value2&quot;]"
+ *     data-psbits-autocomplete-selection-target="#mySelectionList"
+ *     data-psbits-autocomplete-value-target="#myValueInput"
+ *     data-psbits-filter-prefer-text
+ *     data-psbits-filter-target="#myItemList"
+ *     data-psbits-filter-value="data-psbits-autocomplete-value"
+ *     id="myInput"
+ *     type="text">
+ * <ul
+ *     class="d-none list-group psbits-autocomplete-list"
+ *     id="myItemList">
+ *     <li
+ *         class="psbits-autocomplete-list-item"
+ *         data-psbits-autocomplete-value="value1">
+ *         Item 1
+ *     </li>
+ *     <li
+ *         class="psbits-autocomplete-list-item"
+ *         data-psbits-autocomplete-value="value2">
+ *         Item 2
+ *     </li>
+ *     <li
+ *         class="psbits-autocomplete-list-item"
+ *         data-psbits-autocomplete-value="value3">
+ *         Item 3
+ *     </li>
+ * </ul>
+ * <ul
+ *     class="psbits-autocomplete-selection-list"
+ *     id="mySelectionList">
+ *     <!-- Selected items will be added here. -->
+ * </ul>
+ * <input
+ *     id="myValueInput"
+ *     type="hidden"
+ *     value="">
+ *
+ * Alternative AJAX version of #myItemList:
+ * <ul
+ *     class="d-none list-group psbits-autocomplete-list"
+ *     data-psbits-ajax-url="/getAutocompleteItems"
+ *     id="myItemList">
+ *     <!-- Items will be loaded dynamically via AJAX. -->
+ * </ul>
  */
 class InputAutocomplete {
     constructor() {
@@ -28,22 +92,29 @@ class InputAutocomplete {
         this.activeItemList = null;
         this.activeSelectionTarget = null;
         this.activeValueTarget = null;
+        this.attributes = {
+            preselection: 'data-psbits-autocomplete-preselection',
+            selected: 'data-psbits-autocomplete-selected',
+        }
         this.classes = {
+            listItem: 'psbits-autocomplete-list-item',
             listItemActive: 'psbits-autocomplete-list-item__active',
+            listItemSelected: 'psbits-autocomplete-list-item__selected',
         };
         this.listItemObserver = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.type === 'childList') {
-                    this.bindMouseDownEvent(mutation.target);
+                    this.setActiveInput(document.getElementById(mutation.target.getAttribute('data-psbits-autocomplete-related-input')));
+                    this.bindMouseDownEvent();
+                    this.setPreselection();
                 }
             });
         });
         this.registeredElements = [];
         this.selectors = {
             input: 'input[data-psbits-autocomplete-items]',
-            list: '.psbits-autocomplete-list',
-            listItem: '.psbits-autocomplete-list-item',
-            selected: '[psbits-autocomplete-selected]',
+            listItem: '.' + this.classes.listItem,
+            selected: '[' + this.attributes.selected + ']',
         };
         this.bindEvents();
         Rebind.registerBindFunction(this.bindEvents.bind(this));
@@ -53,7 +124,14 @@ class InputAutocomplete {
         document.querySelectorAll(this.selectors.input).forEach((input) => {
             if (!this.registeredElements.includes(input)) {
                 this.setActiveInput(input);
-                this.bindMouseDownEvent(this.activeItemList);
+                this.bindMouseDownEvent();
+                this.setPreselection();
+
+                /*
+                 * It's necessary to add a reference to the input element in the activeItemList so that the
+                 * MutationObserver can access it.
+                 */
+                this.activeItemList.setAttribute('data-psbits-autocomplete-related-input', input.id);
                 this.listItemObserver.observe(this.activeItemList, {
                     childList: true,
                 });
@@ -64,17 +142,13 @@ class InputAutocomplete {
                 input.addEventListener('focus', this.handleFocus.bind(this));
                 input.addEventListener('keydown', this.handleKeyDown.bind(this));
 
-                if (0 < this.getPreselectedItems().length) {
-                    this.setPreselection();
-                }
-
                 this.registeredElements.push(input);
             }
         });
     }
 
-    bindMouseDownEvent(activeItemList) {
-        activeItemList.querySelectorAll(this.selectors.listItem).forEach((item) => {
+    bindMouseDownEvent() {
+        this.activeItemList.querySelectorAll(this.selectors.listItem).forEach((item) => {
             if (!item.dataset.attachedMousedownEvent) {
                 item.addEventListener('mousedown', this.handleItemClick.bind(this));
                 item.dataset.attachedMousedownEvent = true;
@@ -82,8 +156,24 @@ class InputAutocomplete {
         });
     }
 
-    getPreselectedItems() {
-        return document.querySelectorAll(this.activeInput.dataset.psbitsAutocompleteItems + ' ' + this.selectors.selected);
+    getItemByValue(value) {
+        const item = this.activeItemList.querySelector(this.selectors.listItem + '[data-psbits-autocomplete-value="' + value + '"]');
+
+        if (item) {
+            return item;
+        } else {
+            // If the item is not found, try to find it by text content.
+            const items = this.activeItemList.querySelectorAll(this.selectors.listItem);
+            const textContent = value.toString().toLowerCase();
+
+            items.forEach((item) => {
+                if (item.textContent.toLowerCase() === textContent) {
+                    return item;
+                }
+            });
+        }
+
+        return null;
     }
 
     handleFocus(event) {
@@ -140,8 +230,7 @@ class InputAutocomplete {
              */
             if (38 === event.keyCode && (!this.activeItem || !itemsOrderedByPositionOnScreen.includes(this.activeItem))) {
                 newIndex = itemsOrderedByPositionOnScreen.length - 1;
-            }
-            else if (40 === event.keyCode && (!this.activeItem || !itemsOrderedByPositionOnScreen.includes(this.activeItem))) {
+            } else if (40 === event.keyCode && (!this.activeItem || !itemsOrderedByPositionOnScreen.includes(this.activeItem))) {
                 newIndex = 0;
             }
 
@@ -176,24 +265,11 @@ class InputAutocomplete {
     }
 
     restoreUnselectedItemByValue(value) {
-        const item = this.activeItemList.querySelector(this.selectors.listItem + '[data-psbits-autocomplete-value="' + value + '"]');
+        const item = this.getItemByValue(value);
 
         if (item) {
             item.classList.remove('d-none');
-            item.removeAttribute('data-psbits-autocomplete-selected');
-        } else {
-            // If the item is not found, try to find it by text content.
-            const items = this.activeItemList.querySelectorAll(this.selectors.listItem);
-            const textContent = value.toLowerCase();
-
-            items.forEach((item) => {
-                if (item.textContent.toLowerCase() === textContent) {
-                    item.classList.remove('d-none');
-                    item.removeAttribute('psbits-autocomplete-selected');
-
-                    return;
-                }
-            });
+            item.removeAttribute(this.attributes.seleted);
         }
     }
 
@@ -202,7 +278,7 @@ class InputAutocomplete {
             const selectedItem = document.createElement('li');
             const that = this;
 
-            selectedItem.classList.add('d-flex', 'list-group-item', 'psbits-autocomplete-selected-item');
+            selectedItem.classList.add('d-flex', 'list-group-item', this.classes.listItemSelected);
             selectedItem.setAttribute('data-origin-input', this.activeInput.id);
             selectedItem.innerHTML = item.textContent.trim() + '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill ms-auto" viewBox="0 0 16 16">\n' +
                 '  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>\n' +
@@ -222,7 +298,7 @@ class InputAutocomplete {
             });
 
             item.classList.add('d-none');
-            item.setAttribute('data-psbits-autocomplete-selected', '');
+            item.setAttribute(this.attributes.seleted, '');
             this.activeSelectionTarget.appendChild(selectedItem);
             this.updateValueTarget();
 
@@ -231,7 +307,13 @@ class InputAutocomplete {
                 this.activeItem = null;
             }
         } else {
-            this.activeValueTarget.value = item.dataset.value || item.textContent;
+            this.activeValueTarget.value = item.dataset.psbitsAutocompleteValue || item.textContent;
+
+            if (this.activeInput !== this.activeValueTarget) {
+                this.activeInput.value = item.textContent.trim();
+            }
+
+            this.activeInput.setAttribute('readonly', 'readonly');
         }
     }
 
@@ -252,13 +334,37 @@ class InputAutocomplete {
     }
 
     setPreselection() {
-        this.getPreselectedItems().forEach((item) => {
-            this.selectItem(item);
+        const preselection = this.activeInput.getAttribute(this.attributes.preselection);
+
+        if (!preselection) {
+            return;
+        }
+
+        const preselectedValues = JSON.parse(preselection);
+        let item;
+        let unavailableItems = [];
+
+        if (!Array.isArray(preselectedValues)) {
+            console.warn('Preselection must be an array of values.');
+
+            return;
+        }
+
+        preselectedValues.forEach((value) => {
+            item = this.getItemByValue(value);
+
+            if (item) {
+                this.selectItem(item);
+            } else {
+                unavailableItems.push(value);
+            }
         });
 
-        if (this.activeValueTarget) {
-            this.updateValueTarget();
-        }
+        /*
+         * Update the preselection attribute with the unavailable items. They might be available later, e.g. when the
+         * the items are loaded dynamically via AJAX.
+         */
+        this.activeInput.setAttribute(this.attributes.preselection, JSON.stringify(unavailableItems));
     }
 
     updateValueTarget() {

@@ -21,6 +21,12 @@
     name="dataAttributes"
     value="{}" />
 
+<f:if condition="!{value}">
+    <f:variable
+        name="value"
+        value="{preselection}" />
+</f:if>
+
 <f:if condition="{postponed}">
     <f:then>
         <psbvh:variable.arrayMerge

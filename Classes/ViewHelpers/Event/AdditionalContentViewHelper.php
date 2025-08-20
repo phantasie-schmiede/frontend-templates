@@ -8,7 +8,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers;
+namespace PSBits\Templates\ViewHelpers\Event;
 
 use InvalidArgumentException;
 use PSBits\Templates\Event\AdditionalContentEventInterface;
@@ -19,7 +19,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * Class AdditionalContentViewHelper
  *
- * @package PSBits\Templates\ViewHelpers
+ * @package PSBits\Templates\ViewHelpers\Event
  */
 class AdditionalContentViewHelper extends AbstractViewHelper
 {

@@ -1,7 +1,10 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
+    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
+    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+<foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/Modal/dialog.xlf" />
+
 <f:variable
     name="modalClasses"
     value="modal-dialog" />
@@ -12,40 +15,65 @@
         value="{modalClasses} {classes}" />
 </f:if>
 
-<f:if condition="!{titleClasses}">
-    <f:variable
-        name="titleClasses"
-        value="fs-5" />
+<f:if condition="{title}">
+    <f:then>
+        <f:if condition="!{titleClasses}">
+            <f:variable
+                name="titleClasses"
+                value="fs-5" />
+        </f:if>
+
+        <f:if condition="!{titleId}">
+            <f:variable
+                name="titleId"
+                value="{id}-title" />
+        </f:if>
+
+        <f:variable
+            name="ariaAttributes"
+            value="{labelledby: titleId}" />
+    </f:then>
+    <f:else>
+        <f:variable
+            name="ariaAttributes"
+            value="{label: label}" />
+    </f:else>
 </f:if>
 
-<f:if condition="!{titleId}">
-    <f:variable
-        name="titleId"
-        value="{id}-title" />
-</f:if>
-
-<div
-    aria-labelledby="{titleId}"
+<psbvh:tag
+    aria="{ariaAttributes}"
     aria-modal="true"
     class="fade modal"
     id="{id}"
     role="dialog"
-    tabindex="-1">
+    tabindex="-1"
+    tag="div">
     <div class="{modalClasses}">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1
-                    class="modal-title {titleClasses}"
-                    id="{titleId}">
-                    {title}
-                </h1>
-                <button
-                    aria-label="Close"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    type="button"></button>
-            </div>
-            <div class="modal-body">
+            <f:if condition="{title}">
+                <div class="modal-header">
+                    <h1
+                        class="modal-title {titleClasses}"
+                        id="{titleId}">
+                        {title}
+                    </h1>
+                    <button
+                        aria-label="{foundation:translate(id: 'dialog:close')}"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        type="button"></button>
+                </div>
+            </f:if>
+
+            <div class="modal-body{f:if(condition: '!{title}', then: ' p-1')}">
+                <f:if condition="!{title}">
+                    <button
+                        aria-label="{foundation:translate(id: 'dialog:close')}"
+                        class="btn-close end-0 p-3 position-absolute top-0 z-2"
+                        data-bs-dismiss="modal"
+                        type="button"></button>
+                </f:if>
+
                 <f:format.raw>{body}</f:format.raw>
             </div>
 
@@ -56,5 +84,5 @@
             </f:if>
         </div>
     </div>
-</div>
+</psbvh:tag>
 </html>

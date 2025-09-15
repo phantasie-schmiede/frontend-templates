@@ -74,6 +74,13 @@ class LoadingSpinner {
 
     handleClickEvent(event) {
         const element = event.currentTarget;
+        const isSubmitButton = 'button' === element.tagName.toLowerCase() && 'submit' === element.type && element.form;
+
+        // Check if the element is inside a form and form validation is successful.
+        if (isSubmitButton && !element.form.checkValidity()) {
+            // If the form is invalid, let the browser show the native error messages.
+            return;
+        }
 
         // Disable the element to prevent multiple clicks.
         if ('button' === element.tagName.toLowerCase()) {
@@ -98,7 +105,7 @@ class LoadingSpinner {
          * Submit form if the element is a form submit button. This is necessary because the element is disabled before
          * the form is submitted.
          */
-        if ('submit' === element.type && element.form) {
+        if (isSubmitButton) {
             element.form.requestSubmit(element);
         }
     }

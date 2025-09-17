@@ -27,7 +27,7 @@
 	"require": {
 		"ext-intl": "*",
 		"php": "^8.3",
-		"psbits/foundation": "^3.0",
+		"psbits/foundation": "@dev",
 		"symfony/intl": "^7.1",
         "typo3/cms-core": "^13.4",
         "typo3/cms-fluid-styled-content": "^13",

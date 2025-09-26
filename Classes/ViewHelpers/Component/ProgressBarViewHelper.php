@@ -8,16 +8,21 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers\Bootstrap;
+namespace PSBits\Templates\ViewHelpers\Component;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use InvalidArgumentException;
+use JsonException;
+use PSBits\Foundation\Utility\ContextUtility;
+use PSBits\Templates\Data\ExtensionInformation;
+use PSBits\Templates\Service\ViewService;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Class ProgressBarViewHelper
  *
- * @package PSBits\Templates\ViewHelpers\Bootstrap
+ * @package PSBits\Templates\ViewHelpers\Component
  */
 class ProgressBarViewHelper extends AbstractViewHelper
 {
@@ -26,17 +31,25 @@ class ProgressBarViewHelper extends AbstractViewHelper
      */
     protected $escapeOutput = false;
 
+    public function __construct(
+        protected readonly ExtensionInformation $extensionInformation,
+        protected readonly ViewService          $viewService,
+    ) {
+    }
+
     public function initializeArguments(): void
     {
         parent::initializeArguments();
-        $this->registerArgument('classes', 'string', 'CSS classes');
+        $this->registerArgument('classes', 'string', 'CSS classes', false, '');
         $this->registerArgument('maxValue', 'int', 'maximum value', false, 100);
         $this->registerArgument('minValue', 'int', 'minimum value', false, 0);
         $this->registerArgument('value', 'int', 'current value', true);
     }
 
     /**
-     * @return string
+     * @throws ContainerExceptionInterface
+     * @throws JsonException
+     * @throws NotFoundExceptionInterface
      */
     public function render(): string
     {
@@ -45,16 +58,20 @@ class ProgressBarViewHelper extends AbstractViewHelper
         $minValue = $this->arguments['minValue'];
         $value = $this->arguments['value'];
 
-        $percentage = 100 / ($maxValue - $minValue) * ($value - $minValue);
-        $percentage = max(1, round($percentage));
+        if ($maxValue <= $minValue) {
+            throw new InvalidArgumentException(__CLASS__ . ': maxValue must be higher than minValue!', 1758896064);
+        }
 
-        if (null === $classes) {
+        $percentage = 100 / ($maxValue - $minValue) * ($value - $minValue);
+        $percentage = max(1, round($percentage, 0, PHP_ROUND_HALF_UP));
+
+        if ('' === $classes) {
             $classes = 'bg-';
 
             $classes .= match ($percentage) {
                 74 < $percentage => 'success',
                 24 < $percentage => 'warning',
-                default => 'danger',
+                default          => 'danger',
             };
 
             if (100 > $percentage) {
@@ -62,12 +79,12 @@ class ProgressBarViewHelper extends AbstractViewHelper
             }
         }
 
-        $standaloneView = GeneralUtility::makeInstance(StandaloneView::class);
-        $templatePath = GeneralUtility::getFileAbsFileName('EXT:templates/Resources/Private/Templates/ViewHelpers/Bootstrap/ProgressBar.html');
-
-        $standaloneView->setFormat('html');
-        $standaloneView->setTemplatePathAndFilename($templatePath);
-        $standaloneView->assignMultiple([
+        $view = $this->viewService->createStandaloneView(
+            $this->extensionInformation,
+            ContextUtility::getRequest(),
+            'ViewHelpers/Component/ProgressBar'
+        );
+        $view->assignMultiple([
             'classes'    => $classes,
             'content'    => $this->renderChildren(),
             'maxValue'   => $maxValue,
@@ -76,6 +93,6 @@ class ProgressBarViewHelper extends AbstractViewHelper
             'value'      => $value,
         ]);
 
-        return $standaloneView->render();
+        return $view->render();
     }
 }

@@ -61,7 +61,7 @@ class LoadingSpinner {
         spinnerText.setAttribute('role', 'status');
 
         if (element.dataset.psbitsSpinnerText) {
-            spinnerElement.classList.add('me-1');
+            spinnerElement.classList.add('me-2');
             spinnerText.textContent = element.dataset.psbitsSpinnerText;
         } else {
             spinnerText.className = 'visually-hidden';

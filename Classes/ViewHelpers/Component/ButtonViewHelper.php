@@ -41,7 +41,9 @@ class ButtonViewHelper extends AbstractViewHelper
     public function initializeArguments(): void
     {
         parent::initializeArguments();
-        $this->registerArgument('classes', 'mixed', 'CSS classes as string or array');
+        $this->registerArgument('additionalAttributes', 'array', 'attributes added to the tag', false, []);
+        $this->registerArgument('additionalClasses', 'mixed', 'additional CSS classes as string or array');
+        $this->registerArgument('data', 'array', 'data attributes added to the tag', false, []);
         $this->registerArgument('href', 'string', 'href attribute if tag is set to "a"');
         $this->registerArgument('iconIdentifier', 'string', 'optional icon prepending the label');
         $this->registerArgument('label', 'string', 'the button label');
@@ -58,9 +60,9 @@ class ButtonViewHelper extends AbstractViewHelper
      */
     public function render(): string
     {
-        $additionalAttributes = [];
-        $dataAttributes = [];
-        $classes = $this->arguments['classes'];
+        $additionalAttributes = $this->arguments['additionalAttributes'];
+        $dataAttributes = $this->arguments['data'];
+        $classes = $this->arguments['additionalClasses'];
 
         $this->processAdditionalAttributes($additionalAttributes);
         $this->processDataAttributes($dataAttributes);
@@ -69,7 +71,7 @@ class ButtonViewHelper extends AbstractViewHelper
         $view = $this->viewService->createStandaloneView(
             $this->extensionInformation,
             ContextUtility::getRequest(),
-            'ViewHelpers/Bootstrap/ProgressBar'
+            'ViewHelpers/Component/Button'
         );
         $view->assignMultiple([
             'additionalAttributes' => $additionalAttributes ?? [],
@@ -78,6 +80,7 @@ class ButtonViewHelper extends AbstractViewHelper
             'href'                 => $this->arguments['href'],
             'iconIdentifier'       => $this->arguments['iconIdentifier'],
             'label'                => $this->arguments['label'],
+            'showSpinner'          => !empty($this->arguments['spinnerText']) || !empty($this->arguments['spinnerTextHidden']),
             'tag'                  => $this->arguments['tag'],
             'type'                 => $this->arguments['type'],
         ]);
@@ -98,8 +101,8 @@ class ButtonViewHelper extends AbstractViewHelper
 
     private function processClasses(array|string &$classes): void
     {
-        if (is_string($this->arguments['classes'])) {
-            $classes = GeneralUtility::trimExplode(' ', $this->arguments['classes'], true);
+        if (is_string($classes)) {
+            $classes = GeneralUtility::trimExplode(' ', $classes, true);
         }
 
         $classes[] = 'btn';
@@ -120,6 +123,10 @@ class ButtonViewHelper extends AbstractViewHelper
             $dataAttributes['psbits-spinner-text'] = $this->arguments['spinnerText'];
         } elseif (!empty($this->arguments['spinnerTextHidden'])) {
             $dataAttributes['psbits-spinner-text-hidden'] = $this->arguments['spinnerTextHidden'];
+
+            if (!empty($this->arguments['iconIdentifier'])) {
+                $dataAttributes['psbits-spinner-phase-out'] = '';
+            }
         }
     }
 }

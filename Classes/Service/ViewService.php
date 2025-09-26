@@ -13,6 +13,7 @@ namespace PSBits\Templates\Service;
 use JsonException;
 use PSBits\Foundation\Data\ExtensionInformationInterface;
 use PSBits\Foundation\Service\TypoScriptProviderService;
+use PSBits\Foundation\Utility\Configuration\FilePathUtility;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -50,13 +51,20 @@ readonly class ViewService
 
         $viewSettings = $this->getViewSettings($extensionInformation);
         $viewFactoryData = new ViewFactoryData(
-            partialRootPaths       : $viewSettings['partialRootPaths'] ?? [],
-            layoutRootPaths        : $viewSettings['layoutRootPaths'] ?? [],
-            templatePathAndFilename: ($viewSettings['templateRootPaths'] ?? []) . $templateIdentifier,
-            request                : $request,
+            partialRootPaths: $viewSettings['partialRootPaths'] ?? [],
+            layoutRootPaths: $viewSettings['layoutRootPaths'] ?? [],
+            templatePathAndFilename: ($viewSettings['templateRootPaths'][0] ?? $this->getDefaultTemplatePath(
+                $extensionInformation
+            )) . $templateIdentifier,
+            request: $request,
         );
 
         return $this->viewFactory->create($viewFactoryData);
+    }
+
+    private function getDefaultTemplatePath(ExtensionInformationInterface $extensionInformation): string
+    {
+        return FilePathUtility::getPrivateResourcePath($extensionInformation) . 'Templates/';
     }
 
     /**
@@ -66,10 +74,29 @@ readonly class ViewService
      */
     private function getViewSettings(ExtensionInformationInterface $extensionInformation): array
     {
-        return $this->typoScriptProviderService->get(
+        $viewSettings = $this->typoScriptProviderService->get(
             'view',
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
             $extensionInformation->getExtensionName(),
         );
+        $viewSettings['layoutRootPaths'] ??= [];
+        $viewSettings['partialRootPaths'] ??= [];
+        $viewSettings['templateRootPaths'] ??= [];
+
+        // Add default paths as fallback.
+        array_unshift(
+            $viewSettings['layoutRootPaths'],
+            FilePathUtility::getPrivateResourcePath($extensionInformation) . 'Layouts/'
+        );
+        array_unshift(
+            $viewSettings['partialRootPaths'],
+            FilePathUtility::getPrivateResourcePath($extensionInformation) . 'Partials/'
+        );
+        array_unshift(
+            $viewSettings['templateRootPaths'],
+            FilePathUtility::getPrivateResourcePath($extensionInformation) . 'Templates/'
+        );
+
+        return $viewSettings;
     }
 }

@@ -13,6 +13,7 @@ namespace PSBits\Templates\ViewHelpers;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconProvider\AbstractSvgIconProvider;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use function is_array;
 
 /**
  * Class SvgIconViewHelper
@@ -31,6 +32,11 @@ class SvgIconViewHelper extends AbstractViewHelper
     public function initializeArguments(): void
     {
         parent::initializeArguments();
+        $this->registerArgument(
+            'additionalClasses',
+            'mixed',
+            'additional CSS classes as string or array'
+        );
         $this->registerArgument(
             'height',
             'int',
@@ -71,6 +77,18 @@ class SvgIconViewHelper extends AbstractViewHelper
                     'replacement' => $attributeName . '="' . $this->arguments[$attributeName] . '"',
                 ];
             }
+        }
+
+        // Insert additional classes and preserve existing ones.
+        if (null !== $this->arguments['additionalClasses']) {
+            $classes = is_array($this->arguments['additionalClasses']) ? implode(
+                ' ',
+                $this->arguments['additionalClasses']
+            ) : $this->arguments['additionalClasses'];
+            $replacements[] = [
+                'pattern'     => '/<svg([^>]*)class="([^"]*)"/',
+                'replacement' => '<svg$1class="$2 ' . $classes . '"',
+            ];
         }
 
         return preg_replace(

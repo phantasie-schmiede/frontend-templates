@@ -79,8 +79,15 @@ class SvgIconViewHelper extends AbstractViewHelper
             }
         }
 
-        // Insert additional classes and preserve existing ones.
+        // Insert additional classes and preserve existing ones. Add class attribute if not present yet.
         if (null !== $this->arguments['additionalClasses']) {
+            if (!str_contains($inlineSvg, 'class="')) {
+                $replacements[] = [
+                    'pattern'     => '/<svg/',
+                    'replacement' => '<svg class=""',
+                ];
+            }
+
             $classes = is_array($this->arguments['additionalClasses']) ? implode(
                 ' ',
                 $this->arguments['additionalClasses']

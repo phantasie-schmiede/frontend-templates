@@ -4,18 +4,16 @@
 <psbvh:tag
     additionalAttributes="{additionalAttributes}"
     aria-controls="{id}"
-    aria-expanded="false"
-    class="collapsed{f:if(condition: classes, then: ' {classes}')}"
+    aria-expanded="{f:if(condition: initiallyOpen, then: 'true', else: 'false')}"
+    class="{f:if(condition: initiallyOpen, then: classes, else: '{classes} collapsed')}"
     data-bs-target="#{id}"
     data-bs-toggle="collapse"
     tag="{tag}">
-    {label}
+    {label -> f:format.raw()}
 </psbvh:tag>
 <div
-    class="collapse"
+    class="collapse{f:if(condition: initiallyOpen, then: ' show')}"
     id="{id}">
-    <f:format.raw>
-        {content}
-    </f:format.raw>
+    {content -> f:format.raw()}
 </div>
 </html>

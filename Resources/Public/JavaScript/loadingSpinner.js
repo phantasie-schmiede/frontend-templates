@@ -109,8 +109,21 @@ class LoadingSpinner {
             element.form.requestSubmit(element);
         }
     }
+
+    resetSpinners() {
+        this.registeredElements.forEach((element) => {
+            LoadingSpinnerHelper.phaseInElements(element);
+        });
+    }
 }
 
+let loadingSpinner;
+
 document.addEventListener('DOMContentLoaded', () => {
-    new LoadingSpinner();
+    loadingSpinner = new LoadingSpinner();
+});
+
+// Reset spinners when navigating back to a page (e.g. using the back button of the browser).
+window.addEventListener("pageshow", () => {
+    loadingSpinner.resetSpinners();
 });

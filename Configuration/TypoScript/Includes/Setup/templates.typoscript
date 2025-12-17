@@ -1,6 +1,4 @@
 plugin.tx_templates {
-    # Import settings from benjaminkott/#bootstrap_package
-    settings < page.10.settings
     settings {
         logos {
             default {
@@ -15,10 +13,6 @@ plugin.tx_templates {
 
         navigation {
             footer = {$plugin.tx_templates.settings.navigation.footer}
-        }
-
-        templates {
-            header = {$plugin.tx_templates.settings.templates.header}
         }
     }
 

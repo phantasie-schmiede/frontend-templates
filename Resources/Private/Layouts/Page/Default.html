@@ -3,20 +3,27 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
 <f:variable
+    name="containerClass"
+    value="container" />
+<f:variable
     name="siteConfiguration"
     value="{foundation:globalVariables.siteConfiguration(path: 'configuration')}" />
 
 <f:if condition="{data.tx_templates_bs_container_type}">
     <f:variable
-        name="containerType"
-        value="-{data.tx_templates_bs_container_type}" />
+        name="containerClass"
+        value="container-{data.tx_templates_bs_container_type}" />
 </f:if>
 
-<div class="container{containerType}">
-    <f:render
-        arguments="{mainNavigation: mainNavigation, siteConfiguration: siteConfiguration}"
-        partial="Header/{settings.templates.header}" />
+<f:render
+    arguments="{
+        containerClass: containerClass,
+        mainNavigation: mainNavigation,
+        siteConfiguration: siteConfiguration
+    }"
+    partial="Header" />
 
+<div class="{containerClass}">
     <f:render
         arguments="{queueIdentifier: 'foundation.general'}"
         partial="../FlashMessages" />

@@ -36,10 +36,6 @@ li[data-psbits-filter-match="false"] {
 }
 
 body {
-  &:not(.bl-pagets__blank, .bl-pagets__grid-2x2) {
-    padding-top: 5rem;
-  }
-
   &.bl-pagets__grid-2x2 {
     height: 100vh;
   }

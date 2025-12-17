@@ -27,11 +27,6 @@ plugin.tx_templates {
         # cat=plugin.tx_templates/navigation; type=int+; label=LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.navigation.footer
         footer =
       }
-
-      templates {
-        # cat=plugin.tx_templates/templates; type=options[LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.templates.header.centered=Centered, LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.templates.header.leftAligned=LeftAligned]; label= LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.templates.header
-        header = Centered
-      }
     }
 
     view {

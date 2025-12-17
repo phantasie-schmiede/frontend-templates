@@ -5,15 +5,17 @@
 <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Page/header.xlf" />
 
 <header>
-    <nav class="bg-body-tertiary fixed-top navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <f:link.page
-                class="navbar-brand"
-                pageUid="{siteConfiguration.rootPageId}">
-                <f:render
-                    arguments="{siteConfiguration: siteConfiguration}"
-                    partial="Header/Components/Logo" />
-            </f:link.page>
+    <nav class="bg-body-tertiary navbar navbar-expand-lg">
+        <div class="{containerClass}">
+            <f:if condition="{settings.logos.default.file}">
+                <f:link.page
+                    class="navbar-brand"
+                    pageUid="{siteConfiguration.rootPageId}">
+                    <f:render
+                        arguments="{siteConfiguration: siteConfiguration}"
+                        partial="Header/Logo" />
+                </f:link.page>
+            </f:if>
 
             <button
                 aria-controls="offcanvasNavbar"
@@ -40,8 +42,8 @@
                         data-bs-dismiss="offcanvas"
                         type="button"></button>
                 </div>
-                <div class="offcanvas-body">
-                    <ul class="flex-grow-1 navbar-nav text-end">
+                <div class="justify-content-center offcanvas-body">
+                    <ul class="navbar-nav text-end">
                         <f:render
                             arguments="{mainNavigation: mainNavigation}"
                             partial="Navigation/Main" />

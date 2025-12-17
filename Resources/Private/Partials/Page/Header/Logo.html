@@ -1,0 +1,17 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:image
+    alt="{settings.logos.default.alt}"
+    height="{settings.logos.default.height}"
+    src="{settings.logos.default.file}"
+    width="{settings.logos.default.width}" />
+
+<f:if condition="{settings.logos.default.showWebsiteTitle}">
+    <span
+        class="website-title"
+        style="display:inline-block; max-width:50%; overflow-wrap:break-word;">
+        {siteConfiguration.websiteTitle}
+    </span>
+</f:if>
+</html>

@@ -19,6 +19,10 @@
 				<source>Logout</source>
 				<target>Abmelden</target>
 			</trans-unit>
+			<trans-unit id="menu">
+				<source>Menu</source>
+				<target>Menü</target>
+			</trans-unit>
 			<trans-unit id="password">
 				<source>Password</source>
 				<target>Passwort</target>

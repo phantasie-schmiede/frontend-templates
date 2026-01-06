@@ -1,6 +1,7 @@
 @import "Bootstrap/mixins";
 @import "Bootstrap/functions";
 @import "Bootstrap/variables";
+@import "Component/card";
 @import "Component/m-labelled-list";
 
 li[data-psbits-filter-match="false"] {

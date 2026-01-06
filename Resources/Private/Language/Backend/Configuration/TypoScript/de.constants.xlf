@@ -8,6 +8,10 @@
         target-language="de">
         <header />
         <body>
+            <trans-unit id="settings.alternativeWebsiteTitle">
+                <source>Alternative website title (in header)</source>
+                <target>Alternativer Website-Titel (im Header)</target>
+            </trans-unit>
             <trans-unit id="settings.logos.default.file">
                 <source>Logo file</source>
                 <target>Logo-Datei</target>

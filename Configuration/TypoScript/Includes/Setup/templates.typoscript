@@ -1,5 +1,7 @@
 plugin.tx_templates {
     settings {
+        alternativeWebsiteTitle = {$plugin.tx_templates.settings.alternativeWebsiteTitle}
+
         logos {
             default {
                 file = {$plugin.tx_templates.settings.logos.default.file}

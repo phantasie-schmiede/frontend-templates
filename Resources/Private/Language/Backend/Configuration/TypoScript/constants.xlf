@@ -7,6 +7,9 @@
         source-language="en">
         <header />
         <body>
+            <trans-unit id="settings.alternativeWebsiteTitle">
+                <source>Alternative website title (in header)</source>
+            </trans-unit>
             <trans-unit id="settings.logos.default.file">
                 <source>Logo file</source>
             </trans-unit>

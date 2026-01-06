@@ -7,6 +7,9 @@ plugin.tx_templates {
     publicResourcePath = EXT:templates/Resources/Public/
 
     settings {
+      # cat=plugin.tx_templates/templates; type=string; label=LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.alternativeWebsiteTitle
+      alternativeWebsiteTitle =
+
       logos {
         default {
           # cat=plugin.tx_templates/logos; type=string; label=LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.file

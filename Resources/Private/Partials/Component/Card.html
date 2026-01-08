@@ -17,9 +17,13 @@
                     maxHeight="160"
                     maxWidth="160" />
             </div>
+
+            <f:variable
+                name="cardBodyColumnClasses"
+                value="col-8 col-sm-12" />
         </f:if>
 
-        <div class="col-8 col-sm-12">
+        <div class="{cardBodyColumnClasses -> f:or(alternative: 'col-12')}">
             <div class="card-body d-flex flex-column h-100">
                 <f:if condition="{title}">
                     <viewHelpers:tag

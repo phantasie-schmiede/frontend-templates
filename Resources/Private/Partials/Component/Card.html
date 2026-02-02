@@ -6,7 +6,7 @@
     name="headerLevel"
     value="{viewHelpers:fallback(values: '{0: headerLevel, 1: 3}')}" />
 
-<div class="card">
+<div class="card h-100">
     <div class="row g-0">
         <f:if condition="{image}">
             <div class="col-4 col-sm-12">
@@ -14,8 +14,8 @@
                     alt="{alternativeText -> f:or(alternative: image.alternative)}"
                     class="card-image"
                     image="{image}"
-                    maxHeight="160"
-                    maxWidth="160" />
+                    width="320"
+                    height="240" />
             </div>
 
             <f:variable

@@ -7,15 +7,23 @@
     value="{viewHelpers:fallback(values: '{0: headerLevel, 1: 3}')}" />
 
 <div class="card h-100">
-    <div class="row g-0">
-        <f:if condition="{image}">
+    <div class="row g-0 h-100">
+        <f:if condition="{imageUrl}">
             <div class="col-4 col-sm-12">
-                <f:image
-                    alt="{alternativeText -> f:or(alternative: image.alternative)}"
-                    class="card-image"
-                    image="{image}"
-                    width="320"
-                    height="240" />
+                <picture>
+                    <f:if condition="{desktopImageUrl}">
+                        <source
+                            media="(min-width: 576px)"
+                            srcset="{desktopImageUrl}" />
+                    </f:if>
+
+                    <img
+                        alt="{alternativeText -> f:or(alternative: image.alternative)}"
+                        class="card-image"
+                        height="320"
+                        src="{imageUrl}"
+                        width="240" />
+                </picture>
             </div>
 
             <f:variable

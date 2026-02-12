@@ -1,8 +1,9 @@
 @import "Bootstrap/mixins";
 @import "Bootstrap/functions";
 @import "Bootstrap/variables";
-@import "Component/card";
+@import "Component/m-card";
 @import "Component/m-labelled-list";
+@import "Component/o-card-grid";
 
 li[data-psbits-filter-match="false"] {
   display: none !important;

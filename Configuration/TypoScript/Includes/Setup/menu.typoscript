@@ -4,7 +4,7 @@ page.10.dataProcessing {
     as = mainNavigation
     expandAll = 1
     includeSpacer = 1
-    levels = 1
+    levels = 2
     titleField = nav_title // title
   }
 }

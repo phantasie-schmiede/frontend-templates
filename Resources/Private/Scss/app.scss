@@ -59,6 +59,14 @@ body {
   opacity: 0.25;
 }
 
+.navbar-nav .dropdown-menu {
+  @include media-breakpoint-down(lg) {
+    border: none;
+    text-align: right;
+  }
+}
+
+
 .psbits-clear-icon {
   border-radius: 50%;
   cursor: pointer;

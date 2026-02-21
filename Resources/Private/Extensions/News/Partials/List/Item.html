@@ -1,0 +1,50 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+<n:excludeDisplayedNews newsItem="{newsItem}" />
+
+<f:variable name="additionalContent">
+    <n:link
+        class="more"
+        newsItem="{newsItem}"
+        settings="{settings}"
+        title="{newsItem.title}">
+        <f:translate key="more-link" />
+    </n:link>
+</f:variable>
+
+<f:if condition="{newsItem.mediaPreviews}">
+    <f:then>
+        <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+            <f:variable
+                name="desktopImageUrl"
+                value="{f:uri.image(cropVariant: 'cardLandscape', image: mediaElement, width: '320m', height: '180m')}" />
+            <f:variable
+                name="imageUrl"
+                value="{f:uri.image(cropVariant: 'cardPortrait', image: mediaElement, width: '240m', height: '320m')}" />
+        </f:alias>
+    </f:then>
+    <f:else if="{settings.displayDummyIfNoMedia}">
+        <f:variable
+            name="imageUrl"
+            value="{settings.list.media.dummyImage}" />
+    </f:else>
+</f:if>
+
+<f:variable
+    name="text"
+    value="{psbvh:fallback(values: {0: newsItem.teaser, 1: newsItem.bodytext})}" />
+
+<f:render
+    arguments="{
+            additionalContent: additionalContent,
+            desktopImageUrl: desktopImageUrl,
+            imageUrl: imageUrl,
+            subtitle: subtitle,
+            text: '{text -> f:format.crop(maxCharacters: \'{settings.cropMaxCharacters}\', respectWordBoundaries: \'1\')}',
+            title: '{newsItem.title -> n:link(newsItem: newsItem, settings: settings, title: newsItem.title)}'
+        }"
+    partial="Component/Card" />
+</html>

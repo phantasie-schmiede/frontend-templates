@@ -2,6 +2,7 @@
 @import 'EXT:templates/Configuration/TypoScript/Includes/Setup/templates.typoscript'
 
 @import 'EXT:templates/Configuration/TypoScript/Includes/Setup/content.typoscript'
+@import 'EXT:templates/Configuration/TypoScript/Includes/Setup/extensions.typoscript'
 @import 'EXT:templates/Configuration/TypoScript/Includes/Setup/menu.typoscript'
 @import 'EXT:templates/Configuration/TypoScript/Includes/Setup/page.typoscript'
 @import 'EXT:templates/Configuration/TypoScript/Includes/Setup/ws_scss.typoscript'

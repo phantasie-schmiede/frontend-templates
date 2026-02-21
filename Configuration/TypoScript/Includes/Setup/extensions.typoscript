@@ -1,0 +1,29 @@
+plugin {
+  tx_calendarize {
+    settings.paginateConfiguration.maximumNumberOfLinks = 5
+
+    view {
+      layoutRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/Calendarize/Layouts/
+
+      partialRootPaths {
+        200 = {$plugin.tx_templates.view.partialRootPath}
+        300 = {$plugin.tx_templates.privateResourcePath}Extensions/Calendarize/Partials/
+      }
+
+      templateRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/Calendarize/Templates/
+    }
+  }
+
+  tx_news {
+    view {
+      layoutRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/News/Layouts/
+
+      partialRootPaths {
+        200 = {$plugin.tx_templates.view.partialRootPath}
+        300 = {$plugin.tx_templates.privateResourcePath}Extensions/News/Partials/
+      }
+
+      templateRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/News/Templates/
+    }
+  }
+}

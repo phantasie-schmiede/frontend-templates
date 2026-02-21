@@ -1,3 +1,4 @@
 /*.idea/
 /composer.lock
+/Resources/Public/Stylesheets/Vendors/app.min.css
 /Resources/Public/Stylesheets/Vendors/bootstrap.min.css

@@ -1,3 +1,8 @@
+lib.contentElement {
+  partialRootPaths.300 = EXT:templates/Resources/Private/Partials/
+  templateRootPaths.300 = EXT:templates/Resources/Private/Templates/ContentElements/
+}
+
 plugin.tx_templates {
     settings {
         alternativeWebsiteTitle = {$plugin.tx_templates.settings.alternativeWebsiteTitle}

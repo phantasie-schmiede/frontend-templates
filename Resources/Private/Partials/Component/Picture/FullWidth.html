@@ -7,23 +7,19 @@
         each="{
            0: {
                media: '(min-width: 1200px)',
-               srcset: '{f:uri.image(image: image, maxWidth: 1600)}'
+               srcset: '{f:uri.image(height: height, image: image, maxWidth: 1600)}'
            },
            1: {
                media: '(min-width: 992px)',
-               srcset: '{f:uri.image(image: image, maxWidth: 1199)}'
+               srcset: '{f:uri.image(height: height, image: image, maxWidth: 1199)}'
            },
            2: {
                media: '(min-width: 768px)',
-               srcset: '{f:uri.image(image: image, maxWidth: 991)}'
+               srcset: '{f:uri.image(height: height, image: image, maxWidth: 991)}'
            },
            3: {
                media: '(min-width: 576px)',
-               srcset: '{f:uri.image(image: image, maxWidth: 767)}'
-           },
-           4: {
-               media: '(max-width: 575px)',
-               srcset: '{f:uri.image(image: image, maxWidth: 575)}'
+               srcset: '{f:uri.image(height: height, image: image, maxWidth: 767)}'
            }
        }">
         <source
@@ -31,9 +27,9 @@
             srcset="{source.srcset}" />
     </f:for>
 
-    <f:image
+    <img
         alt="{image.alternative}"
         class="{imageClass}"
-        image="{image}" />
+        src="{f:uri.image(height: height, image: image, maxWidth: 575)}" />
 </picture>
 </html>

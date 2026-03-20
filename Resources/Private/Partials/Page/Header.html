@@ -4,9 +4,9 @@
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
 <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Page/header.xlf" />
 
-<header>
+<header class="border-bottom">
     <nav class="bg-body-tertiary navbar navbar-expand-lg">
-        <div class="{containerClass}">
+        <div class="{containerClass} flex-nowrap">
             <f:if condition="{settings.logos.default.file}">
                 <f:link.page
                     class="align-items-center d-flex navbar-brand"
@@ -20,7 +20,7 @@
             <button
                 aria-controls="offcanvasNavbar"
                 aria-label="Toggle navigation"
-                class="collapsed navbar-toggler"
+                class="collapsed ms-auto navbar-toggler"
                 data-bs-target="#offcanvasNavbar"
                 data-bs-toggle="offcanvas"
                 type="button">
@@ -44,12 +44,26 @@
                         data-bs-dismiss="offcanvas"
                         type="button"></button>
                 </div>
-                <div class="justify-content-center offcanvas-body">
-                    <ul class="navbar-nav text-end">
+                <div class="d-flex flex-column flex-lg-column-reverse offcanvas-body w-100">
+                    <ul class="align-self-end align-self-lg-center navbar-nav text-end text-lg-center">
                         <f:render
                             arguments="{mainNavigation: mainNavigation}"
                             partial="Navigation/Main" />
                     </ul>
+
+                    <f:if condition="{templateSettings.headerButtons}">
+                        <div class="align-self-lg-end d-flex flex-column flex-lg-row gap-2 mb-lg-3 mt-auto mt-lg-0">
+                            <f:for
+                                as="button"
+                                each="{templateSettings.headerButtons}">
+                                <f:link.typolink
+                                    class="btn btn-{button.type.value}"
+                                    parameter="{button.link}">
+                                    {button.label}
+                                </f:link.typolink>
+                            </f:for>
+                        </div>
+                    </f:if>
                 </div>
             </div>
         </div>

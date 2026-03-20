@@ -59,13 +59,23 @@ body {
   opacity: 0.25;
 }
 
+.navbar-brand {
+  @include media-breakpoint-up(lg) {
+    max-width: 25%;
+  }
+
+  span {
+    min-width: 0;
+    white-space: normal;
+  }
+}
+
 .navbar-nav .dropdown-menu {
   @include media-breakpoint-down(lg) {
     border: none;
     text-align: right;
   }
 }
-
 
 .psbits-clear-icon {
   border-radius: 50%;

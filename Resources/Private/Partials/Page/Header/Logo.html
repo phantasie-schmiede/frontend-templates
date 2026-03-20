@@ -9,7 +9,7 @@
     width="{settings.logos.default.width}" />
 
 <f:if condition="{settings.logos.default.showWebsiteTitle}">
-    <span class="ms-2 text-primary">
+    <span class="fw-semibold lh-sm ms-2 text-break">
         <f:variable
             name="websiteTitle"
             value="{viewHelpers:fallback(values: '{0: settings.alternativeWebsiteTitle, 1: siteConfiguration.websiteTitle}')}" />

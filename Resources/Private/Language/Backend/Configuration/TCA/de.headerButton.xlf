@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2026-03-20T07:18:00+01:00"
+        original="messages"
+        product-name="templates"
+        source-language="en"
+        target-language="de">
+        <body>
+            <trans-unit id="ctrl.title">
+                <source>Header button</source>
+                <target>Header-Button</target>
+            </trans-unit>
+            <trans-unit id="label">
+                <source>Label</source>
+                <target>Text</target>
+            </trans-unit>
+            <trans-unit id="link">
+                <source>Link</source>
+                <target>Link</target>
+            </trans-unit>
+            <trans-unit id="type">
+                <source>Color</source>
+                <target>Farbe</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

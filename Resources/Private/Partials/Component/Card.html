@@ -29,7 +29,7 @@
     <div class="m-card__body">
         <f:if condition="{title}">
             <viewHelpers:tag
-                class="card-title h5"
+                class="card-title h5{f:if(condition: '!{subtitle}', then: ' mb-2')}"
                 tag="h{headerLevel}">
                 {title -> f:format.raw()}
             </viewHelpers:tag>
@@ -41,14 +41,14 @@
 
         <f:if condition="{subtitle}">
             <viewHelpers:tag
-                class="card-subtitle h6 text-body-secondary"
+                class="card-subtitle h6 text-body-secondary mb-2"
                 tag="h{headerLevel}">
                 {subtitle}
             </viewHelpers:tag>
         </f:if>
 
         <f:if condition="{text}">
-            <p class="card-text mt-2">
+            <p class="card-text">
                 {text}
             </p>
         </f:if>

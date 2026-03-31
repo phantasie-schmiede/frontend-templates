@@ -26,7 +26,7 @@ use function in_array;
  */
 class CardUtility
 {
-    public static function getTcaCropVariants()
+    public static function getTcaCropVariants(): array
     {
         return [
             'cardLandscape' => [

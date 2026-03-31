@@ -26,6 +26,7 @@
 	"name": "psbits/templates",
 	"require": {
 		"ext-intl": "*",
+		"friendsoftypo3/content-blocks": "^2",
 		"php": "^8.3",
 		"psbits/foundation": "@dev",
 		"psbits/view-helpers": "@dev",

@@ -1,0 +1,6 @@
+name: psbits/slider
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: image
+    useExistingField: true

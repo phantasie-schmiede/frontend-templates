@@ -1,0 +1,8 @@
+name: psbits/accordion
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: accordion-items
+    foreignTable: tt_content
+    minitems: 1
+    type: Collection

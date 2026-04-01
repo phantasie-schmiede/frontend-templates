@@ -1,0 +1,8 @@
+name: psbits/cta
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: header_link
+    useExistingField: true
+group: content_blocks
+vendorPrefix: tx_templates

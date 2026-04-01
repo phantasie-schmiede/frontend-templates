@@ -1,0 +1,21 @@
+name: psbits/feature
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: bodytext
+    enableRichtext: true
+    useExistingField: true
+  - identifier: image
+    maxitems: 1
+    useExistingField: true
+  - identifier: links
+    allowedRecordTypes:
+      - psbits_cta
+    foreign_field: parent_uid
+    foreign_table: tt_content
+    maxitems: 2
+    minitems: 1
+    type: Collection
+group: content_blocks
+prefixType: vendor
+vendorPrefix: tx_templates

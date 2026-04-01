@@ -2,7 +2,10 @@ name: psbits/accordion
 fields:
   - identifier: header
     useExistingField: true
-  - identifier: accordion-items
-    foreignTable: tt_content
+  - identifier: accordion_items
+    foreign_field: parent_uid
+    foreign_table: tt_content
     minitems: 1
     type: Collection
+group: content_blocks
+vendorPrefix: tx_templates

@@ -4,3 +4,5 @@ fields:
     useExistingField: true
   - identifier: image
     useExistingField: true
+group: content_blocks
+vendorPrefix: tx_templates

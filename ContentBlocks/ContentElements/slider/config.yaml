@@ -5,4 +5,5 @@ fields:
   - identifier: image
     useExistingField: true
 group: content_blocks
+prefixType: vendor
 vendorPrefix: tx_templates

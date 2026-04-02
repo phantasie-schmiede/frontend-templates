@@ -8,4 +8,5 @@ fields:
     minitems: 1
     type: Collection
 group: content_blocks
+prefixType: vendor
 vendorPrefix: tx_templates

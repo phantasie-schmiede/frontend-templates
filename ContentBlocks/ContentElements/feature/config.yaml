@@ -6,7 +6,15 @@ fields:
     enableRichtext: true
     useExistingField: true
   - identifier: image
+    cropVariants:
+      default:
+        title: Default
+        allowedAspectRatios:
+          default:
+            title: "16:9"
+            value: 16 / 9
     maxitems: 1
+    minitems: 1
     useExistingField: true
   - identifier: links
     allowedRecordTypes:
@@ -14,8 +22,10 @@ fields:
     foreign_field: parent_uid
     foreign_table: tt_content
     maxitems: 2
-    minitems: 1
+    minitems: 0
+    shareAcrossFields: true
     type: Collection
 group: content_blocks
+labelField: header
 prefixType: vendor
 vendorPrefix: tx_templates

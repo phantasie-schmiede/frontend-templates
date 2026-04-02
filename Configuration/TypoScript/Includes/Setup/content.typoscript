@@ -1,3 +1,9 @@
+lib.contentBlock {
+  partialRootPaths {
+    200 = EXT:templates/Resources/Private/Partials/
+  }
+}
+
 page.10.dataProcessing {
   1711319420 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   1711319420 {
@@ -5,6 +11,7 @@ page.10.dataProcessing {
     orderBy = sorting
     table = tt_content
     where = colPos = 0
+    where.postUserFunc = TYPO3\CMS\ContentBlocks\UserFunction\ContentWhere->extend
   }
 
   1711319426 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
@@ -13,6 +20,7 @@ page.10.dataProcessing {
     orderBy = sorting
     table = tt_content
     where = colPos = 1
+    where.postUserFunc = TYPO3\CMS\ContentBlocks\UserFunction\ContentWhere->extend
   }
 
   1711319433 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
@@ -21,6 +29,7 @@ page.10.dataProcessing {
     orderBy = sorting
     table = tt_content
     where = colPos = 2
+    where.postUserFunc = TYPO3\CMS\ContentBlocks\UserFunction\ContentWhere->extend
   }
 
   1727709333 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
@@ -29,5 +38,6 @@ page.10.dataProcessing {
     orderBy = sorting
     table = tt_content
     where = colPos = 3
+    where.postUserFunc = TYPO3\CMS\ContentBlocks\UserFunction\ContentWhere->extend
   }
 }

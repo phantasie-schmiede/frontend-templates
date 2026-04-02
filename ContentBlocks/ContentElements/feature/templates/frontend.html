@@ -10,15 +10,24 @@
             </div>
 
             <!-- Text -->
-            <div class="col-12 col-lg-6 p-5">
-                <h2 class="mb-3">{data.header}</h2>
+            <div class="col-12 col-lg-6 py-3 p-lg-5">
+                <h2 class="mb-3 text-center text-lg-start">{data.header}</h2>
                 <div class="mb-4">
                     <f:format.html>{data.bodytext}</f:format.html>
                 </div>
-                <a
-                    class="btn btn-primary"
-                    href="#">Call to Action
-                </a>
+
+                <f:if condition="{data._grids.links}">
+                    <f:render
+                        contentAs="buttons"
+                        partial="Component/ButtonRow"
+                        arguments="{centerButtons: 1}">
+                        <f:for
+                            as="cta"
+                            each="{data._grids.links}">
+                            <f:format.raw>{cta.content}</f:format.raw>
+                        </f:for>
+                    </f:render>
+                </f:if>
             </div>
 
         </div>

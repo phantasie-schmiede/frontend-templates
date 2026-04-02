@@ -15,6 +15,10 @@
                 <source>Feature</source>
                 <target>Feature</target>
             </trans-unit>
+            <trans-unit id="links.label">
+                <source>Links</source>
+                <target>Links</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

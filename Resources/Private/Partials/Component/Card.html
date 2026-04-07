@@ -47,13 +47,15 @@
             </viewHelpers:tag>
         </f:if>
 
+        {additionalContentPrepend -> f:format.raw()}
+
         <f:if condition="{text}">
             <p class="card-text">
                 {text}
             </p>
         </f:if>
 
-        {additionalContent -> f:format.raw()}
+        {additionalContentAppend -> f:format.raw()}
     </div>
 </div>
 </html>

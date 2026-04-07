@@ -5,7 +5,7 @@
     xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
 <n:excludeDisplayedNews newsItem="{newsItem}" />
 
-<f:variable name="additionalContent">
+<f:variable name="additionalContentAppend">
     <n:link
         class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
         newsItem="{newsItem}"
@@ -39,7 +39,7 @@
 
 <f:render
     arguments="{
-            additionalContent: additionalContent,
+            additionalContentAppend: additionalContentAppend,
             desktopImageUrl: desktopImageUrl,
             imageUrl: imageUrl,
             subtitle: subtitle,

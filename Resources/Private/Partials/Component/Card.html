@@ -8,22 +8,20 @@
 
 <div class="m-card">
     <f:if condition="{imageUrl}">
-        <div class="m-card__media">
-            <picture>
-                <f:if condition="{desktopImageUrl}">
-                    <source
-                        media="(min-width: 576px)"
-                        srcset="{desktopImageUrl}" />
-                </f:if>
-
-                <img
-                    alt="{alternativeText -> f:or(alternative: image.alternative)}"
-                    class="m-card__image"
-                    height="240"
-                    src="{imageUrl}"
-                    width="240" />
-            </picture>
-        </div>
+        <f:if condition="{imageLink}">
+            <f:then>
+                <a href="{imageLink}">
+                    <f:render
+                        arguments="{_all}"
+                        section="Image" />
+                </a>
+            </f:then>
+            <f:else>
+                <f:render
+                    arguments="{_all}"
+                    section="Image" />
+            </f:else>
+        </f:if>
     </f:if>
 
     <div class="m-card__body">
@@ -58,4 +56,23 @@
         {additionalContentAppend -> f:format.raw()}
     </div>
 </div>
+
+<f:section name="Image">
+    <div class="m-card__media">
+        <picture>
+            <f:if condition="{desktopImageUrl}">
+                <source
+                    media="(min-width: 576px)"
+                    srcset="{desktopImageUrl}" />
+            </f:if>
+
+            <img
+                alt="{alternativeText -> f:or(alternative: image.alternative)}"
+                class="m-card__image"
+                height="320"
+                src="{imageUrl}"
+                width="240" />
+        </picture>
+    </div>
+</f:section>
 </html>

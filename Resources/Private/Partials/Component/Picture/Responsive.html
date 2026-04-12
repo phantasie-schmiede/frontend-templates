@@ -1,0 +1,51 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+<viewHelpers:variable.arrayMerge
+    arrays="{
+        0: {
+            1200: 1600,
+            992: 1199,
+            768: 991,
+            576: 767,
+            0: 575
+        },
+        1: sizes
+    }"
+    as="sizes"
+    overwrite="1" />
+
+<picture class="{pictureClass}">
+    <f:for
+        as="source"
+        each="{
+           0: {
+               media: '(min-width: 1200px)',
+               srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.1200)}'
+           },
+           1: {
+               media: '(min-width: 992px)',
+               srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.992)}'
+           },
+           2: {
+               media: '(min-width: 768px)',
+               srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.768)}'
+           },
+           3: {
+               media: '(min-width: 576px)',
+               srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.576)}'
+           }
+       }">
+        <source
+            media="{source.media}"
+            srcset="{source.srcset}" />
+    </f:for>
+
+    <img
+        alt="{image.alternative}"
+        class="{imageClass -> f:or(alternative: 'img-fluid')}"
+        loading="lazy"
+        src="{f:uri.image(height: height, image: image, maxWidth: sizes.0)}" />
+</picture>
+</html>

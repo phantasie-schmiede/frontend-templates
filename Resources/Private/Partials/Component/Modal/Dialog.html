@@ -74,12 +74,12 @@
                         type="button"></button>
                 </f:if>
 
-                <f:format.raw>{body}</f:format.raw>
+                {body -> f:format.raw()}
             </div>
 
             <f:if condition="{footer}">
                 <div class="modal-footer">
-                    <f:format.raw>{footer}</f:format.raw>
+                    {footer -> f:format.raw()}
                 </div>
             </f:if>
         </div>

@@ -56,9 +56,7 @@
                     role="tab"
                     tag="button"
                     type="button">
-                    <f:format.raw>
-                        {tab.label}
-                    </f:format.raw>
+                    {tab.label -> f:format.raw()}
                 </psbvh:tag>
             </f:for>
         </psbvh:tag>
@@ -74,9 +72,7 @@
                 id="{tab.id}-content"
                 role="tabpanel"
                 tabindex="0">
-                <f:format.raw>
-                    {tab.content}
-                </f:format.raw>
+                {tab.content -> f:format.raw()}
             </div>
         </f:for>
     </div>

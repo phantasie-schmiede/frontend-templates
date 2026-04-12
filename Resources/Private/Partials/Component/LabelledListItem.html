@@ -5,8 +5,6 @@
     {label}
 </div>
 <div class="m-labelled-list__item-value{f:if(condition: valueClass, then: ' {valueClass}')}">
-    <f:format.raw>
-        {value}
-    </f:format.raw>
+    {value -> f:format.raw()}
 </div>
 </html>

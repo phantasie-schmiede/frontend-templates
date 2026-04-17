@@ -17,5 +17,9 @@
     @container (min-width: 576px) {
       grid-template-columns: auto 1fr;
     }
+
+    &--no-wrap {
+      grid-template-columns: auto 1fr;
+    }
   }
 }

@@ -51,20 +51,13 @@ readonly class ViewService
 
         $viewSettings = $this->getViewSettings($extensionInformation);
         $viewFactoryData = new ViewFactoryData(
-            partialRootPaths: $viewSettings['partialRootPaths'] ?? [],
-            layoutRootPaths: $viewSettings['layoutRootPaths'] ?? [],
-            templatePathAndFilename: ($viewSettings['templateRootPaths'][0] ?? $this->getDefaultTemplatePath(
-                $extensionInformation
-            )) . $templateIdentifier,
-            request: $request,
+            partialRootPaths       : $viewSettings['partialRootPaths'],
+            layoutRootPaths        : $viewSettings['layoutRootPaths'],
+            templatePathAndFilename: $viewSettings['templateRootPaths'][0] . $templateIdentifier,
+            request                : $request,
         );
 
         return $this->viewFactory->create($viewFactoryData);
-    }
-
-    private function getDefaultTemplatePath(ExtensionInformationInterface $extensionInformation): string
-    {
-        return FilePathUtility::getPrivateResourcePath($extensionInformation) . 'Templates/';
     }
 
     /**

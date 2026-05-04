@@ -24,7 +24,7 @@ class DeleteContent {
         Rebind.registerBindFunction(this.bindEvents.bind(this));
     }
 
-    bindEvents(rootNode = null) {
+    bindEvents() {
         document.querySelectorAll(this.selector).forEach((element) => {
             if (!this.registeredElements.includes(element)) {
                 element.addEventListener('click', this.handleClick.bind(this));

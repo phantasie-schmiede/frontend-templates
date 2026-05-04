@@ -17,7 +17,7 @@ class FormFieldSwitch {
         Rebind.registerBindFunction(this.bindEvents.bind(this));
     }
 
-    bindEvents(rootNode = null) {
+    bindEvents() {
         document.querySelectorAll(this.selector).forEach((element) => {
             let conditionField = element.closest('form').querySelector(element.dataset.psbitsFormConditionField);
 

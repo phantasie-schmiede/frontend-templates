@@ -1,3 +1,10 @@
+/*
+ * The LoadingSpinnerHelper class provides utility methods to manage loading spinner UI elements in a web application.
+ * It allows you to phase out (hide) and phase in (restore) content within elements, typically when showing or hiding a
+ * loading spinner. The class works by storing the original content of elements marked with a specific data attribute,
+ * replacing it with a spinner, and restoring it when loading is complete. It also handles enabling and disabling
+ * elements as needed. This helps maintain a smooth user experience during asynchronous operations.
+ */
 class LoadingSpinnerHelper {
     getPhasingElements(element) {
         let phasingElements = [];

@@ -1,3 +1,4 @@
+import debounce from './Modules/debounce'
 import Rebind from './Modules/rebind.js';
 
 /*
@@ -54,7 +55,8 @@ class Filter {
     bindEvents() {
         document.querySelectorAll(this.selector).forEach((input) => {
             if (!this.registeredElements.includes(input)) {
-                input.addEventListener('input', this.handleEvent.bind(this));
+                const debouncedHandler = debounce(this.handleEvent.bind(this), 300);
+                input.addEventListener('input', debouncedHandler);
                 this.registeredElements.push(input);
             }
 

@@ -10,7 +10,7 @@ import Rebind from './Modules/rebind.js';
  * - data-psbits-autocomplete-items: Selector for the container containing the items to show. This container must
  *   contain items with the class psbits-autocomplete-list-item. (This does not have to be a list.) This component
  *   only toggles the visibility of the container (via class "d-none"). No special styling is applied. You can use the
- *   class psbits-autocomplete-list for a predefined style the container.
+ *   class psbits-autocomplete-list for a predefined style of the container.
  *
  * Optional attributes:
  * - data-psbits-autocomplete-preselection: The value must be an HTML escaped JSON array of values that should be

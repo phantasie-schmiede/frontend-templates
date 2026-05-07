@@ -50,6 +50,10 @@ body {
   }
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .grid-2x2 {
   @include media-breakpoint-up(md) {
     height: 50%;

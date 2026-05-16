@@ -1,4 +1,4 @@
-import debounce from './Modules/debounce'
+import debounce from './Modules/debounce.js'
 import Rebind from './Modules/rebind.js';
 
 /*

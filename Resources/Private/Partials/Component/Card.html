@@ -50,9 +50,9 @@
         {additionalContentPrepend -> f:format.raw()}
 
         <f:if condition="{text}">
-            <p class="card-text">
-                {text}
-            </p>
+            <div class="card-text mb-3">
+                {text -> f:format.raw()}
+            </div>
         </f:if>
 
         {additionalContentAppend -> f:format.raw()}

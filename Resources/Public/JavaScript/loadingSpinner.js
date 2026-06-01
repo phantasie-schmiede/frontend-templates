@@ -7,6 +7,7 @@ import LoadingSpinnerHelper from './Modules/loadingSpinnerHelper.js';
  * element while the request is being processed.
  *
  * Attributes:
+ * data-psbits-spinner-color: Bootstrap text color identifier like 'primary' (default) or 'body-tertiary'
  * data-psbits-spinner-text: Text to be displayed next to the spinner.
  * data-psbits-spinner-text-hidden: Text that is visually hidden but used for screen readers.
  *
@@ -22,9 +23,10 @@ import LoadingSpinnerHelper from './Modules/loadingSpinnerHelper.js';
  *     Click me
  * </button>
  *
- * Example 2 (The button text will be replaced by the spinner and the text "Loading..."):
+ * Example 2 (The button text will be replaced by a red spinner and the text "Loading..."):
  * <button
  *    class="btn btn-primary"
+ *    data-psbits-spinner-color="danger"
  *    data-psbits-spinner-text="Loading..."
  *    data-psbits-spinner-phase-out
  *    type="button">
@@ -53,10 +55,11 @@ class LoadingSpinner {
     }
 
     createInlineSpinner(element) {
+        const spinnerColor = element.dataset.psbitsSpinnerColor || 'primary';
         const spinnerElement = document.createElement('span');
         const spinnerText = document.createElement('span');
 
-        spinnerElement.className = 'spinner-border spinner-border-sm text-primary';
+        spinnerElement.className = 'spinner-border spinner-border-sm text-' + spinnerColor;
         spinnerElement.setAttribute('aria-hidden', 'true');
         spinnerText.setAttribute('role', 'status');
 

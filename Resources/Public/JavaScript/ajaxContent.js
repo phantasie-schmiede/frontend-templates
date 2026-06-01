@@ -11,7 +11,7 @@ import LoadingSpinnerHelper from './Modules/loadingSpinnerHelper.js';
  * }
  *
  * Attributes:
- * - data-psbits-ajax-mode: Mode of the insertion. Possible values: replace, append, prepend. Default: replace.
+ * - data-psbits-ajax-mode: Mode of the insertion. Possible values: replace, replaceContent, append, prepend. Default: replaceContent.
  * - data-psbits-ajax-target: Selector of the target element(s). Default: self.
  * - data-psbits-ajax-trigger: Trigger for ajax request. Possible values: click, onload. Default: "onload" if target is self, otherwise "click".
  * - data-psbits-ajax-url: URL to be called.
@@ -116,8 +116,13 @@ class AjaxContent {
                         }
                     });
 
-                    // Replace the content of the target element
-                    targetElement.innerHTML = content;
+                    if ('replace' === mode) {
+                        // Replace the target element
+                        targetElement.outerHTML = content;
+                    } else {
+                        // Replace the content of the target element
+                        targetElement.innerHTML = content;
+                    }
 
                     /*
                      * Reopen modals after replacing content. We can't reuse the variable modals here, because the

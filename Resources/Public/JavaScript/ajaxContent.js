@@ -79,7 +79,7 @@ class AjaxContent {
             console.error(`Error ${event.target.status}: ${event.target.statusText}`);
         } else {
             const content = event.target.response.html;
-            const mode = this.dataset.psbitsAjaxMode ? this.dataset.psbitsAjaxMode : 'replace';
+            const mode = this.dataset.psbitsAjaxMode ? this.dataset.psbitsAjaxMode : 'replaceContent';
             const target = this.dataset.psbitsAjaxTarget ? this.dataset.psbitsAjaxTarget : this;
             let targetElements;
 

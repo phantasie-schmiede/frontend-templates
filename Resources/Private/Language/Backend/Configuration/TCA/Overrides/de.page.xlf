@@ -6,6 +6,15 @@
         product-name="templates"
         source-language="en"
         target-language="de">
-        <body></body>
+        <body>
+            <trans-unit id="bootstrapContainerType">
+                <source>Bootstrap container type</source>
+                <target>Bootstrap-Container-Typ</target>
+            </trans-unit>
+            <trans-unit id="bootstrapContainerType.default">
+                <source>Default</source>
+                <target>Standard</target>
+            </trans-unit>
+        </body>
     </file>
 </xliff>

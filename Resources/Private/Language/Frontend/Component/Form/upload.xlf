@@ -5,6 +5,13 @@
         original="messages"
         product-name="templates"
         source-language="en">
-        <body></body>
+        <body>
+            <trans-unit id="hint.noTouch">
+                <source>Drag image here or click to select an image from your device or to take a photo</source>
+            </trans-unit>
+            <trans-unit id="hint.touch">
+                <source>Tap to select an image from your device or to take a photo</source>
+            </trans-unit>
+        </body>
     </file>
 </xliff>

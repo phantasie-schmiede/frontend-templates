@@ -7,9 +7,13 @@
         source-language="en"
         target-language="de">
         <body>
-            <trans-unit id="hint.desktop">
+            <trans-unit id="hint.noTouch">
                 <source>Drag image here or click to select an image from your device or to take a photo</source>
-                <target>Ziehe ein Bild hierhin</target>
+                <target>Bild hierher ziehen oder klicken, um ein Bild von Ihrem Gerät auszuwählen oder ein Foto aufzunehmen</target>
+            </trans-unit>
+            <trans-unit id="hint.touch">
+                <source>Tap to select an image from your device or to take a photo</source>
+                <target>Tippen Sie hier, um ein Bild von Ihrem Gerät auszuwählen oder ein Foto aufzunehmen</target>
             </trans-unit>
         </body>
     </file>

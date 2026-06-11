@@ -42,11 +42,14 @@
         "wapplersystems/ws-scss": "^13"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
         "friendsofphp/php-cs-fixer": "^3.95",
+        "georgringer/news": "^12",
+        "helmich/typo3-typoscript-lint": "^3.3",
+        "lochmueller/calendarize": "^14",
         "phpstan/phpstan": "^2.2",
-        "saschaegerer/phpstan-typo3": "^2.1",
-        "helmich/typo3-typoscript-lint": "^3.3"
+        "psbits/view-helpers": "^3",
+        "roave/security-advisories": "dev-latest",
+        "saschaegerer/phpstan-typo3": "^2.1"
     },
     "scripts": {
         "analyze:php": "phpstan analyse --configuration=tools/quality/phpstan.neon.dist --no-progress",

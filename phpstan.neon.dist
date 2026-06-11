@@ -3,7 +3,6 @@ parameters:
   paths:
     - Classes
   tmpDir: .phpstan
-  reportUnmatchedIgnoredErrors: false
 
 includes:
   - vendor/saschaegerer/phpstan-typo3/extension.neon

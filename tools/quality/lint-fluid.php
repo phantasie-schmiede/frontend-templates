@@ -5,8 +5,10 @@ declare(strict_types=1);
 require __DIR__ . '/../../vendor/autoload.php';
 
 use TYPO3Fluid\Fluid\Core\Parser\TemplateParser;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContext;
 
 $parser = new TemplateParser();
+$parser->setRenderingContext(new RenderingContext());
 $directories = [
     'Resources/Private',
     'ContentBlocks',

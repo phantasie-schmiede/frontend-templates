@@ -1,6 +1,6 @@
 /*.idea/
 /composer.lock
-/package-lock.json
 /node_modules/
+/package-lock.json
 /Resources/Public/Stylesheets/Vendors/app.min.css
 /Resources/Public/Stylesheets/Vendors/bootstrap.min.css

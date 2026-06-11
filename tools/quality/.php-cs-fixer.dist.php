@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 $finder = PhpCsFixer\Finder::create()
     ->in([
-        __DIR__ . '/Classes',
-        __DIR__ . '/Configuration',
+        __DIR__ . '/../../Classes',
+        __DIR__ . '/../../Configuration',
     ])
     ->name('*.php');
 

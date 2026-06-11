@@ -4,7 +4,7 @@
   "description": "Basic templates for TYPO3",
   "scripts": {
     "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\" --ignore-pattern \"Resources/Public/JavaScript/Vendors/**\"",
-    "lint:scss": "stylelint \"Resources/Private/Scss/**/*.{scss,sass}\""
+    "lint:scss": "stylelint \"Resources/Private/Scss/**/*.{scss,sass}\" --ignore-path tools/quality/.stylelintignore"
   },
   "repository": {
     "type": "git",

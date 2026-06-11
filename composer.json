@@ -45,12 +45,12 @@
     "scripts": {
         "validate:composer": "composer validate --no-check-publish",
         "audit:composer": "composer audit",
-        "lint:php": "php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --diff --verbose",
-        "fix:php": "php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose",
-        "analyze:php": "phpstan analyse --configuration=phpstan.neon.dist --no-progress",
-        "lint:yaml": "yamllint -c .yamllint.yml ContentBlocks Configuration",
+        "lint:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --dry-run --diff --verbose",
+        "fix:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --verbose",
+        "analyze:php": "phpstan analyse --configuration=tools/quality/phpstan.neon.dist --no-progress",
+        "lint:yaml": "yamllint -c tools/quality/.yamllint.yml ContentBlocks Configuration",
         "lint:typoscript": "typoscript-lint --ansi Configuration/TypoScript",
-        "lint:fluid": "php Configuration/Scripts/lint-fluid.php",
+        "lint:fluid": "php tools/quality/lint-fluid.php",
         "lint:js": "npm run lint:js",
         "lint:scss": "npm run lint:scss",
         "qa": [

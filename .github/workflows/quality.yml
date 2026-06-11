@@ -50,7 +50,7 @@ jobs:
         run: composer analyze:php
 
       - name: YAML lint
-        run: ~/.local/bin/yamllint -c .yamllint.yml ContentBlocks Configuration
+        run: ~/.local/bin/yamllint -c tools/quality/.yamllint.yml ContentBlocks Configuration
 
       - name: TypoScript lint
         run: composer lint:typoscript

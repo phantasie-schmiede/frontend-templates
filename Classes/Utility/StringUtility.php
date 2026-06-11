@@ -31,7 +31,7 @@ class StringUtility
      * @throws ContainerExceptionInterface
      * @throws JsonException
      * @throws NotFoundExceptionInterface
-     * @param array<int, string> $items
+     * @param string[] $items
      */
     public static function createEnumeration(array $items): string
     {

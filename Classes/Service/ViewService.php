@@ -62,14 +62,14 @@ readonly class ViewService
     }
 
     /**
-     * @throws ContainerExceptionInterface
-     * @throws JsonException
-     * @throws NotFoundExceptionInterface
      * @return array{
      *     layoutRootPaths: array<int, string>,
      *     partialRootPaths: array<int, string>,
      *     templateRootPaths: array<int, string>
      * }
+     * @throws ContainerExceptionInterface
+     * @throws JsonException
+     * @throws NotFoundExceptionInterface
      */
     private function getViewSettings(ExtensionInformationInterface $extensionInformation): array
     {
@@ -79,23 +79,9 @@ readonly class ViewService
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
             $extensionInformation->getExtensionName(),
         );
-        $layoutRootPaths = $viewSettings['layoutRootPaths'] ?? [];
-        $partialRootPaths = $viewSettings['partialRootPaths'] ?? [];
-        $templateRootPaths = $viewSettings['templateRootPaths'] ?? [];
-
-        if (!is_array($layoutRootPaths)) {
-            $layoutRootPaths = [];
-        }
-        if (!is_array($partialRootPaths)) {
-            $partialRootPaths = [];
-        }
-        if (!is_array($templateRootPaths)) {
-            $templateRootPaths = [];
-        }
-
-        $viewSettings['layoutRootPaths'] = array_map('strval', $layoutRootPaths);
-        $viewSettings['partialRootPaths'] = array_map('strval', $partialRootPaths);
-        $viewSettings['templateRootPaths'] = array_map('strval', $templateRootPaths);
+        $viewSettings['layoutRootPaths'] ??= [];
+        $viewSettings['partialRootPaths'] ??= [];
+        $viewSettings['templateRootPaths'] ??= [];
 
         // Add default paths as fallback.
         array_unshift(

@@ -35,12 +35,10 @@ class CountryNamesService
         );
     }
 
+    /** @return array<string, string> */
     public function getAll(): array
     {
-        /** @var array<string, string> $countryNames */
-        $countryNames = Countries::getNames();
-
-        return $countryNames;
+        return Countries::getNames();
     }
 
     public function getFromCode(string $code): string

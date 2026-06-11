@@ -74,6 +74,7 @@ class ButtonViewHelper extends AbstractViewHelper
     {
         /** @var array<string, mixed> $additionalAttributes */
         $additionalAttributes = $this->arguments['additionalAttributes'];
+
         /** @var array<string, mixed> $dataAttributes */
         $dataAttributes = $this->arguments['data'];
         $argumentClasses = $this->arguments['additionalClasses'];
@@ -138,7 +139,7 @@ class ButtonViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @param array<int, string> $classes
+     * @param string[] $classes
      */
     private function processClasses(array &$classes): void
     {

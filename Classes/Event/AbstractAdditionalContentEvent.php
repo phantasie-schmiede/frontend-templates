@@ -20,7 +20,8 @@ use Psr\Http\Message\ServerRequestInterface;
  */
 abstract class AbstractAdditionalContentEvent implements AdditionalContentEventInterface
 {
-    protected string                  $content    = '';
+    protected string $content = '';
+
     /** @var array<string, mixed> */
     protected array                   $parameters = [];
     protected ?ServerRequestInterface $request    = null;

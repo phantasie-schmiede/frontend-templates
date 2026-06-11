@@ -18,13 +18,13 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 /**
  * Class HeaderButtonRepository
  *
- * @package PSBits\Templates\Domain\Repository\Settings
  * @extends Repository<HeaderButton>
+ * @package PSBits\Templates\Domain\Repository\Settings
  */
 class HeaderButtonRepository extends Repository implements SettingSourceInterface
 {
     /**
-     * @return array<int, HeaderButton>
+     * @return HeaderButton[]
      */
     public function findByPid(int $pid): array
     {

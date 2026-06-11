@@ -25,8 +25,9 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 class SettingsViewHelper extends AbstractGlobalVariablesViewHelper
 {
     /**
-     * @throws Exception
      * @param array<string, mixed> $arguments
+     *
+     * @throws Exception
      */
     public static function renderStatic(
         array                     $arguments,

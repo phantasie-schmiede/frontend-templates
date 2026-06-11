@@ -70,8 +70,8 @@ class ProgressBarViewHelper extends AbstractViewHelper
             $classes = 'bg-';
 
             $classes .= match (true) {
-                $percentage > 74 => 'success',
-                $percentage > 24 => 'warning',
+                74 < $percentage => 'success',
+                24 < $percentage => 'warning',
                 default          => 'danger',
             };
 

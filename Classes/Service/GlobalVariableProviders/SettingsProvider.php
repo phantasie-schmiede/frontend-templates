@@ -64,8 +64,10 @@ class SettingsProvider extends AbstractProvider
         /** @var PageInformation $pageInformation */
         $pageInformation = ContextUtility::getRequest()
             ->getAttribute('frontend.page.information');
+
         /** @var array<string, SettingSourceInterface> $pendingSources */
         $pendingSources = [];
+
         /** @var array<int, array<string, mixed>> $rootline */
         $rootline = array_reverse($pageInformation->getLocalRootLine());
         $settings = [];
@@ -77,7 +79,6 @@ class SettingsProvider extends AbstractProvider
         }
 
         foreach ($rootline as $page) {
-            /** @var SettingSourceInterface $sourceInstance */
             foreach ($pendingSources as $identifier => $sourceInstance) {
                 $sourceSettings = $sourceInstance->findByPid($page['uid']);
 

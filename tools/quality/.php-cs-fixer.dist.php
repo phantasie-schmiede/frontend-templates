@@ -10,7 +10,7 @@ $finder = PhpCsFixer\Finder::create()
     ->name('*.php');
 
 return (new PhpCsFixer\Config())
-    ->setRiskyAllowed(false)
+    ->setRiskyAllowed(true)
     ->setRules([
         '@PER-CS' => true,
         'array_syntax' => ['syntax' => 'short'],

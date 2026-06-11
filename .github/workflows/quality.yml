@@ -29,6 +29,15 @@ jobs:
       - name: Install dependencies
         run: composer update --no-interaction --no-progress
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
       - name: Composer security audit
         run: composer audit
 
@@ -49,3 +58,9 @@ jobs:
 
       - name: Fluid template parse check
         run: composer lint:fluid
+
+      - name: JavaScript lint
+        run: composer lint:js
+
+      - name: SCSS lint
+        run: composer lint:scss

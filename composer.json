@@ -51,13 +51,17 @@
         "lint:yaml": "yamllint -c .yamllint.yml ContentBlocks Configuration",
         "lint:typoscript": "typoscript-lint --ansi Configuration/TypoScript",
         "lint:fluid": "php -r 'require \"vendor/autoload.php\"; $parser = new TYPO3Fluid\\\\Fluid\\\\Core\\\\Parser\\\\TemplateParser(); $dirs = [\"Resources/Private\", \"ContentBlocks\"]; foreach ($dirs as $dir) { if (!is_dir($dir)) { continue; } $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS)); foreach ($iterator as $file) { if ($file->getExtension() !== \"html\") { continue; } $template = file_get_contents($file->getPathname()); if ($template === false) { throw new RuntimeException(\"Could not read template: \" . $file->getPathname()); } try { $parser->parse($template); } catch (Throwable $exception) { throw new RuntimeException($file->getPathname() . \" -> \" . $exception->getMessage(), 0, $exception); } } }'",
+        "lint:js": "npm run lint:js",
+        "lint:scss": "npm run lint:scss",
         "qa": [
             "@validate:composer",
             "@lint:php",
             "@analyze:php",
             "@lint:yaml",
             "@lint:typoscript",
-            "@lint:fluid"
+            "@lint:fluid",
+            "@lint:js",
+            "@lint:scss"
         ]
     },
     "type": "typo3-cms-extension"

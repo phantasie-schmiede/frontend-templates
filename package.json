@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Basic templates for TYPO3",
   "scripts": {
-    "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\"",
+    "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\" --ignore-pattern \"Resources/Public/JavaScript/Vendors/**\"",
     "lint:scss": "stylelint \"Resources/Private/Scss/**/*.{scss,sass}\""
   },
   "repository": {

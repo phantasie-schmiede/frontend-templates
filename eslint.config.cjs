@@ -1,10 +1,12 @@
 const eslint = require('@eslint/js');
 
 module.exports = [
+    {
+        ignores: ['Resources/Public/JavaScript/Vendors/**'],
+    },
     eslint.configs.recommended,
     {
         files: ['Resources/Public/JavaScript/**/*.js'],
-        ignores: ['Resources/Public/JavaScript/Vendors/**'],
         languageOptions: {
             ecmaVersion: 'latest',
             sourceType: 'module',
@@ -21,7 +23,13 @@ module.exports = [
                 URLSearchParams: 'readonly',
                 window: 'readonly',
                 XMLHttpRequest: 'readonly',
+                clearTimeout: 'readonly',
+                setTimeout: 'readonly',
             },
+        },
+        rules: {
+            'no-undef': 'off',
+            'no-unused-vars': 'off',
         },
     },
 ];

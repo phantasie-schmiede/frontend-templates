@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -15,6 +16,7 @@ use PSBits\Foundation\Utility\ContextUtility;
 use RuntimeException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Page\PageInformation;
+
 use function array_key_exists;
 use function in_array;
 
@@ -38,13 +40,15 @@ class SettingsProvider extends AbstractProvider
 
         if (in_array($source, self::$sources, true)) {
             throw new RuntimeException(
-                __CLASS__ . ': The source "' . $source . '" is already registered!', 1773992985
+                __CLASS__ . ': The source "' . $source . '" is already registered!',
+                1773992985
             );
         }
 
         if (!empty($identifier) && array_key_exists($identifier, self::$sources)) {
             throw new RuntimeException(
-                __CLASS__ . ': The identifier "' . $identifier . '" is already used for another source!', 1773993176
+                __CLASS__ . ': The identifier "' . $identifier . '" is already used for another source!',
+                1773993176
             );
         }
 

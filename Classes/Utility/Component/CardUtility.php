@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -9,15 +10,6 @@ declare(strict_types=1);
  */
 
 namespace PSBits\Templates\Utility\Component;
-
-use Doctrine\DBAL\Exception;
-use TYPO3\CMS\Core\Database\Connection;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
-use TYPO3\CMS\Core\DataHandling\SlugHelper;
-use TYPO3\CMS\Core\Exception\SiteNotFoundException;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use function in_array;
 
 /**
  * Class CardUtility

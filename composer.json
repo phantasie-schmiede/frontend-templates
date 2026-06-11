@@ -49,16 +49,15 @@
         "helmich/typo3-typoscript-lint": "^3.3"
     },
     "scripts": {
-        "validate:composer": "composer validate --no-check-publish",
-        "audit:composer": "composer audit",
-        "lint:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --dry-run --diff --verbose",
-        "fix:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --verbose",
         "analyze:php": "phpstan analyse --configuration=tools/quality/phpstan.neon.dist --no-progress",
-        "lint:yaml": "yamllint -c tools/quality/.yamllint.yml ContentBlocks Configuration",
-        "lint:typoscript": "typoscript-lint --ansi Configuration/TypoScript",
+        "audit:composer": "composer audit",
+        "fix:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --verbose",
         "lint:fluid": "php tools/quality/lint-fluid.php",
         "lint:js": "npm run lint:js",
+        "lint:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --dry-run --diff --verbose",
         "lint:scss": "npm run lint:scss",
+        "lint:typoscript": "typoscript-lint --ansi Configuration/TypoScript",
+        "lint:yaml": "yamllint -c tools/quality/.yamllint.yml ContentBlocks Configuration",
         "qa": [
             "@validate:composer",
             "@lint:php",
@@ -68,7 +67,8 @@
             "@lint:fluid",
             "@lint:js",
             "@lint:scss"
-        ]
+        ],
+        "validate:composer": "composer validate --no-check-publish"
     },
     "type": "typo3-cms-extension"
 }

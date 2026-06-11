@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -37,7 +38,11 @@ class AdditionalContentViewHelper extends AbstractViewHelper
     {
         parent::initializeArguments();
         $this->registerArgument(
-            'parameters', 'array', 'Pass optional parameters to the event.', false, []
+            'parameters',
+            'array',
+            'Pass optional parameters to the event.',
+            false,
+            []
         );
         $this->registerArgument(
             'eventClass',
@@ -56,7 +61,8 @@ class AdditionalContentViewHelper extends AbstractViewHelper
 
         if (!class_exists($eventClass)) {
             throw new InvalidArgumentException(
-                'The provided event class ' . $this->arguments['eventClass'] . ' does not exist!', 1721043807
+                'The provided event class ' . $this->arguments['eventClass'] . ' does not exist!',
+                1721043807
             );
         }
 

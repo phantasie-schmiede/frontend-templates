@@ -9,15 +9,25 @@ $finder = PhpCsFixer\Finder::create()
     ])
     ->name('*.php');
 
-return (new PhpCsFixer\Config())
-    ->setRiskyAllowed(true)
+return (new PhpCsFixer\Config())->setRiskyAllowed(true)
     ->setRules([
-        '@PER-CS' => true,
-        'array_syntax' => ['syntax' => 'short'],
-        'declare_strict_types' => true,
-        'no_unused_imports' => true,
-        'ordered_imports' => ['sort_algorithm' => 'alpha'],
-        'single_quote' => true,
-        'trailing_comma_in_multiline' => ['elements' => ['arrays', 'arguments', 'parameters']],
+        '@PSR12'                      => true,
+        'array_syntax'                => ['syntax' => 'short'],
+        'declare_strict_types'        => true,
+        'no_unused_imports'           => true,
+        'ordered_imports'             => [
+            'imports_order'  => [
+                'class',
+                'function',
+                'const',
+            ],
+            'sort_algorithm' => 'alpha',
+        ],
+        'single_quote'                => true,
+        'trailing_comma_in_multiline' => [
+            'elements' => [
+                'arrays',
+            ],
+        ],
     ])
     ->setFinder($finder);

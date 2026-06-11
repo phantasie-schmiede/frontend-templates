@@ -1,42 +1,64 @@
 {
-	"authors": [
-		{
-			"email": "dn@phantasie-schmiede.de",
-			"name": "Daniel Ablass",
-			"role": "Developer"
-		}
-	],
-	"autoload": {
-		"psr-4": {
-			"PSBits\\Templates\\": "Classes/"
-		}
-	},
-	"description": "Basic templates for TYPO3",
-	"extra": {
-		"typo3/cms": {
-			"extension-key": "templates"
-		}
-	},
-	"keywords": [
-		"extension",
-		"templates",
-		"typo3"
-	],
-	"license": "GPL-3.0-or-later",
-	"name": "psbits/templates",
-	"require": {
-		"ext-intl": "*",
-		"friendsoftypo3/content-blocks": "~1.5.0",
-		"php": "^8.3",
-		"psbits/foundation": "@dev",
-		"psbits/view-helpers": "@dev",
-		"symfony/intl": "^7.1",
+    "authors": [
+        {
+            "email": "dn@phantasie-schmiede.de",
+            "name": "Daniel Ablass",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PSBits\\Templates\\": "Classes/"
+        }
+    },
+    "description": "Basic templates for TYPO3",
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "templates"
+        }
+    },
+    "keywords": [
+        "extension",
+        "templates",
+        "typo3"
+    ],
+    "license": "GPL-3.0-or-later",
+    "name": "psbits/templates",
+    "require": {
+        "ext-intl": "*",
+        "friendsoftypo3/content-blocks": "~1.5.0",
+        "php": "^8.3",
+        "psbits/foundation": "@dev",
+        "psbits/view-helpers": "@dev",
+        "symfony/intl": "^7.1",
         "typo3/cms-core": "^13.4",
         "typo3/cms-fluid-styled-content": "^13",
         "wapplersystems/ws-scss": "^13"
-	},
-	"require-dev": {
-		"roave/security-advisories": "dev-latest"
-	},
-	"type": "typo3-cms-extension"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "phpstan/phpstan": "^2.2",
+        "saschaegerer/phpstan-typo3": "^2.1",
+        "helmich/typo3-typoscript-lint": "^3.3"
+    },
+    "scripts": {
+        "validate:composer": "composer validate --no-check-publish",
+        "audit:composer": "composer audit",
+        "lint:php": "php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --diff --verbose",
+        "fix:php": "php-cs-fixer fix --config=.php-cs-fixer.dist.php --verbose",
+        "analyze:php": "phpstan analyse --configuration=phpstan.neon.dist --no-progress",
+        "lint:yaml": "yamllint -c .yamllint.yml ContentBlocks Configuration",
+        "lint:typoscript": "typoscript-lint --ansi Configuration/TypoScript",
+        "lint:fluid": "php -r 'require \"vendor/autoload.php\"; $parser = new TYPO3Fluid\\\\Fluid\\\\Core\\\\Parser\\\\TemplateParser(); $dirs = [\"Resources/Private\", \"ContentBlocks\"]; foreach ($dirs as $dir) { if (!is_dir($dir)) { continue; } $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS)); foreach ($iterator as $file) { if ($file->getExtension() !== \"html\") { continue; } $template = file_get_contents($file->getPathname()); if ($template === false) { throw new RuntimeException(\"Could not read template: \" . $file->getPathname()); } try { $parser->parse($template); } catch (Throwable $exception) { throw new RuntimeException($file->getPathname() . \" -> \" . $exception->getMessage(), 0, $exception); } } }'",
+        "qa": [
+            "@validate:composer",
+            "@lint:php",
+            "@analyze:php",
+            "@lint:yaml",
+            "@lint:typoscript",
+            "@lint:fluid"
+        ]
+    },
+    "type": "typo3-cms-extension"
 }

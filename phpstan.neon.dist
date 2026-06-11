@@ -1,0 +1,9 @@
+parameters:
+  level: 6
+  paths:
+    - Classes
+  tmpDir: .phpstan
+  reportUnmatchedIgnoredErrors: false
+
+includes:
+  - vendor/saschaegerer/phpstan-typo3/extension.neon

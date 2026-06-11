@@ -1,0 +1,49 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: intl, dom, simplexml
+          tools: composer:v2
+
+      - name: Validate composer config
+        run: composer validate --no-check-publish
+
+      - name: Install dependencies
+        run: composer update --no-interaction --no-progress
+
+      - name: Composer security audit
+        run: composer audit
+
+      - name: Install yamllint
+        run: python -m pip install --user yamllint
+
+      - name: PHP CS check
+        run: composer lint:php
+
+      - name: PHPStan
+        run: composer analyze:php
+
+      - name: YAML lint
+        run: ~/.local/bin/yamllint -c .yamllint.yml ContentBlocks Configuration
+
+      - name: TypoScript lint
+        run: composer lint:typoscript
+
+      - name: Fluid template parse check
+        run: composer lint:fluid

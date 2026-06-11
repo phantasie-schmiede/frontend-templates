@@ -6,9 +6,27 @@ require __DIR__ . '/../../vendor/autoload.php';
 
 use TYPO3Fluid\Fluid\Core\Parser\TemplateParser;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContext;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperResolver;
 
 $parser = new TemplateParser();
-$parser->setRenderingContext(new RenderingContext());
+$renderingContext = new RenderingContext();
+$renderingContext->setViewHelperResolver(
+    new class () extends ViewHelperResolver {
+        public function createViewHelperInstanceFromClassName(string $viewHelperClassName): ViewHelperInterface
+        {
+            $reflectionClass = new ReflectionClass($viewHelperClassName);
+            $constructor = $reflectionClass->getConstructor();
+
+            if (null === $constructor || 0 === $constructor->getNumberOfRequiredParameters()) {
+                return parent::createViewHelperInstanceFromClassName($viewHelperClassName);
+            }
+
+            return $reflectionClass->newInstanceWithoutConstructor();
+        }
+    }
+);
+$parser->setRenderingContext($renderingContext);
 $directories = [
     'Resources/Private',
     'ContentBlocks',

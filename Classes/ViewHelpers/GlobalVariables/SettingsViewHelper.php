@@ -26,6 +26,7 @@ class SettingsViewHelper extends AbstractGlobalVariablesViewHelper
 {
     /**
      * @throws Exception
+     * @param array<string, mixed> $arguments
      */
     public static function renderStatic(
         array                     $arguments,

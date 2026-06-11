@@ -18,6 +18,9 @@ namespace PSBits\Templates\Utility\Component;
  */
 class CardUtility
 {
+    /**
+     * @return array<string, array<string, mixed>>
+     */
     public static function getTcaCropVariants(): array
     {
         return [

@@ -21,6 +21,7 @@ use Psr\Http\Message\ServerRequestInterface;
 abstract class AbstractAdditionalContentEvent implements AdditionalContentEventInterface
 {
     protected string                  $content    = '';
+    /** @var array<string, mixed> */
     protected array                   $parameters = [];
     protected ?ServerRequestInterface $request    = null;
 
@@ -39,6 +40,9 @@ abstract class AbstractAdditionalContentEvent implements AdditionalContentEventI
         return $this->request;
     }
 
+    /**
+     * @param array<string, mixed> $parameters
+     */
     public function setParameters(array $parameters): static
     {
         $this->parameters = $parameters;

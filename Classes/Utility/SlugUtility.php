@@ -14,6 +14,7 @@ namespace PSBits\Templates\Utility;
 use Doctrine\DBAL\Exception;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
@@ -35,7 +36,7 @@ class SlugUtility
      */
     public static function generateUniqueSlug(int $uid, string $tableName, string $slugFieldName = 'slug'): false|string
     {
-        /** @var Connection $connection */
+        /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable($tableName);
 

@@ -65,17 +65,37 @@ readonly class ViewService
      * @throws ContainerExceptionInterface
      * @throws JsonException
      * @throws NotFoundExceptionInterface
+     * @return array{
+     *     layoutRootPaths: array<int, string>,
+     *     partialRootPaths: array<int, string>,
+     *     templateRootPaths: array<int, string>
+     * }
      */
     private function getViewSettings(ExtensionInformationInterface $extensionInformation): array
     {
+        /** @var array<string, mixed> $viewSettings */
         $viewSettings = $this->typoScriptProviderService->get(
             'view',
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
             $extensionInformation->getExtensionName(),
         );
-        $viewSettings['layoutRootPaths'] ??= [];
-        $viewSettings['partialRootPaths'] ??= [];
-        $viewSettings['templateRootPaths'] ??= [];
+        $layoutRootPaths = $viewSettings['layoutRootPaths'] ?? [];
+        $partialRootPaths = $viewSettings['partialRootPaths'] ?? [];
+        $templateRootPaths = $viewSettings['templateRootPaths'] ?? [];
+
+        if (!is_array($layoutRootPaths)) {
+            $layoutRootPaths = [];
+        }
+        if (!is_array($partialRootPaths)) {
+            $partialRootPaths = [];
+        }
+        if (!is_array($templateRootPaths)) {
+            $templateRootPaths = [];
+        }
+
+        $viewSettings['layoutRootPaths'] = array_map('strval', $layoutRootPaths);
+        $viewSettings['partialRootPaths'] = array_map('strval', $partialRootPaths);
+        $viewSettings['templateRootPaths'] = array_map('strval', $templateRootPaths);
 
         // Add default paths as fallback.
         array_unshift(

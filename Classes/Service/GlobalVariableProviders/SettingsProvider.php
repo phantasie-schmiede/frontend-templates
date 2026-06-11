@@ -27,6 +27,7 @@ use function in_array;
  */
 class SettingsProvider extends AbstractProvider
 {
+    /** @var array<string, class-string<SettingSourceInterface>> */
     protected static array $sources = [];
 
     public static function registerSource(string $source, string $identifier = ''): void
@@ -55,17 +56,24 @@ class SettingsProvider extends AbstractProvider
         self::$sources[$identifier ?: $source] = $source;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getGlobalVariables(): array
     {
         /** @var PageInformation $pageInformation */
         $pageInformation = ContextUtility::getRequest()
             ->getAttribute('frontend.page.information');
+        /** @var array<string, SettingSourceInterface> $pendingSources */
         $pendingSources = [];
+        /** @var array<int, array<string, mixed>> $rootline */
         $rootline = array_reverse($pageInformation->getLocalRootLine());
         $settings = [];
 
         foreach (self::$sources as $identifier => $source) {
-            $pendingSources[$identifier] = GeneralUtility::makeInstance($source);
+            /** @var SettingSourceInterface $sourceInstance */
+            $sourceInstance = GeneralUtility::makeInstance($source);
+            $pendingSources[$identifier] = $sourceInstance;
         }
 
         foreach ($rootline as $page) {

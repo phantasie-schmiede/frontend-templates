@@ -37,7 +37,10 @@ class CountryNamesService
 
     public function getAll(): array
     {
-        return Countries::getNames();
+        /** @var array<string, string> $countryNames */
+        $countryNames = Countries::getNames();
+
+        return $countryNames;
     }
 
     public function getFromCode(string $code): string

@@ -1,4 +1,5 @@
 /*.idea/
 /composer.lock
+/node_modules/
 /Resources/Public/Stylesheets/Vendors/app.min.css
 /Resources/Public/Stylesheets/Vendors/bootstrap.min.css

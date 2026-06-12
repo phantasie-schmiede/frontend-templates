@@ -56,6 +56,7 @@
         "audit:composer": "composer audit",
         "fix:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --verbose",
         "lint:classes": "npm run lint:classes",
+        "lint:htmlxml": "npm run lint:htmlxml",
         "lint:js": "npm run lint:js",
         "lint:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --dry-run --diff --verbose",
         "lint:scss": "npm run lint:scss",
@@ -71,6 +72,7 @@
             "@analyze:php",
             "@lint:typoscript",
             "@lint:classes",
+            "@lint:htmlxml",
             "@lint:js",
             "@lint:scss"
         ],

@@ -63,5 +63,8 @@ jobs:
       - name: Class attribute lint
         run: composer lint:classes
 
+      - name: HTML/XML lint
+        run: composer lint:htmlxml
+
       - name: SCSS lint
         run: composer lint:scss

@@ -60,6 +60,10 @@
         "lint:scss": "npm run lint:scss",
         "lint:typoscript": "typoscript-lint --ansi Configuration/TypoScript",
         "lint:yaml": "yamllint -c tools/quality/.yamllint.yml ContentBlocks Configuration",
+        "post-install-cmd": [
+            "npm install",
+            "cp tools/githooks/pre-commit .git/hooks/pre-commit"
+        ],
         "qa": [
             "@validate:composer",
             "@lint:php",

@@ -55,7 +55,6 @@
         "analyze:php": "phpstan analyse --configuration=tools/quality/phpstan.neon.dist --no-progress",
         "audit:composer": "composer audit",
         "fix:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --verbose",
-        "lint:fluid": "php tools/quality/lint-fluid.php",
         "lint:js": "npm run lint:js",
         "lint:php": "php-cs-fixer fix --config=tools/quality/.php-cs-fixer.dist.php --dry-run --diff --verbose",
         "lint:scss": "npm run lint:scss",
@@ -67,7 +66,6 @@
             "@analyze:php",
             "@lint:yaml",
             "@lint:typoscript",
-            "@lint:fluid",
             "@lint:js",
             "@lint:scss"
         ],

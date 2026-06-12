@@ -68,7 +68,6 @@
             "@validate:composer",
             "@lint:php",
             "@analyze:php",
-            "@lint:yaml",
             "@lint:typoscript",
             "@lint:js",
             "@lint:scss"

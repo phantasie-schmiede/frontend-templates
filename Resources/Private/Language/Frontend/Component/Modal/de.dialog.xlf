@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file datatype="plaintext"
+    <file
+        datatype="plaintext"
         date="2025-09-05T11:03:00+01:00"
         original="messages"
         product-name="templates"
         source-language="en"
-        target-language="de">
+        target-language="de"
+    >
         <body>
             <trans-unit id="close">
                 <source>Close</source>

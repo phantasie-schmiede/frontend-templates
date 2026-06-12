@@ -3,10 +3,10 @@
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
+const fileExtension = '.html';
+const fixMode = process.argv.includes('--fix');
 const repositoryRoot = process.cwd();
 const targets = ['Resources/Private', 'ContentBlocks'];
-const fixMode = process.argv.includes('--fix');
-const fileExtension = '.html';
 
 const classAttributePattern = /(\bclass\s*=\s*)(["'])([^"']*)(\2)/g;
 const fluidExpressionPattern = /[{}]/;
@@ -100,7 +100,7 @@ const run = async () => {
         await lintFile(filePath);
     }
 
-    if (lintErrors.length === 0) {
+    if (0 === lintErrors.length) {
         return;
     }
 

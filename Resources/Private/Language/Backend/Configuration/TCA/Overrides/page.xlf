@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file
-        datatype="plaintext"
+    <file datatype="plaintext"
         date="2020-04-27T14:01:00+01:00"
         original="messages"
         product-name="templates"
-        source-language="en"
-    >
+        source-language="en">
         <body>
             <trans-unit id="bootstrapContainerType">
                 <source>Bootstrap container type</source>

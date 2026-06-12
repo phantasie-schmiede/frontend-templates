@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file
-        datatype="plaintext"
+    <file datatype="plaintext"
         date="2026-03-20T08:28:00+01:00"
         original="messages"
         product-name="templates"
-        source-language="en"
-    >
-        <body />
+        source-language="en">
+        <body></body>
     </file>
 </xliff>

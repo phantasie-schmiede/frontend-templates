@@ -1,4 +1,6 @@
-/.idea/
+.idea/
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
 /.php-cs-fixer.cache
 /composer.lock
 /node_modules/

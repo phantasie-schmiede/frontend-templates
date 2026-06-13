@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
-import { readdir, readFile, writeFile } from 'node:fs/promises';
-import path from 'node:path';
+import fs from 'fs';
+import path from 'path';
+
+const { readdir, readFile, writeFile } = fs.promises;
 
 const fileExtension = '.html';
 const fixMode = process.argv.includes('--fix');

@@ -4,8 +4,8 @@
   "description": "Basic templates for TYPO3",
   "scripts": {
     "fix:classes": "node tools/quality/lint-class-attributes.mjs --fix",
-    "fix:htmlxml": "find Resources/Public -type f -name '*.html' -print0 | xargs -0 -r prettier --write && find . -type f \\( -name '*.xml' -o -name '*.xlf' \\) -print0 | xargs -0 -r prettier --write --plugin=@prettier/plugin-xml",
-    "lint:html": "htmlhint \"Resources/Public/**/*.html\" --config tools/quality/.htmlhintrc",
+    "fix:htmlxml": "find Resources/Private -type f -name '*.html' -print0 | xargs -0 -r prettier --write && find . -type f \\( -name '*.xml' -o -name '*.xlf' \\) -print0 | xargs -0 -r prettier --write --plugin=@prettier/plugin-xml",
+    "lint:html": "htmlhint \"Resources/Private/**/*.html\" --config tools/quality/.htmlhintrc",
     "lint:htmlxml": "npm run lint:html && npm run lint:xml",
     "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\" --ignore-pattern \"Resources/Public/JavaScript/Vendors/**\"",
     "lint:xml": "find . -type f \\( -name '*.xml' -o -name '*.xlf' \\) -print0 | xargs -0 -r prettier --check --plugin=@prettier/plugin-xml",

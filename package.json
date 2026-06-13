@@ -21,6 +21,9 @@
     "url": "https://github.com/phantasie-schmiede/templates/issues"
   },
   "homepage": "https://github.com/phantasie-schmiede/templates#readme",
+  "engines": {
+    "node": ">=18"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@prettier/plugin-xml": "^3.4.2",

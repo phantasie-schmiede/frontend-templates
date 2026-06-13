@@ -1,5 +1,6 @@
 {
   "attr-lowercase": false,
+  "attr-value-double-quotes": true,
   "doctype-first": false,
   "tagname-lowercase": false
 }

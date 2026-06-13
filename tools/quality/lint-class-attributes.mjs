@@ -112,4 +112,7 @@ const run = async () => {
     process.exitCode = 1;
 };
 
-await run();
+run().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+});

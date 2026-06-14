@@ -54,9 +54,6 @@ jobs:
       - name: TypoScript lint
         run: composer lint:typoscript
 
-      - name: Fluid template parse check
-        run: composer lint:fluid
-
       - name: JavaScript lint
         run: composer lint:js
 

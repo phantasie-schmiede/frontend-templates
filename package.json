@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Basic templates for TYPO3",
   "scripts": {
-    "fix:classes": "node Build/Quality/lint-class-attributes.mjs --fix",
+    "fix:classes": "node Build/Quality/lint-class-attributes.mjs",
     "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\" --config Build/Quality/eslint.config.cjs --ignore-pattern \"Resources/Public/JavaScript/Vendors/**\"",
-    "lint:classes": "node Build/Quality/lint-class-attributes.mjs",
+    "lint:classes": "node Build/Quality/lint-class-attributes.mjs --dry-run",
     "lint:scss": "stylelint \"Resources/Private/Scss/**/*.{scss,sass}\" --config Build/Quality/.stylelintrc.json --ignore-path Build/Quality/.stylelintignore"
   },
   "repository": {

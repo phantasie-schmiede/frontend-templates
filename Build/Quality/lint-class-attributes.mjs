@@ -4,7 +4,7 @@ import { readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const fileExtension = '.html';
-const fixMode = process.argv.includes('--fix');
+const dryRunMode = process.argv.includes('--dry-run');
 const repositoryRoot = process.cwd();
 const targets = ['Resources/Private', 'ContentBlocks'];
 
@@ -79,7 +79,7 @@ const lintFile = async (filePath) => {
 
     const relativePath = path.relative(repositoryRoot, filePath);
 
-    if (fixMode) {
+    if (!dryRunMode) {
         await writeFile(filePath, updatedContent, 'utf8');
         console.log(`Fixed class order in ${relativePath}`);
         return;

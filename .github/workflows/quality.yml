@@ -37,19 +37,19 @@ jobs:
         run: npm install
 
       - name: Composer security audit
-        run: composer audit --abandoned=report
+        run: composer audit:composer
 
       - name: Install yamllint
         run: python -m pip install --user yamllint
+
+      - name: YAML lint
+        run: ~/.local/bin/yamllint -c Build/Quality/.yamllint.yml ContentBlocks Configuration
 
       - name: PHP CS check
         run: composer lint:php
 
       - name: PHPStan
         run: composer analyze:php
-
-      - name: YAML lint
-        run: ~/.local/bin/yamllint -c tools/quality/.yamllint.yml ContentBlocks Configuration
 
       - name: TypoScript lint
         run: composer lint:typoscript

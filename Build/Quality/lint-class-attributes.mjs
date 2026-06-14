@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-import fs from 'fs';
-import path from 'path';
-
-const { readdir, readFile, writeFile } = fs.promises;
+import { readdir, readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
 
 const fileExtension = '.html';
 const fixMode = process.argv.includes('--fix');
@@ -114,7 +112,4 @@ const run = async () => {
     process.exitCode = 1;
 };
 
-run().catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
-});
+await run();

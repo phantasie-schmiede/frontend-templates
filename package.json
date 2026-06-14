@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "description": "Basic templates for TYPO3",
   "scripts": {
-    "fix:classes": "node tools/quality/lint-class-attributes.mjs --fix",
-    "fix:htmlxml": "find Resources/Private -type f -name '*.html' -print0 | xargs -0 -r prettier --write && find . -type f \\( -name '*.xml' -o -name '*.xlf' \\) -print0 | xargs -0 -r prettier --write --plugin=@prettier/plugin-xml",
-    "lint:html": "htmlhint \"Resources/Private/**/*.html\" --config tools/quality/.htmlhintrc",
-    "lint:htmlxml": "npm run lint:html && npm run lint:xml",
-    "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\" --ignore-pattern \"Resources/Public/JavaScript/Vendors/**\"",
-    "lint:xml": "find . -type f \\( -name '*.xml' -o -name '*.xlf' \\) -print0 | xargs -0 -r prettier --check --plugin=@prettier/plugin-xml",
-    "lint:classes": "node tools/quality/lint-class-attributes.mjs",
-    "lint:scss": "stylelint \"Resources/Private/Scss/**/*.{scss,sass}\" --ignore-path tools/quality/.stylelintignore"
+    "fix:classes": "node Build/Quality/lint-class-attributes.mjs --fix",
+    "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\" --config Build/Quality/eslint.config.cjs --ignore-pattern \"Resources/Public/JavaScript/Vendors/**\"",
+    "lint:classes": "node Build/Quality/lint-class-attributes.mjs",
+    "lint:scss": "stylelint \"Resources/Private/Scss/**/*.{scss,sass}\" --config Build/Quality/.stylelintrc.json --ignore-path Build/Quality/.stylelintignore"
   },
   "repository": {
     "type": "git",
@@ -26,10 +22,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@prettier/plugin-xml": "^3.4.2",
     "eslint": "^10.4.1",
-    "htmlhint": "1.1.4",
-    "prettier": "^3.6.2",
     "stylelint": "^17.13.0",
     "stylelint-config-standard-scss": "^17.0.0"
   }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -61,12 +62,18 @@ readonly class ViewService
     }
 
     /**
+     * @return array{
+     *     layoutRootPaths: array<int, string>,
+     *     partialRootPaths: array<int, string>,
+     *     templateRootPaths: array<int, string>
+     * }
      * @throws ContainerExceptionInterface
      * @throws JsonException
      * @throws NotFoundExceptionInterface
      */
     private function getViewSettings(ExtensionInformationInterface $extensionInformation): array
     {
+        /** @var array<string, mixed> $viewSettings */
         $viewSettings = $this->typoScriptProviderService->get(
             'view',
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,

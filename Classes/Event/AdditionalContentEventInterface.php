@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -21,6 +22,9 @@ interface AdditionalContentEventInterface
 {
     public function getContent(): string;
 
+    /**
+     * @param array<string, mixed> $parameters
+     */
     public function setParameters(array $parameters): static;
 
     public function setRequest(?ServerRequestInterface $request): static;

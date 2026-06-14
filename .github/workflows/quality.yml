@@ -1,0 +1,64 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: intl, dom, simplexml
+          tools: composer:v2
+
+      - name: Validate composer config
+        run: composer validate --no-check-publish
+
+      - name: Install dependencies
+        run: composer update --no-interaction --no-progress
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Composer security audit
+        run: composer audit:composer
+
+      - name: Install yamllint
+        run: python -m pip install --user yamllint
+
+      - name: YAML lint
+        run: ~/.local/bin/yamllint -c Build/Quality/.yamllint.yml ContentBlocks Configuration
+
+      - name: PHP CS check
+        run: composer lint:php
+
+      - name: PHPStan
+        run: composer analyze:php
+
+      - name: TypoScript lint
+        run: composer lint:typoscript
+
+      - name: JavaScript lint
+        run: composer lint:js
+
+      - name: Class attribute lint
+        run: composer lint:classes
+
+      - name: SCSS lint
+        run: composer lint:scss

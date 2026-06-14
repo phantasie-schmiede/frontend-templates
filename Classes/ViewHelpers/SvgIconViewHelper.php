@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -13,6 +14,7 @@ namespace PSBits\Templates\ViewHelpers;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconProvider\AbstractSvgIconProvider;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 use function is_array;
 
 /**

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -30,6 +31,7 @@ class StringUtility
      * @throws ContainerExceptionInterface
      * @throws JsonException
      * @throws NotFoundExceptionInterface
+     * @param string[] $items
      */
     public static function createEnumeration(array $items): string
     {

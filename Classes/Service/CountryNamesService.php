@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -34,6 +35,7 @@ class CountryNamesService
         );
     }
 
+    /** @return array<string, string> */
     public function getAll(): array
     {
         return Countries::getNames();

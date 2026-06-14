@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -68,7 +69,7 @@ class ProgressBarViewHelper extends AbstractViewHelper
         if ('' === $classes) {
             $classes = 'bg-';
 
-            $classes .= match ($percentage) {
+            $classes .= match (true) {
                 74 < $percentage => 'success',
                 24 < $percentage => 'warning',
                 default          => 'danger',

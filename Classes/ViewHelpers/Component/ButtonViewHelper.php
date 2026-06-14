@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -18,6 +19,8 @@ use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
+use function is_array;
 use function is_string;
 
 /**
@@ -69,9 +72,19 @@ class ButtonViewHelper extends AbstractViewHelper
      */
     public function render(): string
     {
+        /** @var array<string, mixed> $additionalAttributes */
         $additionalAttributes = $this->arguments['additionalAttributes'];
+
+        /** @var array<string, mixed> $dataAttributes */
         $dataAttributes = $this->arguments['data'];
-        $classes = $this->arguments['additionalClasses'];
+        $argumentClasses = $this->arguments['additionalClasses'];
+        $classes = [];
+
+        if (is_string($argumentClasses)) {
+            $classes = GeneralUtility::trimExplode(' ', $argumentClasses, true);
+        } elseif (is_array($argumentClasses)) {
+            $classes = $argumentClasses;
+        }
 
         $this->processAdditionalAttributes($additionalAttributes);
         $this->processClasses($classes);
@@ -83,7 +96,7 @@ class ButtonViewHelper extends AbstractViewHelper
             'ViewHelpers/Component/Button'
         );
         $view->assignMultiple([
-            'additionalAttributes' => $additionalAttributes ?? [],
+            'additionalAttributes' => $additionalAttributes,
             'classes'              => implode(' ', $classes),
             'data'                 => $dataAttributes,
             'href'                 => $this->arguments['href'],
@@ -97,6 +110,9 @@ class ButtonViewHelper extends AbstractViewHelper
         return $view->render();
     }
 
+    /**
+     * @param array<string, mixed> $additionalAttributes
+     */
     private function processAdditionalAttributes(array &$additionalAttributes): void
     {
         if ($this->arguments['externalLink']) {
@@ -122,12 +138,11 @@ class ButtonViewHelper extends AbstractViewHelper
         }
     }
 
-    private function processClasses(array|string &$classes): void
+    /**
+     * @param string[] $classes
+     */
+    private function processClasses(array &$classes): void
     {
-        if (is_string($classes)) {
-            $classes = GeneralUtility::trimExplode(' ', $classes, true);
-        }
-
         $classes[] = 'btn';
 
         if (!empty($this->arguments['iconIdentifier'])) {
@@ -139,6 +154,9 @@ class ButtonViewHelper extends AbstractViewHelper
         sort($classes);
     }
 
+    /**
+     * @param array<string, mixed> $dataAttributes
+     */
     private function processDataAttributes(array &$dataAttributes): void
     {
         if (!empty($this->arguments['spinnerText'])) {

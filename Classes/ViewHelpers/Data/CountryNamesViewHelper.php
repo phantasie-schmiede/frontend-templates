@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -31,6 +32,9 @@ class CountryNamesViewHelper extends AbstractViewHelper
         $this->registerArgument('countryCode', 'string', 'get name for a specific country');
     }
 
+    /**
+     * @return array<string, string>|string
+     */
     public function render(): array|string
     {
         if ($this->arguments['countryCode']) {

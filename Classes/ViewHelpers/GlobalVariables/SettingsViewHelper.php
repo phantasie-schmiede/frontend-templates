@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -24,6 +25,8 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 class SettingsViewHelper extends AbstractGlobalVariablesViewHelper
 {
     /**
+     * @param array<string, mixed> $arguments
+     *
      * @throws Exception
      */
     public static function renderStatic(

@@ -166,7 +166,7 @@
                 </f:if>
 
                 <psbvh:tag
-                    class="psbits-autocomplete-list-item list-group-item"
+                    class="list-group-item psbits-autocomplete-list-item"
                     data="{data}"
                     tag="li">
                     <psbvh:fallback values="{0: '{item.{itemLabelField}}', 1: item.label, 2: item}" />
@@ -178,7 +178,7 @@
         </f:else>
         <f:else>
             <li
-                class="psbits-autocomplete-list-item list-group-item"
+                class="list-group-item psbits-autocomplete-list-item"
                 disabled="disabled">
                 <foundation:translate id="inputAutocomplete:noItems" />
             </li>

@@ -1,16 +1,16 @@
 <section class="py-5">
     <div class="container-fluid">
-        <div class="row align-items-center">
+        <div class="align-items-center row">
 
             <!-- Bild -->
             <div class="col-12 col-lg-6 p-0">
                 <f:image
-                    class="img-fluid w-100 h-100 object-fit-cover"
+                    class="h-100 img-fluid object-fit-cover w-100"
                     image="{data.image.0}" />
             </div>
 
             <!-- Text -->
-            <div class="col-12 col-lg-6 py-3 p-lg-5">
+            <div class="col-12 col-lg-6 p-lg-5 py-3">
                 <h2 class="mb-3 text-center text-lg-start">{data.header}</h2>
                 <div class="mb-4">
                     <f:format.html>{data.bodytext}</f:format.html>

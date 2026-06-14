@@ -5,4 +5,4 @@ parameters:
   tmpDir: .phpstan
 
 includes:
-  - ../../vendor/saschaegerer/phpstan-typo3/extension.neon
+  - ../../.Build/vendor/saschaegerer/phpstan-typo3/extension.neon

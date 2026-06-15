@@ -1,48 +1,33 @@
-<html
-    data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-<f:flashMessages
-    as="flashMessages"
-    queueIdentifier="{queueIdentifier}">
-    <f:for
-        as="flashMessage"
-        each="{flashMessages}">
-        <f:switch expression="{flashMessage.severity.value}">
-            <f:case value="-2">
-                <f:variable
-                    name="type"
-                    value="notice" />
-            </f:case>
-            <f:case value="-1">
-                <f:variable
-                    name="type"
-                    value="info" />
-            </f:case>
-            <f:case value="0">
-                <f:variable
-                    name="type"
-                    value="success" />
-            </f:case>
-            <f:case value="1">
-                <f:variable
-                    name="type"
-                    value="warning" />
-            </f:case>
-            <f:case value="2">
-                <f:variable
-                    name="type"
-                    value="danger" />
-            </f:case>
-        </f:switch>
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <f:flashMessages as="flashMessages" queueIdentifier="{queueIdentifier}">
+        <f:for as="flashMessage" each="{flashMessages}">
+            <f:switch expression="{flashMessage.severity.value}">
+                <f:case value="-2">
+                    <f:variable name="type" value="notice" />
+                </f:case>
+                <f:case value="-1">
+                    <f:variable name="type" value="info" />
+                </f:case>
+                <f:case value="0">
+                    <f:variable name="type" value="success" />
+                </f:case>
+                <f:case value="1">
+                    <f:variable name="type" value="warning" />
+                </f:case>
+                <f:case value="2">
+                    <f:variable name="type" value="danger" />
+                </f:case>
+            </f:switch>
 
-        <f:render
-            arguments="{
+            <f:render
+                arguments="{
                 dismissable: dismissable,
                 message: flashMessage.message,
                 heading: flashMessage.title,
                 type: type
             }"
-            partial="Component/Alert" />
-    </f:for>
-</f:flashMessages>
+                partial="Component/Alert"
+            />
+        </f:for>
+    </f:flashMessages>
 </html>

@@ -1,26 +1,13 @@
-<html
-    data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
-    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<f:if condition="{showSpinner}">
-    <f:asset.script
-        identifier="loadingSpinner"
-        src="EXT:templates/Resources/Public/JavaScript/loadingSpinner.js"
-        type="module" />
-</f:if>
-
-<viewHelpers:tag
-    additionalAttributes="{additionalAttributes}"
-    class="{classes -> f:format.trim()}"
-    data="{data}"
-    tag="{tag}">
-    <f:if condition="{iconIdentifier}">
-        <templates:svgIcon
-            additionalClasses="{f:if(condition: label, then: 'me-2', else: '')}"
-            identifier="{iconIdentifier}" />
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers" xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <f:if condition="{showSpinner}">
+        <f:asset.script identifier="loadingSpinner" src="EXT:templates/Resources/Public/JavaScript/loadingSpinner.js" type="module" />
     </f:if>
 
-    {label}
-</viewHelpers:tag>
+    <viewHelpers:tag additionalAttributes="{additionalAttributes}" class="{classes -> f:format.trim()}" data="{data}" tag="{tag}">
+        <f:if condition="{iconIdentifier}">
+            <templates:svgIcon additionalClasses="{f:if(condition: label, then: 'me-2', else: '')}" identifier="{iconIdentifier}" />
+        </f:if>
+
+        {label}
+    </viewHelpers:tag>
 </html>

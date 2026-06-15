@@ -1,12 +1,9 @@
 <section class="py-5">
     <div class="container-fluid">
         <div class="align-items-center row">
-
             <!-- Bild -->
             <div class="col-12 col-lg-6 p-0">
-                <f:image
-                    class="h-100 img-fluid object-fit-cover w-100"
-                    image="{data.image.0}" />
+                <f:image class="h-100 img-fluid object-fit-cover w-100" image="{data.image.0}" />
             </div>
 
             <!-- Text -->
@@ -17,19 +14,13 @@
                 </div>
 
                 <f:if condition="{data._grids.links}">
-                    <f:render
-                        contentAs="buttons"
-                        partial="Component/ButtonRow"
-                        arguments="{centerButtons: 1}">
-                        <f:for
-                            as="cta"
-                            each="{data._grids.links}">
+                    <f:render contentAs="buttons" partial="Component/ButtonRow" arguments="{centerButtons: 1}">
+                        <f:for as="cta" each="{data._grids.links}">
                             <f:format.raw>{cta.content}</f:format.raw>
                         </f:for>
                     </f:render>
                 </f:if>
             </div>
-
         </div>
     </div>
 </section>

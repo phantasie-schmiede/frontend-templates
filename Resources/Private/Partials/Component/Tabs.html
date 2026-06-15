@@ -1,80 +1,53 @@
-<html
-    data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<f:if condition="{vertical}">
-    <f:then>
-        <div class="align-items-start d-flex">
-            <f:render
-                arguments="{additionalAttributes: {aria-orientation: 'vertical'}, tabClass: tabClass, tabs: tabs, vertical: vertical}"
-                section="InnerContainer" />
-        </div>
-    </f:then>
-    <f:else>
-        <f:render
-            arguments="{tabs: tabs}"
-            section="InnerContainer" />
-    </f:else>
-</f:if>
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <f:if condition="{vertical}">
+        <f:then>
+            <div class="align-items-start d-flex">
+                <f:render arguments="{additionalAttributes: {aria-orientation: 'vertical'}, tabClass: tabClass, tabs: tabs, vertical: vertical}" section="InnerContainer" />
+            </div>
+        </f:then>
+        <f:else>
+            <f:render arguments="{tabs: tabs}" section="InnerContainer" />
+        </f:else>
+    </f:if>
 
-<f:section name="InnerContainer">
-    <nav>
-        <psbvh:tag
-            additionalAttributes="{additionalAttributes}"
-            class="nav {f:if(condition: vertical, then: 'border-end flex-column me-2 nav-pills pe-1', else: 'nav-tabs')}"
-            role="tablist"
-            tag="div">
-            <f:for
-                as="tab"
-                each="{tabs}"
-                iteration="iteration">
-                <f:if condition="{tab.content -> f:format.trim()}">
-                    <f:then>
-                        <f:variable
-                            name="additionalAttributes"
-                            value="" />
-                    </f:then>
-                    <f:else>
-                        <f:variable
-                            name="additionalAttributes"
-                            value="{disabled: 'disabled'}" />
-                    </f:else>
-                </f:if>
+    <f:section name="InnerContainer">
+        <nav>
+            <psbvh:tag additionalAttributes="{additionalAttributes}" class="nav {f:if(condition: vertical, then: 'border-end flex-column me-2 nav-pills pe-1', else: 'nav-tabs')}" role="tablist" tag="div">
+                <f:for as="tab" each="{tabs}" iteration="iteration">
+                    <f:if condition="{tab.content -> f:format.trim()}">
+                        <f:then>
+                            <f:variable name="additionalAttributes" value="" />
+                        </f:then>
+                        <f:else>
+                            <f:variable name="additionalAttributes" value="{disabled: 'disabled'}" />
+                        </f:else>
+                    </f:if>
 
-                <psbvh:tag
-                    additionalAttributes="{additionalAttributes}"
-                    aria="{
+                    <psbvh:tag
+                        additionalAttributes="{additionalAttributes}"
+                        aria="{
                         controls: '{tab.id}-content',
                         selected: '{f:if(condition: iteration.isFirst, then: \'true\', else: \'false\')}'
                     }"
-                    class="nav-link{f:if(condition: tabClass, then: ' {tabClass}', else: '')}{f:if(condition: iteration.isFirst, then: ' active', else: '')}"
-                    data="{
+                        class="nav-link{f:if(condition: tabClass, then: ' {tabClass}', else: '')}{f:if(condition: iteration.isFirst, then: ' active', else: '')}"
+                        data="{
                         bs-target: '#{tab.id}-content',
                         bs-toggle: '{f:if(condition: vertical, then: \'pill\', else: \'tab\')}'
                     }"
-                    id="{tab.id}-tab"
-                    role="tab"
-                    tag="button"
-                    type="button">
-                    {tab.label -> f:format.raw()}
-                </psbvh:tag>
+                        id="{tab.id}-tab"
+                        role="tab"
+                        tag="button"
+                        type="button"
+                    >
+                        {tab.label -> f:format.raw()}
+                    </psbvh:tag>
+                </f:for>
+            </psbvh:tag>
+        </nav>
+        <div class="tab-content{f:if(condition: vertical, then: ' flex-grow-1', else: '')}">
+            <f:for as="tab" each="{tabs}" iteration="iteration">
+                <div aria-labelledby="{tab.id}-tab" class="fade tab-pane{f:if(condition: iteration.isFirst, then: ' active show', else: '')}" id="{tab.id}-content" role="tabpanel" tabindex="0">{tab.content -> f:format.raw()}</div>
             </f:for>
-        </psbvh:tag>
-    </nav>
-    <div class="tab-content{f:if(condition: vertical, then: ' flex-grow-1', else: '')}">
-        <f:for
-            as="tab"
-            each="{tabs}"
-            iteration="iteration">
-            <div
-                aria-labelledby="{tab.id}-tab"
-                class="fade tab-pane{f:if(condition: iteration.isFirst, then: ' active show', else: '')}"
-                id="{tab.id}-content"
-                role="tabpanel"
-                tabindex="0">
-                {tab.content -> f:format.raw()}
-            </div>
-        </f:for>
-    </div>
-</f:section>
+        </div>
+    </f:section>
 </html>

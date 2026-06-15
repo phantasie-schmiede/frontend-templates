@@ -1,13 +1,5 @@
-<html
-    data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-<f:for
-    as="contentElement"
-    each="{column}">
-    <f:cObject
-        data="{contentElement.data}"
-        table="tt_content"
-        typoscriptObjectPath="tt_content.{contentElement.data.CType}"
-    />
-</f:for>
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <f:for as="contentElement" each="{column}">
+        <f:cObject data="{contentElement.data}" table="tt_content" typoscriptObjectPath="tt_content.{contentElement.data.CType}" />
+    </f:for>
 </html>

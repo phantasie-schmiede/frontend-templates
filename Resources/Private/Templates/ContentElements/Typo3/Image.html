@@ -1,10 +1,8 @@
-<html
-    data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-<f:layout name="Default" />
-<f:section name="Main">
-    <f:render
-        arguments="{
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <f:layout name="Default" />
+    <f:section name="Main">
+        <f:render
+            arguments="{
             configuration:    {
                 autoHeight: true,
                 loop: true,
@@ -13,19 +11,19 @@
             },
             id: 'images'
         }"
-        contentAs="slides"
-        partial="Component/Swiper">
-        <f:for
-            as="image"
-            each="{files}">
-            <f:render
-                arguments="{
+            contentAs="slides"
+            partial="Component/Swiper"
+        >
+            <f:for as="image" each="{files}">
+                <f:render
+                    arguments="{
                     height: data.imageheight,
                     image: image,
                     pictureClass: 'd-flex justify-content-center swiper-slide',
                 }"
-                partial="Component/Picture/Responsive" />
-        </f:for>
-    </f:render>
-</f:section>
+                    partial="Component/Picture/Responsive"
+                />
+            </f:for>
+        </f:render>
+    </f:section>
 </html>

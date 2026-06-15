@@ -1,15 +1,3 @@
-<html
-    data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
-    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
-    xmlns:psbViewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<button
-    class="{classes}"
-    data-bs-target="#{modalId}"
-    data-bs-toggle="modal"
-    title="{title}"
-    type="button">
-    {text -> f:format.raw()}
-</button>
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers" xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers" xmlns:psbViewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <button class="{classes}" data-bs-target="#{modalId}" data-bs-toggle="modal" title="{title}" type="button">{text -> f:format.raw()}</button>
 </html>

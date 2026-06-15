@@ -1,69 +1,41 @@
-<html
-    data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
-    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
-    xmlns:psbViewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/Form/upload.xlf" />
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers" xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers" xmlns:psbViewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/Form/upload.xlf" />
 
-<f:asset.css
-    href="EXT:templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
-    identifier="swiper" />
-<f:asset.script
-    identifier="swiper-bundle"
-    src="EXT:templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
-<f:asset.script
-    identifier="uploadPreview"
-    src="EXT:templates/Resources/Public/JavaScript/uploadPreview.js"
-    type="module" />
+    <f:asset.css href="EXT:templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css" identifier="swiper" />
+    <f:asset.script identifier="swiper-bundle" src="EXT:templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
+    <f:asset.script identifier="uploadPreview" src="EXT:templates/Resources/Public/JavaScript/uploadPreview.js" type="module" />
 
-<f:if condition="!{accept}">
-    <f:variable
-        name="accept"
-        value="image/*;capture=camera" />
-</f:if>
-
-<f:if condition="!{borderColor}">
-    <f:variable
-        name="borderColor"
-        value="secondary-subtle" />
-</f:if>
-
-<div class="align-items-center border border-2 border-{borderColor} d-flex flex-column position-relative psbits-upload rounded">
-    <f:if condition="{multiple}">
-        <f:then>
-            <f:variable name="attributes" value="{accept: accept, multiple: 'multiple'}" />
-        </f:then>
-        <f:else>
-            <f:variable name="attributes" value="{accept: accept}" />
-        </f:else>
+    <f:if condition="!{accept}">
+        <f:variable name="accept" value="image/*;capture=camera" />
     </f:if>
 
-    <f:form.upload
-        additionalAttributes="{attributes}"
-        class="h-100 opacity-0 position-absolute start-0 top-0 w-100"
-        id="{id}"
-        name="{name}" />
+    <f:if condition="!{borderColor}">
+        <f:variable name="borderColor" value="secondary-subtle" />
+    </f:if>
 
-    <span class="d-flex flex-column mt-4 upload-placeholder">
-         <templates:svgIcon
-             height="64"
-             identifier="templates-cloud-upload"
-             width="64" />
-        <templates:svgIcon
-            height="64"
-            identifier="templates-image"
-            width="64" />
-        <p>
-            <span class="d-none show-on-touch-device">
-                <foundation:translate
-                    id="upload:hint.touch" />
-            </span>
-            <span class="hide-on-touch-device">
-                <foundation:translate
-                    id="upload:hint.noTouch" />
-            </span>
-        </p>
-    </span>
-</div>
+    <div class="align-items-center border border-2 border-{borderColor} d-flex flex-column position-relative psbits-upload rounded">
+        <f:if condition="{multiple}">
+            <f:then>
+                <f:variable name="attributes" value="{accept: accept, multiple: 'multiple'}" />
+            </f:then>
+            <f:else>
+                <f:variable name="attributes" value="{accept: accept}" />
+            </f:else>
+        </f:if>
+
+        <f:form.upload additionalAttributes="{attributes}" class="h-100 opacity-0 position-absolute start-0 top-0 w-100" id="{id}" name="{name}" />
+
+        <span class="d-flex flex-column mt-4 upload-placeholder">
+            <templates:svgIcon height="64" identifier="templates-cloud-upload" width="64" />
+            <templates:svgIcon height="64" identifier="templates-image" width="64" />
+            <p>
+                <span class="d-none show-on-touch-device">
+                    <foundation:translate id="upload:hint.touch" />
+                </span>
+                <span class="hide-on-touch-device">
+                    <foundation:translate id="upload:hint.noTouch" />
+                </span>
+            </p>
+        </span>
+    </div>
 </html>

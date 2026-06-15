@@ -1,10 +1,4 @@
-<html
-    data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-<div class="m-labelled-list__item-label{f:if(condition: labelClass, then: ' {labelClass}')}">
-    {label}
-</div>
-<div class="m-labelled-list__item-value{f:if(condition: valueClass, then: ' {valueClass}')}">
-    {value -> f:format.raw()}
-</div>
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <div class="m-labelled-list__item-label{f:if(condition: labelClass, then: ' {labelClass}')}">{label}</div>
+    <div class="m-labelled-list__item-value{f:if(condition: valueClass, then: ' {valueClass}')}">{value -> f:format.raw()}</div>
 </html>

@@ -62,8 +62,10 @@
         "analyze:php": "phpstan analyse --configuration=Build/Quality/phpstan.neon.dist --no-progress",
         "audit:composer": "composer audit --abandoned=report",
         "fix:classes": "npm run fix:classes",
+        "fix:htmlxml": "npm run fix:htmlxml",
         "fix:php": "php-cs-fixer fix --config=Build/Quality/.php-cs-fixer.dist.php --verbose",
         "lint:classes": "npm run lint:classes",
+        "lint:htmlxml": "npm run lint:htmlxml",
         "lint:js": "npm run lint:js",
         "lint:php": "php-cs-fixer fix --config=Build/Quality/.php-cs-fixer.dist.php --dry-run --diff --verbose",
         "lint:scss": "npm run lint:scss",
@@ -80,6 +82,7 @@
             "@analyze:php",
             "@lint:typoscript",
             "@lint:classes",
+            "@lint:htmlxml",
             "@lint:js",
             "@lint:scss"
         ],

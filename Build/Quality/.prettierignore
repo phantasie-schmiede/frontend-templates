@@ -1,0 +1,8 @@
+.Build
+.idea
+.git
+.github
+.git-hooks
+.githooks
+node_modules
+vendor

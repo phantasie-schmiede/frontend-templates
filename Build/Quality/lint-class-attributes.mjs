@@ -41,7 +41,8 @@ const collectFiles = async (directory) => {
 
 const normalizeClassAttribute = (value) => {
     const classes = value.trim().split(/\s+/).filter(Boolean);
-    const sortedClasses = [...classes].sort(compareClassNames);
+    const uniqueClasses = [...new Set(classes)];
+    const sortedClasses = [...uniqueClasses].sort(compareClassNames);
 
     return {
         changed: classes.join(' ') !== sortedClasses.join(' '),
@@ -104,7 +105,7 @@ const run = async () => {
         return;
     }
 
-    console.error('Class attributes are not sorted alphabetically in:');
+    console.error('Class attribute values are not sorted alphabetically or have duplicates in:');
     for (const lintError of lintErrors) {
         console.error(`- ${lintError}`);
     }

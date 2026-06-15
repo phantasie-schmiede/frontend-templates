@@ -4,9 +4,9 @@
   "description": "Basic templates for TYPO3",
   "scripts": {
     "fix:classes": "node Build/Quality/lint-class-attributes.mjs",
-    "fix:htmlxml": "prettier --config Build/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --plugin=@prettier/plugin-xml --write \"**/*.{html,xml,xlf}\"",
+    "fix:htmlxml": "prettier --config Build/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --write \"**/*.{html,xml,xlf}\"",
     "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\" --config Build/Quality/eslint.config.cjs --ignore-pattern \"Resources/Public/JavaScript/Vendors/**\"",
-    "lint:htmlxml": "prettier --config Build/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --plugin=@prettier/plugin-xml --check \"**/*.{html,xml,xlf}\"",
+    "lint:htmlxml": "prettier --config Build/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --check \"**/*.{html,xml,xlf}\"",
     "lint:classes": "node Build/Quality/lint-class-attributes.mjs --dry-run",
     "lint:scss": "stylelint \"Resources/Private/Scss/**/*.{scss,sass}\" --config Build/Quality/.stylelintrc.json --ignore-path Build/Quality/.stylelintignore"
   },
@@ -27,6 +27,7 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.4.1",
     "prettier": "^3.6.2",
+    "prettier-plugin-organize-attributes": "^1.0.0",
     "stylelint": "^17.13.0",
     "stylelint-config-standard-scss": "^17.0.0"
   }

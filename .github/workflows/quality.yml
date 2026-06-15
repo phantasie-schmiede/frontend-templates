@@ -43,7 +43,7 @@ jobs:
         run: python -m pip install --user yamllint
 
       - name: YAML lint
-        run: ~/.local/bin/yamllint -c Build/Quality/.yamllint.yml ContentBlocks Configuration
+        run: composer lint:yaml
 
       - name: PHP CS check
         run: composer lint:php

@@ -1,6 +1,6 @@
 lib.contentBlock {
   partialRootPaths {
-    200 = EXT:templates/Resources/Private/Partials/
+    200 = {$plugin.tx_templates.view.partialRootPath}
   }
 }
 

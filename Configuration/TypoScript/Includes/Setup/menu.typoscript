@@ -21,13 +21,13 @@ page.10.dataProcessing {
 [END]
 
 [tree.level > 1]
-  page.10.dataProcessing {
-    1711319409 = menu
-    1711319409 {
-      as = breadcrumbs
-      includeNotInMenu = 0
-      special = rootline
-      special.range = 0|-1
-    }
+page.10.dataProcessing {
+  1711319409 = menu
+  1711319409 {
+    as = breadcrumbs
+    includeNotInMenu = 0
+    special = rootline
+    special.range = 0|-1
   }
+}
 [END]

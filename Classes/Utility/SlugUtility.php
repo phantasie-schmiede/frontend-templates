@@ -48,6 +48,7 @@ class SlugUtility
             )
             ->executeQuery()
             ->fetchAssociative();
+
         if (!$record) {
             return false;
         }

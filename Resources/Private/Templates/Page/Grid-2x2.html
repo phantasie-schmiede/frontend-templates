@@ -1,11 +1,20 @@
-<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+>
     <f:layout name="Grid" />
 
     <f:section name="Main">
         <div class="h-100 row">
-            <f:for as="content" each="{0: content1, 1: content2, 2: content3, 3: content4}">
+            <f:for
+                as="content"
+                each="{0: content1, 1: content2, 2: content3, 3: content4}"
+            >
                 <f:if condition="{content}">
-                    <f:render arguments="{content: content}" section="Tile" />
+                    <f:render
+                        arguments="{content: content}"
+                        section="Tile"
+                    />
                 </f:if>
             </f:for>
         </div>
@@ -14,7 +23,10 @@
     <f:section name="Tile">
         <div class="col-12 col-md-6 grid-2x2 p-2">
             <div class="border border-secondary-subtle d-flex flex-column h-100 overflow-y-auto p-4 pb-2 rounded">
-                <f:render arguments="{column: content}" partial="Column" />
+                <f:render
+                    arguments="{column: content}"
+                    partial="Column"
+                />
             </div>
         </div>
     </f:section>

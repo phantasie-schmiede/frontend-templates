@@ -1,4 +1,7 @@
-<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+>
     <f:layout name="Default" />
     <f:section name="Main">
         <f:render
@@ -14,7 +17,10 @@
             contentAs="slides"
             partial="Component/Swiper"
         >
-            <f:for as="image" each="{files}">
+            <f:for
+                as="image"
+                each="{files}"
+            >
                 <f:render
                     arguments="{
                     height: data.imageheight,

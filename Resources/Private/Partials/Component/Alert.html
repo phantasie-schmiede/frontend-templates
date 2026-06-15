@@ -1,7 +1,14 @@
-<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
+>
     <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/alert.xlf" />
 
-    <div class="alert alert-{type}{f:if(condition: dismissable, then: ' alert-dismissible fade show')}" role="alert">
+    <div
+        class="alert alert-{type}{f:if(condition: dismissable, then: ' alert-dismissible fade show')}"
+        role="alert"
+    >
         <f:if condition="{heading}">
             <h4 class="alert-heading">{heading}</h4>
         </f:if>
@@ -9,7 +16,12 @@
         {message}
 
         <f:if condition="{dismissable}">
-            <button aria-label="{foundation:translate(id: 'alert:close')}" class="btn-close" data-bs-dismiss="alert" type="button"></button>
+            <button
+                aria-label="{foundation:translate(id: 'alert:close')}"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                type="button"
+            ></button>
         </f:if>
     </div>
 </html>

@@ -1,15 +1,41 @@
-<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers" xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
+    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers"
+>
     <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/inputAutocomplete.xlf" />
 
-    <f:asset.script identifier="clearInput" src="EXT:templates/Resources/Public/JavaScript/clearInput.js" type="module" />
-    <f:asset.script identifier="filter" src="EXT:templates/Resources/Public/JavaScript/filter.js" type="module" />
-    <f:asset.script identifier="inputAutocomplete" src="EXT:templates/Resources/Public/JavaScript/inputAutocomplete.js" type="module" />
+    <f:asset.script
+        identifier="clearInput"
+        src="EXT:templates/Resources/Public/JavaScript/clearInput.js"
+        type="module"
+    />
+    <f:asset.script
+        identifier="filter"
+        src="EXT:templates/Resources/Public/JavaScript/filter.js"
+        type="module"
+    />
+    <f:asset.script
+        identifier="inputAutocomplete"
+        src="EXT:templates/Resources/Public/JavaScript/inputAutocomplete.js"
+        type="module"
+    />
 
-    <f:variable name="additionalAttributes" value="{}" />
-    <f:variable name="dataAttributes" value="{}" />
+    <f:variable
+        name="additionalAttributes"
+        value="{}"
+    />
+    <f:variable
+        name="dataAttributes"
+        value="{}"
+    />
 
     <f:if condition="!{value}">
-        <f:variable name="value" value="{preselection}" />
+        <f:variable
+            name="value"
+            value="{preselection}"
+        />
     </f:if>
 
     <f:if condition="{postponed}">
@@ -36,71 +62,151 @@
     </f:if>
 
     <f:if condition="{filterOptions.itemSearchField}">
-        <psbvh:variable.arrayMerge arrays="{0: dataAttributes, 1: {psbits-filter-value: 'data-search-terms'}}" as="dataAttributes" overwrite="1" />
+        <psbvh:variable.arrayMerge
+            arrays="{0: dataAttributes, 1: {psbits-filter-value: 'data-search-terms'}}"
+            as="dataAttributes"
+            overwrite="1"
+        />
     </f:if>
 
     <f:if condition="{filterOptions.preferText}">
-        <psbvh:variable.arrayMerge arrays="{0: dataAttributes, 1: {psbits-filter-prefer-text: ''}}" as="dataAttributes" overwrite="1" />
+        <psbvh:variable.arrayMerge
+            arrays="{0: dataAttributes, 1: {psbits-filter-prefer-text: ''}}"
+            as="dataAttributes"
+            overwrite="1"
+        />
     </f:if>
 
     <f:if condition="{multiple}">
-        <psbvh:variable.arrayMerge arrays="{0: dataAttributes, 1: {psbits-autocomplete-selection-target: '#{id}-selection'}}" as="dataAttributes" overwrite="1" />
+        <psbvh:variable.arrayMerge
+            arrays="{0: dataAttributes, 1: {psbits-autocomplete-selection-target: '#{id}-selection'}}"
+            as="dataAttributes"
+            overwrite="1"
+        />
     </f:if>
 
     <f:if condition="{preselection}">
-        <psbvh:variable.arrayMerge arrays="{0: dataAttributes, 1: {psbits-autocomplete-preselection: preselection}}" as="dataAttributes" overwrite="1" />
+        <psbvh:variable.arrayMerge
+            arrays="{0: dataAttributes, 1: {psbits-autocomplete-preselection: preselection}}"
+            as="dataAttributes"
+            overwrite="1"
+        />
     </f:if>
 
     <f:if condition="{altValueField}">
         <f:then>
-            <psbvh:variable.arrayMerge arrays="{0: dataAttributes, 1: {psbits-autocomplete-value-target: '#{id}-value'}}" as="dataAttributes" overwrite="1" />
+            <psbvh:variable.arrayMerge
+                arrays="{0: dataAttributes, 1: {psbits-autocomplete-value-target: '#{id}-value'}}"
+                as="dataAttributes"
+                overwrite="1"
+            />
         </f:then>
         <f:else>
-            <f:variable name="additionalAttributes" value="{name: name, value: value}" />
+            <f:variable
+                name="additionalAttributes"
+                value="{name: name, value: value}"
+            />
         </f:else>
     </f:if>
 
-    <psbvh:tag additionalAttributes="{additionalAttributes}" autocomplete="off" class="form-control psbits-clear-input" data="{dataAttributes}" id="{id}" placeholder="{label}" tag="input" type="text" />
-    <label class="form-label" for="{id}"> {label} </label>
+    <psbvh:tag
+        additionalAttributes="{additionalAttributes}"
+        autocomplete="off"
+        class="form-control psbits-clear-input"
+        data="{dataAttributes}"
+        id="{id}"
+        placeholder="{label}"
+        tag="input"
+        type="text"
+    />
+    <label
+        class="form-label"
+        for="{id}"
+    >
+        {label}
+    </label>
 
-    <ul class="d-none list-group psbits-autocomplete-list{f:if(condition: listClass, then: ' {listClass}')}" id="{id}-items">
-        <f:render arguments="{id: id, itemLabelField: itemLabelField, items: items, itemSearchField: itemSearchField, itemValueField: itemValueField, renderedItems: renderedItems}" section="ItemList" />
+    <ul
+        class="d-none list-group psbits-autocomplete-list{f:if(condition: listClass, then: ' {listClass}')}"
+        id="{id}-items"
+    >
+        <f:render
+            arguments="{id: id, itemLabelField: itemLabelField, items: items, itemSearchField: itemSearchField, itemValueField: itemValueField, renderedItems: renderedItems}"
+            section="ItemList"
+        />
     </ul>
 
     <f:if condition="{multiple}">
-        <ul class="list-group list-group-flush" id="{id}-selection"></ul>
+        <ul
+            class="list-group list-group-flush"
+            id="{id}-selection"
+        ></ul>
     </f:if>
 
     <f:if condition="{altValueField}">
-        <f:form.hidden id="{id}-value" name="{name}" value="{value}" />
+        <f:form.hidden
+            id="{id}-value"
+            name="{name}"
+            value="{value}"
+        />
     </f:if>
 
     <f:section name="ItemList">
         <f:if condition="{items}">
             <f:then>
-                <f:for as="item" each="{items}">
-                    <f:variable name="data" value="{}" />
-                    <f:variable name="selectionInArray" value="" />
+                <f:for
+                    as="item"
+                    each="{items}"
+                >
+                    <f:variable
+                        name="data"
+                        value="{}"
+                    />
+                    <f:variable
+                        name="selectionInArray"
+                        value=""
+                    />
                     <f:if condition="{item.{itemValueField}} || {item.value}">
-                        <f:variable name="dataValue" value="{item.{itemValueField}}" />
+                        <f:variable
+                            name="dataValue"
+                            value="{item.{itemValueField}}"
+                        />
 
-                        <psbvh:variable.arrayMerge arrays="{0: data, 1: {psbits-autocomplete-value: '{dataValue -> f:or(alternative: item.value)}'}}" as="data" overwrite="1" />
+                        <psbvh:variable.arrayMerge
+                            arrays="{0: data, 1: {psbits-autocomplete-value: '{dataValue -> f:or(alternative: item.value)}'}}"
+                            as="data"
+                            overwrite="1"
+                        />
                     </f:if>
 
                     <f:if condition="{item.{filterOptions.itemSearchField}}">
-                        <f:variable name="searchTerms" value="{item.{filterOptions.itemSearchField}}" />
+                        <f:variable
+                            name="searchTerms"
+                            value="{item.{filterOptions.itemSearchField}}"
+                        />
 
-                        <psbvh:variable.arrayMerge arrays="{0: data, 1: {search-terms: searchTerms}}" as="data" overwrite="1" />
+                        <psbvh:variable.arrayMerge
+                            arrays="{0: data, 1: {search-terms: searchTerms}}"
+                            as="data"
+                            overwrite="1"
+                        />
                     </f:if>
 
-                    <psbvh:tag class="list-group-item psbits-autocomplete-list-item" data="{data}" tag="li">
+                    <psbvh:tag
+                        class="list-group-item psbits-autocomplete-list-item"
+                        data="{data}"
+                        tag="li"
+                    >
                         <psbvh:fallback values="{0: '{item.{itemLabelField}}', 1: item.label, 2: item}" />
                     </psbvh:tag>
                 </f:for>
             </f:then>
             <f:else if="{renderedItems}"> {renderedItems -> f:format.raw()} </f:else>
             <f:else>
-                <li class="list-group-item psbits-autocomplete-list-item" disabled="disabled">
+                <li
+                    class="list-group-item psbits-autocomplete-list-item"
+                    disabled="disabled"
+                >
                     <foundation:translate id="inputAutocomplete:noItems" />
                 </li>
             </f:else>

@@ -1,21 +1,55 @@
-<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-    <f:for as="page" each="{mainNavigation}">
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+>
+    <f:for
+        as="page"
+        each="{mainNavigation}"
+    >
         <li class="nav-item{page.hasSubpages ? ' dropdown' : ''}">
             <f:if condition="{page.current}">
                 <f:then>
-                    <a aria-current="page" class="active nav-link" href="{page.link}"> {page.title} </a>
+                    <a
+                        aria-current="page"
+                        class="active nav-link"
+                        href="{page.link}"
+                    >
+                        {page.title}
+                    </a>
                 </f:then>
                 <f:else if="{page.hasSubpages}">
-                    <a aria-expanded="false" class="dropdown-toggle nav-link" data-bs-toggle="dropdown" href="#" role="button"> {page.title} </a>
+                    <a
+                        aria-expanded="false"
+                        class="dropdown-toggle nav-link"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                    >
+                        {page.title}
+                    </a>
                     <ul class="dropdown-menu">
-                        <f:for as="subPage" each="{page.children}">
+                        <f:for
+                            as="subPage"
+                            each="{page.children}"
+                        >
                             <li>
                                 <f:if condition="{subPage.current}">
                                     <f:then>
-                                        <a aria-current="page" class="active nav-link" href="{subPage.link}"> {subPage.title} </a>
+                                        <a
+                                            aria-current="page"
+                                            class="active nav-link"
+                                            href="{subPage.link}"
+                                        >
+                                            {subPage.title}
+                                        </a>
                                     </f:then>
                                     <f:else>
-                                        <a class="nav-link" href="{subPage.link}"> {subPage.title} </a>
+                                        <a
+                                            class="nav-link"
+                                            href="{subPage.link}"
+                                        >
+                                            {subPage.title}
+                                        </a>
                                     </f:else>
                                 </f:if>
                             </li>
@@ -23,7 +57,12 @@
                     </ul>
                 </f:else>
                 <f:else>
-                    <a class="nav-link" href="{page.link}"> {page.title} </a>
+                    <a
+                        class="nav-link"
+                        href="{page.link}"
+                    >
+                        {page.title}
+                    </a>
                 </f:else>
             </f:if>
         </li>

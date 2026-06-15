@@ -2,5 +2,8 @@
 
 <f:section name="Content">
     <f:sanitize.html>{data.bodytext}</f:sanitize.html>
-    <f:render partial="PageLayout/Grid" arguments="{data: data, identifier: 'links'}" />
+    <f:render
+        arguments="{data: data, identifier: 'links'}"
+        partial="PageLayout/Grid"
+    />
 </f:section>

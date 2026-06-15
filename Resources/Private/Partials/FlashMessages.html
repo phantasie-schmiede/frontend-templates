@@ -1,21 +1,45 @@
-<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-    <f:flashMessages as="flashMessages" queueIdentifier="{queueIdentifier}">
-        <f:for as="flashMessage" each="{flashMessages}">
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+>
+    <f:flashMessages
+        as="flashMessages"
+        queueIdentifier="{queueIdentifier}"
+    >
+        <f:for
+            as="flashMessage"
+            each="{flashMessages}"
+        >
             <f:switch expression="{flashMessage.severity.value}">
                 <f:case value="-2">
-                    <f:variable name="type" value="notice" />
+                    <f:variable
+                        name="type"
+                        value="notice"
+                    />
                 </f:case>
                 <f:case value="-1">
-                    <f:variable name="type" value="info" />
+                    <f:variable
+                        name="type"
+                        value="info"
+                    />
                 </f:case>
                 <f:case value="0">
-                    <f:variable name="type" value="success" />
+                    <f:variable
+                        name="type"
+                        value="success"
+                    />
                 </f:case>
                 <f:case value="1">
-                    <f:variable name="type" value="warning" />
+                    <f:variable
+                        name="type"
+                        value="warning"
+                    />
                 </f:case>
                 <f:case value="2">
-                    <f:variable name="type" value="danger" />
+                    <f:variable
+                        name="type"
+                        value="danger"
+                    />
                 </f:case>
             </f:switch>
 

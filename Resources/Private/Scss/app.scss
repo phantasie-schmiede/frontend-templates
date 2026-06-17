@@ -150,3 +150,55 @@ body {
     align-self: end;
   }
 }
+
+.hero-block {
+  color: var(--bs-white);
+  min-height: 45vh;
+
+  &__image {
+    max-height: 70vh;
+    min-height: 45vh;
+    object-fit: cover;
+  }
+
+  &__overlay {
+    background: rgba(0, 0, 0, 0.4);
+    inset: 0;
+    position: absolute;
+  }
+
+  &__content {
+    max-width: 50rem;
+    width: min(90vw, 50rem);
+    z-index: 1;
+  }
+}
+
+.logo-slider__slide {
+  min-height: 5rem;
+
+  &--grayscale img {
+    filter: grayscale(1);
+    opacity: 0.75;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &--grayscale img:hover {
+    opacity: 1;
+  }
+}
+
+.teaser-grid__item {
+  height: 100%;
+}
+
+.contact-lead__messages {
+  .alert {
+    margin-bottom: 0.5rem;
+  }
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 2px;
+}

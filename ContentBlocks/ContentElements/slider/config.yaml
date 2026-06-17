@@ -2,8 +2,25 @@ name: psbits/slider
 fields:
   - identifier: header
     useExistingField: true
-  - identifier: image
+  - identifier: header_layout
     useExistingField: true
+  - identifier: bodytext
+    enableRichtext: true
+    useExistingField: true
+  - identifier: image
+    minitems: 1
+    maxitems: 10
+    useExistingField: true
+  - identifier: show_pagination
+    default: true
+    type: Check
+  - identifier: show_navigation
+    default: true
+    type: Check
+  - identifier: loop_slides
+    default: true
+    type: Check
 group: content_blocks
+labelField: header
 prefixType: vendor
 vendorPrefix: tx_templates

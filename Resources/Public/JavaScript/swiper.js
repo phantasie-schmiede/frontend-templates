@@ -46,7 +46,8 @@ class PsbSwiper {
         document.querySelectorAll(this.selector).forEach((swiperContainer) => {
             if (!this.registeredElements.includes(swiperContainer)) {
                 const dataset = swiperContainer.dataset;
-                const swiper = new Swiper(swiperContainer, JSON.parse(dataset.psbitsSwiperConfiguration || '{}'));
+                new Swiper(swiperContainer, JSON.parse(dataset.psbitsSwiperConfiguration || '{}'));
+                this.registeredElements.push(swiperContainer);
             }
         });
     }

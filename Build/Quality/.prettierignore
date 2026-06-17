@@ -1,10 +1,8 @@
 ../../.Build
-../../.idea
 ../../.git
 ../../.github
-../../.git-hooks
-../../.githooks
-../../node_modules
-../../vendor
+../../.idea
 ../../Resources/Private/Partials/Page/Header/LoginForm.html
 ../../Resources/Private/Partials/Page/Navigation/Footer.html
+../../node_modules
+../../vendor

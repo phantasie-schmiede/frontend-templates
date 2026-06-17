@@ -1,0 +1,44 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:if condition="{data.image}">
+    <section aria-label="{data.header}" class="position-relative">
+        <f:render
+            partial="Component/Swiper"
+            contentAs="slides"
+            arguments="{
+                configuration: {
+                    loop: data.loop_slides,
+                    navigation: data.show_navigation,
+                    pagination: data.show_pagination ? {clickable: 1} : 0,
+                    slidesPerView: 1,
+                    spaceBetween: 24
+                },
+                id: 'content-slider-{data.uid}'
+            }">
+            <f:for as="image" each="{data.image}">
+                <div class="swiper-slide">
+                    <f:image
+                        alt="{image.alternative}"
+                        class="d-block img-fluid w-100"
+                        image="{image}"
+                        loading="lazy"
+                        width="1920"
+                        height="1080" />
+                </div>
+            </f:for>
+        </f:render>
+
+        <f:if condition="{data.header} || {data.bodytext}">
+            <div class="carousel-caption d-block">
+                <f:if condition="{data.header}">
+                    <h2>{data.header}</h2>
+                </f:if>
+                <f:if condition="{data.bodytext}">
+                    <f:format.html>{data.bodytext}</f:format.html>
+                </f:if>
+            </div>
+        </f:if>
+    </section>
+</f:if>
+</html>

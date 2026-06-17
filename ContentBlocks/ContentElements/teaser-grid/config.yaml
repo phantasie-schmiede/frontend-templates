@@ -1,0 +1,20 @@
+name: psbits/teaser-grid
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: bodytext
+    enableRichtext: true
+    useExistingField: true
+  - identifier: enable_filter
+    default: false
+    type: Check
+  - identifier: teasers
+    foreign_field: parent_uid
+    foreign_table: tt_content
+    minitems: 1
+    maxitems: 12
+    type: Collection
+group: content_blocks
+labelField: header
+prefixType: vendor
+vendorPrefix: tx_templates

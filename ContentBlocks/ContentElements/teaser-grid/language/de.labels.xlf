@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2026-06-17T11:30:00+01:00"
+        original="messages"
+        product-name="templates"
+        source-language="en"
+        target-language="de">
+        <body>
+            <trans-unit id="title"><source>Teaser Grid</source><target>Teaser-Raster</target></trans-unit>
+            <trans-unit id="description"><source>Grid of teaser content elements with optional filter</source><target>Raster aus Teaser-Inhaltselementen mit optionalem Filter</target></trans-unit>
+            <trans-unit id="teasers.label"><source>Teasers</source><target>Teaser</target></trans-unit>
+            <trans-unit id="enable_filter.label"><source>Enable filter</source><target>Filter aktivieren</target></trans-unit>
+        </body>
+    </file>
+</xliff>

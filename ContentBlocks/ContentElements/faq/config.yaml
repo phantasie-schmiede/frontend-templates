@@ -1,0 +1,16 @@
+name: psbits/faq
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: introtext
+    type: Textarea
+  - identifier: faq_items
+    foreign_field: parent_uid
+    foreign_table: tt_content
+    minitems: 1
+    maxitems: 20
+    type: Collection
+group: content_blocks
+labelField: header
+prefixType: vendor
+vendorPrefix: tx_templates

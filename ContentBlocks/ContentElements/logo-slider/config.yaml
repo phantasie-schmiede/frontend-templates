@@ -1,0 +1,21 @@
+name: psbits/logo-slider
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: bodytext
+    enableRichtext: true
+    useExistingField: true
+  - identifier: image
+    minitems: 2
+    maxitems: 20
+    useExistingField: true
+  - identifier: autoplay
+    default: true
+    type: Check
+  - identifier: grayscale
+    default: true
+    type: Check
+group: content_blocks
+labelField: header
+prefixType: vendor
+vendorPrefix: tx_templates

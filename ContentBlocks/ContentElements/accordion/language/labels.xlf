@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2026-06-17T11:30:00+01:00"
+        original="messages"
+        product-name="templates"
+        source-language="en">
+        <body>
+            <trans-unit id="title">
+                <source>Accordion</source>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>Collapsible list with nested content elements</source>
+            </trans-unit>
+            <trans-unit id="accordion_items.label">
+                <source>Accordion items</source>
+            </trans-unit>
+            <trans-unit id="accordion_style.label">
+                <source>Style</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

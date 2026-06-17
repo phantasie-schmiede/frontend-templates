@@ -1,0 +1,11 @@
+<f:layout name="Preview"/>
+
+<f:section name="Content">
+    <f:if condition="{data.header}">
+        <strong>{data.header}</strong>
+    </f:if>
+
+    <div class="mt-2">
+        <f:count subject="{data.image}" /> slide(s)
+    </div>
+</f:section>

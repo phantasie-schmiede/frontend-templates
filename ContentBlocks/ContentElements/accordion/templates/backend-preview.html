@@ -1,0 +1,20 @@
+<f:layout name="Preview"/>
+
+<f:section name="Content">
+    <f:if condition="{data.header}">
+        <strong>{data.header}</strong>
+    </f:if>
+
+    <f:if condition="{data._grids.accordion_items}">
+        <ul class="mb-0 mt-2">
+            <f:for as="item" each="{data._grids.accordion_items}">
+                <li>
+                    <f:if condition="{item.data.header}">
+                        <f:then>{item.data.header}</f:then>
+                        <f:else>Accordion item</f:else>
+                    </f:if>
+                </li>
+            </f:for>
+        </ul>
+    </f:if>
+</f:section>

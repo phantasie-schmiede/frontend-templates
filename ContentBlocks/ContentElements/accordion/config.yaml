@@ -2,11 +2,22 @@ name: psbits/accordion
 fields:
   - identifier: header
     useExistingField: true
+  - identifier: accordion_style
+    default: flush
+    type: Select
+    renderType: selectSingle
+    items:
+      - label: Flush
+        value: flush
+      - label: Card
+        value: card
   - identifier: accordion_items
     foreign_field: parent_uid
     foreign_table: tt_content
     minitems: 1
+    maxitems: 12
     type: Collection
 group: content_blocks
+labelField: header
 prefixType: vendor
 vendorPrefix: tx_templates

@@ -1,5 +1,6 @@
 <html
     data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
 <psbvh:tag
     additionalAttributes="{additionalAttributes}"
@@ -9,11 +10,16 @@
     data-bs-target="#{id}"
     data-bs-toggle="collapse"
     tag="{tag}">
-    {label -> f:format.raw()}
+    <f:if condition="{label}">
+        <f:then>{label -> f:format.raw()}</f:then>
+        <f:else>Toggle item</f:else>
+    </f:if>
 </psbvh:tag>
-<div
-    class="collapse{f:if(condition: initiallyOpen, then: ' show')}"
-    id="{id}">
+<psbvh:tag
+    additionalAttributes="{contentAttributes}"
+    class="collapse{f:if(condition: collapseClass, then: ' {collapseClass}')}{f:if(condition: initiallyOpen, then: ' show')}"
+    id="{id}"
+    tag="div">
     {content -> f:format.raw()}
-</div>
+</psbvh:tag>
 </html>

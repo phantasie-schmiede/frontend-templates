@@ -1,0 +1,53 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<section aria-labelledby="faq-title-{data.uid}" class="py-4">
+    <div class="container">
+        <f:if condition="{data.header}">
+            <h2 id="faq-title-{data.uid}">{data.header}</h2>
+        </f:if>
+        <f:if condition="{data.introtext}">
+            <p class="lead">{data.introtext}</p>
+        </f:if>
+
+        <div class="accordion" id="faq-{data.uid}">
+            <f:for as="item" each="{data._grids.faq_items}" iteration="iteration">
+                <f:variable name="faqId" value="faq-{data.uid}-{iteration.index}" />
+                <div class="accordion-item">
+                    <f:render
+                        partial="Component/Collapsible"
+                        arguments="{
+                            classes: 'accordion-button',
+                            collapseClass: 'accordion-collapse',
+                            content: item.content,
+                            contentAttributes: {data-bs-parent: '#faq-{data.uid}'},
+                            id: faqId,
+                            initiallyOpen: iteration.isFirst,
+                            label: item.data.header,
+                            tag: 'button'
+                        }" />
+                </div>
+            </f:for>
+        </div>
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    <f:for as="item" each="{data._grids.faq_items}" iteration="iteration">
+                        {
+                            "@type": "Question",
+                            "name": "{item.data.header -> f:format.htmlspecialchars()}",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "{item.data.bodytext -> f:format.stripTags() -> f:format.htmlspecialchars()}"
+                            }
+                        }<f:if condition="!{iteration.isLast}">,</f:if>
+                    </f:for>
+                ]
+            }
+        </script>
+    </div>
+</section>
+</html>

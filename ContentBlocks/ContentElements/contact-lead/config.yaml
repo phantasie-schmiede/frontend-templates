@@ -1,0 +1,32 @@
+name: psbits/contact-lead
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: header_layout
+    useExistingField: true
+  - identifier: bodytext
+    enableRichtext: true
+    useExistingField: true
+  - identifier: header_link
+    useExistingField: true
+  - identifier: success_message
+    default: Thank you for your request. We will contact you shortly.
+    type: Textarea
+  - identifier: error_message
+    default: Sorry, your request could not be sent. Please try again later.
+    type: Textarea
+  - identifier: emphasis_style
+    default: primary
+    renderType: selectSingle
+    type: Select
+    items:
+      - label: Primary
+        value: primary
+      - label: Light
+        value: light
+      - label: Dark
+        value: dark
+group: content_blocks
+labelField: header
+prefixType: vendor
+vendorPrefix: tx_templates

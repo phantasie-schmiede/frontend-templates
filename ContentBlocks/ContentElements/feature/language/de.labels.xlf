@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file
-        datatype="plaintext"
-        date="2026-04-01T22:13:00+01:00"
+    <file datatype="plaintext"
+        date="2026-06-17T11:30:00+01:00"
         original="messages"
         product-name="templates"
         source-language="en"
-        target-language="de"
-    >
+        target-language="de">
         <body>
             <trans-unit id="description">
                 <source>Highlight with image, text and link</source>
@@ -20,6 +18,26 @@
             <trans-unit id="links.label">
                 <source>Links</source>
                 <target>Links</target>
+            </trans-unit>
+            <trans-unit id="layout_variant.label">
+                <source>Layout</source>
+                <target>Layout</target>
+            </trans-unit>
+            <trans-unit id="background_variant.label">
+                <source>Background</source>
+                <target>Hintergrund</target>
+            </trans-unit>
+            <trans-unit id="preview.layout">
+                <source>Layout</source>
+                <target>Layout</target>
+            </trans-unit>
+            <trans-unit id="preview.background">
+                <source>Background</source>
+                <target>Hintergrund</target>
+            </trans-unit>
+            <trans-unit id="preview.image">
+                <source>Image</source>
+                <target>Bild</target>
             </trans-unit>
         </body>
     </file>

@@ -1,0 +1,36 @@
+name: psbits/hero
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: header_layout
+    useExistingField: true
+  - identifier: bodytext
+    enableRichtext: true
+    useExistingField: true
+  - identifier: image
+    maxitems: 1
+    minitems: 1
+    useExistingField: true
+  - identifier: header_link
+    useExistingField: true
+  - identifier: cta_label
+    default: Learn more
+    type: Text
+  - identifier: text_align
+    default: start
+    renderType: selectSingle
+    type: Select
+    items:
+      - label: Left
+        value: start
+      - label: Center
+        value: center
+      - label: Right
+        value: end
+  - identifier: show_overlay
+    default: true
+    type: Check
+group: content_blocks
+labelField: header
+prefixType: vendor
+vendorPrefix: tx_templates

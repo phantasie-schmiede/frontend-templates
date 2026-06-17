@@ -10,6 +10,9 @@
             <trans-unit id="description"><source>Grid of teaser content elements with optional filter</source></trans-unit>
             <trans-unit id="teasers.label"><source>Teasers</source></trans-unit>
             <trans-unit id="enable_filter.label"><source>Enable filter</source></trans-unit>
+            <trans-unit id="filter.label"><source>Filter</source></trans-unit>
+            <trans-unit id="preview.type"><source>Teaser grid</source></trans-unit>
+            <trans-unit id="preview.items"><source>Items</source></trans-unit>
         </body>
     </file>
 </xliff>

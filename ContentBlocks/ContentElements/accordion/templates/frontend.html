@@ -1,7 +1,16 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
 <f:if condition="{data._grids.accordion_items}">
+    <f:if condition="{data.header} && {data.header_layout} != 100">
+        <viewHelpers:tag
+            class="mb-3"
+            tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+            {data.header}
+        </viewHelpers:tag>
+    </f:if>
+
     <div class="accordion{f:if(condition: data.accordion_style == 'flush', then: ' accordion-flush')}" id="accordion-{data.uid}">
         <f:for as="item" each="{data._grids.accordion_items}" iteration="iteration">
             <f:variable name="panelId" value="accordion-{data.uid}-{iteration.index}" />

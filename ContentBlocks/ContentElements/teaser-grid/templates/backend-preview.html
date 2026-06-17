@@ -2,6 +2,11 @@
 
 <f:section name="Content">
     <strong>{data.header}</strong>
-    <div class="text-muted">Teaser grid</div>
-    <div class="mt-2">Items: <f:count subject="{data._grids.teasers}" /></div>
+    <div class="text-muted">
+        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/teaser-grid/language/labels.xlf:preview.type" />
+    </div>
+    <div class="mt-2">
+        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/teaser-grid/language/labels.xlf:preview.items" />:
+        <f:count subject="{data._grids.teasers}" />
+    </div>
 </f:section>

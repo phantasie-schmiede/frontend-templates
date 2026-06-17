@@ -27,6 +27,18 @@
                 <source>Background</source>
                 <target>Hintergrund</target>
             </trans-unit>
+            <trans-unit id="preview.layout">
+                <source>Layout</source>
+                <target>Layout</target>
+            </trans-unit>
+            <trans-unit id="preview.background">
+                <source>Background</source>
+                <target>Hintergrund</target>
+            </trans-unit>
+            <trans-unit id="preview.image">
+                <source>Image</source>
+                <target>Bild</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

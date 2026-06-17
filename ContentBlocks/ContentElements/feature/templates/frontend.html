@@ -1,6 +1,7 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
 <f:variable name="sectionClass" value="py-5" />
 <f:if condition="{data.background_variant} == 'light'">
     <f:variable name="sectionClass" value="py-5 bg-light" />
@@ -23,7 +24,13 @@
                             height="900" />
                     </div>
                     <div class="col-12 col-lg-8 text-center">
-                        <h2 class="mb-3">{data.header}</h2>
+                        <f:if condition="{data.header} && {data.header_layout} != 100">
+                            <viewHelpers:tag
+                                class="mb-3"
+                                tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                                {data.header}
+                            </viewHelpers:tag>
+                        </f:if>
                         <div class="mb-4">
                             <f:format.html>{data.bodytext}</f:format.html>
                         </div>
@@ -63,7 +70,13 @@
                     </div>
 
                     <div class="{textColumnClass}">
-                        <h2 class="mb-3 text-center text-lg-start">{data.header}</h2>
+                        <f:if condition="{data.header} && {data.header_layout} != 100">
+                            <viewHelpers:tag
+                                class="mb-3 text-center text-lg-start"
+                                tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                                {data.header}
+                            </viewHelpers:tag>
+                        </f:if>
                         <div class="mb-4">
                             <f:format.html>{data.bodytext}</f:format.html>
                         </div>

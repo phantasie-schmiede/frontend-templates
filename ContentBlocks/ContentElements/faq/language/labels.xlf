@@ -10,6 +10,8 @@
             <trans-unit id="description"><source>Frequently asked questions block with schema markup</source></trans-unit>
             <trans-unit id="faq_items.label"><source>FAQ items</source></trans-unit>
             <trans-unit id="introtext.label"><source>Intro text</source></trans-unit>
+            <trans-unit id="preview.type"><source>FAQ</source></trans-unit>
+            <trans-unit id="preview.items"><source>Items</source></trans-unit>
         </body>
     </file>
 </xliff>

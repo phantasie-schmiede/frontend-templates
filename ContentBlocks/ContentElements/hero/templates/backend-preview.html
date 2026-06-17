@@ -2,6 +2,18 @@
 
 <f:section name="Content">
     <strong>{data.header}</strong>
-    <div class="text-muted">Hero / Stage</div>
+    <div class="text-muted">
+        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/hero/language/labels.xlf:preview.type" />
+    </div>
     <f:sanitize.html>{data.bodytext}</f:sanitize.html>
+
+    <f:if condition="{data.image.0}">
+        <div class="mt-2">
+            <f:image
+                alt="{f:translate(key: 'LLL:EXT:templates/ContentBlocks/ContentElements/hero/language/labels.xlf:preview.image')}"
+                image="{data.image.0}"
+                maxWidth="240"
+                maxHeight="135" />
+        </div>
+    </f:if>
 </f:section>

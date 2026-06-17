@@ -2,6 +2,8 @@ name: psbits/faq
 fields:
   - identifier: header
     useExistingField: true
+  - identifier: header_layout
+    useExistingField: true
   - identifier: introtext
     type: Textarea
   - identifier: faq_items

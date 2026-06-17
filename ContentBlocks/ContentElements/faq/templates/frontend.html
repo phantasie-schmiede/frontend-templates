@@ -1,10 +1,17 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
 <section aria-labelledby="faq-title-{data.uid}" class="py-4">
     <div class="container">
         <f:if condition="{data.header}">
-            <h2 id="faq-title-{data.uid}">{data.header}</h2>
+            <f:if condition="{data.header_layout} != 100">
+                <viewHelpers:tag
+                    additionalAttributes="{id: 'faq-title-{data.uid}'}"
+                    tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                    {data.header}
+                </viewHelpers:tag>
+            </f:if>
         </f:if>
         <f:if condition="{data.introtext}">
             <p class="lead">{data.introtext}</p>

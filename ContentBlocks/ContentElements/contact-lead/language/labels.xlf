@@ -11,6 +11,7 @@
             <trans-unit id="success_message.label"><source>Success message</source></trans-unit>
             <trans-unit id="error_message.label"><source>Error message</source></trans-unit>
             <trans-unit id="emphasis_style.label"><source>Emphasis style</source></trans-unit>
+            <trans-unit id="preview.type"><source>Contact / Lead</source></trans-unit>
         </body>
     </file>
 </xliff>

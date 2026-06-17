@@ -11,6 +11,8 @@
             <trans-unit id="cta_label.label"><source>CTA label</source></trans-unit>
             <trans-unit id="text_align.label"><source>Text alignment</source></trans-unit>
             <trans-unit id="show_overlay.label"><source>Show overlay</source></trans-unit>
+            <trans-unit id="preview.type"><source>Hero / Stage</source></trans-unit>
+            <trans-unit id="preview.image"><source>Image</source></trans-unit>
         </body>
     </file>
 </xliff>

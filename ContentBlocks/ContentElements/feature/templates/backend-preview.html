@@ -9,8 +9,22 @@
         <f:sanitize.html>{data.bodytext}</f:sanitize.html>
     </div>
 
+    <f:if condition="{data.image.0}">
+        <div class="mt-2">
+            <f:image
+                alt="{f:translate(key: 'LLL:EXT:templates/ContentBlocks/ContentElements/feature/language/labels.xlf:preview.image')}"
+                image="{data.image.0}"
+                maxWidth="240"
+                maxHeight="135" />
+        </div>
+    </f:if>
+
     <div class="text-muted">
-        Layout: {data.layout_variant} | Background: {data.background_variant}
+        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/feature/language/labels.xlf:preview.layout" />:
+        {data.layout_variant}
+        |
+        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/feature/language/labels.xlf:preview.background" />:
+        {data.background_variant}
     </div>
 
     <f:render partial="PageLayout/Grid" arguments="{data: data, identifier: 'links'}"/>

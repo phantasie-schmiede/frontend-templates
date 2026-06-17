@@ -23,6 +23,10 @@
                 <source>Style</source>
                 <target>Stil</target>
             </trans-unit>
+            <trans-unit id="preview.item_fallback">
+                <source>Accordion item</source>
+                <target>Accordion-Element</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -23,6 +23,10 @@
                 <source>Full width</source>
                 <target>Volle Breite</target>
             </trans-unit>
+            <trans-unit id="preview.link_required">
+                <source>Button link is required.</source>
+                <target>Button-Link ist erforderlich.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

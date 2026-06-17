@@ -11,6 +11,9 @@
             <trans-unit id="description"><source>Partner or testimonial logo slider with no-JS fallback</source><target>Partner- oder Testimonial-Logo-Slider mit No-JS-Fallback</target></trans-unit>
             <trans-unit id="autoplay.label"><source>Autoplay</source><target>Autoplay</target></trans-unit>
             <trans-unit id="grayscale.label"><source>Grayscale logos</source><target>Logos in Graustufen</target></trans-unit>
+            <trans-unit id="preview.type"><source>Logo slider</source><target>Logo-Slider</target></trans-unit>
+            <trans-unit id="preview.logos"><source>Logos</source><target>Logos</target></trans-unit>
+            <trans-unit id="preview.image"><source>Image</source><target>Bild</target></trans-unit>
         </body>
     </file>
 </xliff>

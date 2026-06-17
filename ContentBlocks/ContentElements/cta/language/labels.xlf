@@ -18,6 +18,9 @@
             <trans-unit id="full_width.label">
                 <source>Full width</source>
             </trans-unit>
+            <trans-unit id="preview.link_required">
+                <source>Button link is required.</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

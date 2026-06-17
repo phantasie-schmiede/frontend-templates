@@ -2,6 +2,8 @@ name: psbits/teaser-grid
 fields:
   - identifier: header
     useExistingField: true
+  - identifier: header_layout
+    useExistingField: true
   - identifier: bodytext
     enableRichtext: true
     useExistingField: true

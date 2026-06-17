@@ -1,19 +1,41 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file datatype="plaintext"
+    <file
+        datatype="plaintext"
         date="2026-06-17T11:30:00+01:00"
         original="messages"
         product-name="templates"
         source-language="en"
         target-language="de">
         <body>
-            <trans-unit id="title"><source>Logo Slider</source><target>Logo-Slider</target></trans-unit>
-            <trans-unit id="description"><source>Partner or testimonial logo slider with no-JS fallback</source><target>Partner- oder Testimonial-Logo-Slider mit No-JS-Fallback</target></trans-unit>
-            <trans-unit id="autoplay.label"><source>Autoplay</source><target>Autoplay</target></trans-unit>
-            <trans-unit id="grayscale.label"><source>Grayscale logos</source><target>Logos in Graustufen</target></trans-unit>
-            <trans-unit id="preview.type"><source>Logo slider</source><target>Logo-Slider</target></trans-unit>
-            <trans-unit id="preview.logos"><source>Logos</source><target>Logos</target></trans-unit>
-            <trans-unit id="preview.image"><source>Image</source><target>Bild</target></trans-unit>
+            <trans-unit id="title">
+                <source>Logo Slider</source>
+                <target>Logo-Slider</target>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>Partner or testimonial logo slider with no-JS fallback</source>
+                <target>Partner- oder Testimonial-Logo-Slider mit No-JS-Fallback</target>
+            </trans-unit>
+            <trans-unit id="autoplay.label">
+                <source>Autoplay</source>
+                <target>Autoplay</target>
+            </trans-unit>
+            <trans-unit id="grayscale.label">
+                <source>Grayscale logos</source>
+                <target>Logos in Graustufen</target>
+            </trans-unit>
+            <trans-unit id="preview.type">
+                <source>Logo slider</source>
+                <target>Logo-Slider</target>
+            </trans-unit>
+            <trans-unit id="preview.logos">
+                <source>Logos</source>
+                <target>Logos</target>
+            </trans-unit>
+            <trans-unit id="preview.image">
+                <source>Image</source>
+                <target>Bild</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

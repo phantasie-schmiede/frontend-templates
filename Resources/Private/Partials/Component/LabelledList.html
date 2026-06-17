@@ -1,9 +1,7 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-<div class="m-labelled-list">
-    <div class="m-labelled-list__content{f:if(condition: noWrap, then: ' m-labelled-list__content--no-wrap')}">
-        {content -> f:format.raw()}
+    <div class="m-labelled-list">
+        <div class="m-labelled-list__content{f:if(condition: noWrap, then: ' m-labelled-list__content--no-wrap')}">{content -> f:format.raw()}</div>
     </div>
-</div>
 </html>

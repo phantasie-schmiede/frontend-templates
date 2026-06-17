@@ -2,102 +2,100 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:psbViewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<f:comment>
-    <!--
-        In order to use this partial, the slides must be rendered inside the f:render-tag. The value of the contentAs
-        attribute must be "slides".
-        Make sure that your slides are wrapped in an element with the class "swiper-slide".
-        Setting the configuration is optional. If you want to use the default configuration, you can omit the argument.
-        Setting pagination, navigation or scrollbar to true will automatically create the corresponding elements.
+    <f:comment>
+        <!--
+            In order to use this partial, the slides must be rendered inside the f:render-tag. The value of the contentAs
+            attribute must be "slides".
+            Make sure that your slides are wrapped in an element with the class "swiper-slide".
+            Setting the configuration is optional. If you want to use the default configuration, you can omit the argument.
+            Setting pagination, navigation or scrollbar to true will automatically create the corresponding elements.
 
-        Example:
-        <f:render
-            arguments="{configuration: {navigation: true}, id: 'images'}"
-            contentAs="slides"
-            partial="Component/Swiper">
-            <f:for
-                as="image"
-                each="{images}">
-                <f:image
-                    class="swiper-slide"
-                    image="{image}" />
-            </f:for>
-        </f:render>
-    -->
-</f:comment>
+            Example:
+            <f:render
+                arguments="{configuration: {navigation: true}, id: 'images'}"
+                contentAs="slides"
+                partial="Component/Swiper">
+                <f:for
+                    as="image"
+                    each="{images}">
+                    <f:image
+                        class="swiper-slide"
+                        image="{image}" />
+                </f:for>
+            </f:render>
+        -->
+    </f:comment>
 
-<f:asset.css
-    href="EXT:templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
-    identifier="swiper" />
-<f:asset.script
-    identifier="swiper"
-    src="EXT:templates/Resources/Public/JavaScript/swiper.js"
-    type="module" />
-<f:asset.script
-    identifier="swiper-bundle"
-    src="EXT:templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
+    <f:asset.css
+        href="EXT:templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
+        identifier="swiper" />
+    <f:asset.script
+        identifier="swiper"
+        src="EXT:templates/Resources/Public/JavaScript/swiper.js"
+        type="module" />
+    <f:asset.script
+        identifier="swiper-bundle"
+        src="EXT:templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
 
-<f:if condition="{configuration.pagination} && !{configuration.pagination.el}">
-    <f:variable
-        name="createPagination"
-        value="true" />
-    <psbViewHelpers:variable.arrayMerge
-        arrays="{0: configuration.pagination, 1: {el: '.swiper-pagination'}}"
-        as="pagination"
-        overwrite="true" />
-    <psbViewHelpers:variable.arrayMerge
-        arrays="{0: configuration, 1: {pagination: pagination}}"
-        as="configuration"
-        overwrite="true" />
-</f:if>
+    <f:if condition="{configuration.pagination} && !{configuration.pagination.el}">
+        <f:variable
+            name="createPagination"
+            value="true" />
+        <psbViewHelpers:variable.arrayMerge
+            arrays="{0: configuration.pagination, 1: {el: '.swiper-pagination'}}"
+            as="pagination"
+            overwrite="true" />
+        <psbViewHelpers:variable.arrayMerge
+            arrays="{0: configuration, 1: {pagination: pagination}}"
+            as="configuration"
+            overwrite="true" />
+    </f:if>
 
-<f:if condition="{configuration.navigation} && !{configuration.navigation.nextEl} && !{configuration.navigation.prevEl}">
-    <f:variable
-        name="createNavigation"
-        value="true" />
-    <psbViewHelpers:variable.arrayMerge
-        arrays="{0: configuration.navigation, 1: {nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev'}}"
-        as="navigation"
-        overwrite="true" />
-    <psbViewHelpers:variable.arrayMerge
-        arrays="{0: configuration, 1: {navigation: navigation}}"
-        as="configuration"
-        overwrite="true" />
-</f:if>
+    <f:if condition="{configuration.navigation} && !{configuration.navigation.nextEl} && !{configuration.navigation.prevEl}">
+        <f:variable
+            name="createNavigation"
+            value="true" />
+        <psbViewHelpers:variable.arrayMerge
+            arrays="{0: configuration.navigation, 1: {nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev'}}"
+            as="navigation"
+            overwrite="true" />
+        <psbViewHelpers:variable.arrayMerge
+            arrays="{0: configuration, 1: {navigation: navigation}}"
+            as="configuration"
+            overwrite="true" />
+    </f:if>
 
-<f:if condition="{configuration.scrollbar} && !{configuration.scrollbar.el}">
-    <f:variable
-        name="createScrollbar"
-        value="true" />
-    <psbViewHelpers:variable.arrayMerge
-        arrays="{0: configuration.scrollbar, 1: {el: '.swiper-scrollbar'}}"
-        as="scrollbar"
-        overwrite="true" />
-    <psbViewHelpers:variable.arrayMerge
-        arrays="{0: configuration, 1: {scrollbar: scrollbar}}"
-        as="configuration"
-        overwrite="true" />
-</f:if>
+    <f:if condition="{configuration.scrollbar} && !{configuration.scrollbar.el}">
+        <f:variable
+            name="createScrollbar"
+            value="true" />
+        <psbViewHelpers:variable.arrayMerge
+            arrays="{0: configuration.scrollbar, 1: {el: '.swiper-scrollbar'}}"
+            as="scrollbar"
+            overwrite="true" />
+        <psbViewHelpers:variable.arrayMerge
+            arrays="{0: configuration, 1: {scrollbar: scrollbar}}"
+            as="configuration"
+            overwrite="true" />
+    </f:if>
 
-<div
-    class="swiper"
-    data-psbits-swiper-configuration="{configuration -> f:format.json()}"
-    id="swiper-{id}">
-    <div class="swiper-wrapper">
-        {slides -> f:format.raw()}
+    <div
+        class="swiper"
+        data-psbits-swiper-configuration="{configuration -> f:format.json()}"
+        id="swiper-{id}">
+        <div class="swiper-wrapper">{slides -> f:format.raw()}</div>
+
+        <f:if condition="{createPagination}">
+            <div class="swiper-pagination"></div>
+        </f:if>
+
+        <f:if condition="{createNavigation}">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </f:if>
+
+        <f:if condition="{createScrollbar}">
+            <div class="swiper-scrollbar"></div>
+        </f:if>
     </div>
-
-    <f:if condition="{createPagination}">
-        <div class="swiper-pagination"></div>
-    </f:if>
-
-    <f:if condition="{createNavigation}">
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-    </f:if>
-
-    <f:if condition="{createScrollbar}">
-        <div class="swiper-scrollbar"></div>
-    </f:if>
-</div>
 </html>

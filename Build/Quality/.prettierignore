@@ -1,0 +1,10 @@
+../../.Build
+../../.idea
+../../.git
+../../.github
+../../.git-hooks
+../../.githooks
+../../node_modules
+../../vendor
+../../Resources/Private/Partials/Page/Header/LoginForm.html
+../../Resources/Private/Partials/Page/Navigation/Footer.html

@@ -1,29 +1,26 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <f:for
-            as="page"
-            each="{breadcrumbs}">
-            <f:if condition="{page.isCurrentPage} == false">
-                <f:then>
-                    <li class="breadcrumb-item">
-                        <f:link.page
-                            pageUid="{page.uid}">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <f:for
+                as="page"
+                each="{breadcrumbs}">
+                <f:if condition="{page.isCurrentPage} == false">
+                    <f:then>
+                        <li class="breadcrumb-item">
+                            <f:link.page pageUid="{page.uid}"> {page.nav_title} </f:link.page>
+                        </li>
+                    </f:then>
+                    <f:else>
+                        <li
+                            aria-current="page"
+                            class="active breadcrumb-item">
                             {page.nav_title}
-                        </f:link.page>
-                    </li>
-                </f:then>
-                <f:else>
-                    <li
-                        aria-current="page"
-                        class="active breadcrumb-item">
-                        {page.nav_title}
-                    </li>
-                </f:else>
-            </f:if>
-        </f:for>
-    </ol>
-</nav>
+                        </li>
+                    </f:else>
+                </f:if>
+            </f:for>
+        </ol>
+    </nav>
 </html>

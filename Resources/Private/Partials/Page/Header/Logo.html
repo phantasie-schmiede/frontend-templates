@@ -2,19 +2,19 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<f:image
-    alt="{settings.logos.default.alt}"
-    height="{settings.logos.default.height}"
-    src="{settings.logos.default.file}"
-    width="{settings.logos.default.width}" />
+    <f:image
+        alt="{settings.logos.default.alt}"
+        height="{settings.logos.default.height}"
+        src="{settings.logos.default.file}"
+        width="{settings.logos.default.width}" />
 
-<f:if condition="{settings.logos.default.showWebsiteTitle}">
-    <span class="fw-semibold lh-sm ms-2 text-break">
-        <f:variable
-            name="websiteTitle"
-            value="{viewHelpers:fallback(values: '{0: settings.alternativeWebsiteTitle, 1: siteConfiguration.websiteTitle}')}" />
+    <f:if condition="{settings.logos.default.showWebsiteTitle}">
+        <span class="fw-semibold lh-sm ms-2 text-break">
+            <f:variable
+                name="websiteTitle"
+                value="{viewHelpers:fallback(values: '{0: settings.alternativeWebsiteTitle, 1: siteConfiguration.websiteTitle}')}" />
 
-        {websiteTitle -> f:format.raw()}
-    </span>
-</f:if>
+            {websiteTitle -> f:format.raw()}
+        </span>
+    </f:if>
 </html>

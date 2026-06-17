@@ -1,10 +1,8 @@
 /** @type {import("prettier").Config} */
 const config = {
-    plugins: ["prettier-plugin-organize-attributes", "@prettier/plugin-xml"],
-    singleAttributePerLine: true,
     attributeGroups: ["$DEFAULT"],
     attributeSort: "ASC",
-    tabWidth: 4,
+    "bracketSameLine": true,
     overrides: [
         {
             files: ["*.xml", "*.xlf"],
@@ -13,7 +11,10 @@ const config = {
                 xmlSortAttributesByKey: true
             }
         }
-    ]
+    ],
+    plugins: ["prettier-plugin-organize-attributes", "@prettier/plugin-xml"],
+    singleAttributePerLine: true,
+    tabWidth: 4,
 };
 
 export default config;

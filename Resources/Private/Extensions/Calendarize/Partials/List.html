@@ -1,12 +1,10 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
->
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
     <f:if condition="{searchMode}">
         <f:render
             arguments="{searchParameter: searchParameter, indices: indices}"
-            partial="Event/SearchInformation"
-        />
+            partial="Event/SearchInformation" />
     </f:if>
 
     <f:if condition="{indices -> f:count()}">
@@ -15,16 +13,13 @@
                 <f:then>
                     <f:render
                         contentAs="cards"
-                        partial="Component/CardGrid"
-                    >
+                        partial="Component/CardGrid">
                         <f:for
                             as="index"
-                            each="{indices}"
-                        >
+                            each="{indices}">
                             <f:render
                                 arguments="{index: index}"
-                                partial="{index.configuration.partialIdentifier}/ListItem"
-                            />
+                                partial="{index.configuration.partialIdentifier}/ListItem" />
                         </f:for>
                     </f:render>
                 </f:then>
@@ -32,30 +27,25 @@
                     <f:if condition="{settings.paginateConfiguration.insertAbove -> f:or(alternative:0)}">
                         <f:render
                             arguments="{pagination: pagination.pagination, paginator: pagination.paginator, searchMode: searchMode}"
-                            partial="Pagination"
-                        />
+                            partial="Pagination" />
                     </f:if>
 
                     <f:render
                         contentAs="cards"
-                        partial="Component/CardGrid"
-                    >
+                        partial="Component/CardGrid">
                         <f:for
                             as="index"
-                            each="{pagination.paginator.paginatedItems}"
-                        >
+                            each="{pagination.paginator.paginatedItems}">
                             <f:render
                                 arguments="{index: index}"
-                                partial="{index.configuration.partialIdentifier}/ListItem"
-                            />
+                                partial="{index.configuration.partialIdentifier}/ListItem" />
                         </f:for>
                     </f:render>
 
                     <f:if condition="{settings.paginateConfiguration.insertBelow -> f:or(alternative:1)}">
                         <f:render
                             arguments="{pagination: pagination.pagination, paginator: pagination.paginator, searchMode: searchMode}"
-                            partial="Pagination"
-                        />
+                            partial="Pagination" />
                     </f:if>
                 </f:else>
             </f:if>

@@ -5,8 +5,7 @@
         date="2026-03-20T07:17:00+01:00"
         original="messages"
         product-name="templates"
-        source-language="en"
-    >
+        source-language="en">
         <body>
             <trans-unit id="ctrl.title">
                 <source>Header button</source>

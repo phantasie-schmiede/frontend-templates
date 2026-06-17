@@ -6,8 +6,7 @@
         original="messages"
         product-name="templates"
         source-language="en"
-        target-language="de"
-    >
+        target-language="de">
         <body>
             <trans-unit id="content1">
                 <source>Main content</source>

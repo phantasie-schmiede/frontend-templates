@@ -5,8 +5,7 @@
         date="2024-09-30T16:52:00+01:00"
         original="messages"
         product-name="templates"
-        source-language="en"
-    >
+        source-language="en">
         <body>
             <trans-unit id="content1.1">
                 <source>top left</source>

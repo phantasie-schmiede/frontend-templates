@@ -1,7 +1,6 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
->
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
     <div class="d-none d-sm-block row">
         <div class="col d-flex justify-content-center">
             <ul class="pagination">
@@ -12,8 +11,7 @@
                                 <f:render
                                     arguments="{actionName:actionName, page: 1, title: '{f:translate(key:\'pagination.first\')}', searchMode:searchMode}"
                                     contentAs="content"
-                                    section="PaginationLink"
-                                >
+                                    section="PaginationLink">
                                     first_page
                                 </f:render>
                             </li>
@@ -22,8 +20,7 @@
                             <f:render
                                 arguments="{actionName:actionName, page: pagination.previousPageNumber, title: '{f:translate(key:\'pagination.previous\')}', searchMode:searchMode}"
                                 contentAs="content"
-                                section="PaginationLink"
-                            >
+                                section="PaginationLink">
                                 {f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}
                             </f:render>
                         </li>
@@ -46,8 +43,7 @@
                 </f:if>
                 <f:for
                     as="page"
-                    each="{pagination.allPageNumbers}"
-                >
+                    each="{pagination.allPageNumbers}">
                     <f:if condition="{page} == {paginator.currentPageNumber}">
                         <f:then>
                             <li class="active page-item">
@@ -59,8 +55,7 @@
                                 <f:render
                                     arguments="{actionName:actionName, page: page, title: page, searchMode:searchMode}"
                                     contentAs="content"
-                                    section="PaginationLink"
-                                >
+                                    section="PaginationLink">
                                     {page}
                                 </f:render>
                             </li>
@@ -78,8 +73,7 @@
                             <f:render
                                 arguments="{actionName:actionName, page: pagination.nextPageNumber, title: '{f:translate(key:\'pagination.next\')}', searchMode:searchMode}"
                                 contentAs="content"
-                                section="PaginationLink"
-                            >
+                                section="PaginationLink">
                                 {f:translate(key:'widget.pagination.next', extensionName: 'fluid')}
                             </f:render>
                         </li>
@@ -88,8 +82,7 @@
                                 <f:render
                                     arguments="{actionName:actionName, page: pagination.lastPageNumber, title: '{f:translate(key:\'pagination.last\')}', searchMode:searchMode}"
                                     contentAs="content"
-                                    section="PaginationLink"
-                                >
+                                    section="PaginationLink">
                                     last
                                 </f:render>
                             </li>
@@ -123,8 +116,7 @@
                             return false;
                         }
                     "
-                    title="{title}"
-                >
+                    title="{title}">
                     {content}
                 </a>
             </f:then>
@@ -132,8 +124,7 @@
                 <a
                     class="page-link"
                     href="{f:uri.action(action:actionName, arguments:{currentPage: page})}"
-                    title="{title}"
-                >
+                    title="{title}">
                     {content}
                 </a>
             </f:else>

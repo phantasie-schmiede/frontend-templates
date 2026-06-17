@@ -1,8 +1,7 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
->
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers">
     <f:layout name="Detail" />
 
     <f:section name="content">
@@ -12,8 +11,7 @@
                 <f:if condition="{settings.detail.showMetaTags}">
                     <f:render
                         arguments="{newsItem: newsItem, settings:settings}"
-                        partial="Detail/Opengraph"
-                    />
+                        partial="Detail/Opengraph" />
                 </f:if>
                 <f:if condition="{newsItem.alternativeTitle}">
                     <f:then>
@@ -34,8 +32,7 @@
                     as="paginated"
                     news="{newsItem}"
                     pidList="{newsItem.pid}"
-                    sortField="datetime"
-                >
+                    sortField="datetime">
                     <f:if condition="{paginated}">
                         <nav aria-label="Page navigation">
                             <ul class="justify-content-center mt-3 pagination">
@@ -44,8 +41,7 @@
                                         <n:link
                                             class="page-link"
                                             newsItem="{paginated.prev}"
-                                            settings="{settings}"
-                                        >
+                                            settings="{settings}">
                                             <span aria-hidden="true">&laquo;</span> {paginated.prev.title}
                                         </n:link>
                                     </li>
@@ -55,8 +51,7 @@
                                         <n:link
                                             class="page-link"
                                             newsItem="{paginated.next}"
-                                            settings="{settings}"
-                                        >
+                                            settings="{settings}">
                                             {paginated.next.title} <span aria-hidden="true">&raquo;</span>
                                         </n:link>
                                     </li>
@@ -69,40 +64,34 @@
 
             <f:variable
                 name="media"
-                value="{newsItem.mediaNonPreviews}"
-            />
+                value="{newsItem.mediaNonPreviews}" />
 
             <f:if condition="{media}">
                 <f:then>
                     <f:render
                         arguments="{_all}"
-                        section="headline"
-                    />
+                        section="headline" />
                     <div class="row">
                         <div class="col-md-6">
                             <f:render
                                 arguments="{_all}"
-                                section="inner-content"
-                            />
+                                section="inner-content" />
                         </div>
                         <div class="col-md-6">
                             <f:if condition="2 < {media -> f:count()}">
                                 <f:then>
                                     <f:render
                                         contentAs="items"
-                                        partial="Component/Masonry"
-                                    >
+                                        partial="Component/Masonry">
                                         <f:for
                                             as="mediaElement"
-                                            each="{media}"
-                                        >
+                                            each="{media}">
                                             <div class="m-masonry__item">
                                                 <f:render
                                                     arguments="{
 													image: mediaElement,
 												}"
-                                                    partial="Component/Picture/Responsive"
-                                                />
+                                                    partial="Component/Picture/Responsive" />
                                             </div>
                                         </f:for>
                                     </f:render>
@@ -110,15 +99,13 @@
                                 <f:else>
                                     <f:for
                                         as="mediaElement"
-                                        each="{media}"
-                                    >
+                                        each="{media}">
                                         <div class="m-masonry__item">
                                             <f:render
                                                 arguments="{
 												image: mediaElement,
 											}"
-                                                partial="Component/Picture/Responsive"
-                                            />
+                                                partial="Component/Picture/Responsive" />
                                         </div>
                                     </f:for>
                                 </f:else>
@@ -129,12 +116,10 @@
                 <f:else>
                     <f:render
                         arguments="{_all}"
-                        section="headline"
-                    />
+                        section="headline" />
                     <f:render
                         arguments="{_all}"
-                        section="inner-content"
-                    />
+                        section="inner-content" />
                 </f:else>
             </f:if>
         </f:if>
@@ -143,14 +128,12 @@
     <f:section name="headline">
         <h1
             class="border-bottom pb-3"
-            itemprop="headline"
-        >
+            itemprop="headline">
             {newsItem.title}
         </h1>
         <f:render
             arguments="{settings:settings,newsItem:newsItem}"
-            partial="General/AdditionalInformation"
-        />
+            partial="General/AdditionalInformation" />
     </f:section>
 
     <f:section name="inner-content">
@@ -158,14 +141,12 @@
             audioClass="audio-wrapper"
             imgClass="img-fluid"
             news="{newsItem}"
-            videoClass="video-wrapper"
-        >
+            videoClass="video-wrapper">
             <f:if condition="{newsItem.teaser}">
                 <!-- teaser -->
                 <div
                     class="lead"
-                    itemprop="description"
-                >
+                    itemprop="description">
                     <f:format.html>{newsItem.teaser}</f:format.html>
                 </div>
             </f:if>
@@ -178,8 +159,7 @@
             <!-- main text -->
             <div
                 class="news-text-wrap"
-                itemprop="articleBody"
-            >
+                itemprop="articleBody">
                 <f:format.html>{newsItem.bodytext}</f:format.html>
             </div>
         </n:renderMedia>
@@ -188,8 +168,7 @@
             <!-- Link Back -->
             <f:link.page
                 class="btn btn-primary mb-3"
-                pageUid="{settings.backPid}"
-            >
+                pageUid="{settings.backPid}">
                 <f:translate key="back-link" />
             </f:link.page>
         </f:if>
@@ -211,8 +190,7 @@
                 <ul class="list-group">
                     <f:for
                         as="related"
-                        each="{newsItem.allRelatedSorted}"
-                    >
+                        each="{newsItem.allRelatedSorted}">
                         <li class="list-group-item">
                             <span class="me-2 news-related-news-date">
                                 <f:format.date format="{f:translate(key:'dateFormat')}">{related.datetime}</f:format.date>
@@ -220,8 +198,7 @@
                             <n:link
                                 newsItem="{related}"
                                 settings="{settings}"
-                                title="{related.title}"
-                            >
+                                title="{related.title}">
                                 {related.title}
                             </n:link>
                         </li>
@@ -239,14 +216,12 @@
                 <ul class="list-group">
                     <f:for
                         as="relatedFile"
-                        each="{newsItem.relatedFiles}"
-                    >
+                        each="{newsItem.relatedFiles}">
                         <li class="list-group-item">
                             <span class="me-2 news-related-files-link">
                                 <a
                                     href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}"
-                                    target="_blank"
-                                >
+                                    target="_blank">
                                     <i class="fa-file fas me-1"></i>
                                     {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
                                 </a>
@@ -267,8 +242,7 @@
                 <ul class="list-group">
                     <f:for
                         as="relatedLink"
-                        each="{newsItem.relatedLinks}"
-                    >
+                        each="{newsItem.relatedLinks}">
                         <li class="list-group-item">
                             <f:link.typolink
                                 class="me-2"

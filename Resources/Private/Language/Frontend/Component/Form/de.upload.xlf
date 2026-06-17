@@ -6,13 +6,11 @@
         original="messages"
         product-name="templates"
         source-language="en"
-        target-language="de"
-    >
+        target-language="de">
         <body>
             <trans-unit id="hint.noTouch">
                 <source>Drag image here or click to select an image from your device or to take a photo</source>
-                <target
-                >Bild hierher ziehen oder klicken, um ein Bild von Ihrem Gerät auszuwählen oder ein Foto aufzunehmen</target>
+                <target>Bild hierher ziehen oder klicken, um ein Bild von Ihrem Gerät auszuwählen oder ein Foto aufzunehmen</target>
             </trans-unit>
             <trans-unit id="hint.touch">
                 <source>Tap to select an image from your device or to take a photo</source>

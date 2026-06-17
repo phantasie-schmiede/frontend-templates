@@ -6,8 +6,7 @@
         original="messages"
         product-name="templates"
         source-language="en"
-        target-language="de"
-    >
+        target-language="de">
         <header />
         <body>
             <trans-unit id="settings.alternativeWebsiteTitle">

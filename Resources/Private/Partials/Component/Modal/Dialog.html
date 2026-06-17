@@ -2,20 +2,17 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
-    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers"
->
+    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
     <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/Modal/dialog.xlf" />
 
     <f:variable
         name="modalClasses"
-        value="modal-dialog"
-    />
+        value="modal-dialog" />
 
     <f:if condition="{classes}">
         <f:variable
             name="modalClasses"
-            value="{modalClasses} {classes}"
-        />
+            value="{modalClasses} {classes}" />
     </f:if>
 
     <f:if condition="{title}">
@@ -23,27 +20,23 @@
             <f:if condition="!{titleClasses}">
                 <f:variable
                     name="titleClasses"
-                    value="fs-5"
-                />
+                    value="fs-5" />
             </f:if>
 
             <f:if condition="!{titleId}">
                 <f:variable
                     name="titleId"
-                    value="{id}-title"
-                />
+                    value="{id}-title" />
             </f:if>
 
             <f:variable
                 name="ariaAttributes"
-                value="{labelledby: titleId}"
-            />
+                value="{labelledby: titleId}" />
         </f:then>
         <f:else>
             <f:variable
                 name="ariaAttributes"
-                value="{label: label}"
-            />
+                value="{label: label}" />
         </f:else>
     </f:if>
 
@@ -54,24 +47,21 @@
         id="{id}"
         role="dialog"
         tabindex="-1"
-        tag="div"
-    >
+        tag="div">
         <div class="{modalClasses}">
             <div class="modal-content">
                 <f:if condition="{title}">
                     <div class="modal-header">
                         <h1
                             class="modal-title {titleClasses}"
-                            id="{titleId}"
-                        >
+                            id="{titleId}">
                             {title}
                         </h1>
                         <button
                             aria-label="{foundation:translate(id: 'dialog:close')}"
                             class="btn-close"
                             data-bs-dismiss="modal"
-                            type="button"
-                        ></button>
+                            type="button"></button>
                     </div>
                 </f:if>
 
@@ -81,8 +71,7 @@
                             aria-label="{foundation:translate(id: 'dialog:close')}"
                             class="btn-close end-0 p-3 position-absolute top-0 z-2"
                             data-bs-dismiss="modal"
-                            type="button"
-                        ></button>
+                            type="button"></button>
                     </f:if>
 
                     {body -> f:format.raw()}

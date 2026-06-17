@@ -2,99 +2,119 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<f:variable name="sectionClass" value="py-5" />
-<f:if condition="{data.background_variant} == 'light'">
-    <f:variable name="sectionClass" value="py-5 bg-light" />
-</f:if>
-<f:if condition="{data.background_variant} == 'dark'">
-    <f:variable name="sectionClass" value="py-5 bg-dark text-white" />
-</f:if>
+    <f:variable
+        name="sectionClass"
+        value="py-5" />
 
-<section class="{sectionClass}">
-    <div class="container-fluid">
-        <f:if condition="{data.layout_variant} == 'stacked'">
-            <f:then>
-                <div class="g-4 justify-content-center row">
-                    <div class="col-12 col-lg-10">
-                        <f:image
-                            class="img-fluid rounded w-100"
-                            image="{data.image.0}"
-                            loading="lazy"
-                            width="1600"
-                            height="900" />
-                    </div>
-                    <div class="col-12 col-lg-8 text-center">
-                        <f:if condition="{data.header} && {data.header_layout} != 100">
-                            <viewHelpers:tag
-                                class="mb-3"
-                                tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
-                                {data.header}
-                            </viewHelpers:tag>
-                        </f:if>
-                        <div class="mb-4">
-                            <f:format.html>{data.bodytext}</f:format.html>
+    <f:if condition="{data.background_variant} == 'light'">
+        <f:variable
+            name="sectionClass"
+            value="py-5 bg-light" />
+    </f:if>
+
+    <f:if condition="{data.background_variant} == 'dark'">
+        <f:variable
+            name="sectionClass"
+            value="py-5 bg-dark text-white" />
+    </f:if>
+
+    <section class="{sectionClass}">
+        <div class="container-fluid">
+            <f:if condition="{data.layout_variant} == 'stacked'">
+                <f:then>
+                    <div class="g-4 justify-content-center row">
+                        <div class="col-12 col-lg-10">
+                            <f:image
+                                class="img-fluid rounded w-100"
+                                height="900"
+                                image="{data.image.0}"
+                                loading="lazy"
+                                width="1600" />
                         </div>
-                        <f:if condition="{data._grids.links}">
-                            <f:render
-                                contentAs="buttons"
-                                partial="Component/ButtonRow"
-                                arguments="{centerButtons: 1}">
-                                <f:for as="cta" each="{data._grids.links}">
-                                    <f:format.raw>{cta.content}</f:format.raw>
-                                </f:for>
-                            </f:render>
-                        </f:if>
+                        <div class="col-12 col-lg-8 text-center">
+                            <f:if condition="{data.header} && {data.header_layout} != 100">
+                                <viewHelpers:tag
+                                    class="mb-3"
+                                    tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                                    {data.header}
+                                </viewHelpers:tag>
+                            </f:if>
+                            <div class="mb-4">
+                                <f:format.html>{data.bodytext}</f:format.html>
+                            </div>
+                            <f:if condition="{data._grids.links}">
+                                <f:render
+                                    arguments="{centerButtons: 1}"
+                                    contentAs="buttons"
+                                    partial="Component/ButtonRow">
+                                    <f:for
+                                        as="cta"
+                                        each="{data._grids.links}">
+                                        <f:format.raw>{cta.content}</f:format.raw>
+                                    </f:for>
+                                </f:render>
+                            </f:if>
+                        </div>
                     </div>
-                </div>
-            </f:then>
-            <f:else>
-                <div class="align-items-center row">
-                    <f:if condition="{data.layout_variant} == 'image-right'">
-                        <f:then>
-                            <f:variable name="imageColumnClass" value="col-12 col-lg-6 order-lg-2 p-0" />
-                            <f:variable name="textColumnClass" value="col-12 col-lg-6 order-lg-1 p-lg-5 py-3" />
-                        </f:then>
-                        <f:else>
-                            <f:variable name="imageColumnClass" value="col-12 col-lg-6 p-0" />
-                            <f:variable name="textColumnClass" value="col-12 col-lg-6 p-lg-5 py-3" />
-                        </f:else>
-                    </f:if>
-
-                    <div class="{imageColumnClass}">
-                        <f:image
-                            class="h-100 img-fluid object-fit-cover w-100"
-                            image="{data.image.0}"
-                            loading="lazy"
-                            width="1200"
-                            height="800" />
-                    </div>
-
-                    <div class="{textColumnClass}">
-                        <f:if condition="{data.header} && {data.header_layout} != 100">
-                            <viewHelpers:tag
-                                class="mb-3 text-center text-lg-start"
-                                tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
-                                {data.header}
-                            </viewHelpers:tag>
+                </f:then>
+                <f:else>
+                    <div class="align-items-center row">
+                        <f:if condition="{data.layout_variant} == 'image-right'">
+                            <f:then>
+                                <f:variable
+                                    name="imageColumnClass"
+                                    value="col-12 col-lg-6 order-lg-2 p-0" />
+                                <f:variable
+                                    name="textColumnClass"
+                                    value="col-12 col-lg-6 order-lg-1 p-lg-5 py-3" />
+                            </f:then>
+                            <f:else>
+                                <f:variable
+                                    name="imageColumnClass"
+                                    value="col-12 col-lg-6 p-0" />
+                                <f:variable
+                                    name="textColumnClass"
+                                    value="col-12 col-lg-6 p-lg-5 py-3" />
+                            </f:else>
                         </f:if>
-                        <div class="mb-4">
-                            <f:format.html>{data.bodytext}</f:format.html>
+
+                        <div class="{imageColumnClass}">
+                            <f:image
+                                class="h-100 img-fluid object-fit-cover w-100"
+                                height="800"
+                                image="{data.image.0}"
+                                loading="lazy"
+                                width="1200" />
                         </div>
 
-                        <f:if condition="{data._grids.links}">
-                            <f:render
-                                contentAs="buttons"
-                                partial="Component/ButtonRow"
-                                arguments="{centerButtons: 1}">
-                                <f:for as="cta" each="{data._grids.links}">
-                                    <f:format.raw>{cta.content}</f:format.raw>
-                                </f:for>
-                            </f:render>
-                        </f:if>
+                        <div class="{textColumnClass}">
+                            <f:if condition="{data.header} && {data.header_layout} != 100">
+                                <viewHelpers:tag
+                                    class="mb-3 text-center text-lg-start"
+                                    tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                                    {data.header}
+                                </viewHelpers:tag>
+                            </f:if>
+                            <div class="mb-4">
+                                <f:format.html>{data.bodytext}</f:format.html>
+                            </div>
+
+                            <f:if condition="{data._grids.links}">
+                                <f:render
+                                    arguments="{centerButtons: 1}"
+                                    contentAs="buttons"
+                                    partial="Component/ButtonRow">
+                                    <f:for
+                                        as="cta"
+                                        each="{data._grids.links}">
+                                        <f:format.raw>{cta.content}</f:format.raw>
+                                    </f:for>
+                                </f:render>
+                            </f:if>
+                        </div>
                     </div>
-                </div>
-            </f:else>
-        </f:if>
-    </div>
-</section>
+                </f:else>
+            </f:if>
+        </div>
+    </section>
 </html>

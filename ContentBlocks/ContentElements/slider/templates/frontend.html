@@ -2,60 +2,63 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<f:if condition="{data.image}">
-    <section aria-label="{data.header}" class="position-relative">
-        <f:render
-            partial="Component/Swiper"
-            contentAs="slides"
-            arguments="{
-                configuration: {
-                    loop: data.loop_slides,
-                    navigation: data.show_navigation,
-                    pagination: data.show_pagination ? {clickable: 1} : 0,
-                    slidesPerView: 1,
-                    spaceBetween: 24
-                },
-                id: 'content-slider-{data.uid}'
-            }">
-            <f:for as="image" each="{data.image}">
-                <div class="swiper-slide">
-                    <picture>
-                        <source
-                            media="(min-width: 1400px)"
-                            srcset="{f:uri.image(image: image, maxWidth: 1920, height: 1080)}" />
-                        <source
-                            media="(min-width: 992px)"
-                            srcset="{f:uri.image(image: image, maxWidth: 1400, height: 788)}" />
-                        <source
-                            media="(min-width: 576px)"
-                            srcset="{f:uri.image(image: image, maxWidth: 992, height: 558)}" />
-                        <img
-                            alt="{image.alternative}"
-                            class="d-block img-fluid w-100"
-                            height="360"
-                            loading="lazy"
-                            src="{f:uri.image(image: image, maxWidth: 640, height: 360)}"
-                            width="640" />
-                    </picture>
-                </div>
-            </f:for>
-        </f:render>
+    <f:if condition="{data.image}">
+        <section
+            aria-label="{data.header}"
+            class="position-relative">
+            <f:render
+                arguments="{
+                    configuration: {
+                        loop: data.loop_slides,
+                        navigation: data.show_navigation,
+                        pagination: data.show_pagination ? {clickable: 1} : 0,
+                        slidesPerView: 1,
+                        spaceBetween: 24
+                    },
+                    id: 'content-slider-{data.uid}'
+                }"
+                contentAs="slides"
+                partial="Component/Swiper">
+                <f:for
+                    as="image"
+                    each="{data.image}">
+                    <div class="swiper-slide">
+                        <picture>
+                            <source
+                                media="(min-width: 1400px)"
+                                srcset="{f:uri.image(image: image, maxWidth: 1920, height: 1080)}" />
+                            <source
+                                media="(min-width: 992px)"
+                                srcset="{f:uri.image(image: image, maxWidth: 1400, height: 788)}" />
+                            <source
+                                media="(min-width: 576px)"
+                                srcset="{f:uri.image(image: image, maxWidth: 992, height: 558)}" />
+                            <img
+                                alt="{image.alternative}"
+                                class="d-block img-fluid w-100"
+                                height="360"
+                                loading="lazy"
+                                src="{f:uri.image(image: image, maxWidth: 640, height: 360)}"
+                                width="640" />
+                        </picture>
+                    </div>
+                </f:for>
+            </f:render>
 
-        <f:if condition="{data.header} || {data.bodytext}">
-            <div class="carousel-caption d-block">
-                <f:if condition="{data.header}">
-                    <f:if condition="{data.header_layout} != 100">
-                        <viewHelpers:tag
-                            tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
-                            {data.header}
-                        </viewHelpers:tag>
+            <f:if condition="{data.header} || {data.bodytext}">
+                <div class="carousel-caption d-block">
+                    <f:if condition="{data.header}">
+                        <f:if condition="{data.header_layout} != 100">
+                            <viewHelpers:tag tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                                {data.header}
+                            </viewHelpers:tag>
+                        </f:if>
                     </f:if>
-                </f:if>
-                <f:if condition="{data.bodytext}">
-                    <f:format.html>{data.bodytext}</f:format.html>
-                </f:if>
-            </div>
-        </f:if>
-    </section>
-</f:if>
+                    <f:if condition="{data.bodytext}">
+                        <f:format.html>{data.bodytext}</f:format.html>
+                    </f:if>
+                </div>
+            </f:if>
+        </section>
+    </f:if>
 </html>

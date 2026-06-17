@@ -5,8 +5,7 @@
         date="2024-03-25T23:00:00+01:00"
         original="messages"
         product-name="templates"
-        source-language="en"
-    >
+        source-language="en">
         <header />
         <body>
             <trans-unit id="settings.alternativeWebsiteTitle">

@@ -5,8 +5,7 @@
         date="2026-06-05T10:55:00+01:00"
         original="messages"
         product-name="templates"
-        source-language="en"
-    >
+        source-language="en">
         <body>
             <trans-unit id="copyright">
                 <source>Copyright</source>

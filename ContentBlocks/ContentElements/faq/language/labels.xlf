@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file datatype="plaintext"
+    <file
+        datatype="plaintext"
         date="2026-06-17T11:30:00+01:00"
         original="messages"
         product-name="templates"
         source-language="en">
         <body>
-            <trans-unit id="title"><source>FAQ</source></trans-unit>
-            <trans-unit id="description"><source>Frequently asked questions block with schema markup</source></trans-unit>
-            <trans-unit id="faq_items.label"><source>FAQ items</source></trans-unit>
-            <trans-unit id="introtext.label"><source>Intro text</source></trans-unit>
-            <trans-unit id="preview.type"><source>FAQ</source></trans-unit>
-            <trans-unit id="preview.items"><source>Items</source></trans-unit>
+            <trans-unit id="title">
+                <source>FAQ</source>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>Frequently asked questions block with schema markup</source>
+            </trans-unit>
+            <trans-unit id="faq_items.label">
+                <source>FAQ items</source>
+            </trans-unit>
+            <trans-unit id="introtext.label">
+                <source>Intro text</source>
+            </trans-unit>
+            <trans-unit id="preview.type">
+                <source>FAQ</source>
+            </trans-unit>
+            <trans-unit id="preview.items">
+                <source>Items</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,4 +1,4 @@
-<f:layout name="Preview"/>
+<f:layout name="Preview" />
 
 <f:section name="Content">
     <f:if condition="{data.header}">
@@ -14,8 +14,8 @@
             <f:image
                 alt="{f:translate(key: 'LLL:EXT:templates/ContentBlocks/ContentElements/feature/language/labels.xlf:preview.image')}"
                 image="{data.image.0}"
-                maxWidth="240"
-                maxHeight="135" />
+                maxHeight="135"
+                maxWidth="240" />
         </div>
     </f:if>
 
@@ -27,5 +27,7 @@
         {data.background_variant}
     </div>
 
-    <f:render partial="PageLayout/Grid" arguments="{data: data, identifier: 'links'}"/>
+    <f:render
+        arguments="{data: data, identifier: 'links'}"
+        partial="PageLayout/Grid" />
 </f:section>

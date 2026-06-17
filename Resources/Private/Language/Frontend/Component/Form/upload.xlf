@@ -5,8 +5,7 @@
         date="2024-10-24T15:06:00+01:00"
         original="messages"
         product-name="templates"
-        source-language="en"
-    >
+        source-language="en">
         <body>
             <trans-unit id="hint.noTouch">
                 <source>Drag image here or click to select an image from your device or to take a photo</source>

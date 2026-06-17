@@ -7,12 +7,30 @@
         source-language="en"
         target-language="de">
         <body>
-            <trans-unit id="title"><source>Contact Lead</source><target>Kontakt / Lead</target></trans-unit>
-            <trans-unit id="description"><source>Lead-focused contact teaser with status messages</source><target>Lead-orientierter Kontaktteaser mit Statusmeldungen</target></trans-unit>
-            <trans-unit id="success_message.label"><source>Success message</source><target>Erfolgsmeldung</target></trans-unit>
-            <trans-unit id="error_message.label"><source>Error message</source><target>Fehlermeldung</target></trans-unit>
-            <trans-unit id="emphasis_style.label"><source>Emphasis style</source><target>Hervorhebungsstil</target></trans-unit>
-            <trans-unit id="preview.type"><source>Contact / Lead</source><target>Kontakt / Lead</target></trans-unit>
+            <trans-unit id="title">
+                <source>Contact Lead</source>
+                <target>Kontakt / Lead</target>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>Lead-focused contact teaser with status messages</source>
+                <target>Lead-orientierter Kontaktteaser mit Statusmeldungen</target>
+            </trans-unit>
+            <trans-unit id="success_message.label">
+                <source>Success message</source>
+                <target>Erfolgsmeldung</target>
+            </trans-unit>
+            <trans-unit id="error_message.label">
+                <source>Error message</source>
+                <target>Fehlermeldung</target>
+            </trans-unit>
+            <trans-unit id="emphasis_style.label">
+                <source>Emphasis style</source>
+                <target>Hervorhebungsstil</target>
+            </trans-unit>
+            <trans-unit id="preview.type">
+                <source>Contact / Lead</source>
+                <target>Kontakt / Lead</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

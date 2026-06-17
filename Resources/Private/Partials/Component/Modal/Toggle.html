@@ -3,15 +3,13 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
     xmlns:psbViewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers"
-    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
->
+    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers">
     <button
         class="{classes}"
         data-bs-target="#{modalId}"
         data-bs-toggle="modal"
         title="{title}"
-        type="button"
-    >
+        type="button">
         {text -> f:format.raw()}
     </button>
 </html>

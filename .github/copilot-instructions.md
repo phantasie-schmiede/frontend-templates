@@ -35,6 +35,10 @@ If you haven't already, please read the general agent instructions in `../AGENTS
 - Include punctuation in language files for complete localization, e.g. prepended colons should not be placed in the
   template after a label, but in the language file itself.
 
+If you have questions about architecture, conventions, or best practices, ask before implementing. If you notice any
+inconsistencies in the codebase or differences between codebase and these instructions, mention them - don't fix them
+unless asked.
+
 ## Safe change workflow
 
 1. Identify the layer to change first:

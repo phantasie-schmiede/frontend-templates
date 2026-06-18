@@ -53,19 +53,31 @@
 
         <f:if condition="{event.images}">
             <f:variable
-                name="desktopImageUrl"
-                value="{f:uri.image(cropVariant: 'cardLandscape', image: event.images.0, width: '320m', height: '180m')}" />
+                name="image"
+                value="{event.images.0}" />
             <f:variable
-                name="imageUrl"
-                value="{f:uri.image(cropVariant: 'cardPortrait', image: event.images.0, width: '240m', height: '320m')}" />
+                name="imageCropVariant"
+                value="cardPortrait" />
+            <f:variable
+                name="imageHeight"
+                value="320" />
+            <f:variable
+                name="imageSources"
+                value="{0: {cropVariant: 'cardLandscape', height: '180m', image: event.images.0, media: '(min-width: 576px)', width: '320m'}}" />
+            <f:variable
+                name="imageWidth"
+                value="240" />
         </f:if>
 
         <f:render
             arguments="{
                 additionalContentAppend: additionalContentAppend,
                 additionalContentPrepend: additionalContentPrepend,
-                desktopImageUrl: desktopImageUrl,
-                imageUrl: imageUrl,
+                image: image,
+                imageCropVariant: imageCropVariant,
+                imageHeight: imageHeight,
+                imageSources: imageSources,
+                imageWidth: imageWidth,
                 subtitle: subtitle,
                 text: text,
                 title: '{index.originalObject.title -> c:link.index(index: index)}'

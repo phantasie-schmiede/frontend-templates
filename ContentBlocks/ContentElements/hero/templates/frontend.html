@@ -3,13 +3,20 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
     <section class="hero-block position-relative text-{data.text_align}">
-        <f:image
-            alt="{data.image.0.alternative}"
-            class="hero-block__image img-fluid w-100"
-            height="1080"
-            image="{data.image.0}"
-            loading="eager"
-            width="1920" />
+        <f:render
+            arguments="{
+                height: 1080,
+                image: data.image.0,
+                imageClass: 'hero-block__image img-fluid w-100',
+                loading: 'eager',
+                sources: {
+                    0: {media: '(min-width: 1400px)', maxWidth: 1920, height: 1080},
+                    1: {media: '(min-width: 992px)', maxWidth: 1400, height: 788},
+                    2: {media: '(min-width: 576px)', maxWidth: 992, height: 558}
+                },
+                width: 1920
+            }"
+            partial="Component/Picture/Responsive" />
 
         <f:if condition="{data.show_overlay}">
             <div class="hero-block__overlay"></div>

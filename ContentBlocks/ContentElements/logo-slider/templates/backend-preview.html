@@ -16,11 +16,14 @@
                 each="{data.image}"
                 iteration="iteration">
                 <f:if condition="{iteration.cycle} <= 6">
-                    <f:image
-                        alt="{f:translate(key: 'LLL:EXT:templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.image')}"
-                        image="{image}"
-                        maxHeight="54"
-                        maxWidth="96" />
+                    <f:render
+                        arguments="{
+                            alt: '{f:translate(key: \'LLL:EXT:templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.image\')}',
+                            height: 54,
+                            image: image,
+                            width: 96
+                        }"
+                        partial="Component/Picture/Responsive" />
                 </f:if>
             </f:for>
         </div>

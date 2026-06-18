@@ -7,7 +7,7 @@
         value="{viewHelpers:fallback(values: '{0: headerLevel, 1: 3}')}" />
 
     <div class="m-card">
-        <f:if condition="{imageUrl}">
+        <f:if condition="{image} || {imageUrl}">
             <div class="m-card__media">
                 <f:if condition="{imageLink}">
                     <f:then>
@@ -58,19 +58,23 @@
     </div>
 
     <f:section name="Image">
-        <picture>
-            <f:if condition="{desktopImageUrl}">
-                <source
-                    media="(min-width: 576px)"
-                    srcset="{desktopImageUrl}" />
-            </f:if>
+        <f:if condition="{desktopImageUrl} && !{imageSources}">
+            <f:variable
+                name="imageSources"
+                value="{0: {media: '(min-width: 576px)', srcset: desktopImageUrl}}" />
+        </f:if>
 
-            <img
-                alt="{alternativeText -> f:or(alternative: image.alternative)}"
-                class="m-card__image"
-                height="320"
-                src="{imageUrl}"
-                width="240" />
-        </picture>
+        <f:render
+            arguments="{
+                alt: alternativeText,
+                cropVariant: imageCropVariant,
+                height: '{imageHeight -> f:or(alternative: 320)}',
+                image: image,
+                imageClass: 'm-card__image',
+                src: imageUrl,
+                sources: imageSources,
+                width: '{imageWidth -> f:or(alternative: 240)}'
+            }"
+            partial="Component/Picture/Responsive" />
     </f:section>
 </html>

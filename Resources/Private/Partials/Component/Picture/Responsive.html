@@ -17,35 +17,89 @@
         overwrite="1" />
 
     <picture class="{pictureClass}">
-        <f:for
-            as="source"
-            each="{
-               0: {
-                   media: '(min-width: 1200px)',
-                   srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.1200)}'
-               },
-               1: {
-                   media: '(min-width: 992px)',
-                   srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.992)}'
-               },
-               2: {
-                   media: '(min-width: 768px)',
-                   srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.768)}'
-               },
-               3: {
-                   media: '(min-width: 576px)',
-                   srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.576)}'
-               }
-           }">
-            <source
-                media="{source.media}"
-                srcset="{source.srcset}" />
-        </f:for>
+        <f:if condition="{sources}">
+            <f:then>
+                <f:for
+                    as="source"
+                    each="{sources}">
+                    <f:variable
+                        name="sourceImage"
+                        value="{viewHelpers:fallback(values: '{0: source.image, 1: image}')}" />
+                    <f:variable
+                        name="sourceSrcset"
+                        value="{viewHelpers:fallback(values: '{0: source.srcset, 1: source.src}')}" />
+                    <f:if condition="{sourceSrcset}">
+                        <f:then>
+                            <source
+                                media="{source.media}"
+                                srcset="{sourceSrcset}" />
+                        </f:then>
+                        <f:else>
+                            <f:if condition="{sourceImage}">
+                                <source
+                                    media="{source.media}"
+                                    srcset="{f:uri.image(cropVariant: source.cropVariant, height: source.height, image: sourceImage, maxWidth: source.maxWidth, width: source.width)}" />
+                            </f:if>
+                        </f:else>
+                    </f:if>
+                </f:for>
+            </f:then>
+            <f:else>
+                <f:if condition="{image}">
+                    <f:for
+                        as="source"
+                        each="{
+                           0: {
+                               media: '(min-width: 1200px)',
+                               srcset: '{f:uri.image(cropVariant: cropVariant, height: height, image: image, maxWidth: sizes.1200, width: width)}'
+                           },
+                           1: {
+                               media: '(min-width: 992px)',
+                               srcset: '{f:uri.image(cropVariant: cropVariant, height: height, image: image, maxWidth: sizes.992, width: width)}'
+                           },
+                           2: {
+                               media: '(min-width: 768px)',
+                               srcset: '{f:uri.image(cropVariant: cropVariant, height: height, image: image, maxWidth: sizes.768, width: width)}'
+                           },
+                           3: {
+                               media: '(min-width: 576px)',
+                               srcset: '{f:uri.image(cropVariant: cropVariant, height: height, image: image, maxWidth: sizes.576, width: width)}'
+                           }
+                       }">
+                        <source
+                            media="{source.media}"
+                            srcset="{source.srcset}" />
+                    </f:for>
+                </f:if>
+            </f:else>
+        </f:if>
+
+        <f:variable
+            name="altText"
+            value="{viewHelpers:fallback(values: '{0: alt, 1: image.alternative}')}" />
+        <f:variable
+            name="decodingMode"
+            value="{decoding -> f:or(alternative: 'async')}" />
+        <f:variable
+            name="imgLoading"
+            value="{loading -> f:or(alternative: 'lazy')}" />
+        <f:variable
+            name="imgSrc"
+            value="{src}" />
+        <f:if condition="!{imgSrc} && {image}">
+            <f:variable
+                name="imgSrc"
+                value="{f:uri.image(cropVariant: cropVariant, height: height, image: image, maxWidth: sizes.0, width: width)}" />
+        </f:if>
 
         <img
-            alt="{image.alternative}"
+            alt="{altText}"
             class="{imageClass -> f:or(alternative: 'img-fluid')}"
-            loading="lazy"
-            src="{f:uri.image(height: height, image: image, maxWidth: sizes.0)}" />
+            decoding="{decodingMode}"
+            fetchpriority="{fetchPriority}"
+            height="{height}"
+            loading="{imgLoading}"
+            src="{imgSrc}"
+            width="{width}" />
     </picture>
 </html>

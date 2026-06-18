@@ -23,24 +23,20 @@
                     as="image"
                     each="{data.image}">
                     <div class="swiper-slide">
-                        <picture>
-                            <source
-                                media="(min-width: 1400px)"
-                                srcset="{f:uri.image(image: image, maxWidth: 1920, height: 1080)}" />
-                            <source
-                                media="(min-width: 992px)"
-                                srcset="{f:uri.image(image: image, maxWidth: 1400, height: 788)}" />
-                            <source
-                                media="(min-width: 576px)"
-                                srcset="{f:uri.image(image: image, maxWidth: 992, height: 558)}" />
-                            <img
-                                alt="{image.alternative}"
-                                class="d-block img-fluid w-100"
-                                height="360"
-                                loading="lazy"
-                                src="{f:uri.image(image: image, maxWidth: 640, height: 360)}"
-                                width="640" />
-                        </picture>
+                        <f:render
+                            arguments="{
+                                height: 360,
+                                image: image,
+                                imageClass: 'd-block img-fluid w-100',
+                                loading: 'lazy',
+                                sources: {
+                                    0: {media: '(min-width: 1400px)', maxWidth: 1920, height: 1080},
+                                    1: {media: '(min-width: 992px)', maxWidth: 1400, height: 788},
+                                    2: {media: '(min-width: 576px)', maxWidth: 992, height: 558}
+                                },
+                                width: 640
+                            }"
+                            partial="Component/Picture/Responsive" />
                     </div>
                 </f:for>
             </f:render>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file
+        datatype="plaintext"
+        date="2026-06-17T11:30:00+01:00"
+        original="messages"
+        product-name="templates"
+        source-language="en">
+        <body>
+            <trans-unit id="title">
+                <source>Slider</source>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>Image slider with optional caption and controls</source>
+            </trans-unit>
+            <trans-unit id="show_pagination.label">
+                <source>Show pagination</source>
+            </trans-unit>
+            <trans-unit id="show_navigation.label">
+                <source>Show navigation</source>
+            </trans-unit>
+            <trans-unit id="loop_slides.label">
+                <source>Loop slides</source>
+            </trans-unit>
+            <trans-unit id="preview.slides">
+                <source>Slides</source>
+            </trans-unit>
+            <trans-unit id="preview.image">
+                <source>Image</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

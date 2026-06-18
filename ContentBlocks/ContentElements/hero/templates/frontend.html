@@ -1,0 +1,42 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <section class="hero-block position-relative text-{data.text_align}">
+        <f:image
+            alt="{data.image.0.alternative}"
+            class="hero-block__image img-fluid w-100"
+            height="1080"
+            image="{data.image.0}"
+            loading="eager"
+            width="1920" />
+
+        <f:if condition="{data.show_overlay}">
+            <div class="hero-block__overlay"></div>
+        </f:if>
+
+        <div class="container hero-block__content position-absolute start-50 text-{data.text_align} top-50 translate-middle">
+            <f:if condition="{data.header}">
+                <f:if condition="{data.header_layout} != 100">
+                    <viewHelpers:tag
+                        class="display-5"
+                        tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 1}')}">
+                        {data.header}
+                    </viewHelpers:tag>
+                </f:if>
+            </f:if>
+            <f:if condition="{data.bodytext}">
+                <div class="lead mb-4">
+                    <f:format.html>{data.bodytext}</f:format.html>
+                </div>
+            </f:if>
+            <f:if condition="{data.header_link}">
+                <f:link.typolink
+                    class="btn btn-primary"
+                    parameter="{data.header_link}">
+                    {data.cta_label}
+                </f:link.typolink>
+            </f:if>
+        </div>
+    </section>
+</html>

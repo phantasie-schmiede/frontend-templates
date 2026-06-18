@@ -1,0 +1,45 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <section class="contact-lead py-5">
+        <div class="container">
+            <div class="border-0 card shadow-sm">
+                <div class="card-body bg-{data.emphasis_style}{f:if(condition: data.emphasis_style == 'dark', then: ' text-white')} rounded-3">
+                    <f:if condition="{data.header}">
+                        <f:if condition="{data.header_layout} != 100">
+                            <viewHelpers:tag
+                                class="mb-3"
+                                tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                                {data.header}
+                            </viewHelpers:tag>
+                        </f:if>
+                    </f:if>
+
+                    <f:if condition="{data.bodytext}">
+                        <div class="mb-4">
+                            <f:format.html>{data.bodytext}</f:format.html>
+                        </div>
+                    </f:if>
+
+                    <f:if condition="{data.header_link}">
+                        <f:link.typolink
+                            class="btn btn-outline-{f:if(condition: data.emphasis_style == 'light', then: 'dark', else: 'light')}"
+                            parameter="{data.header_link}">
+                            {data.header}
+                        </f:link.typolink>
+                    </f:if>
+
+                    <div class="contact-lead__messages mt-4">
+                        <f:render
+                            arguments="{type: 'success', message: data.success_message, dismissable: 0}"
+                            partial="Component/Alert" />
+                        <f:render
+                            arguments="{type: 'danger', message: data.error_message, dismissable: 0}"
+                            partial="Component/Alert" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</html>

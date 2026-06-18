@@ -2,6 +2,8 @@ name: psbits/feature
 fields:
   - identifier: header
     useExistingField: true
+  - identifier: header_layout
+    useExistingField: true
   - identifier: bodytext
     enableRichtext: true
     useExistingField: true
@@ -16,6 +18,28 @@ fields:
     maxitems: 1
     minitems: 1
     useExistingField: true
+  - identifier: layout_variant
+    default: image-left
+    renderType: selectSingle
+    type: Select
+    items:
+      - label: Image left
+        value: image-left
+      - label: Image right
+        value: image-right
+      - label: Stacked
+        value: stacked
+  - identifier: background_variant
+    default: default
+    renderType: selectSingle
+    type: Select
+    items:
+      - label: Default
+        value: default
+      - label: Light
+        value: light
+      - label: Dark
+        value: dark
   - identifier: links
     allowedRecordTypes:
       - psbits_cta

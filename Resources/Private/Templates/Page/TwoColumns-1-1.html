@@ -1,20 +1,20 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-<f:layout name="Default" />
+    <f:layout name="Default" />
 
-<f:section name="Main">
-    <div class="row">
-        <div class="col-md">
-            <f:render
-                arguments="{column: content1}"
-                partial="Column" />
+    <f:section name="Main">
+        <div class="row">
+            <div class="col-md">
+                <f:render
+                    arguments="{column: content1}"
+                    partial="Column" />
+            </div>
+            <div class="col-md">
+                <f:render
+                    arguments="{column: content2}"
+                    partial="Column" />
+            </div>
         </div>
-        <div class="col-md">
-            <f:render
-                arguments="{column: content2}"
-                partial="Column" />
-        </div>
-    </div>
-</f:section>
+    </f:section>
 </html>

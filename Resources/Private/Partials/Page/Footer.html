@@ -2,25 +2,25 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
-<f:variable
-    name="siteConfiguration"
-    value="{foundation:globalVariables.siteConfiguration(path: 'configuration')}" />
+    <f:variable
+        name="siteConfiguration"
+        value="{foundation:globalVariables.siteConfiguration(path: 'configuration')}" />
 
-<div class="container">
-    <footer class="my-4 py-3">
-        <f:if condition="{footerNavigation}">
-            <f:render
-                arguments="{footerNavigation: footerNavigation}"
-                partial="Navigation/Footer" />
-        </f:if>
+    <div class="container">
+        <footer class="my-4 py-3">
+            <f:if condition="{footerNavigation}">
+                <f:render
+                    arguments="{footerNavigation: footerNavigation}"
+                    partial="Navigation/Footer" />
+            </f:if>
 
-        <p class="text-center text-muted">
-            ©
-            <f:format.date
-                date="now"
-                format="Y" />
-            {siteConfiguration.websiteTitle}
-        </p>
-    </footer>
-</div>
+            <p class="text-center text-muted">
+                ©
+                <f:format.date
+                    date="now"
+                    format="Y" />
+                {siteConfiguration.websiteTitle}
+            </p>
+        </footer>
+    </div>
 </html>

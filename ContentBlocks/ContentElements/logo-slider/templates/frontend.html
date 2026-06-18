@@ -1,0 +1,86 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <section class="py-4">
+        <div class="container">
+            <f:if condition="{data.header}">
+                <f:if condition="{data.header_layout} != 100">
+                    <viewHelpers:tag
+                        class="mb-3 text-center"
+                        tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                        {data.header}
+                    </viewHelpers:tag>
+                </f:if>
+            </f:if>
+
+            <f:if condition="{data.bodytext}">
+                <div class="mb-4 text-center">
+                    <f:format.html>{data.bodytext}</f:format.html>
+                </div>
+            </f:if>
+
+            <f:render
+                arguments="{
+                    configuration: {
+                        autoplay: data.autoplay ? {delay: 3500, disableOnInteraction: 0} : 0,
+                        loop: 1,
+                        navigation: 0,
+                        pagination: 0,
+                        slidesPerView: 2,
+                        breakpoints: {
+                            768: {slidesPerView: 4},
+                            1200: {slidesPerView: 6}
+                        },
+                        spaceBetween: 24
+                    },
+                    id: 'logo-slider-{data.uid}'
+                }"
+                contentAs="slides"
+                partial="Component/Swiper">
+                <f:for
+                    as="image"
+                    each="{data.image}">
+                    <div class="swiper-slide d-flex align-items-center justify-content-center logo-slider__slide{f:if(condition: data.grayscale, then: ' logo-slider__slide--grayscale')}">
+                        <picture>
+                            <source
+                                media="(min-width: 1200px)"
+                                srcset="{f:uri.image(image: image, maxWidth: 300, height: 160)}" />
+                            <source
+                                media="(min-width: 768px)"
+                                srcset="{f:uri.image(image: image, maxWidth: 240, height: 128)}" />
+                            <img
+                                alt="{image.alternative}"
+                                class="img-fluid"
+                                height="96"
+                                loading="lazy"
+                                src="{f:uri.image(image: image, maxWidth: 180, height: 96)}"
+                                width="180" />
+                        </picture>
+                    </div>
+                </f:for>
+            </f:render>
+
+            <noscript>
+                <div class="d-flex flex-wrap gap-4 justify-content-center mt-4">
+                    <f:for
+                        as="image"
+                        each="{data.image}">
+                        <picture>
+                            <source
+                                media="(min-width: 768px)"
+                                srcset="{f:uri.image(image: image, maxWidth: 160, height: 90)}" />
+                            <img
+                                alt="{image.alternative}"
+                                class="img-fluid"
+                                height="72"
+                                loading="lazy"
+                                src="{f:uri.image(image: image, maxWidth: 128, height: 72)}"
+                                width="128" />
+                        </picture>
+                    </f:for>
+                </div>
+            </noscript>
+        </div>
+    </section>
+</html>

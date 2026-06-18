@@ -1,75 +1,75 @@
 <html
-    data-namespace-typo3-fluid="true"
     xmlns:c="http://typo3.org/ns/HDNET/Calendarize/ViewHelpers"
+    data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
-<foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Extensions/calendarize.xlf" />
+    <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Extensions/calendarize.xlf" />
 
-<f:alias map="{event: index.originalObject}">
-    <f:if condition="'canceled' == {index.state}">
-        <f:variable
-            name="subtitle"
-            value="{f:translate(key: 'canceled')}" />
-    </f:if>
-
-    <f:variable
-        name="additionalContentPrepend"
-        value="{f:render(arguments: {index: index}, partial: 'DateInformation')}" />
-
-    <f:if condition="{event.abstract}">
-        <f:then>
+    <f:alias map="{event: index.originalObject}">
+        <f:if condition="'canceled' == {index.state}">
             <f:variable
-                name="text"
-                value="{event.abstract -> f:format.nl2br()}" />
-        </f:then>
-        <f:else>
+                name="subtitle"
+                value="{f:translate(key: 'canceled')}" />
+        </f:if>
+
+        <f:variable
+            name="additionalContentPrepend"
+            value="{f:render(arguments: {index: index}, partial: 'DateInformation')}" />
+
+        <f:if condition="{event.abstract}">
+            <f:then>
+                <f:variable
+                    name="text"
+                    value="{event.abstract -> f:format.nl2br()}" />
+            </f:then>
+            <f:else>
+                <f:variable
+                    name="text"
+                    value="{event.description -> f:format.stripTags() -> f:format.crop(append: '&nbsp;[...]', maxCharacters: 180)}" />
+            </f:else>
+        </f:if>
+
+        <f:if condition="{settings.detailPid}">
+            <f:variable name="additionalContentAppend">
+                <c:link.index
+                    class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
+                    index="{index}">
+                    <foundation:translate id="calendarize:details" />
+                </c:link.index>
+            </f:variable>
+        </f:if>
+
+        <f:if condition="{settings.bookingPid} && {event.bookable}}">
+            <f:variable name="additionalContentAppend">
+                {additionalContentAppend -> f:format.raw()}
+
+                <c:link.booking
+                    class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
+                    index="{index}">
+                    <f:translate key="booking" />
+                </c:link.booking>
+            </f:variable>
+        </f:if>
+
+        <f:if condition="{event.images}">
             <f:variable
-                name="text"
-                value="{event.description -> f:format.stripTags() -> f:format.crop(append: '&nbsp;[...]', maxCharacters: 180)}" />
-        </f:else>
-    </f:if>
+                name="desktopImageUrl"
+                value="{f:uri.image(cropVariant: 'cardLandscape', image: event.images.0, width: '320m', height: '180m')}" />
+            <f:variable
+                name="imageUrl"
+                value="{f:uri.image(cropVariant: 'cardPortrait', image: event.images.0, width: '240m', height: '320m')}" />
+        </f:if>
 
-    <f:if condition="{settings.detailPid}">
-        <f:variable name="additionalContentAppend">
-            <c:link.index
-                class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
-                index="{index}">
-                <foundation:translate id="calendarize:details" />
-            </c:link.index>
-        </f:variable>
-    </f:if>
-
-    <f:if condition="{settings.bookingPid} && {event.bookable}}">
-        <f:variable name="additionalContentAppend">
-            {additionalContentAppend -> f:format.raw()}
-
-            <c:link.booking
-                class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
-                index="{index}">
-                <f:translate key="booking" />
-            </c:link.booking>
-        </f:variable>
-    </f:if>
-
-    <f:if condition="{event.images}">
-        <f:variable
-            name="desktopImageUrl"
-            value="{f:uri.image(cropVariant: 'cardLandscape', image: event.images.0, width: '320m', height: '180m')}" />
-        <f:variable
-            name="imageUrl"
-            value="{f:uri.image(cropVariant: 'cardPortrait', image: event.images.0, width: '240m', height: '320m')}" />
-    </f:if>
-
-    <f:render
-        arguments="{
-            additionalContentAppend: additionalContentAppend,
-            additionalContentPrepend: additionalContentPrepend,
-            desktopImageUrl: desktopImageUrl,
-            imageUrl: imageUrl,
-            subtitle: subtitle,
-            text: text,
-            title: '{index.originalObject.title -> c:link.index(index: index)}'
-        }"
-        partial="Component/Card" />
-</f:alias>
+        <f:render
+            arguments="{
+                additionalContentAppend: additionalContentAppend,
+                additionalContentPrepend: additionalContentPrepend,
+                desktopImageUrl: desktopImageUrl,
+                imageUrl: imageUrl,
+                subtitle: subtitle,
+                text: text,
+                title: '{index.originalObject.title -> c:link.index(index: index)}'
+            }"
+            partial="Component/Card" />
+    </f:alias>
 </html>

@@ -1,0 +1,28 @@
+<f:layout name="Preview" />
+
+<f:section name="Content">
+    <strong>{data.header}</strong>
+    <div class="text-muted">
+        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.type" />
+    </div>
+    <div class="mt-2">
+        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.logos" />:
+        <f:count subject="{data.image}" />
+    </div>
+    <f:if condition="{data.image}">
+        <div class="d-flex flex-wrap gap-2 mt-2">
+            <f:for
+                as="image"
+                each="{data.image}"
+                iteration="iteration">
+                <f:if condition="{iteration.cycle} <= 6">
+                    <f:image
+                        alt="{f:translate(key: 'LLL:EXT:templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.image')}"
+                        image="{image}"
+                        maxHeight="54"
+                        maxWidth="96" />
+                </f:if>
+            </f:for>
+        </div>
+    </f:if>
+</f:section>

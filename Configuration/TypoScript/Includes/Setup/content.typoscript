@@ -1,6 +1,13 @@
-lib.contentBlock {
-  partialRootPaths {
-    200 = {$plugin.tx_templates.view.partialRootPath}
+lib {
+  contentBlock {
+    partialRootPaths {
+      200 = {$plugin.tx_templates.view.partialRootPath}
+    }
+  }
+
+  contentBlockDataProcessing {
+    table = tt_content
+    wherePostUserFunc = TYPO3\CMS\ContentBlocks\UserFunction\ContentWhere->extend
   }
 }
 
@@ -9,35 +16,35 @@ page.10.dataProcessing {
   1711319420 {
     as = content1
     orderBy = sorting
-    table = tt_content
+    table < lib.contentBlockDataProcessing.table
     where = colPos = 0
-    where.postUserFunc = TYPO3\CMS\ContentBlocks\UserFunction\ContentWhere->extend
+    where.postUserFunc < lib.contentBlockDataProcessing.wherePostUserFunc
   }
 
   1711319426 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   1711319426 {
     as = content2
     orderBy = sorting
-    table = tt_content
+    table < lib.contentBlockDataProcessing.table
     where = colPos = 1
-    where.postUserFunc = TYPO3\CMS\ContentBlocks\UserFunction\ContentWhere->extend
+    where.postUserFunc < lib.contentBlockDataProcessing.wherePostUserFunc
   }
 
   1711319433 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   1711319433 {
     as = content3
     orderBy = sorting
-    table = tt_content
+    table < lib.contentBlockDataProcessing.table
     where = colPos = 2
-    where.postUserFunc = TYPO3\CMS\ContentBlocks\UserFunction\ContentWhere->extend
+    where.postUserFunc < lib.contentBlockDataProcessing.wherePostUserFunc
   }
 
   1727709333 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   1727709333 {
     as = content4
     orderBy = sorting
-    table = tt_content
+    table < lib.contentBlockDataProcessing.table
     where = colPos = 3
-    where.postUserFunc = TYPO3\CMS\ContentBlocks\UserFunction\ContentWhere->extend
+    where.postUserFunc < lib.contentBlockDataProcessing.wherePostUserFunc
   }
 }

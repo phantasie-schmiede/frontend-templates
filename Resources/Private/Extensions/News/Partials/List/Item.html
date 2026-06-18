@@ -3,42 +3,42 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
     xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<n:excludeDisplayedNews newsItem="{newsItem}" />
+    <n:excludeDisplayedNews newsItem="{newsItem}" />
 
-<f:variable name="additionalContentAppend">
-    <n:link
-        class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
-        newsItem="{newsItem}"
-        settings="{settings}"
-        title="{newsItem.title}">
-        <f:translate key="more-link" />
-    </n:link>
-</f:variable>
+    <f:variable name="additionalContentAppend">
+        <n:link
+            class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
+            newsItem="{newsItem}"
+            settings="{settings}"
+            title="{newsItem.title}">
+            <f:translate key="more-link" />
+        </n:link>
+    </f:variable>
 
-<f:if condition="{newsItem.mediaPreviews}">
-    <f:then>
-        <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
-            <f:variable
-                name="desktopImageUrl"
-                value="{f:uri.image(cropVariant: 'cardLandscape', image: mediaElement, width: '320m', height: '180m')}" />
+    <f:if condition="{newsItem.mediaPreviews}">
+        <f:then>
+            <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                <f:variable
+                    name="desktopImageUrl"
+                    value="{f:uri.image(cropVariant: 'cardLandscape', image: mediaElement, width: '320m', height: '180m')}" />
+                <f:variable
+                    name="imageUrl"
+                    value="{f:uri.image(cropVariant: 'cardPortrait', image: mediaElement, width: '240m', height: '320m')}" />
+            </f:alias>
+        </f:then>
+        <f:else if="{settings.displayDummyIfNoMedia}">
             <f:variable
                 name="imageUrl"
-                value="{f:uri.image(cropVariant: 'cardPortrait', image: mediaElement, width: '240m', height: '320m')}" />
-        </f:alias>
-    </f:then>
-    <f:else if="{settings.displayDummyIfNoMedia}">
-        <f:variable
-            name="imageUrl"
-            value="{settings.list.media.dummyImage}" />
-    </f:else>
-</f:if>
+                value="{settings.list.media.dummyImage}" />
+        </f:else>
+    </f:if>
 
-<f:variable
-    name="text"
-    value="{psbvh:fallback(values: {0: newsItem.teaser, 1: newsItem.bodytext})}" />
+    <f:variable
+        name="text"
+        value="{psbvh:fallback(values: {0: newsItem.teaser, 1: newsItem.bodytext})}" />
 
-<f:render
-    arguments="{
+    <f:render
+        arguments="{
             additionalContentAppend: additionalContentAppend,
             desktopImageUrl: desktopImageUrl,
             imageUrl: imageUrl,
@@ -46,5 +46,5 @@
             text: '{text -> f:format.crop(maxCharacters: \'{settings.cropMaxCharacters}\', respectWordBoundaries: \'1\')}',
             title: '{newsItem.title -> n:link(newsItem: newsItem, settings: settings, title: newsItem.title)}'
         }"
-    partial="Component/Card" />
+        partial="Component/Card" />
 </html>

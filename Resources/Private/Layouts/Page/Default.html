@@ -3,43 +3,43 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
     xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers">
-<f:variable
-    name="containerClass"
-    value="container" />
-<f:variable
-    name="siteConfiguration"
-    value="{foundation:globalVariables.siteConfiguration(path: 'configuration')}" />
-<f:variable
-    name="templateSettings"
-    value="{templates:globalVariables.settings()}" />
-
-<f:if condition="{data.tx_templates_bs_container_type}">
     <f:variable
         name="containerClass"
-        value="container-{data.tx_templates_bs_container_type}" />
-</f:if>
+        value="container" />
+    <f:variable
+        name="siteConfiguration"
+        value="{foundation:globalVariables.siteConfiguration(path: 'configuration')}" />
+    <f:variable
+        name="templateSettings"
+        value="{templates:globalVariables.settings()}" />
 
-<f:render
-    arguments="{
-        containerClass: containerClass,
-        mainNavigation: mainNavigation,
-        siteConfiguration: siteConfiguration,
-        templateSettings: templateSettings
-    }"
-    partial="Header" />
-
-<div class="{containerClass}">
-    <f:render
-        arguments="{queueIdentifier: 'foundation.general'}"
-        partial="../FlashMessages" />
-
-    <f:if condition="{breadcrumbs}">
-        <f:render partial="Navigation/Breadcrumb" />
+    <f:if condition="{data.tx_templates_bs_container_type}">
+        <f:variable
+            name="containerClass"
+            value="container-{data.tx_templates_bs_container_type}" />
     </f:if>
 
-    <f:render section="Main" />
     <f:render
-        arguments="{footerNavigation: footerNavigation}"
-        partial="Footer" />
-</div>
+        arguments="{
+            containerClass: containerClass,
+            mainNavigation: mainNavigation,
+            siteConfiguration: siteConfiguration,
+            templateSettings: templateSettings
+        }"
+        partial="Header" />
+
+    <div class="{containerClass}">
+        <f:render
+            arguments="{queueIdentifier: 'foundation.general'}"
+            partial="../FlashMessages" />
+
+        <f:if condition="{breadcrumbs}">
+            <f:render partial="Navigation/Breadcrumb" />
+        </f:if>
+
+        <f:render section="Main" />
+        <f:render
+            arguments="{footerNavigation: footerNavigation}"
+            partial="Footer" />
+    </div>
 </html>

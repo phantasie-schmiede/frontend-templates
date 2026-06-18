@@ -1,0 +1,57 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <f:asset.script
+        identifier="psbits-filter"
+        src="EXT:templates/Resources/Public/JavaScript/filter.js"
+        type="module" />
+
+    <section class="py-4">
+        <div class="container">
+            <f:if condition="{data.header}">
+                <f:if condition="{data.header_layout} != 100">
+                    <viewHelpers:tag
+                        class="mb-3"
+                        tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                        {data.header}
+                    </viewHelpers:tag>
+                </f:if>
+            </f:if>
+            <f:if condition="{data.bodytext}">
+                <div class="mb-4">
+                    <f:format.html>{data.bodytext}</f:format.html>
+                </div>
+            </f:if>
+
+            <f:if condition="{data.enable_filter}">
+                <label
+                    class="form-label"
+                    for="teaser-filter-{data.uid}">
+                    <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/teaser-grid/language/labels.xlf:filter.label" />
+                </label>
+                <input
+                    class="form-control mb-4"
+                    data-psbits-filter-target="#teaser-grid-{data.uid} .teaser-grid__item"
+                    id="teaser-filter-{data.uid}"
+                    type="search" />
+            </f:if>
+
+            <f:render
+                contentAs="cards"
+                partial="Component/CardGrid">
+                <div
+                    class="row"
+                    id="teaser-grid-{data.uid}">
+                    <f:for
+                        as="item"
+                        each="{data._grids.teasers}">
+                        <div class="col-12 col-md-6 col-xl-4 mb-4 teaser-grid__item">
+                            <f:format.raw>{item.content}</f:format.raw>
+                        </div>
+                    </f:for>
+                </div>
+            </f:render>
+        </div>
+    </section>
+</html>

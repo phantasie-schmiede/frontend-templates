@@ -2,71 +2,71 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
-<foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Page/header.xlf" />
+    <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Page/header.xlf" />
 
-<header class="border-bottom">
-    <nav class="bg-body-tertiary navbar navbar-expand-lg">
-        <div class="{containerClass} flex-nowrap">
-            <f:if condition="{settings.logos.default.file}">
-                <f:link.page
-                    class="align-items-center d-flex navbar-brand"
-                    pageUid="{siteConfiguration.rootPageId}">
-                    <f:render
-                        arguments="{siteConfiguration: siteConfiguration}"
-                        partial="Header/Logo" />
-                </f:link.page>
-            </f:if>
-
-            <button
-                aria-controls="offcanvasNavbar"
-                aria-label="Toggle navigation"
-                class="collapsed ms-auto navbar-toggler"
-                data-bs-target="#offcanvasNavbar"
-                data-bs-toggle="offcanvas"
-                type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div
-                aria-labelledby="offcanvasNavbarLabel"
-                class="offcanvas offcanvas-end"
-                id="offcanvasNavbar"
-                tabindex="-1">
-                <div class="offcanvas-header">
-                    <h5
-                        class="offcanvas-title"
-                        id="offcanvasNavbarLabel">
-                        <foundation:translate id="header:menu" />
-                    </h5>
-                    <button
-                        aria-label="Close"
-                        class="btn-close"
-                        data-bs-dismiss="offcanvas"
-                        type="button"></button>
-                </div>
-                <div class="d-flex flex-column flex-lg-column-reverse offcanvas-body w-100">
-                    <ul class="align-self-end align-self-lg-center navbar-nav text-end text-lg-center">
+    <header class="border-bottom">
+        <nav class="bg-body-tertiary navbar navbar-expand-lg">
+            <div class="{containerClass} flex-nowrap">
+                <f:if condition="{settings.logos.default.file}">
+                    <f:link.page
+                        class="align-items-center d-flex navbar-brand"
+                        pageUid="{siteConfiguration.rootPageId}">
                         <f:render
-                            arguments="{mainNavigation: mainNavigation}"
-                            partial="Navigation/Main" />
-                    </ul>
+                            arguments="{siteConfiguration: siteConfiguration}"
+                            partial="Header/Logo" />
+                    </f:link.page>
+                </f:if>
 
-                    <f:if condition="{templateSettings.headerButtons}">
-                        <div class="align-self-lg-end d-flex flex-column flex-lg-row gap-2 mb-lg-3 mt-auto mt-lg-0">
-                            <f:for
-                                as="button"
-                                each="{templateSettings.headerButtons}">
-                                <f:link.typolink
-                                    class="btn btn-{button.type.value}"
-                                    parameter="{button.link}">
-                                    {button.label}
-                                </f:link.typolink>
-                            </f:for>
-                        </div>
-                    </f:if>
+                <button
+                    aria-controls="offcanvasNavbar"
+                    aria-label="Toggle navigation"
+                    class="collapsed ms-auto navbar-toggler"
+                    data-bs-target="#offcanvasNavbar"
+                    data-bs-toggle="offcanvas"
+                    type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div
+                    aria-labelledby="offcanvasNavbarLabel"
+                    class="offcanvas offcanvas-end"
+                    id="offcanvasNavbar"
+                    tabindex="-1">
+                    <div class="offcanvas-header">
+                        <h5
+                            class="offcanvas-title"
+                            id="offcanvasNavbarLabel">
+                            <foundation:translate id="header:menu" />
+                        </h5>
+                        <button
+                            aria-label="Close"
+                            class="btn-close"
+                            data-bs-dismiss="offcanvas"
+                            type="button"></button>
+                    </div>
+                    <div class="d-flex flex-column flex-lg-column-reverse offcanvas-body w-100">
+                        <ul class="align-self-end align-self-lg-center navbar-nav text-end text-lg-center">
+                            <f:render
+                                arguments="{mainNavigation: mainNavigation}"
+                                partial="Navigation/Main" />
+                        </ul>
+
+                        <f:if condition="{templateSettings.headerButtons}">
+                            <div class="align-self-lg-end d-flex flex-column flex-lg-row gap-2 mb-lg-3 mt-auto mt-lg-0">
+                                <f:for
+                                    as="button"
+                                    each="{templateSettings.headerButtons}">
+                                    <f:link.typolink
+                                        class="btn btn-{button.type.value}"
+                                        parameter="{button.link}">
+                                        {button.label}
+                                    </f:link.typolink>
+                                </f:for>
+                            </div>
+                        </f:if>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 </html>

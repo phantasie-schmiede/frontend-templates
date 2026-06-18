@@ -1,0 +1,12 @@
+<f:layout name="Preview" />
+
+<f:section name="Content">
+    <strong>{data.header}</strong>
+    <div class="text-muted">
+        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/faq/language/labels.xlf:preview.type" />
+    </div>
+    <div class="mt-2">
+        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/faq/language/labels.xlf:preview.items" />:
+        <f:count subject="{data._grids.faq_items}" />
+    </div>
+</f:section>

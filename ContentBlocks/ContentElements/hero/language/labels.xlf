@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file
+        datatype="plaintext"
+        date="2026-06-17T11:30:00+01:00"
+        original="messages"
+        product-name="templates"
+        source-language="en">
+        <body>
+            <trans-unit id="title">
+                <source>Hero / Stage</source>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>Large stage with media, text and CTA</source>
+            </trans-unit>
+            <trans-unit id="cta_label.label">
+                <source>CTA label</source>
+            </trans-unit>
+            <trans-unit id="text_align.label">
+                <source>Text alignment</source>
+            </trans-unit>
+            <trans-unit id="show_overlay.label">
+                <source>Show overlay</source>
+            </trans-unit>
+            <trans-unit id="preview.type">
+                <source>Hero / Stage</source>
+            </trans-unit>
+            <trans-unit id="preview.image">
+                <source>Image</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

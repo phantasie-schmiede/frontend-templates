@@ -5,7 +5,7 @@ fields:
   - identifier: header_link
     useExistingField: true
   - identifier: bootstrap_type
-    default: 'primary'
+    default: primary
     renderType: selectSingle
     type: Select
     items:
@@ -25,6 +25,20 @@ fields:
         value: light
       - label: Dark
         value: dark
+  - identifier: button_size
+    default: md
+    renderType: selectSingle
+    type: Select
+    items:
+      - label: Default
+        value: md
+      - label: Small
+        value: sm
+      - label: Large
+        value: lg
+  - identifier: full_width
+    default: false
+    type: Check
 group: content_blocks
 labelField: header
 prefixType: vendor

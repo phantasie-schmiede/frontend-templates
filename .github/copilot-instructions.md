@@ -30,8 +30,11 @@ If you haven't already, please read the general agent instructions in `../AGENTS
     - `f` (`TYPO3/CMS/Fluid/ViewHelpers`)
     - `foundation` (`PSBits/Foundation/ViewHelpers`)
     - `templates` (`PSBits/Templates/ViewHelpers`)
+    - `viewHelpers` (`PSBits/ViewHelpers/ViewHelpers`)
+- Use `viewHelpers` consistently as alias for `PSBits/ViewHelpers/ViewHelpers`.
 - Use yoda conditions for better readability and to avoid accidental assignment.
-- Use alphabetical ordering where possible (e.g., in arrays, attributes and imports) for consistency.
+- Use alphabetical ordering where possible (e.g., in arrays, attributes and imports) for consistency; this is enforced by
+  configured quality tooling (e.g., Prettier for HTML/XML/XLF attributes and PHP CS Fixer for PHP imports).
 - Include punctuation in language files for complete localization, e.g. prepended colons should not be placed in the
   template after a label, but in the language file itself.
 
@@ -51,10 +54,11 @@ unless asked.
 ## Validation in this repository
 
 - Repository quality checks are defined in `composer.json`, `package.json`, and `.github/workflows/quality.yml`.
+- Quality configuration files are centralized in `Build/Quality/` and referenced by Composer/NPM scripts and CI.
 - Primary local QA command:
     - `composer qa`
     - Runs: `audit:composer`, `validate:composer`, `lint:php`, `analyze:php`, `lint:typoscript`, `lint:classes`,
-      `lint:js`, `lint:scss`
+      `lint:htmlxml`, `lint:js`, `lint:scss`
 - Additional lint command used in CI:
     - `composer lint:yaml`
 

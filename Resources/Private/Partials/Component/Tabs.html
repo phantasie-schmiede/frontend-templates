@@ -1,7 +1,7 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
     <f:if condition="{vertical}">
         <f:then>
             <div class="align-items-start d-flex">
@@ -19,7 +19,7 @@
 
     <f:section name="InnerContainer">
         <nav>
-            <psbvh:tag
+            <viewHelpers:tag
                 additionalAttributes="{additionalAttributes}"
                 class="nav {f:if(condition: vertical, then: 'border-end flex-column me-2 nav-pills pe-1', else: 'nav-tabs')}"
                 role="tablist"
@@ -41,7 +41,7 @@
                         </f:else>
                     </f:if>
 
-                    <psbvh:tag
+                    <viewHelpers:tag
                         additionalAttributes="{additionalAttributes}"
                         aria="{
                             controls: '{tab.id}-content',
@@ -57,9 +57,9 @@
                         tag="button"
                         type="button">
                         {tab.label -> f:format.raw()}
-                    </psbvh:tag>
+                    </viewHelpers:tag>
                 </f:for>
-            </psbvh:tag>
+            </viewHelpers:tag>
         </nav>
         <div class="tab-content{f:if(condition: vertical, then: ' flex-grow-1', else: '')}">
             <f:for

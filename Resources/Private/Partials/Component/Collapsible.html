@@ -1,8 +1,8 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    <psbvh:tag
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <viewHelpers:tag
         additionalAttributes="{additionalAttributes}"
         aria-controls="{id}"
         aria-expanded="{f:if(condition: initiallyOpen, then: 'true', else: 'false')}"
@@ -14,12 +14,12 @@
             <f:then>{label -> f:format.raw()}</f:then>
             <f:else>Toggle item</f:else>
         </f:if>
-    </psbvh:tag>
-    <psbvh:tag
+    </viewHelpers:tag>
+    <viewHelpers:tag
         additionalAttributes="{contentAttributes}"
         class="collapse{f:if(condition: collapseClass, then: ' {collapseClass}')}{f:if(condition: initiallyOpen, then: ' show')}"
         id="{id}"
         tag="div">
         {content -> f:format.raw()}
-    </psbvh:tag>
+    </viewHelpers:tag>
 </html>

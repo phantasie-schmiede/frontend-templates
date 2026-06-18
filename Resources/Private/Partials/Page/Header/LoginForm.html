@@ -3,12 +3,12 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
     xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
-    xmlns:psbViewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<psbViewHelpers:condition.extensionLoaded extensionKey="frontend_users">
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+<viewHelpers:condition.extensionLoaded extensionKey="frontend_users">
     <f:variable
         name="frontendUser"
         value="{psbFrontendUsers:globalVariables.frontendUser()}" />
-</psbViewHelpers:condition.extensionLoaded>
+</viewHelpers:condition.extensionLoaded>
 
 <f:if condition="{frontendUser.sysFolder.uid}">
     <div class="dropdown">
@@ -30,7 +30,7 @@
                         <div class="list-group list-group-flush text-center text-nowrap">
                             <li class="list-group-item">{frontendUser.user.fullName}</li>
 
-                            <psbViewHelpers:condition.extensionLoaded extensionKey="fe_change_pwd">
+                            <viewHelpers:condition.extensionLoaded extensionKey="fe_change_pwd">
                                 <f:if condition="{siteConfiguration.changePasswordPid}">
                                     <f:link.page
                                         class="list-group-item list-group-item-action"
@@ -38,7 +38,7 @@
                                         <foundation:translate id="header:changePassword" />
                                     </f:link.page>
                                 </f:if>
-                            </psbViewHelpers:condition.extensionLoaded>
+                            </viewHelpers:condition.extensionLoaded>
 
                             <button
                                 class="active list-group-item list-group-item-action"

@@ -7,7 +7,7 @@
             arguments="{
                 image: data.image.0,
                 imageClass: 'hero-block__image w-100',
-                loading: 'eager',
+                loading: data.eager_loading ? 'eager' : 'lazy',
                 sizes: {
                     1400: 1920,
                     1200: 1600,

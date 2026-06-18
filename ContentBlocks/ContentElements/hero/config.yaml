@@ -30,6 +30,9 @@ fields:
   - identifier: show_overlay
     default: true
     type: Check
+  - identifier: eager_loading
+    default: false
+    type: Check
 group: content_blocks
 labelField: header
 prefixType: vendor

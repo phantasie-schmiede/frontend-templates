@@ -18,39 +18,18 @@
         overwrite="1" />
 
     <f:if condition="{sources}">
-        <f:then>
-            <f:variable
-                name="responsiveSources"
-                value="{sources}" />
-        </f:then>
-        <f:else>
-            <f:if condition="{image}">
-                <f:variable
-                    name="responsiveSources"
-                    value="{
-                        0: {
-                            media: '(min-width: 1400px)',
-                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.1400)}'
-                        },
-                        1: {
-                            media: '(min-width: 1200px)',
-                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.1200)}'
-                        },
-                        2: {
-                            media: '(min-width: 992px)',
-                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.992)}'
-                        },
-                        3: {
-                            media: '(min-width: 768px)',
-                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.768)}'
-                        },
-                        4: {
-                            media: '(min-width: 576px)',
-                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.576)}'
-                        }
-                    }" />
-            </f:if>
-        </f:else>
+        <f:variable
+            name="responsiveSources"
+            value="{sources}" />
+    </f:if>
+
+    <f:if condition="{image}">
+        <f:variable
+            name="responsiveSrcset"
+            value="{f:uri.image(height: height, image: image, maxWidth: sizes.0)} {sizes.0}w, {f:uri.image(height: height, image: image, maxWidth: sizes.576)} {sizes.576}w, {f:uri.image(height: height, image: image, maxWidth: sizes.768)} {sizes.768}w, {f:uri.image(height: height, image: image, maxWidth: sizes.992)} {sizes.992}w, {f:uri.image(height: height, image: image, maxWidth: sizes.1200)} {sizes.1200}w, {f:uri.image(height: height, image: image, maxWidth: sizes.1400)} {sizes.1400}w" />
+        <f:variable
+            name="responsiveSizes"
+            value="auto, (min-width: 1400px) {sizes.1400}px, (min-width: 1200px) {sizes.1200}px, (min-width: 992px) {sizes.992}px, (min-width: 768px) {sizes.768}px, (min-width: 576px) {sizes.576}px, {sizes.0}px" />
     </f:if>
 
     <picture class="{pictureClass}">
@@ -59,6 +38,7 @@
             each="{responsiveSources}">
             <source
                 media="{source.media}"
+                sizes="{source.sizes}"
                 srcset="{source.srcset}" />
         </f:for>
 
@@ -77,11 +57,25 @@
             </f:else>
         </f:if>
 
-        <img
-            alt="{alt -> f:or(alternative: image.alternative)}"
-            class="{imageClass -> f:or(alternative: 'img-fluid')}"
-            decoding="{decoding -> f:or(alternative: 'async')}"
-            loading="{loading -> f:or(alternative: 'lazy')}"
-            src="{imageSrc}" />
+        <f:if condition="{responsiveSrcset}">
+            <f:then>
+                <img
+                    alt="{alt -> f:or(alternative: image.alternative)}"
+                    class="{imageClass -> f:or(alternative: 'img-fluid')}"
+                    decoding="{decoding -> f:or(alternative: 'async')}"
+                    loading="{loading -> f:or(alternative: 'lazy')}"
+                    sizes="{responsiveSizes}"
+                    src="{imageSrc}"
+                    srcset="{responsiveSrcset}" />
+            </f:then>
+            <f:else>
+                <img
+                    alt="{alt -> f:or(alternative: image.alternative)}"
+                    class="{imageClass -> f:or(alternative: 'img-fluid')}"
+                    decoding="{decoding -> f:or(alternative: 'async')}"
+                    loading="{loading -> f:or(alternative: 'lazy')}"
+                    src="{imageSrc}" />
+            </f:else>
+        </f:if>
     </picture>
 </html>

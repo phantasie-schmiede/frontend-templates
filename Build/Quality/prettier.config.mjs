@@ -2,7 +2,8 @@
 const config = {
     attributeGroups: ["$DEFAULT"],
     attributeSort: "ASC",
-    "bracketSameLine": true,
+    bracketSameLine: true,
+    htmlWhitespaceSensitivity: "ignore",
     overrides: [
         {
             files: ["*.xml", "*.xlf"],

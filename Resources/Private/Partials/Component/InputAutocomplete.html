@@ -173,7 +173,7 @@
                     </psbvh:tag>
                 </f:for>
             </f:then>
-            <f:else if="{renderedItems}"> {renderedItems -> f:format.raw()} </f:else>
+            <f:else if="{renderedItems}">{renderedItems -> f:format.raw()}</f:else>
             <f:else>
                 <li
                     class="list-group-item psbits-autocomplete-list-item"

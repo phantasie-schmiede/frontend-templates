@@ -49,9 +49,7 @@
                 <div class="carousel-caption d-block">
                     <f:if condition="{data.header}">
                         <f:if condition="{data.header_layout} != 100">
-                            <viewHelpers:tag tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
-                                {data.header}
-                            </viewHelpers:tag>
+                            <viewHelpers:tag tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">{data.header}</viewHelpers:tag>
                         </f:if>
                     </f:if>
                     <f:if condition="{data.bodytext}">

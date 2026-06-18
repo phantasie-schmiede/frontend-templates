@@ -42,7 +42,8 @@
                                             class="page-link"
                                             newsItem="{paginated.prev}"
                                             settings="{settings}">
-                                            <span aria-hidden="true">&laquo;</span> {paginated.prev.title}
+                                            <span aria-hidden="true">&laquo;</span>
+                                            {paginated.prev.title}
                                         </n:link>
                                     </li>
                                 </f:if>
@@ -52,7 +53,8 @@
                                             class="page-link"
                                             newsItem="{paginated.next}"
                                             settings="{settings}">
-                                            {paginated.next.title} <span aria-hidden="true">&raquo;</span>
+                                            {paginated.next.title}
+                                            <span aria-hidden="true">&raquo;</span>
                                         </n:link>
                                     </li>
                                 </f:if>
@@ -174,13 +176,13 @@
         </f:if>
 
         <f:if condition="{settings.detail.showSocialShareButtons}">
-            <f:comment> Care about the privacy of your readers? Checkout https://typo3.org/extensions/repository/view/rx_shariff and it will be used automatically! </f:comment>
+            <f:comment>Care about the privacy of your readers? Checkout https://typo3.org/extensions/repository/view/rx_shariff and it will be used automatically!</f:comment>
             <n:extensionLoaded extensionKey="rx_shariff">
                 <f:render partial="Detail/Shariff" />
             </n:extensionLoaded>
         </f:if>
 
-        <f:comment> Various options exist to fetch different related information: - {newsItem.allRelatedSorted}: all related news, related und related from, sorted by date - {newsItem.related}: all related - {newsItem.relatedSorted}: all related, sorted by date - {newsItem.relatedFrom}: all related from - {newsItem.relatedFromSorted}: all related from, sorted by date </f:comment>
+        <f:comment>Various options exist to fetch different related information: - {newsItem.allRelatedSorted}: all related news, related und related from, sorted by date - {newsItem.related}: all related - {newsItem.relatedSorted}: all related, sorted by date - {newsItem.relatedFrom}: all related from - {newsItem.relatedFromSorted}: all related from, sorted by date</f:comment>
         <f:if condition="{newsItem.allRelatedSorted}">
             <!-- Related news records -->
             <div class="mb-3 news-related news-related-news">
@@ -226,7 +228,7 @@
                                     {f:if(condition:relatedFile.originalResource.title, then:relatedFile.originalResource.title, else:relatedFile.originalResource.name)}
                                 </a>
                             </span>
-                            <span class="news-related-files-size"> {relatedFile.originalResource.size -> f:format.bytes()} </span>
+                            <span class="news-related-files-size">{relatedFile.originalResource.size -> f:format.bytes()}</span>
                         </li>
                     </f:for>
                 </ul>
@@ -248,10 +250,11 @@
                                 class="me-2"
                                 parameter="{relatedLink.uri}"
                                 target="{n:targetLink(link:relatedLink.uri)}"
-                                title="{relatedLink.title}"
-                                ><i class="fa-external-link fas me-1"> </i>{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink
-                            >
-                            <f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span> </f:if>
+                                title="{relatedLink.title}">
+                                <i class="fa-external-link fas me-1"></i>
+                                {f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}
+                            </f:link.typolink>
+                            <f:if condition="{relatedLink.description}"><span>{relatedLink.description}</span></f:if>
                         </li>
                     </f:for>
                 </ul>

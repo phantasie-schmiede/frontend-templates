@@ -23,7 +23,7 @@
                 <source>Loop slides</source>
             </trans-unit>
             <trans-unit id="preview.slides">
-                <source>Slides</source>
+                <source>Slides:</source>
             </trans-unit>
             <trans-unit id="preview.image">
                 <source>Image</source>

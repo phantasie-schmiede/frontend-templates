@@ -29,8 +29,8 @@
                 <target>Logo-Slider</target>
             </trans-unit>
             <trans-unit id="preview.logos">
-                <source>Logos</source>
-                <target>Logos</target>
+                <source>Logos:</source>
+                <target>Logos:</target>
             </trans-unit>
             <trans-unit id="preview.image">
                 <source>Image</source>

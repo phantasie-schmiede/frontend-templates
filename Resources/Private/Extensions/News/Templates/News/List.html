@@ -22,7 +22,7 @@
                                 each="{news}"
                                 iteration="iterator">
                                 <f:render
-                                    arguments="{newsItem: newsItem,settings:settings,iterator:iterator}"
+                                    arguments="{iterator: iterator, newsItem: newsItem, settings: settings}"
                                     partial="List/Item" />
                             </f:for>
                         </f:then>
@@ -37,7 +37,7 @@
                                 each="{pagination.paginator.paginatedItems}"
                                 iteration="iterator">
                                 <f:render
-                                    arguments="{newsItem: newsItem,settings:settings,iterator:iterator}"
+                                    arguments="{iterator: iterator, newsItem: newsItem, settings: settings}"
                                     partial="List/Item" />
                             </f:for>
                             <f:if condition="{settings.list.paginate.insertBelow}">

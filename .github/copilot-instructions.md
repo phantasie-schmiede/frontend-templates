@@ -1,5 +1,7 @@
 # Copilot Instructions for `psbits/templates`
 
+If you haven't already, please read the general agent instructions in `../AGENTS.md` before proceeding with this file.
+
 ## Repository purpose
 
 - TYPO3 v13 extension (`type: typo3-cms-extension`) providing page templates, Fluid ViewHelpers, TypoScript setup, and

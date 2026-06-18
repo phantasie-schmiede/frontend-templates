@@ -7,7 +7,7 @@
         value="{viewHelpers:fallback(values: '{0: headerLevel, 1: 3}')}" />
 
     <div class="m-card">
-        <f:if condition="{imageUrl}">
+        <f:if condition="{image} || {imageUrl}">
             <div class="m-card__media">
                 <f:if condition="{imageLink}">
                     <f:then>
@@ -58,19 +58,64 @@
     </div>
 
     <f:section name="Image">
-        <picture>
-            <f:if condition="{desktopImageUrl}">
-                <source
-                    media="(min-width: 576px)"
-                    srcset="{desktopImageUrl}" />
-            </f:if>
+        <f:if condition="{image}">
+            <f:then>
+                <f:render
+                    arguments="{
+                        alt: alternativeText,
+                        imageClass: 'm-card__image',
+                        sources: {
+                            0: {
+                                media: '(min-width: 1400px)',
+                                srcset: '{f:uri.image(cropVariant: \'cardLandscape\', height: \'225m\', image: image, width: \'400m\')}'
+                            },
+                            1: {
+                                media: '(min-width: 1200px)',
+                                srcset: '{f:uri.image(cropVariant: \'cardLandscape\', height: \'203m\', image: image, width: \'360m\')}'
+                            },
+                            2: {
+                                media: '(min-width: 992px)',
+                                srcset: '{f:uri.image(cropVariant: \'cardLandscape\', height: \'180m\', image: image, width: \'320m\')}'
+                            },
+                            3: {
+                                media: '(min-width: 768px)',
+                                srcset: '{f:uri.image(cropVariant: \'cardLandscape\', height: \'158m\', image: image, width: \'280m\')}'
+                            },
+                            4: {
+                                media: '(min-width: 576px)',
+                                srcset: '{f:uri.image(cropVariant: \'cardLandscape\', height: \'135m\', image: image, width: \'240m\')}'
+                            }
+                        },
+                        src: '{f:uri.image(cropVariant: \'cardPortrait\', height: \'320m\', image: image, width: \'240m\')}'
+                    }"
+                    partial="Component/Picture/Responsive" />
+            </f:then>
+            <f:else>
+                <f:variable
+                    name="cardSources"
+                    value="0" />
 
-            <img
-                alt="{alternativeText -> f:or(alternative: image.alternative)}"
-                class="m-card__image"
-                height="320"
-                src="{imageUrl}"
-                width="240" />
-        </picture>
+                <f:if condition="{desktopImageUrl}">
+                    <f:variable
+                        name="cardSources"
+                        value="{
+                            0: {media: '(min-width: 1400px)', srcset: desktopImageUrl},
+                            1: {media: '(min-width: 1200px)', srcset: desktopImageUrl},
+                            2: {media: '(min-width: 992px)', srcset: desktopImageUrl},
+                            3: {media: '(min-width: 768px)', srcset: desktopImageUrl},
+                            4: {media: '(min-width: 576px)', srcset: desktopImageUrl}
+                        }" />
+                </f:if>
+
+                <f:render
+                    arguments="{
+                        alt: alternativeText,
+                        imageClass: 'm-card__image',
+                        sources: cardSources,
+                        src: imageUrl
+                    }"
+                    partial="Component/Picture/Responsive" />
+            </f:else>
+        </f:if>
     </f:section>
 </html>

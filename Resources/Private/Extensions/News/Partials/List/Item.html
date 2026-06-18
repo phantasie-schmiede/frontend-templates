@@ -19,11 +19,8 @@
         <f:then>
             <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
                 <f:variable
-                    name="desktopImageUrl"
-                    value="{f:uri.image(cropVariant: 'cardLandscape', image: mediaElement, width: '320m', height: '180m')}" />
-                <f:variable
-                    name="imageUrl"
-                    value="{f:uri.image(cropVariant: 'cardPortrait', image: mediaElement, width: '240m', height: '320m')}" />
+                    name="image"
+                    value="{mediaElement}" />
             </f:alias>
         </f:then>
         <f:else if="{settings.displayDummyIfNoMedia}">
@@ -40,7 +37,7 @@
     <f:render
         arguments="{
             additionalContentAppend: additionalContentAppend,
-            desktopImageUrl: desktopImageUrl,
+            image: image,
             imageUrl: imageUrl,
             subtitle: subtitle,
             text: '{text -> f:format.crop(maxCharacters: \'{settings.cropMaxCharacters}\', respectWordBoundaries: \'1\')}',

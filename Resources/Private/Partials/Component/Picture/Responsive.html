@@ -5,10 +5,11 @@
     <viewHelpers:variable.arrayMerge
         arrays="{
             0: {
+                1400: 1920,
                 1200: 1600,
-                992: 1199,
-                768: 991,
-                576: 767,
+                992: 1400,
+                768: 1200,
+                576: 992,
                 0: 575
             },
             1: sizes
@@ -16,36 +17,71 @@
         as="sizes"
         overwrite="1" />
 
+    <f:if condition="{sources}">
+        <f:then>
+            <f:variable
+                name="responsiveSources"
+                value="{sources}" />
+        </f:then>
+        <f:else>
+            <f:if condition="{image}">
+                <f:variable
+                    name="responsiveSources"
+                    value="{
+                        0: {
+                            media: '(min-width: 1400px)',
+                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.1400)}'
+                        },
+                        1: {
+                            media: '(min-width: 1200px)',
+                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.1200)}'
+                        },
+                        2: {
+                            media: '(min-width: 992px)',
+                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.992)}'
+                        },
+                        3: {
+                            media: '(min-width: 768px)',
+                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.768)}'
+                        },
+                        4: {
+                            media: '(min-width: 576px)',
+                            srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.576)}'
+                        }
+                    }" />
+            </f:if>
+        </f:else>
+    </f:if>
+
     <picture class="{pictureClass}">
         <f:for
             as="source"
-            each="{
-               0: {
-                   media: '(min-width: 1200px)',
-                   srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.1200)}'
-               },
-               1: {
-                   media: '(min-width: 992px)',
-                   srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.992)}'
-               },
-               2: {
-                   media: '(min-width: 768px)',
-                   srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.768)}'
-               },
-               3: {
-                   media: '(min-width: 576px)',
-                   srcset: '{f:uri.image(height: height, image: image, maxWidth: sizes.576)}'
-               }
-           }">
+            each="{responsiveSources}">
             <source
                 media="{source.media}"
                 srcset="{source.srcset}" />
         </f:for>
 
+        <f:if condition="{src}">
+            <f:then>
+                <f:variable
+                    name="imageSrc"
+                    value="{src}" />
+            </f:then>
+            <f:else>
+                <f:if condition="{image}">
+                    <f:variable
+                        name="imageSrc"
+                        value="{f:uri.image(height: height, image: image, maxWidth: sizes.0)}" />
+                </f:if>
+            </f:else>
+        </f:if>
+
         <img
-            alt="{image.alternative}"
+            alt="{alt -> f:or(alternative: image.alternative)}"
             class="{imageClass -> f:or(alternative: 'img-fluid')}"
-            loading="lazy"
-            src="{f:uri.image(height: height, image: image, maxWidth: sizes.0)}" />
+            decoding="{decoding -> f:or(alternative: 'async')}"
+            loading="{loading -> f:or(alternative: 'lazy')}"
+            src="{imageSrc}" />
     </picture>
 </html>

@@ -42,21 +42,31 @@
                     as="image"
                     each="{data.image}">
                     <div class="swiper-slide d-flex align-items-center justify-content-center logo-slider__slide{f:if(condition: data.grayscale, then: ' logo-slider__slide--grayscale')}">
-                        <picture>
-                            <source
-                                media="(min-width: 1200px)"
-                                srcset="{f:uri.image(height: 160, image: image, maxWidth: 300)}" />
-                            <source
-                                media="(min-width: 768px)"
-                                srcset="{f:uri.image(height: 128, image: image, maxWidth: 240)}" />
-                            <img
-                                alt="{image.alternative}"
-                                class="img-fluid"
-                                height="96"
-                                loading="lazy"
-                                src="{f:uri.image(height: 96, image: image, maxWidth: 180)}"
-                                width="180" />
-                        </picture>
+                        <f:render
+                            arguments="{
+                                alt: image.alternative,
+                                imageClass: 'img-fluid',
+                                sources: {
+                                    0: {
+                                        media: '(min-width: 1200px)',
+                                        srcset: '{f:uri.image(height: 160, image: image, maxWidth: 300)}'
+                                    },
+                                    1: {
+                                        media: '(min-width: 992px)',
+                                        srcset: '{f:uri.image(height: 144, image: image, maxWidth: 270)}'
+                                    },
+                                    2: {
+                                        media: '(min-width: 768px)',
+                                        srcset: '{f:uri.image(height: 128, image: image, maxWidth: 240)}'
+                                    },
+                                    3: {
+                                        media: '(min-width: 576px)',
+                                        srcset: '{f:uri.image(height: 112, image: image, maxWidth: 210)}'
+                                    }
+                                },
+                                src: '{f:uri.image(height: 96, image: image, maxWidth: 180)}'
+                            }"
+                            partial="Component/Picture/Responsive" />
                     </div>
                 </f:for>
             </f:render>
@@ -66,18 +76,23 @@
                     <f:for
                         as="image"
                         each="{data.image}">
-                        <picture>
-                            <source
-                                media="(min-width: 768px)"
-                                srcset="{f:uri.image(height: 90, image: image, maxWidth: 160)}" />
-                            <img
-                                alt="{image.alternative}"
-                                class="img-fluid"
-                                height="72"
-                                loading="lazy"
-                                src="{f:uri.image(height: 72, image: image, maxWidth: 128)}"
-                                width="128" />
-                        </picture>
+                        <f:render
+                            arguments="{
+                                alt: image.alternative,
+                                imageClass: 'img-fluid',
+                                sources: {
+                                    0: {
+                                        media: '(min-width: 768px)',
+                                        srcset: '{f:uri.image(height: 90, image: image, maxWidth: 160)}'
+                                    },
+                                    1: {
+                                        media: '(min-width: 576px)',
+                                        srcset: '{f:uri.image(height: 81, image: image, maxWidth: 144)}'
+                                    }
+                                },
+                                src: '{f:uri.image(height: 72, image: image, maxWidth: 128)}'
+                            }"
+                            partial="Component/Picture/Responsive" />
                     </f:for>
                 </div>
             </noscript>

@@ -31,12 +31,11 @@ If you haven't already, please read the general agent instructions in `../AGENTS
     - `foundation` (`PSBits/Foundation/ViewHelpers`)
     - `templates` (`PSBits/Templates/ViewHelpers`)
     - `viewHelpers` (`PSBits/ViewHelpers/ViewHelpers`)
-- Use `viewHelpers` consistently as alias for `PSBits/ViewHelpers/ViewHelpers`.
 - Use yoda conditions for better readability and to avoid accidental assignment.
-- Use alphabetical ordering where possible (e.g., in arrays, attributes and imports) for consistency; this is enforced by
-  configured quality tooling (e.g., Prettier for HTML/XML/XLF attributes and PHP CS Fixer for PHP imports).
-- Include punctuation in language files for complete localization, e.g. prepended colons should not be placed in the
-  template after a label, but in the language file itself.
+- Use alphabetical ordering where possible (e.g., in arrays, attributes, imports, properties, variable declarations)
+  for consistency;
+- Include punctuation in language files for complete localization, e.g. colons after labels should not be placed in the
+  template, but in the language file itself.
 
 If you have questions about architecture, conventions, or best practices, ask before implementing. If you notice any
 inconsistencies in the codebase or differences between codebase and these instructions, mention them - don't fix them

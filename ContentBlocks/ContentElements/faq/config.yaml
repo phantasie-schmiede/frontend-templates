@@ -11,6 +11,10 @@ fields:
     foreign_table: tt_content
     minitems: 1
     maxitems: 20
+    overrideChildTca:
+      types:
+        '0':
+          showitem: 'header,bodytext'
     type: Collection
 group: content_blocks
 labelField: header

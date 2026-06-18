@@ -26,30 +26,17 @@
                         <f:render
                             arguments="{
                                 alt: image.alternative,
+                                height: 1080,
+                                image: image,
                                 imageClass: 'd-block img-fluid w-100',
-                                sources: {
-                                    0: {
-                                        media: '(min-width: 1400px)',
-                                        srcset: '{f:uri.image(height: 1080, image: image, maxWidth: 1920)}'
-                                    },
-                                    1: {
-                                        media: '(min-width: 1200px)',
-                                        srcset: '{f:uri.image(height: 900, image: image, maxWidth: 1600)}'
-                                    },
-                                    2: {
-                                        media: '(min-width: 992px)',
-                                        srcset: '{f:uri.image(height: 788, image: image, maxWidth: 1400)}'
-                                    },
-                                    3: {
-                                        media: '(min-width: 768px)',
-                                        srcset: '{f:uri.image(height: 675, image: image, maxWidth: 1200)}'
-                                    },
-                                    4: {
-                                        media: '(min-width: 576px)',
-                                        srcset: '{f:uri.image(height: 558, image: image, maxWidth: 992)}'
-                                    }
+                                sizes: {
+                                    1400: 1920,
+                                    1200: 1600,
+                                    992: 1400,
+                                    768: 1200,
+                                    576: 992,
+                                    0: 640
                                 },
-                                src: '{f:uri.image(height: 360, image: image, maxWidth: 640)}'
                             }"
                             partial="Component/Picture/Responsive" />
                     </div>

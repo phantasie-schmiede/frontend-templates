@@ -2,7 +2,7 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
-    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
     <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/inputAutocomplete.xlf" />
 
     <f:asset.script
@@ -33,7 +33,7 @@
 
     <f:if condition="{postponed}">
         <f:then>
-            <psbvh:variable.arrayMerge
+            <viewHelpers:variable.arrayMerge
                 arrays="{0: additionalAttributes, 1: {
                     _data-psbits-autocomplete-items: '#{id}-items',
                     _data-psbits-filter-target: '#{id}-items .psbits-autocomplete-list-item'
@@ -42,7 +42,7 @@
                 overwrite="1" />
         </f:then>
         <f:else>
-            <psbvh:variable.arrayMerge
+            <viewHelpers:variable.arrayMerge
                 arrays="{0: dataAttributes, 1: {
                     psbits-autocomplete-items: '#{id}-items',
                     psbits-filter-target: '#{id}-items .psbits-autocomplete-list-item'
@@ -53,28 +53,28 @@
     </f:if>
 
     <f:if condition="{filterOptions.itemSearchField}">
-        <psbvh:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: dataAttributes, 1: {psbits-filter-value: 'data-search-terms'}}"
             as="dataAttributes"
             overwrite="1" />
     </f:if>
 
     <f:if condition="{filterOptions.preferText}">
-        <psbvh:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: dataAttributes, 1: {psbits-filter-prefer-text: ''}}"
             as="dataAttributes"
             overwrite="1" />
     </f:if>
 
     <f:if condition="{multiple}">
-        <psbvh:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: dataAttributes, 1: {psbits-autocomplete-selection-target: '#{id}-selection'}}"
             as="dataAttributes"
             overwrite="1" />
     </f:if>
 
     <f:if condition="{preselection}">
-        <psbvh:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: dataAttributes, 1: {psbits-autocomplete-preselection: preselection}}"
             as="dataAttributes"
             overwrite="1" />
@@ -82,7 +82,7 @@
 
     <f:if condition="{altValueField}">
         <f:then>
-            <psbvh:variable.arrayMerge
+            <viewHelpers:variable.arrayMerge
                 arrays="{0: dataAttributes, 1: {psbits-autocomplete-value-target: '#{id}-value'}}"
                 as="dataAttributes"
                 overwrite="1" />
@@ -94,7 +94,7 @@
         </f:else>
     </f:if>
 
-    <psbvh:tag
+    <viewHelpers:tag
         additionalAttributes="{additionalAttributes}"
         autocomplete="off"
         class="form-control psbits-clear-input"
@@ -148,7 +148,7 @@
                             name="dataValue"
                             value="{item.{itemValueField}}" />
 
-                        <psbvh:variable.arrayMerge
+                        <viewHelpers:variable.arrayMerge
                             arrays="{0: data, 1: {psbits-autocomplete-value: '{dataValue -> f:or(alternative: item.value)}'}}"
                             as="data"
                             overwrite="1" />
@@ -159,18 +159,18 @@
                             name="searchTerms"
                             value="{item.{filterOptions.itemSearchField}}" />
 
-                        <psbvh:variable.arrayMerge
+                        <viewHelpers:variable.arrayMerge
                             arrays="{0: data, 1: {search-terms: searchTerms}}"
                             as="data"
                             overwrite="1" />
                     </f:if>
 
-                    <psbvh:tag
+                    <viewHelpers:tag
                         class="list-group-item psbits-autocomplete-list-item"
                         data="{data}"
                         tag="li">
-                        <psbvh:fallback values="{0: '{item.{itemLabelField}}', 1: item.label, 2: item}" />
-                    </psbvh:tag>
+                        <viewHelpers:fallback values="{0: '{item.{itemLabelField}}', 1: item.label, 2: item}" />
+                    </viewHelpers:tag>
                 </f:for>
             </f:then>
             <f:else if="{renderedItems}">{renderedItems -> f:format.raw()}</f:else>

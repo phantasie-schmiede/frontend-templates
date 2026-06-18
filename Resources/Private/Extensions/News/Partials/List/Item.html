@@ -2,7 +2,7 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
-    xmlns:psbvh="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
     <n:excludeDisplayedNews newsItem="{newsItem}" />
 
     <f:variable name="additionalContentAppend">
@@ -35,7 +35,7 @@
 
     <f:variable
         name="text"
-        value="{psbvh:fallback(values: {0: newsItem.teaser, 1: newsItem.bodytext})}" />
+        value="{viewHelpers:fallback(values: {0: newsItem.teaser, 1: newsItem.bodytext})}" />
 
     <f:render
         arguments="{

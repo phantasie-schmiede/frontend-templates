@@ -1,7 +1,7 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:psbViewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
     <f:comment>
         <!--
             In order to use this partial, the slides must be rendered inside the f:render-tag. The value of the contentAs
@@ -41,11 +41,11 @@
         <f:variable
             name="createPagination"
             value="true" />
-        <psbViewHelpers:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: configuration.pagination, 1: {el: '.swiper-pagination'}}"
             as="pagination"
             overwrite="true" />
-        <psbViewHelpers:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: configuration, 1: {pagination: pagination}}"
             as="configuration"
             overwrite="true" />
@@ -55,11 +55,11 @@
         <f:variable
             name="createNavigation"
             value="true" />
-        <psbViewHelpers:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: configuration.navigation, 1: {nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev'}}"
             as="navigation"
             overwrite="true" />
-        <psbViewHelpers:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: configuration, 1: {navigation: navigation}}"
             as="configuration"
             overwrite="true" />
@@ -69,11 +69,11 @@
         <f:variable
             name="createScrollbar"
             value="true" />
-        <psbViewHelpers:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: configuration.scrollbar, 1: {el: '.swiper-scrollbar'}}"
             as="scrollbar"
             overwrite="true" />
-        <psbViewHelpers:variable.arrayMerge
+        <viewHelpers:variable.arrayMerge
             arrays="{0: configuration, 1: {scrollbar: scrollbar}}"
             as="configuration"
             overwrite="true" />

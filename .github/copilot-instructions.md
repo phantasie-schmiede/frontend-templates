@@ -1,5 +1,7 @@
 # Copilot Instructions for `psbits/templates`
 
+If you haven't already, please read the general agent instructions in `../AGENTS.md` before proceeding with this file.
+
 ## Repository purpose
 
 - TYPO3 v13 extension (`type: typo3-cms-extension`) providing page templates, Fluid ViewHelpers, TypoScript setup, and
@@ -33,6 +35,10 @@
 - Include punctuation in language files for complete localization, e.g. prepended colons should not be placed in the
   template after a label, but in the language file itself.
 
+If you have questions about architecture, conventions, or best practices, ask before implementing. If you notice any
+inconsistencies in the codebase or differences between codebase and these instructions, mention them - don't fix them
+unless asked.
+
 ## Safe change workflow
 
 1. Identify the layer to change first:
@@ -44,15 +50,17 @@
 
 ## Validation in this repository
 
-- No repository-specific test/lint/build scripts were found (`composer.json` has no `scripts`, and no CI workflow files
-  are present).
-- Baseline validation command used:
-    - `composer validate --no-check-publish`
+- Repository quality checks are defined in `composer.json`, `package.json`, and `.github/workflows/quality.yml`.
+- Primary local QA command:
+    - `composer qa`
+    - Runs: `audit:composer`, `validate:composer`, `lint:php`, `analyze:php`, `lint:typoscript`, `lint:classes`,
+      `lint:js`, `lint:scss`
+- Additional lint command used in CI:
+    - `composer lint:yaml`
 
 ## Onboarding run notes (errors/workarounds)
 
-- No blocking errors occurred during onboarding.
-- `composer validate` reports non-blocking warnings for `@dev` constraints on `psbits/foundation` and
-  `psbits/view-helpers`; treated as existing project state.
-- Because no repo test/lint/build commands are defined, the practical workaround is to run
-  `composer validate --no-check-publish` plus focused file-level review for touched TYPO3/Fluid/TypoScript areas.
+- Running QA locally requires installed dependencies (`composer install` / `composer update`, plus npm dependencies via
+  Composer post-install).
+- In restricted environments, Composer dependency installation may fail if GitHub authentication for dist downloads is
+  unavailable.

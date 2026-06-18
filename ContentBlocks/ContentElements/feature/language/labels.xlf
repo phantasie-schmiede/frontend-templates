@@ -23,10 +23,10 @@
                 <source>Background</source>
             </trans-unit>
             <trans-unit id="preview.layout">
-                <source>Layout</source>
+                <source>Layout:</source>
             </trans-unit>
             <trans-unit id="preview.background">
-                <source>Background</source>
+                <source>Background:</source>
             </trans-unit>
             <trans-unit id="preview.image">
                 <source>Image</source>

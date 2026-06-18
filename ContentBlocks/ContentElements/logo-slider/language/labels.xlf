@@ -23,7 +23,7 @@
                 <source>Logo slider</source>
             </trans-unit>
             <trans-unit id="preview.logos">
-                <source>Logos</source>
+                <source>Logos:</source>
             </trans-unit>
             <trans-unit id="preview.image">
                 <source>Image</source>

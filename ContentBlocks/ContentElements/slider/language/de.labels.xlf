@@ -29,8 +29,8 @@
                 <target>Slides zyklisch wiederholen</target>
             </trans-unit>
             <trans-unit id="preview.slides">
-                <source>Slides</source>
-                <target>Slides</target>
+                <source>Slides:</source>
+                <target>Slides:</target>
             </trans-unit>
             <trans-unit id="preview.image">
                 <source>Image</source>

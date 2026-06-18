@@ -45,16 +45,16 @@
                         <picture>
                             <source
                                 media="(min-width: 1200px)"
-                                srcset="{f:uri.image(image: image, maxWidth: 300, height: 160)}" />
+                                srcset="{f:uri.image(height: 160, image: image, maxWidth: 300)}" />
                             <source
                                 media="(min-width: 768px)"
-                                srcset="{f:uri.image(image: image, maxWidth: 240, height: 128)}" />
+                                srcset="{f:uri.image(height: 128, image: image, maxWidth: 240)}" />
                             <img
                                 alt="{image.alternative}"
                                 class="img-fluid"
                                 height="96"
                                 loading="lazy"
-                                src="{f:uri.image(image: image, maxWidth: 180, height: 96)}"
+                                src="{f:uri.image(height: 96, image: image, maxWidth: 180)}"
                                 width="180" />
                         </picture>
                     </div>
@@ -69,13 +69,13 @@
                         <picture>
                             <source
                                 media="(min-width: 768px)"
-                                srcset="{f:uri.image(image: image, maxWidth: 160, height: 90)}" />
+                                srcset="{f:uri.image(height: 90, image: image, maxWidth: 160)}" />
                             <img
                                 alt="{image.alternative}"
                                 class="img-fluid"
                                 height="72"
                                 loading="lazy"
-                                src="{f:uri.image(image: image, maxWidth: 128, height: 72)}"
+                                src="{f:uri.image(height: 72, image: image, maxWidth: 128)}"
                                 width="128" />
                         </picture>
                     </f:for>

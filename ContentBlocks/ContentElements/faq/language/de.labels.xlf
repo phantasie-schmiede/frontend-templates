@@ -29,8 +29,8 @@
                 <target>FAQ</target>
             </trans-unit>
             <trans-unit id="preview.items">
-                <source>Items</source>
-                <target>Elemente</target>
+                <source>Items:</source>
+                <target>Elemente:</target>
             </trans-unit>
         </body>
     </file>

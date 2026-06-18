@@ -9,7 +9,7 @@
                         <f:comment>
                             <li class="page-item">
                                 <f:render
-                                    arguments="{actionName:actionName, page: 1, title: '{f:translate(key:\'pagination.first\')}', searchMode:searchMode}"
+                                    arguments="{actionName: actionName, page: 1, searchMode: searchMode, title: '{f:translate(key:\'pagination.first\')}' }"
                                     contentAs="content"
                                     section="PaginationLink">
                                     first_page
@@ -18,7 +18,7 @@
                         </f:comment>
                         <li class="page-item">
                             <f:render
-                                arguments="{actionName:actionName, page: pagination.previousPageNumber, title: '{f:translate(key:\'pagination.previous\')}', searchMode:searchMode}"
+                                arguments="{actionName: actionName, page: pagination.previousPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.previous\')}' }"
                                 contentAs="content"
                                 section="PaginationLink">
                                 {f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}
@@ -53,7 +53,7 @@
                         <f:else>
                             <li>
                                 <f:render
-                                    arguments="{actionName:actionName, page: page, title: page, searchMode:searchMode}"
+                                    arguments="{actionName: actionName, page: page, searchMode: searchMode, title: page}"
                                     contentAs="content"
                                     section="PaginationLink">
                                     {page}
@@ -71,7 +71,7 @@
                     <f:then>
                         <li class="page-item">
                             <f:render
-                                arguments="{actionName:actionName, page: pagination.nextPageNumber, title: '{f:translate(key:\'pagination.next\')}', searchMode:searchMode}"
+                                arguments="{actionName: actionName, page: pagination.nextPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.next\')}' }"
                                 contentAs="content"
                                 section="PaginationLink">
                                 {f:translate(key:'widget.pagination.next', extensionName: 'fluid')}
@@ -80,7 +80,7 @@
                         <f:comment>
                             <li class="page-item">
                                 <f:render
-                                    arguments="{actionName:actionName, page: pagination.lastPageNumber, title: '{f:translate(key:\'pagination.last\')}', searchMode:searchMode}"
+                                    arguments="{actionName: actionName, page: pagination.lastPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.last\')}' }"
                                     contentAs="content"
                                     section="PaginationLink">
                                     last
@@ -123,7 +123,7 @@
             <f:else>
                 <a
                     class="page-link"
-                    href="{f:uri.action(action:actionName, arguments:{currentPage: page})}"
+                    href="{f:uri.action(action: actionName, arguments: {currentPage: page})}"
                     title="{title}">
                     {content}
                 </a>

@@ -23,7 +23,7 @@
                 <source>FAQ</source>
             </trans-unit>
             <trans-unit id="preview.items">
-                <source>Items</source>
+                <source>Items:</source>
             </trans-unit>
         </body>
     </file>

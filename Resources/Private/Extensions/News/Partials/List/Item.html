@@ -35,7 +35,7 @@
 
     <f:variable
         name="text"
-        value="{psbvh:fallback(values: {0: newsItem.teaser, 1: newsItem.bodytext})}" />
+        value="{viewHelpers:fallback(values: {0: newsItem.teaser, 1: newsItem.bodytext})}" />
 
     <f:render
         arguments="{

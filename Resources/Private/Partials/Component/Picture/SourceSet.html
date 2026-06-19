@@ -1,0 +1,24 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:variable
+    name="defaultWidths"
+    value="{
+        mobile: {
+            0: 400, 1: 800, 2: 1200, 3: 1800
+        },
+        tablet: {
+            0: 800, 1: 1200, 2: 1600, 3: 2400
+        },
+        desktop: {
+            0: 1200, 1: 1600, 2: 2000, 3: 2560
+        }
+    }" />
+
+<f:for
+    as="width"
+    each="{widths -> f:or(alternative: '{defaultWidths.{cropVariant}}')}"
+    iteration="iterator">
+    {f:uri.image(image: file, cropVariant: cropVariant, maxWidth: width, fileExtension: fileExtension)} {width}w<f:if condition="!{iterator.isLast}">, </f:if>
+</f:for>
+</html>

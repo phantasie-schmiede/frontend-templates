@@ -1,60 +1,52 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    <f:if condition="{data.image}">
-        <section
-            aria-label="{data.header}"
-            class="position-relative">
-            <f:render
-                arguments="{
-                    configuration: {
-                        loop: data.loop_slides,
-                        navigation: data.show_navigation,
-                        pagination: '{f:if(condition: data.show_pagination, then: \'{clickable: 1}\', else: 0)}',
-                        slidesPerView: 1,
-                        spaceBetween: 24
-                    },
-                    id: 'content-slider-{data.uid}'
-                }"
-                contentAs="slides"
-                partial="Component/Swiper">
-                <f:for
-                    as="image"
-                    each="{data.image}">
-                    <div class="swiper-slide">
-                        <f:render
-                            arguments="{
-                                alt: image.alternative,
-                                height: 1080,
-                                image: image,
-                                imageClass: 'd-block img-fluid w-100',
-                                sizes: {
-                                    1400: 1920,
-                                    1200: 1600,
-                                    992: 1400,
-                                    768: 1200,
-                                    576: 992,
-                                    0: 640
-                                },
-                            }"
-                            partial="Component/Picture/Responsive" />
-                    </div>
-                </f:for>
-            </f:render>
+<section
+    aria-label="{data.header}"
+    class="position-relative">
+    <f:render
+        arguments="{
+            configuration: {
+                loop: data.loop_slides,
+                navigation: data.show_navigation,
+                pagination: '{f:if(condition: data.show_pagination, then: \'{clickable: 1}\', else: 0)}',
+                slidesPerView: 1,
+                spaceBetween: 24
+            },
+            id: 'content-slider-{data.uid}'
+        }"
+        contentAs="slides"
+        partial="Component/Swiper">
+        <f:for
+            as="image"
+            each="{data.image}"
+            iteration="iterator">
+            <f:if condition="{iterator.isFirst} && {data.eager_loading}">
+                <f:variable
+                    name="loading"
+                    value="eager" />
 
-            <f:if condition="{data.header} || {data.bodytext}">
-                <div class="carousel-caption d-block">
-                    <f:if condition="{data.header}">
-                        <f:if condition="{data.header_layout} != 100">
-                            <viewHelpers:tag tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">{data.header}</viewHelpers:tag>
-                        </f:if>
-                    </f:if>
-                    <f:if condition="{data.bodytext}">
-                        <f:format.html>{data.bodytext}</f:format.html>
-                    </f:if>
-                </div>
+                <templates:page.header identifier="preloadSlider">
+                    <templates:format.reduceWhitespace>
+                        <f:render
+                            arguments="{file: image}"
+                            partial="Component/Picture/Preload" />
+                    </templates:format.reduceWhitespace>
+                </templates:page.header>
             </f:if>
-        </section>
-    </f:if>
+            <div class="swiper-slide">
+                <f:render
+                    arguments="{
+                        height: 1080,
+                        file: image,
+                        imageClass: 'd-block img-fluid w-100',
+                        loading: loading,
+                    }"
+                    partial="Component/Picture/Responsive" />
+            </div>
+        </f:for>
+    </f:render>
+</section>
 </html>

@@ -1,0 +1,54 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:comment>
+    <!--
+        This partial is responsible for preloading the images used in the Picture component.
+        It must be included in the <head> section of the HTML document to ensure that the images are preloaded before they are needed in the content.
+        It generates <link> tags with appropriate media queries and srcset attributes to ensure that the correct image is preloaded based on the device's screen size.
+    -->
+</f:comment>
+
+<f:variable
+    name="defaultSize"
+    value="100vw" />
+
+<link
+    as="image"
+    imagesizes="{sizes.mobile -> f:or(alternative: defaultSize)}"
+    imagesrcset="{f:render(arguments: {
+        cropVariant: 'mobile',
+        file: file,
+        fileExtension: 'avif',
+        widths: widths.mobile
+    }, partial: 'Component/Picture/SourceSet')}"
+    media="(max-width: 576px)"
+    rel="preload"
+    type="image/avif">
+
+<link
+    as="image"
+    imagesizes="{sizes.tablet -> f:or(alternative: defaultSize)}"
+    imagesrcset="{f:render(arguments: {
+        cropVariant: 'tablet',
+        file: file,
+        fileExtension: 'avif',
+        widths: widths.tablet
+    }, partial: 'Component/Picture/SourceSet')}"
+    media="(min-width: 577px) and (max-width: 992px)"
+    rel="preload"
+    type="image/avif">
+
+<link
+    as="image"
+    imagesizes="{sizes.desktop -> f:or(alternative: defaultSize)}"
+    imagesrcset="{f:render(arguments: {
+        cropVariant: 'desktop',
+        file: file,
+        fileExtension: 'avif',
+        widths: widths.desktop
+    }, partial: 'Component/Picture/SourceSet')}"
+    media="(min-width: 993px)"
+    rel="preload"
+    type="image/avif">
+</html>

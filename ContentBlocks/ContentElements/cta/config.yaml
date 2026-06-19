@@ -38,7 +38,7 @@ fields:
         value: lg
   - identifier: full_width
     default: false
-    type: Check
+    type: Checkbox
 group: content_blocks
 labelField: header
 prefixType: vendor

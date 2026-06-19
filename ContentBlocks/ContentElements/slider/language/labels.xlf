@@ -22,6 +22,9 @@
             <trans-unit id="loop_slides.label">
                 <source>Loop slides</source>
             </trans-unit>
+            <trans-unit id="eager_loading.label">
+                <source>Load image eagerly</source>
+            </trans-unit>
             <trans-unit id="preview.slides">
                 <source>Slides:</source>
             </trans-unit>

@@ -23,7 +23,7 @@
             <f:render
                 arguments="{
                     configuration: {
-                        autoplay: data.autoplay ? {delay: 3500, disableOnInteraction: 0} : 0,
+                        autoplay: '{f:if(condition: data.autoplay, then: \'{delay: 3500, disableOnInteraction: 0}\', else: 0)}',
                         loop: 1,
                         navigation: 0,
                         pagination: 0,

@@ -2,24 +2,22 @@ name: psbits/slider
 fields:
   - identifier: header
     useExistingField: true
-  - identifier: header_layout
-    useExistingField: true
-  - identifier: bodytext
-    enableRichtext: true
-    useExistingField: true
   - identifier: image
     minitems: 1
     maxitems: 10
     useExistingField: true
   - identifier: show_pagination
     default: true
-    type: Check
+    type: Checkbox
   - identifier: show_navigation
     default: true
-    type: Check
+    type: Checkbox
   - identifier: loop_slides
     default: true
-    type: Check
+    type: Checkbox
+  - identifier: eager_loading
+    default: false
+    type: Checkbox
 group: content_blocks
 labelField: header
 prefixType: vendor

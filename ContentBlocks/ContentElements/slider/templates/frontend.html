@@ -11,7 +11,7 @@
                     configuration: {
                         loop: data.loop_slides,
                         navigation: data.show_navigation,
-                        pagination: data.show_pagination ? {clickable: 1} : 0,
+                        pagination: '{f:if(condition: data.show_pagination, then: \'{clickable: 1}\', else: 0)}',
                         slidesPerView: 1,
                         spaceBetween: 24
                     },

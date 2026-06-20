@@ -1,6 +1,9 @@
 plugin {
   tx_calendarize {
-    settings.paginateConfiguration.maximumNumberOfLinks = 5
+    settings {
+      detail.layout.showHero = 1
+      paginateConfiguration.maximumNumberOfLinks = 5
+    }
 
     view {
       layoutRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/Calendarize/Layouts/
@@ -15,6 +18,8 @@ plugin {
   }
 
   tx_news {
+    settings.detail.layout.showHero = 1
+
     view {
       layoutRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/News/Layouts/
 

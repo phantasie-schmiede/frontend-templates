@@ -2,15 +2,43 @@
 <xliff version="1.0">
     <file
         datatype="plaintext"
-        date="2026-01-06T13:04:00+01:00"
+        date="2026-06-20T16:05:00+01:00"
         original="messages"
         product-name="templates"
         source-language="en"
         target-language="de">
         <body>
+            <trans-unit id="back_to_overview">
+                <source>Back to overview</source>
+                <target>Zur Übersicht</target>
+            </trans-unit>
+            <trans-unit id="booking">
+                <source>Book now</source>
+                <target>Jetzt buchen</target>
+            </trans-unit>
+            <trans-unit id="canceled">
+                <source>Canceled</source>
+                <target>Abgesagt</target>
+            </trans-unit>
+            <trans-unit id="date">
+                <source>Date</source>
+                <target>Datum</target>
+            </trans-unit>
             <trans-unit id="details">
                 <source>Details</source>
                 <target>Details</target>
+            </trans-unit>
+            <trans-unit id="gallery">
+                <source>Gallery</source>
+                <target>Galerie</target>
+            </trans-unit>
+            <trans-unit id="location">
+                <source>Location</source>
+                <target>Ort</target>
+            </trans-unit>
+            <trans-unit id="status">
+                <source>Status</source>
+                <target>Status</target>
             </trans-unit>
         </body>
     </file>

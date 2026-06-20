@@ -11,11 +11,8 @@ declare(strict_types=1);
 
 namespace PSBits\Templates\ViewHelpers\GlobalVariables;
 
-use Closure;
-use Exception;
 use PSBits\Foundation\ViewHelpers\GlobalVariables\AbstractGlobalVariablesViewHelper;
 use PSBits\Templates\Service\GlobalVariableProviders\CurrentPageProvider;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Class CurrentPageViewHelper
@@ -24,16 +21,8 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
  */
 class CurrentPageViewHelper extends AbstractGlobalVariablesViewHelper
 {
-    /**
-     * @param array<string, mixed> $arguments
-     *
-     * @throws Exception
-     */
-    public static function renderStatic(
-        array                     $arguments,
-        Closure                   $renderChildrenClosure,
-        RenderingContextInterface $renderingContext,
-    ): mixed {
-        return parent::getVariable(CurrentPageProvider::class, $arguments);
+    public function render(): mixed
+    {
+        return parent::getVariable(CurrentPageProvider::class, $this->arguments);
     }
 }

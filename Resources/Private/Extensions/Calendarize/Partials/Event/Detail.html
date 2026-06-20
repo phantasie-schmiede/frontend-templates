@@ -44,7 +44,7 @@
             </header>
 
             <f:if condition="{heroImage} && {settings.detail.layout.showHero -> f:or(alternative: 1)}">
-                <section class="detail-page__hero mb-4">
+                <section class="detail-page__hero mb-4 overflow-hidden rounded">
                     <f:render
                         arguments="{
                             alt: event.title,
@@ -65,11 +65,11 @@
                 </section>
             </f:if>
 
-            <div class="detail-page__content g-4 row">
+            <div class="align-items-start detail-page__content g-4 row">
                 <div class="col-12 col-lg-8">
-                    <section class="detail-page__panel mb-4">
+                    <section class="bg-white detail-page__panel mb-4 p-3 p-md-4 rounded shadow-sm">
                         <f:if condition="{event.abstract}">
-                            <div class="detail-page__teaser lead">{event.abstract -> f:format.nl2br()}</div>
+                            <div class="detail-page__teaser lead mb-3">{event.abstract -> f:format.nl2br()}</div>
                         </f:if>
 
                         <div class="detail-page__body">
@@ -77,7 +77,7 @@
                         </div>
                     </section>
 
-                    <div class="d-flex detail-page__actions flex-wrap gap-2">
+                    <div class="align-items-center d-flex detail-page__actions flex-wrap gap-2">
                         <f:if condition="{settings.listPid}">
                             <f:link.page
                                 class="btn btn-outline-primary"
@@ -98,7 +98,7 @@
 
                 <div class="col-12 col-lg-4">
                     <f:if condition="1 < {event.images -> f:count()}">
-                        <section class="detail-page__panel mb-4">
+                        <section class="bg-white detail-page__panel mb-4 p-3 p-md-4 rounded shadow-sm">
                             <h2 class="h5 mb-3">
                                 <foundation:translate id="calendarize:gallery" />
                             </h2>

@@ -84,7 +84,7 @@
                         section="hero" />
                 </f:if>
 
-                <div class="detail-page__content g-4 row">
+                <div class="align-items-start detail-page__content g-4 row">
                     <div class="col-12 col-lg-8">
                         <f:render
                             arguments="{_all}"
@@ -114,7 +114,7 @@
     </f:section>
 
     <f:section name="hero">
-        <section class="detail-page__hero mb-4">
+        <section class="detail-page__hero mb-4 overflow-hidden rounded">
             <f:render
                 arguments="{
                     alt: newsItem.title,
@@ -136,7 +136,7 @@
     </f:section>
 
     <f:section name="main-content">
-        <section class="detail-page__panel mb-4">
+        <section class="bg-white detail-page__panel mb-4 p-3 p-md-4 rounded shadow-sm">
             <n:renderMedia
                 audioClass="audio-wrapper"
                 imgClass="img-fluid"
@@ -144,7 +144,7 @@
                 videoClass="video-wrapper">
                 <f:if condition="{newsItem.teaser}">
                     <div
-                        class="detail-page__teaser lead"
+                        class="detail-page__teaser lead mb-3"
                         itemprop="description">
                         <f:format.html>{newsItem.teaser}</f:format.html>
                     </div>
@@ -162,7 +162,7 @@
             </n:renderMedia>
         </section>
 
-        <div class="d-flex detail-page__actions flex-wrap gap-2 mb-4">
+        <div class="align-items-center d-flex detail-page__actions flex-wrap gap-2 mb-4">
             <f:if condition="{settings.backPid}">
                 <f:link.page
                     class="btn btn-primary"
@@ -218,7 +218,7 @@
                     <f:for
                         as="related"
                         each="{newsItem.allRelatedSorted}">
-                        <li class="list-group-item px-0">
+                        <li class="bg-transparent list-group-item px-0">
                             <span class="d-block mb-1 small text-body-secondary">
                                 <f:format.date format="{f:translate(key:'dateFormat')}">{related.datetime}</f:format.date>
                             </span>
@@ -243,7 +243,7 @@
                     <f:for
                         as="relatedFile"
                         each="{newsItem.relatedFiles}">
-                        <li class="d-flex justify-content-between list-group-item px-0">
+                        <li class="bg-transparent d-flex justify-content-between list-group-item px-0">
                             <a
                                 href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}"
                                 target="_blank">
@@ -266,7 +266,7 @@
                     <f:for
                         as="relatedLink"
                         each="{newsItem.relatedLinks}">
-                        <li class="list-group-item px-0">
+                        <li class="bg-transparent list-group-item px-0">
                             <f:link.typolink
                                 class="d-inline-flex gap-2"
                                 parameter="{relatedLink.uri}"

@@ -1,0 +1,134 @@
+<html
+    xmlns:c="http://typo3.org/ns/HDNET/Calendarize/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
+    <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Extensions/calendarize.xlf" />
+
+    <f:alias map="{event: index.originalObject}">
+        <f:variable
+            name="heroImage"
+            value="{event.images.0}" />
+
+        <article class="detail-page detail-page--event state-{index.state}">
+            <header class="detail-page__header mb-4">
+                <h1 class="border-bottom pb-3">{event.title}</h1>
+                <div class="m-labelled-list">
+                    <div class="m-labelled-list__content m-labelled-list__content--no-wrap">
+                        <span class="m-labelled-list__item-label">
+                            <foundation:translate id="calendarize:date" />
+                        </span>
+                        <span class="m-labelled-list__item-value">
+                            <f:render
+                                arguments="{index: index}"
+                                partial="DateInformation" />
+                        </span>
+
+                        <f:if condition="{event.location}">
+                            <span class="m-labelled-list__item-label">
+                                <foundation:translate id="calendarize:location" />
+                            </span>
+                            <span class="m-labelled-list__item-value">{event.location}</span>
+                        </f:if>
+
+                        <f:if condition="'canceled' == {index.state}">
+                            <span class="m-labelled-list__item-label">
+                                <foundation:translate id="calendarize:status" />
+                            </span>
+                            <span class="m-labelled-list__item-value text-danger">
+                                <foundation:translate id="calendarize:canceled" />
+                            </span>
+                        </f:if>
+                    </div>
+                </div>
+            </header>
+
+            <f:if condition="{heroImage} && {settings.detail.layout.showHero -> f:or(alternative: 1)}">
+                <section class="detail-page__hero mb-4">
+                    <f:render
+                        arguments="{
+                            alt: event.title,
+                            file: heroImage,
+                            imageClass: 'detail-page__hero-image',
+                            sizes: {
+                                mobile: '100vw',
+                                tablet: '100vw',
+                                desktop: 'min(100vw, 1200px)'
+                            },
+                            widths: {
+                                mobile: {0: 576, 1: 768},
+                                tablet: {0: 992, 1: 1200},
+                                desktop: {0: 1400, 1: 1600}
+                            }
+                        }"
+                        partial="Component/Picture/Responsive" />
+                </section>
+            </f:if>
+
+            <div class="detail-page__content g-4 row">
+                <div class="col-12 col-lg-8">
+                    <section class="detail-page__panel mb-4">
+                        <f:if condition="{event.abstract}">
+                            <div class="detail-page__teaser lead">{event.abstract -> f:format.nl2br()}</div>
+                        </f:if>
+
+                        <div class="detail-page__body">
+                            <f:format.html>{event.description}</f:format.html>
+                        </div>
+                    </section>
+
+                    <div class="d-flex detail-page__actions flex-wrap gap-2">
+                        <f:if condition="{settings.listPid}">
+                            <f:link.page
+                                class="btn btn-outline-primary"
+                                pageUid="{settings.listPid}">
+                                <foundation:translate id="calendarize:back_to_overview" />
+                            </f:link.page>
+                        </f:if>
+
+                        <f:if condition="{settings.bookingPid} && {event.bookable}">
+                            <c:link.booking
+                                class="btn btn-primary"
+                                index="{index}">
+                                <foundation:translate id="calendarize:booking" />
+                            </c:link.booking>
+                        </f:if>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <f:if condition="1 < {event.images -> f:count()}">
+                        <section class="detail-page__panel mb-4">
+                            <h2 class="h5 mb-3">
+                                <foundation:translate id="calendarize:gallery" />
+                            </h2>
+                            <f:render
+                                contentAs="items"
+                                partial="Component/Masonry">
+                                <f:for
+                                    as="image"
+                                    each="{event.images}"
+                                    iteration="imageIterator">
+                                    <f:if condition="{imageIterator.isFirst}">
+                                        <f:then />
+                                        <f:else>
+                                            <div class="m-masonry__item">
+                                                <f:render
+                                                    arguments="{
+                                                        alt: event.title,
+                                                        file: image,
+                                                        imageClass: 'img-fluid rounded'
+                                                    }"
+                                                    partial="Component/Picture/Responsive" />
+                                            </div>
+                                        </f:else>
+                                    </f:if>
+                                </f:for>
+                            </f:render>
+                        </section>
+                    </f:if>
+                </div>
+            </div>
+        </article>
+    </f:alias>
+</html>

@@ -17,10 +17,6 @@ plugin {
     }
   }
 
-  tx_calendarize_calendar {
-    view < plugin.tx_calendarize.view
-  }
-
   tx_news {
     settings.detail.layout.showHero = 1
 

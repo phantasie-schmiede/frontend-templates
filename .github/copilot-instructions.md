@@ -16,7 +16,6 @@ If you haven't already, please read the general agent instructions in `../AGENTS
 - `ContentBlocks/ContentElements/*/` — Content Blocks (`config.yaml`, frontend/backend templates, labels).
 - `Resources/Private/Templates|Partials|Layouts/` — Fluid templates.
 - `ext_localconf.php` — global variable provider registration.
-- `ext_tables.sql` — DB extension for `pages` (`tx_templates_bs_container_type`).
 
 ## Architecture and conventions
 

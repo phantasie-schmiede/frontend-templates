@@ -48,8 +48,12 @@ class AspectRatioViewHelper extends AbstractViewHelper
      */
     public function render(): float
     {
-        $cropArea = $this->getCropArea();
-        $file = $this->arguments['file'];
+        $file = $this->normalizeFileReference($this->arguments['file']);
+        if (null === $file) {
+            return $this->arguments['fallback'];
+        }
+
+        $cropArea = $this->getCropArea($file);
         $image = $this->imageService->applyProcessingInstructions(
             $file,
             [
@@ -69,12 +73,16 @@ class AspectRatioViewHelper extends AbstractViewHelper
     /**
      * @throws JsonException
      */
-    private function getCropArea(): Area
+    private function getCropArea(mixed $file): Area
     {
         $crop = $this->arguments['crop'];
-        $file = $this->arguments['file'];
 
-        if (null === $crop && $file->hasProperty('crop') && $file->getProperty('crop')) {
+        if (
+            null === $crop
+            && method_exists($file, 'hasProperty')
+            && $file->hasProperty('crop')
+            && $file->getProperty('crop')
+        ) {
             $crop = $file->getProperty('crop');
         }
 
@@ -86,5 +94,21 @@ class AspectRatioViewHelper extends AbstractViewHelper
         $cropVariant = $this->arguments['cropVariant'] ?: 'default';
 
         return $cropVariantCollection->getCropArea($cropVariant);
+    }
+
+    private function normalizeFileReference(mixed $file): mixed
+    {
+        if (null === $file) {
+            return null;
+        }
+
+        if (method_exists($file, 'getOriginalResource')) {
+            $originalResource = $file->getOriginalResource();
+            if (null !== $originalResource) {
+                return $originalResource;
+            }
+        }
+
+        return $file;
     }
 }

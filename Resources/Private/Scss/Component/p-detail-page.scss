@@ -1,0 +1,18 @@
+.detail-page {
+  &__body > *:last-child {
+    margin-bottom: 0;
+  }
+
+  &__header {
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__hero-image {
+    display: block;
+    max-height: min(70vh, 42rem);
+    object-fit: cover;
+    width: 100%;
+  }
+}

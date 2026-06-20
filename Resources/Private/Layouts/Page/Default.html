@@ -10,13 +10,16 @@
         name="siteConfiguration"
         value="{foundation:globalVariables.siteConfiguration(path: 'configuration')}" />
     <f:variable
+        name="currentPage"
+        value="{templates:globalVariables.currentPage()}" />
+    <f:variable
         name="templateSettings"
         value="{templates:globalVariables.settings()}" />
 
-    <f:if condition="{data.tx_templates_bs_container_type}">
+    <f:if condition="{currentPage.tx_templates_bs_container_type}">
         <f:variable
             name="containerClass"
-            value="container-{data.tx_templates_bs_container_type}" />
+            value="container-{currentPage.tx_templates_bs_container_type}" />
     </f:if>
 
     <f:render

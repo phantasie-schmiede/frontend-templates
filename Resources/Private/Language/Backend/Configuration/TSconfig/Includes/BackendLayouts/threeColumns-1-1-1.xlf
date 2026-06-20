@@ -16,6 +16,9 @@
             <trans-unit id="content3">
                 <source>Right side content</source>
             </trans-unit>
+            <trans-unit id="stage">
+                <source>Stage area</source>
+            </trans-unit>
             <trans-unit id="title">
                 <source>Three columns (1-1-1)</source>
             </trans-unit>

@@ -20,6 +20,10 @@
                 <source>Right side content</source>
                 <target>Rechter Randbereich</target>
             </trans-unit>
+            <trans-unit id="stage">
+                <source>Stage area</source>
+                <target>Stage-Bereich</target>
+            </trans-unit>
             <trans-unit id="title">
                 <source>Three columns (1-1-1)</source>
                 <target>Drei Spalten (1-1-1)</target>

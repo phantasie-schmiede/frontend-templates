@@ -12,6 +12,15 @@ lib {
 }
 
 page.10.dataProcessing {
+  1781966370 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+  1781966370 {
+    as = stageContent
+    orderBy = sorting
+    table < lib.contentBlockDataProcessing.table
+    where = colPos = 100
+    where.postUserFunc < lib.contentBlockDataProcessing.wherePostUserFunc
+  }
+
   1711319420 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
   1711319420 {
     as = content1

@@ -28,6 +28,14 @@
         }"
         partial="Header" />
 
+    <f:if condition="{stageContent}">
+        <div class="container-fluid">
+            <f:render
+                arguments="{column: stageContent}"
+                partial="Column" />
+        </div>
+    </f:if>
+
     <div class="{containerClass}">
         <f:render
             arguments="{queueIdentifier: 'foundation.general'}"

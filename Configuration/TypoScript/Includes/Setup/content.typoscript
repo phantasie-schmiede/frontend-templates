@@ -12,8 +12,8 @@ lib {
 }
 
 page.10.dataProcessing {
-  1711319415 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-  1711319415 {
+  1781966370 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+  1781966370 {
     as = stageContent
     orderBy = sorting
     table < lib.contentBlockDataProcessing.table

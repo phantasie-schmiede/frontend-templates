@@ -1,0 +1,46 @@
+TCEFORM.sys_file_reference.crop.config.cropVariants {
+  desktop {
+    title = Desktop (Breitbild)
+    allowedAspectRatios {
+      16:9 {
+        title = 16:9
+        value = 1.7777777778
+      }
+
+      3:1 {
+        title = 3:1
+        value = 3.0
+      }
+    }
+  }
+
+  mobile {
+    title = Mobile (Smartphone)
+    allowedAspectRatios {
+      1:1 {
+        title = 1:1
+        value = 1.0
+      }
+
+      4:3 {
+        title = 4:3
+        value = 1.3333333333
+      }
+    }
+  }
+
+  tablet {
+    title = Tablet
+    allowedAspectRatios {
+      4:3 {
+        title = 4:3
+        value = 1.3333333333
+      }
+
+      16:9 {
+        title = 16:9
+        value = 1.7777777778
+      }
+    }
+  }
+}

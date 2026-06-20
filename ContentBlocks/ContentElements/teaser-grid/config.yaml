@@ -9,7 +9,7 @@ fields:
     useExistingField: true
   - identifier: enable_filter
     default: false
-    type: Check
+    type: Checkbox
   - identifier: teasers
     foreign_field: parent_uid
     foreign_table: tt_content

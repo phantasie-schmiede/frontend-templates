@@ -28,6 +28,10 @@
                 <source>Loop slides</source>
                 <target>Slides zyklisch wiederholen</target>
             </trans-unit>
+            <trans-unit id="eager_loading.label">
+                <source>Load image eagerly</source>
+                <target>Bild bevorzugt laden</target>
+            </trans-unit>
             <trans-unit id="preview.slides">
                 <source>Slides:</source>
                 <target>Slides:</target>

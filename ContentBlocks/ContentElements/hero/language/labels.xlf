@@ -22,6 +22,9 @@
             <trans-unit id="show_overlay.label">
                 <source>Show overlay</source>
             </trans-unit>
+            <trans-unit id="eager_loading.label">
+                <source>Load image eagerly</source>
+            </trans-unit>
             <trans-unit id="preview.type">
                 <source>Hero / Stage</source>
             </trans-unit>

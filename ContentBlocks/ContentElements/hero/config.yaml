@@ -29,7 +29,10 @@ fields:
         value: end
   - identifier: show_overlay
     default: true
-    type: Check
+    type: Checkbox
+  - identifier: eager_loading
+    default: true
+    type: Checkbox
 group: content_blocks
 labelField: header
 prefixType: vendor

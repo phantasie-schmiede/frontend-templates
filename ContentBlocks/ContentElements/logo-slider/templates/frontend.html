@@ -23,7 +23,7 @@
             <f:render
                 arguments="{
                     configuration: {
-                        autoplay: data.autoplay ? {delay: 3500, disableOnInteraction: 0} : 0,
+                        autoplay: '{f:if(condition: data.autoplay, then: \'{delay: 3500, disableOnInteraction: 0}\', else: 0)}',
                         loop: 1,
                         navigation: 0,
                         pagination: 0,
@@ -42,21 +42,22 @@
                     as="image"
                     each="{data.image}">
                     <div class="swiper-slide d-flex align-items-center justify-content-center logo-slider__slide{f:if(condition: data.grayscale, then: ' logo-slider__slide--grayscale')}">
-                        <picture>
-                            <source
-                                media="(min-width: 1200px)"
-                                srcset="{f:uri.image(height: 160, image: image, maxWidth: 300)}" />
-                            <source
-                                media="(min-width: 768px)"
-                                srcset="{f:uri.image(height: 128, image: image, maxWidth: 240)}" />
-                            <img
-                                alt="{image.alternative}"
-                                class="img-fluid"
-                                height="96"
-                                loading="lazy"
-                                src="{f:uri.image(height: 96, image: image, maxWidth: 180)}"
-                                width="180" />
-                        </picture>
+                        <f:render
+                            arguments="{
+                                alt: image.alternative,
+                                height: 160,
+                                image: image,
+                                imageClass: 'img-fluid',
+                                sizes: {
+                                    1400: 300,
+                                    1200: 300,
+                                    992: 270,
+                                    768: 240,
+                                    576: 210,
+                                    0: 180
+                                },
+                            }"
+                            partial="Component/Picture/Responsive" />
                     </div>
                 </f:for>
             </f:render>
@@ -66,18 +67,22 @@
                     <f:for
                         as="image"
                         each="{data.image}">
-                        <picture>
-                            <source
-                                media="(min-width: 768px)"
-                                srcset="{f:uri.image(height: 90, image: image, maxWidth: 160)}" />
-                            <img
-                                alt="{image.alternative}"
-                                class="img-fluid"
-                                height="72"
-                                loading="lazy"
-                                src="{f:uri.image(height: 72, image: image, maxWidth: 128)}"
-                                width="128" />
-                        </picture>
+                        <f:render
+                            arguments="{
+                                alt: image.alternative,
+                                height: 90,
+                                image: image,
+                                imageClass: 'img-fluid',
+                                sizes: {
+                                    1400: 160,
+                                    1200: 160,
+                                    992: 160,
+                                    768: 160,
+                                    576: 144,
+                                    0: 128
+                                },
+                            }"
+                            partial="Component/Picture/Responsive" />
                     </f:for>
                 </div>
             </noscript>

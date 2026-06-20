@@ -13,10 +13,10 @@ fields:
     useExistingField: true
   - identifier: autoplay
     default: true
-    type: Check
+    type: Checkbox
   - identifier: grayscale
     default: true
-    type: Check
+    type: Checkbox
 group: content_blocks
 labelField: header
 prefixType: vendor

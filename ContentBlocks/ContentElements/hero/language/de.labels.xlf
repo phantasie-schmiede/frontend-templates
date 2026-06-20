@@ -28,6 +28,10 @@
                 <source>Show overlay</source>
                 <target>Overlay anzeigen</target>
             </trans-unit>
+            <trans-unit id="eager_loading.label">
+                <source>Load image eagerly</source>
+                <target>Bild bevorzugt laden</target>
+            </trans-unit>
             <trans-unit id="preview.type">
                 <source>Hero / Stage</source>
                 <target>Hero / Bühne</target>

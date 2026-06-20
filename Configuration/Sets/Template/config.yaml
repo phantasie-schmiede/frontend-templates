@@ -1,0 +1,4 @@
+dependencies:
+  - typo3/fluid-styled-content-css
+name: psbits/templates
+label: "PSBits Templates"

@@ -11,6 +11,18 @@
     </templates:format.reduceWhitespace>
 </templates:page.header>
 
+<f:variable
+    name="containerClass"
+    value="container" />
+<f:variable
+    name="currentPage"
+    value="{templates:globalVariables.currentPage()}" />
+<f:if condition="{currentPage.tx_templates_bs_container_type}">
+    <f:variable
+        name="containerClass"
+        value="container-{currentPage.tx_templates_bs_container_type}" />
+</f:if>
+
 <section class="hero-block position-relative text-{data.text_align}">
     <f:render
         arguments="{
@@ -24,7 +36,7 @@
         <div class="hero-block__overlay"></div>
     </f:if>
 
-    <div class="container hero-block__content position-absolute start-50 text-{data.text_align} top-50 translate-middle">
+    <div class="{containerClass} hero-block__content position-absolute start-50 text-{data.text_align} top-50 translate-middle">
         <f:if condition="{data.header}">
             <f:if condition="{data.header_layout} != 100">
                 <viewHelpers:tag

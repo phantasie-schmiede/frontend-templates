@@ -12,6 +12,10 @@
                 <source>Main content</source>
                 <target>Hauptbereich</target>
             </trans-unit>
+            <trans-unit id="stage">
+                <source>Stage area</source>
+                <target>Stage-Bereich</target>
+            </trans-unit>
             <trans-unit id="title">
                 <source>One column</source>
                 <target>Eine Spalte</target>

@@ -5,10 +5,19 @@ mod {
         config {
           backend_layout {
             colCount = 1
-            rowCount = 1
+            rowCount = 2
 
             rows {
               1 {
+                columns {
+                  1 {
+                    colPos = 100
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumn.xlf:stage
+                  }
+                }
+              }
+
+              2 {
                 columns {
                   1 {
                     colPos = 0

@@ -16,6 +16,7 @@ use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Select;
 use PSBits\Foundation\Attribute\TCA\Mapping\Field;
 use PSBits\Foundation\Attribute\TCA\Mapping\Table;
+use PSBits\Templates\Enum\AiStatus;
 
 /**
  * Class Page
@@ -25,12 +26,6 @@ use PSBits\Foundation\Attribute\TCA\Mapping\Table;
 #[Table(name: 'sys_file_metadata')]
 class SysFileMetaData
 {
-    public const AI_STATUS_OPTIONS = [
-        'NONE'     => 'none',
-        'MODIFIED' => 'modified',
-        'CREATED'  => 'created',
-    ];
-
     #[Column(l10nMode: 'exclude', position: 'after:title')]
     #[Field(name: 'tx_templates_copyright')]
     #[Input]
@@ -38,6 +33,6 @@ class SysFileMetaData
 
     #[Column(l10nMode: 'exclude', position: 'after:tx_templates_copyright')]
     #[Field(name: 'tx_templates_ai_status')]
-    #[Select(items: self::AI_STATUS_OPTIONS)]
-    protected string $aiStatus = self::AI_STATUS_OPTIONS['NONE'];
+    #[Select(items: AiStatus::OPTIONS)]
+    protected string $aiStatus = AiStatus::None->value;
 }

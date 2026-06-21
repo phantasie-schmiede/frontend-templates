@@ -22,12 +22,6 @@ enum AiStatus: string
 {
     public const FRONTEND_LL = 'LLL:EXT:templates/Resources/Private/Language/Frontend/Enum/aiStatus.xlf:';
 
-    public const OPTIONS = [
-        'NONE'     => self::None->value,
-        'MODIFIED' => self::Modified->value,
-        'CREATED'  => self::Created->value,
-    ];
-
     case None = 'none';
     case Modified = 'modified';
     case Created = 'created';

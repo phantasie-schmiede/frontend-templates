@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace PSBits\Templates\Domain\Model\Typo3;
 
 use PSBits\Foundation\Attribute\TCA\Column;
+use PSBits\Foundation\Attribute\TCA\ColumnType\Enum;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
-use PSBits\Foundation\Attribute\TCA\ColumnType\Select;
 use PSBits\Foundation\Attribute\TCA\Mapping\Field;
 use PSBits\Foundation\Attribute\TCA\Mapping\Table;
 use PSBits\Templates\Enum\AiStatus;
@@ -33,6 +33,6 @@ class SysFileMetaData
 
     #[Column(l10nMode: 'exclude', position: 'after:tx_templates_copyright')]
     #[Field(name: 'tx_templates_ai_status')]
-    #[Select(items: AiStatus::OPTIONS)]
-    protected string $aiStatus = AiStatus::None->value;
+    #[Enum(AiStatus::class)]
+    protected AiStatus $aiStatus = AiStatus::None;
 }

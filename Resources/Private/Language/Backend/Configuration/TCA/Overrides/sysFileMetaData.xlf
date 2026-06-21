@@ -7,6 +7,18 @@
         product-name="templates"
         source-language="en">
         <body>
+            <trans-unit id="aiStatus">
+                <source>AI status</source>
+            </trans-unit>
+            <trans-unit id="aiStatus.created">
+                <source>Created with AI</source>
+            </trans-unit>
+            <trans-unit id="aiStatus.modified">
+                <source>Modified with AI</source>
+            </trans-unit>
+            <trans-unit id="aiStatus.none">
+                <source>No AI</source>
+            </trans-unit>
             <trans-unit id="copyright">
                 <source>Copyright</source>
             </trans-unit>

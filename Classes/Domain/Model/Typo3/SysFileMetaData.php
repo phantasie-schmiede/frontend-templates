@@ -13,6 +13,7 @@ namespace PSBits\Templates\Domain\Model\Typo3;
 
 use PSBits\Foundation\Attribute\TCA\Column;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
+use PSBits\Foundation\Attribute\TCA\ColumnType\Select;
 use PSBits\Foundation\Attribute\TCA\Mapping\Field;
 use PSBits\Foundation\Attribute\TCA\Mapping\Table;
 
@@ -24,8 +25,19 @@ use PSBits\Foundation\Attribute\TCA\Mapping\Table;
 #[Table(name: 'sys_file_metadata')]
 class SysFileMetaData
 {
+    public const AI_STATUS_OPTIONS = [
+        'NONE'     => 'none',
+        'MODIFIED' => 'modified',
+        'CREATED'  => 'created',
+    ];
+
     #[Column(l10nMode: 'exclude', position: 'after:title')]
     #[Field(name: 'tx_templates_copyright')]
     #[Input]
     protected string $copyright = '';
+
+    #[Column(l10nMode: 'exclude', position: 'after:tx_templates_copyright')]
+    #[Field(name: 'tx_templates_ai_status')]
+    #[Select(items: self::AI_STATUS_OPTIONS)]
+    protected string $aiStatus = self::AI_STATUS_OPTIONS['NONE'];
 }

@@ -26,13 +26,8 @@ enum AiStatus: string
     case Modified = 'modified';
     case Created = 'created';
 
-    public function getFrontendLabel(): string
-    {
-        return LocalizationUtility::translate(self::FRONTEND_LL . $this->value);
-    }
-
     public function getLabel(): string
     {
-        return $this->getFrontendLabel();
+        return LocalizationUtility::translate(self::FRONTEND_LL . $this->value);
     }
 }

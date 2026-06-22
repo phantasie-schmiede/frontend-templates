@@ -39,7 +39,9 @@
         </div>
     </f:if>
 
-    <div class="{containerClass}">
+    <main
+        class="{containerClass}"
+        id="main-content">
         <f:render
             arguments="{queueIdentifier: 'foundation.general'}"
             partial="../FlashMessages" />
@@ -52,5 +54,5 @@
         <f:render
             arguments="{footerNavigation: footerNavigation}"
             partial="Footer" />
-    </div>
+    </main>
 </html>

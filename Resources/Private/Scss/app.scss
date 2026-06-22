@@ -83,6 +83,21 @@ body {
   }
 }
 
+.skip-link {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  left: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  position: absolute;
+  top: 0;
+  transform: translateY(-140%);
+  z-index: 1100;
+
+  &:focus-visible {
+    transform: translateY(0);
+  }
+}
+
 .psbits-clear-icon {
   border-radius: 50%;
   cursor: pointer;
@@ -171,6 +186,21 @@ body {
     width: min(90vw, 50rem);
     z-index: 1;
   }
+
+  &__lead {
+    margin-inline: auto;
+    max-width: 34ch;
+  }
+
+  @include media-breakpoint-down(md) {
+    &__content {
+      width: min(94vw, 34rem);
+    }
+
+    &__lead {
+      margin-bottom: 1.5rem !important;
+    }
+  }
 }
 
 .logo-slider__slide {
@@ -200,4 +230,10 @@ body {
 :where(a, button, input, select, textarea):focus-visible {
   outline: 2px solid var(--bs-primary);
   outline-offset: 2px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background: transparent;
+  border: 0;
 }

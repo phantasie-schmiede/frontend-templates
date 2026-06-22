@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file
+        datatype="plaintext"
+        date="2026-06-22T18:20:00+01:00"
+        original="messages"
+        product-name="templates"
+        source-language="en">
+        <body>
+            <trans-unit id="nextSlide">
+                <source>Next slide</source>
+            </trans-unit>
+            <trans-unit id="previousSlide">
+                <source>Previous slide</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -15,15 +15,17 @@
                     </a>
                 </f:then>
                 <f:else if="{page.hasSubpages}">
-                    <a
+                    <button
+                        aria-controls="submenu-{page.data.uid}"
                         aria-expanded="false"
                         class="dropdown-toggle nav-link"
                         data-bs-toggle="dropdown"
-                        href="#"
-                        role="button">
+                        type="button">
                         {page.title}
-                    </a>
-                    <ul class="dropdown-menu">
+                    </button>
+                    <ul
+                        class="dropdown-menu"
+                        id="submenu-{page.data.uid}">
                         <f:for
                             as="subPage"
                             each="{page.children}">

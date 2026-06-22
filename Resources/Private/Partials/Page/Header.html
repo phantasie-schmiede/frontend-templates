@@ -4,6 +4,12 @@
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
     <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Page/header.xlf" />
 
+    <a
+        class="skip-link"
+        href="#main-content">
+        <foundation:translate id="header:skipToMainContent" />
+    </a>
+
     <header class="border-bottom">
         <nav class="bg-body-tertiary navbar navbar-expand-lg">
             <div class="{containerClass} flex-nowrap">
@@ -19,7 +25,7 @@
 
                 <button
                     aria-controls="offcanvasNavbar"
-                    aria-label="Toggle navigation"
+                    aria-label="{foundation:translate(id: 'header:openMainNavigation')}"
                     class="collapsed ms-auto navbar-toggler"
                     data-bs-target="#offcanvasNavbar"
                     data-bs-toggle="offcanvas"
@@ -39,7 +45,7 @@
                             <foundation:translate id="header:menu" />
                         </h5>
                         <button
-                            aria-label="Close"
+                            aria-label="{foundation:translate(id: 'header:closeMainNavigation')}"
                             class="btn-close"
                             data-bs-dismiss="offcanvas"
                             type="button"></button>
@@ -55,9 +61,10 @@
                             <div class="align-self-lg-end d-flex flex-column flex-lg-row gap-2 mb-lg-3 mt-auto mt-lg-0">
                                 <f:for
                                     as="button"
-                                    each="{templateSettings.headerButtons}">
+                                    each="{templateSettings.headerButtons}"
+                                    iteration="buttonIterator">
                                     <f:link.typolink
-                                        class="btn btn-{button.type.value}"
+                                        class="btn {f:if(condition: buttonIterator.isFirst, then: 'btn-{button.type.value}', else: 'btn-outline-secondary')}"
                                         parameter="{button.link}">
                                         {button.label}
                                     </f:link.typolink>

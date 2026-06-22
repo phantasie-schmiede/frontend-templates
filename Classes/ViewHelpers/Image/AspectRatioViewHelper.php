@@ -40,7 +40,7 @@ class AspectRatioViewHelper extends AbstractViewHelper
         );
         $this->registerArgument('cropVariant', 'string', 'Crop variant identifier.', false, 'default');
         $this->registerArgument('fallback', 'float', 'Fallback ratio when no ratio can be resolved.', false, 1.0);
-        $this->registerArgument('file', 'mixed', 'TYPO3 file reference to read crop data from.', false, null);
+        $this->registerArgument('file', 'mixed', 'TYPO3 file reference to read crop data from.');
     }
 
     /**

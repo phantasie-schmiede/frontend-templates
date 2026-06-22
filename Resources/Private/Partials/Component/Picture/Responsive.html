@@ -4,6 +4,12 @@
     xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
 <f:variable
+    name="aiStatus"
+    value="{file.properties.tx_templates_ai_status}" />
+<f:variable
+    name="copyright"
+    value="{file.properties.tx_templates_copyright}" />
+<f:variable
     name="defaultCropVariants"
     value="{
         mobile: {
@@ -28,95 +34,89 @@
         0: 'avif',
         1: 'webp',
     }" />
-<f:variable
-    name="aiStatus"
-    value="{file.properties.tx_templates_ai_status}" />
-<f:variable
-    name="copyright"
-    value="{file.properties.tx_templates_copyright -> f:or(alternative: file.properties.copyright)}" />
 
-<f:if condition="{file.originalResource}">
-    <f:if condition="!{aiStatus}">
-        <f:variable
-            name="aiStatus"
-            value="{file.originalResource.properties.tx_templates_ai_status}" />
-    </f:if>
-    <f:if condition="!{copyright}">
-        <f:variable
-            name="copyright"
-            value="{file.originalResource.properties.tx_templates_copyright -> f:or(alternative: file.originalResource.properties.copyright)}" />
-    </f:if>
-</f:if>
-
-<f:variable
-    name="aiStatusLabel"
-    value="{templates:enum.aiStatusLabel(status: aiStatus)}" />
-
-<picture>
-    <f:for
-        as="data"
-        each="{cropVariants -> f:or(alternative: defaultCropVariants)}"
-        key="cropVariant">
-        <f:variable
-            name="aspectRatio"
-            value="{templates:image.aspectRatio(cropVariant: cropVariant, file: file)}" />
-
-        <f:comment>
-            <!-- Current data is stored in an extra variable to be able to access the last data for the img tag outside of this loop -->
-        </f:comment>
-        <f:variable
-            name="data"
-            value="{data}" />
-
-        <f:for
-            as="fileExtension"
-            each="{fileExtensions}">
-            <f:variable
-                name="customSizes"
-                value="{sizes.{cropVariant}}" />
-            <f:variable
-                name="customWidths"
-                value="{widths.{cropVariant}}" />
-
-            <source
-                height="{f:ceil(value: '{data.maxWidth / aspectRatio}')}"
-                media="{data.mediaQuery}"
-                sizes="{customSizes -> f:or(alternative: defaultSize)}"
-                srcset="{f:render(arguments: {
-                    cropVariant: cropVariant,
-                    file: file,
-                    fileExtension: fileExtension,
-                    widths: customWidths,
-                }, partial: 'Component/Picture/SourceSet') -> templates:format.reduceWhitespace()}"
-                type="image/{fileExtension}"
-                width="{data.maxWidth}" />
-        </f:for>
-    </f:for>
-
-    <f:image
-        additionalAttributes="{
-            alt: alt,
-            title: title,
-        }"
-        class="{imageClass -> f:or(alternative: 'img-fluid')}"
-        cropVariant="desktop"
-        decoding="{decoding -> f:or(alternative: 'async')}"
-        height="{f:ceil(value: '{data.maxWidth / aspectRatio}')}"
-        image="{file}"
-        loading="{loading -> f:or(alternative: 'lazy')}"
-        width="{data.maxWidth}" />
-</picture>
 <f:if condition="{copyright} || {aiStatusLabel}">
-    <small class="d-block mt-2 text-body-secondary">
-        <f:if condition="{copyright}">
-            <span>© {copyright}</span>
-        </f:if>
-        <f:if condition="{copyright} && {aiStatusLabel}">
-            <span aria-hidden="true">·</span>
-        </f:if>
-        <f:if condition="{aiStatusLabel}">
-            <span class="badge rounded-pill text-bg-light">{aiStatusLabel}</span>
-        </f:if>
-    </small>
+    <f:then>
+        <figure>
+            <f:render
+                arguments="{_all}"
+                section="Picture" />
+            <figcaption>
+                <small class="d-block mt-2 text-body-secondary">
+                    <f:if condition="{copyright}">
+                        © {copyright}
+                    </f:if>
+                    <f:if condition="{copyright} && {aiStatusLabel}">
+                        <span aria-hidden="true">·</span>
+                    </f:if>
+                    <f:if condition="{aiStatusLabel}">
+                        {aiStatusLabel}
+                    </f:if>
+                </small>
+            </figcaption>
+        </figure>
+    </f:then>
+    <f:else>
+        <f:render
+            arguments="{_all}"
+            section="Picture" />
+    </f:else>
 </f:if>
+
+<f:section name="Picture">
+    <picture>
+        <f:for
+            as="data"
+            each="{cropVariants -> f:or(alternative: defaultCropVariants)}"
+            key="cropVariant">
+            <f:variable
+                name="aspectRatio"
+                value="{templates:image.aspectRatio(cropVariant: cropVariant, file: file)}" />
+
+            <f:comment>
+                <!-- Current data is stored in an extra variable to be able to access the last data for the img tag outside of this loop -->
+            </f:comment>
+            <f:variable
+                name="data"
+                value="{data}" />
+
+            <f:for
+                as="fileExtension"
+                each="{fileExtensions}">
+                <f:variable
+                    name="customSizes"
+                    value="{sizes.{cropVariant}}" />
+                <f:variable
+                    name="customWidths"
+                    value="{widths.{cropVariant}}" />
+
+                <source
+                    height="{f:ceil(value: '{data.maxWidth / aspectRatio}')}"
+                    media="{data.mediaQuery}"
+                    sizes="{customSizes -> f:or(alternative: defaultSize)}"
+                    srcset="{f:render(arguments: {
+                        cropVariant: cropVariant,
+                        file: file,
+                        fileExtension: fileExtension,
+                        widths: customWidths,
+                    }, partial: 'Component/Picture/SourceSet') -> templates:format.reduceWhitespace()}"
+                    type="image/{fileExtension}"
+                    width="{data.maxWidth}" />
+            </f:for>
+        </f:for>
+
+        <f:image
+            additionalAttributes="{
+                alt: alt,
+                title: title,
+            }"
+            class="{imageClass -> f:or(alternative: 'img-fluid')}"
+            cropVariant="desktop"
+            decoding="{decoding -> f:or(alternative: 'async')}"
+            height="{f:ceil(value: '{data.maxWidth / aspectRatio}')}"
+            image="{file}"
+            loading="{loading -> f:or(alternative: 'lazy')}"
+            width="{data.maxWidth}" />
+    </picture>
+</f:section>
 </html>

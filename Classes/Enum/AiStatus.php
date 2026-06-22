@@ -11,7 +11,11 @@ declare(strict_types=1);
 
 namespace PSBits\Templates\Enum;
 
+use JsonException;
 use PSBits\Foundation\Utility\LocalizationUtility;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
+use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 
 /**
  * Class AiStatus
@@ -22,10 +26,16 @@ enum AiStatus: string
 {
     public const FRONTEND_LL = 'LLL:EXT:templates/Resources/Private/Language/Frontend/Enum/aiStatus.xlf:';
 
-    case None = 'none';
+    case Created  = 'created';
     case Modified = 'modified';
-    case Created = 'created';
+    case None     = 'none';
 
+    /**
+     * @throws AspectNotFoundException
+     * @throws ContainerExceptionInterface
+     * @throws JsonException
+     * @throws NotFoundExceptionInterface
+     */
     public function getLabel(): string
     {
         return LocalizationUtility::translate(self::FRONTEND_LL . $this->value);

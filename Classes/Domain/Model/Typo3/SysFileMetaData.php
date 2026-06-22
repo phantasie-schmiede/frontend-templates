@@ -26,7 +26,7 @@ use PSBits\Templates\Enum\AiStatus;
 #[Table(name: 'sys_file_metadata')]
 class SysFileMetaData
 {
-    #[Column(l10nMode: 'exclude', position: 'after:tx_templates_copyright')]
+    #[Column(databaseDefinition: 'varchar(8) DEFAULT NULL', default: AiStatus::None->value, l10nMode: 'exclude', position: 'after:tx_templates_copyright', required: true)]
     #[Field(name: 'tx_templates_ai_status')]
     #[Enum(AiStatus::class)]
     protected AiStatus $aiStatus = AiStatus::None;

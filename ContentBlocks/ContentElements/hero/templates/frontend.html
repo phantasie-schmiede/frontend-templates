@@ -3,65 +3,65 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<templates:page.header identifier="preloadHero">
-    <templates:format.reduceWhitespace>
-        <f:render
-            arguments="{file: data.image.0}"
-            partial="Component/Picture/Preload" />
-    </templates:format.reduceWhitespace>
-</templates:page.header>
+    <templates:page.header identifier="preloadHero">
+        <templates:format.reduceWhitespace>
+            <f:render
+                arguments="{file: data.image.0}"
+                partial="Component/Picture/Preload" />
+        </templates:format.reduceWhitespace>
+    </templates:page.header>
 
-<f:variable
-    name="containerClass"
-    value="container" />
-<f:variable
-    name="currentPage"
-    value="{templates:globalVariables.currentPage()}" />
-
-<f:if condition="{currentPage.tx_templates_bs_container_type}">
     <f:variable
         name="containerClass"
-        value="container-{currentPage.tx_templates_bs_container_type}" />
-</f:if>
+        value="container" />
+    <f:variable
+        name="currentPage"
+        value="{templates:globalVariables.currentPage()}" />
 
-<section class="hero-block position-relative text-{data.text_align}">
-    <f:render
-        arguments="{
+    <f:if condition="{currentPage.tx_templates_bs_container_type}">
+        <f:variable
+            name="containerClass"
+            value="container-{currentPage.tx_templates_bs_container_type}" />
+    </f:if>
+
+    <section class="hero-block position-relative text-{data.text_align}">
+        <f:render
+            arguments="{
                 file: data.image.0,
                 imageClass: 'h-auto hero-block__image w-100',
                 loading: '{f:if(condition: data.eager_loading, then: \'eager\')}',
                 metaPosition: 'overlay'
             }"
-        partial="Component/Picture/Responsive" />
+            partial="Component/Picture/Responsive" />
 
-    <f:if condition="{data.show_overlay}">
-        <div class="hero-block__overlay"></div>
-    </f:if>
+        <f:if condition="{data.show_overlay}">
+            <div class="hero-block__overlay"></div>
+        </f:if>
 
-    <div class="{containerClass} hero-block__content position-absolute start-50 text-{data.text_align} top-50 translate-middle">
-        <f:if condition="{data.header}">
-            <f:if condition="{data.header_layout} != 100">
-                <viewHelpers:tag
-                    class="display-5"
-                    tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 1}')}">
-                    {data.header}
-                </viewHelpers:tag>
+        <div class="{containerClass} hero-block__content position-absolute start-50 text-{data.text_align} top-50 translate-middle">
+            <f:if condition="{data.header}">
+                <f:if condition="{data.header_layout} != 100">
+                    <viewHelpers:tag
+                        class="display-5"
+                        tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 1}')}">
+                        {data.header}
+                    </viewHelpers:tag>
+                </f:if>
             </f:if>
-        </f:if>
 
-        <f:if condition="{data.bodytext}">
-            <div class="lead mb-4">
-                <f:format.html>{data.bodytext}</f:format.html>
-            </div>
-        </f:if>
+            <f:if condition="{data.bodytext}">
+                <div class="lead mb-4">
+                    <f:format.html>{data.bodytext}</f:format.html>
+                </div>
+            </f:if>
 
-        <f:if condition="{data.header_link}">
-            <f:link.typolink
-                class="btn btn-primary"
-                parameter="{data.header_link}">
-                {data.cta_label}
-            </f:link.typolink>
-        </f:if>
-    </div>
-</section>
+            <f:if condition="{data.header_link}">
+                <f:link.typolink
+                    class="btn btn-primary"
+                    parameter="{data.header_link}">
+                    {data.cta_label}
+                </f:link.typolink>
+            </f:if>
+        </div>
+    </section>
 </html>

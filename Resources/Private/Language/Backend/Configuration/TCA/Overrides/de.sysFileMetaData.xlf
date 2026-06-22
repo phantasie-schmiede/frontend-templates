@@ -8,6 +8,22 @@
         source-language="en"
         target-language="de">
         <body>
+            <trans-unit id="aiStatus">
+                <source>AI status</source>
+                <target>KI-Status</target>
+            </trans-unit>
+            <trans-unit id="aiStatus.created">
+                <source>Created with AI</source>
+                <target>Mit KI erstellt</target>
+            </trans-unit>
+            <trans-unit id="aiStatus.modified">
+                <source>Modified with AI</source>
+                <target>Mit KI modifiziert</target>
+            </trans-unit>
+            <trans-unit id="aiStatus.none">
+                <source>No AI</source>
+                <target>Keine KI</target>
+            </trans-unit>
             <trans-unit id="copyright">
                 <source>Copyright</source>
                 <target>Copyright</target>

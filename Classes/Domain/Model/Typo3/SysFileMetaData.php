@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace PSBits\Templates\Domain\Model\Typo3;
 
 use PSBits\Foundation\Attribute\TCA\Column;
+use PSBits\Foundation\Attribute\TCA\ColumnType\Enum;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
 use PSBits\Foundation\Attribute\TCA\Mapping\Field;
 use PSBits\Foundation\Attribute\TCA\Mapping\Table;
+use PSBits\Templates\Enum\AiStatus;
 
 /**
  * Class Page
@@ -24,6 +26,11 @@ use PSBits\Foundation\Attribute\TCA\Mapping\Table;
 #[Table(name: 'sys_file_metadata')]
 class SysFileMetaData
 {
+    #[Column(l10nMode: 'exclude', position: 'after:tx_templates_copyright')]
+    #[Field(name: 'tx_templates_ai_status')]
+    #[Enum(AiStatus::class)]
+    protected AiStatus $aiStatus = AiStatus::None;
+
     #[Column(l10nMode: 'exclude', position: 'after:title')]
     #[Field(name: 'tx_templates_copyright')]
     #[Input]

@@ -26,13 +26,13 @@ use PSBits\Templates\Enum\AiStatus;
 #[Table(name: 'sys_file_metadata')]
 class SysFileMetaData
 {
-    #[Column(l10nMode: 'exclude', position: 'after:title')]
-    #[Field(name: 'tx_templates_copyright')]
-    #[Input]
-    protected string $copyright = '';
-
     #[Column(l10nMode: 'exclude', position: 'after:tx_templates_copyright')]
     #[Field(name: 'tx_templates_ai_status')]
     #[Enum(AiStatus::class)]
     protected AiStatus $aiStatus = AiStatus::None;
+
+    #[Column(l10nMode: 'exclude', position: 'after:title')]
+    #[Field(name: 'tx_templates_copyright')]
+    #[Input]
+    protected string $copyright = '';
 }

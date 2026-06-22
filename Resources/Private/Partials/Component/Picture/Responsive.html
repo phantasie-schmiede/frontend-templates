@@ -41,25 +41,34 @@
         1: 'webp',
     }" />
 
-    <figure class="position-relative">
-        <f:render
-            arguments="{_all}"
-            section="Picture" />
+    <figure>
+        <f:if condition="{metaPosition} == 'overlay'">
+            <f:then>
+                <div class="d-inline-block mw-100 position-relative">
+                    <f:render
+                        arguments="{_all}"
+                        section="Picture" />
 
-        <f:if condition="{copyright} || {aiStatus}">
-            <figcaption class="picture-meta-caption">
-                <small class="{metaClass}">
-                    <f:if condition="{copyright}">© {copyright}</f:if>
-                    <f:if condition="{copyright} && {aiStatus}">
-                        <span
-                            aria-hidden="true"
-                            class="picture-meta__separator">
-                            ·
-                        </span>
+                    <f:if condition="{copyright} || {aiStatus}">
+                        <f:render
+                            arguments="{_all}"
+                            section="PictureMeta" />
                     </f:if>
-                    <f:if condition="{aiStatus}">{aiStatus.label}</f:if>
-                </small>
-            </figcaption>
+                </div>
+            </f:then>
+            <f:else>
+                <f:render
+                    arguments="{_all}"
+                    section="Picture" />
+
+                <f:if condition="{copyright} || {aiStatus}">
+                    <figcaption>
+                        <f:render
+                            arguments="{_all}"
+                            section="PictureMeta" />
+                    </figcaption>
+                </f:if>
+            </f:else>
         </f:if>
     </figure>
 
@@ -118,5 +127,19 @@
                 loading="{loading -> f:or(alternative: 'lazy')}"
                 width="{data.maxWidth}" />
         </picture>
+    </f:section>
+
+    <f:section name="PictureMeta">
+        <small class="{metaClass}">
+            <f:if condition="{copyright}">© {copyright}</f:if>
+            <f:if condition="{copyright} && {aiStatus}">
+                <span
+                    aria-hidden="true"
+                    class="picture-meta__separator">
+                    ·
+                </span>
+            </f:if>
+            <f:if condition="{aiStatus}">{aiStatus.label}</f:if>
+        </small>
     </f:section>
 </html>

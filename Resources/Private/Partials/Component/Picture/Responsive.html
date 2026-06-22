@@ -5,10 +5,31 @@
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
 <f:variable
     name="aiStatus"
-    value="{file.properties.tx_templates_ai_status}" />
+    value="{file.properties.tx_templates_ai_status -> f:or(alternative: file.originalResource.properties.tx_templates_ai_status)}" />
+<f:variable
+    name="aiStatusLabel"
+    value="" />
 <f:variable
     name="copyright"
-    value="{file.properties.tx_templates_copyright}" />
+    value="{file.properties.tx_templates_copyright -> f:or(alternative: file.originalResource.properties.tx_templates_copyright)}" />
+<f:variable
+    name="metaPosition"
+    value="{metaPosition -> f:or(alternative: 'below')}" />
+<f:switch expression="{aiStatus}">
+    <f:case value="created">
+        <f:variable
+            name="aiStatusLabel"
+            value="{f:translate(key: 'LLL:EXT:templates/Resources/Private/Language/Frontend/Enum/aiStatus.xlf:created')}" />
+    </f:case>
+    <f:case value="modified">
+        <f:variable
+            name="aiStatusLabel"
+            value="{f:translate(key: 'LLL:EXT:templates/Resources/Private/Language/Frontend/Enum/aiStatus.xlf:modified')}" />
+    </f:case>
+</f:switch>
+<f:variable
+    name="metaClass"
+    value="{f:if(condition: '{metaPosition} == \'overlay\'', then: 'bottom-0 d-block end-0 p-2 position-absolute text-body-secondary text-end', else: 'd-block mt-2 text-body-secondary text-end')}" />
 <f:variable
     name="defaultCropVariants"
     value="{
@@ -35,33 +56,24 @@
         1: 'webp',
     }" />
 
-<f:if condition="{copyright} || {aiStatusLabel}">
-    <f:then>
-        <figure>
-            <f:render
-                arguments="{_all}"
-                section="Picture" />
-            <figcaption>
-                <small class="d-block mt-2 text-body-secondary">
-                    <f:if condition="{copyright}">
-                        © {copyright}
-                    </f:if>
-                    <f:if condition="{copyright} && {aiStatusLabel}">
-                        <span aria-hidden="true">·</span>
-                    </f:if>
-                    <f:if condition="{aiStatusLabel}">
-                        {aiStatusLabel}
-                    </f:if>
-                </small>
-            </figcaption>
-        </figure>
-    </f:then>
-    <f:else>
-        <f:render
-            arguments="{_all}"
-            section="Picture" />
-    </f:else>
-</f:if>
+<div class="picture-meta-wrapper position-relative">
+    <f:render
+        arguments="{_all}"
+        section="Picture" />
+    <f:if condition="{copyright} || {aiStatusLabel}">
+        <small class="{metaClass}">
+            <f:if condition="{copyright}">
+                © {copyright}
+            </f:if>
+            <f:if condition="{copyright} && {aiStatusLabel}">
+                <span aria-hidden="true">·</span>
+            </f:if>
+            <f:if condition="{aiStatusLabel}">
+                {aiStatusLabel}
+            </f:if>
+        </small>
+    </f:if>
+</div>
 
 <f:section name="Picture">
     <picture>

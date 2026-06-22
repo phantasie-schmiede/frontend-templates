@@ -30,4 +30,9 @@ enum AiStatus: string
     {
         return LocalizationUtility::translate(self::FRONTEND_LL . $this->value);
     }
+
+    public function getLabel(): string
+    {
+        return $this->getFrontendLabel();
+    }
 }

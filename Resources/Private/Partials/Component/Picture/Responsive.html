@@ -28,6 +28,29 @@
         0: 'avif',
         1: 'webp',
     }" />
+<f:variable
+    name="aiStatus"
+    value="{file.properties.tx_templates_ai_status}" />
+<f:variable
+    name="copyright"
+    value="{file.properties.tx_templates_copyright -> f:or(alternative: file.properties.copyright)}" />
+
+<f:if condition="{file.originalResource}">
+    <f:if condition="!{aiStatus}">
+        <f:variable
+            name="aiStatus"
+            value="{file.originalResource.properties.tx_templates_ai_status}" />
+    </f:if>
+    <f:if condition="!{copyright}">
+        <f:variable
+            name="copyright"
+            value="{file.originalResource.properties.tx_templates_copyright -> f:or(alternative: file.originalResource.properties.copyright)}" />
+    </f:if>
+</f:if>
+
+<f:variable
+    name="aiStatusLabel"
+    value="{templates:enum.aiStatusLabel(status: aiStatus)}" />
 
 <picture>
     <f:for
@@ -83,4 +106,17 @@
         loading="{loading -> f:or(alternative: 'lazy')}"
         width="{data.maxWidth}" />
 </picture>
+<f:if condition="{copyright} || {aiStatusLabel}">
+    <small class="d-block mt-2 text-body-secondary">
+        <f:if condition="{copyright}">
+            <span>© {copyright}</span>
+        </f:if>
+        <f:if condition="{copyright} && {aiStatusLabel}">
+            <span aria-hidden="true">·</span>
+        </f:if>
+        <f:if condition="{aiStatusLabel}">
+            <span class="badge rounded-pill text-bg-light">{aiStatusLabel}</span>
+        </f:if>
+    </small>
+</f:if>
 </html>

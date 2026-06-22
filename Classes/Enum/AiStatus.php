@@ -24,7 +24,7 @@ use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
  */
 enum AiStatus: string
 {
-    public const FRONTEND_LL = 'LLL:EXT:templates/Resources/Private/Language/Frontend/Enum/aiStatus.xlf:';
+    public const string FRONTEND_LL = 'LLL:EXT:templates/Resources/Private/Language/Frontend/Enum/aiStatus.xlf:';
 
     case Created  = 'created';
     case Modified = 'modified';

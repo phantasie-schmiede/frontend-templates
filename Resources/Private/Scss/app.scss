@@ -86,15 +86,15 @@ body {
 .skip-link {
   background-color: var(--bs-body-bg);
   color: var(--bs-body-color);
-  left: 0.5rem;
+  left: 50%;
   padding: 0.5rem 0.75rem;
   position: absolute;
   top: 0;
-  transform: translateY(-140%);
+  transform: translate(-50%, -140%);
   z-index: 1100;
 
   &:focus-visible {
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
 }
 
@@ -197,7 +197,6 @@ body {
   }
 
   &__lead {
-    margin-inline: auto;
     max-width: 34ch;
   }
 

@@ -24,7 +24,7 @@
         value="container-{currentPage.tx_templates_bs_container_type}" />
 </f:if>
 
-<section class="hero-block {f:if(condition: data.show_overlay, then: 'hero-block--has-overlay')} position-relative text-{data.text_align}">
+<section class="hero-block{f:if(condition: data.show_overlay, then: ' hero-block--overlay')} position-relative text-{data.text_align}">
     <f:render
         arguments="{
             file: data.image.0,

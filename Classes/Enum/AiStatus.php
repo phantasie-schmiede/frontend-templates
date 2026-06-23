@@ -38,6 +38,6 @@ enum AiStatus: string
      */
     public function getLabel(): string
     {
-        return LocalizationUtility::translate(self::FRONTEND_LL . $this->value);
+        return LocalizationUtility::translate(self::FRONTEND_LL . $this->value) ?? '';
     }
 }

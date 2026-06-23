@@ -46,8 +46,6 @@ class AiStatusViewHelper extends AbstractViewHelper
             return null;
         }
 
-        $aiStatus = AiStatus::tryFrom($aiStatus);
-
-        return AiStatus::None === $aiStatus ? null : $aiStatus;
+        return AiStatus::tryFrom($aiStatus);
     }
 }

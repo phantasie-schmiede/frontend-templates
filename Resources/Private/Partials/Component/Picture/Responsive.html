@@ -7,6 +7,9 @@
         name="aiStatus"
         value="{templates:image.aiStatus(file: file)}" />
     <f:variable
+        name="aiStatusLabel"
+        value="{aiStatus.label}" />
+    <f:variable
         name="copyright"
         value="{file.properties.tx_templates_copyright -> f:or(alternative: file.originalResource.properties.tx_templates_copyright)}" />
     <f:variable
@@ -14,50 +17,50 @@
         value="{metaPosition -> f:or(alternative: 'below')}" />
     <f:variable
         name="metaClass"
-        value="{f:if(condition: '{metaPosition} == \'overlay\'', then: 'bottom-0 d-block end-0 p-2 picture-meta picture-meta--overlay position-absolute text-end z-1', else: 'd-block mt-2 picture-meta picture-meta--below text-body-secondary text-end')}" />
+        value="{f:if(condition: '{metaPosition} == \'overlay\'', then: 'bottom-0 d-block end-0 p-2 picture-meta picture-meta--overlay position-absolute text-end z-1', else: 'd-block mt-1 picture-meta text-body-secondary text-end')}" />
     <f:variable
         name="defaultCropVariants"
         value="{
-        mobile: {
-            maxWidth: 576,
-            mediaQuery: '(max-width: 576px)'
-        },
-        tablet: {
-            maxWidth: 992,
-            mediaQuery: '(min-width: 577px) and (max-width: 992px)'
-        },
-        desktop: {
-            maxWidth: 1600,
-            mediaQuery: '(min-width: 993px)'
-        },
-    }" />
+            mobile: {
+                maxWidth: 576,
+                mediaQuery: '(max-width: 576px)'
+            },
+            tablet: {
+                maxWidth: 992,
+                mediaQuery: '(min-width: 577px) and (max-width: 992px)'
+            },
+            desktop: {
+                maxWidth: 1600,
+                mediaQuery: '(min-width: 993px)'
+            },
+        }" />
     <f:variable
         name="defaultSize"
         value="100vw" />
     <f:variable
         name="fileExtensions"
         value="{
-        0: 'avif',
-        1: 'webp',
-    }" />
+            0: 'avif',
+            1: 'webp',
+        }" />
 
     <figure class="position-relative">
         <f:render
             arguments="{_all}"
             section="Picture" />
 
-        <f:if condition="{copyright} || {aiStatus}">
+        <f:if condition="{copyright} || {aiStatusLabel}">
             <figcaption class="picture-meta-caption">
                 <small class="{metaClass}">
                     <f:if condition="{copyright}">© {copyright}</f:if>
-                    <f:if condition="{copyright} && {aiStatus}">
+                    <f:if condition="{copyright} && {aiStatusLabel}">
                         <span
                             aria-hidden="true"
                             class="picture-meta__separator">
                             ·
                         </span>
                     </f:if>
-                    <f:if condition="{aiStatus}">{aiStatus.label}</f:if>
+                    <f:if condition="{aiStatusLabel}">{aiStatusLabel}</f:if>
                 </small>
             </figcaption>
         </f:if>
@@ -95,11 +98,11 @@
                         media="{data.mediaQuery}"
                         sizes="{customSizes -> f:or(alternative: defaultSize)}"
                         srcset="{f:render(arguments: {
-                        cropVariant: cropVariant,
-                        file: file,
-                        fileExtension: fileExtension,
-                        widths: customWidths,
-                    }, partial: 'Component/Picture/SourceSet') -> templates:format.reduceWhitespace()}"
+                            cropVariant: cropVariant,
+                            file: file,
+                            fileExtension: fileExtension,
+                            widths: customWidths,
+                        }, partial: 'Component/Picture/SourceSet') -> templates:format.reduceWhitespace()}"
                         type="image/{fileExtension}"
                         width="{data.maxWidth}" />
                 </f:for>
@@ -107,9 +110,9 @@
 
             <f:image
                 additionalAttributes="{
-                alt: alt,
-                title: title,
-            }"
+                    alt: alt,
+                    title: title,
+                }"
                 class="{imageClass -> f:or(alternative: 'img-fluid')}"
                 cropVariant="desktop"
                 decoding="{decoding -> f:or(alternative: 'async')}"

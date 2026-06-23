@@ -14,7 +14,7 @@
                 <source>Modified with AI</source>
             </trans-unit>
             <trans-unit id="none">
-                <source>No AI</source>
+                <source></source>
             </trans-unit>
         </body>
     </file>

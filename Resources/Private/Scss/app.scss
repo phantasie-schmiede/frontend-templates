@@ -160,7 +160,7 @@ body {
     object-fit: cover;
   }
 
-  &--has-overlay {
+  &--overlay {
     picture {
       display: block;
       position: relative;
@@ -188,12 +188,6 @@ body {
 
   &__separator {
     margin-inline: 0.25rem;
-  }
-
-  &--below {
-    border-top: 1px solid var(--bs-border-color-translucent);
-    margin-top: 0.5rem;
-    padding-top: 0.375rem;
   }
 }
 

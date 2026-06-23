@@ -10,15 +10,15 @@
         <body>
             <trans-unit id="created">
                 <source>Created with AI</source>
-                <target>Mit KI erstellt</target>
+                <target>mit KI erstellt</target>
             </trans-unit>
             <trans-unit id="modified">
                 <source>Modified with AI</source>
-                <target>Mit KI modifiziert</target>
+                <target>mit KI modifiziert</target>
             </trans-unit>
             <trans-unit id="none">
-                <source>No AI</source>
-                <target>Keine KI</target>
+                <source></source>
+                <target></target>
             </trans-unit>
         </body>
     </file>

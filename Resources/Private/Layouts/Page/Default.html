@@ -32,11 +32,9 @@
         partial="Header" />
 
     <f:if condition="{stageContent}">
-        <div class="container-fluid">
-            <f:render
-                arguments="{column: stageContent}"
-                partial="Column" />
-        </div>
+        <f:render
+            arguments="{column: stageContent}"
+            partial="Column" />
     </f:if>
 
     <main

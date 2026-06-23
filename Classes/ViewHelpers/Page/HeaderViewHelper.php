@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PSBits\Templates\ViewHelpers\Page;
 
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 use function in_array;
 
 /**

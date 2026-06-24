@@ -1,0 +1,233 @@
+---
+name: Deploy
+
+'on':
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Deploy a new release or rollback to the previous release
+        required: true
+        default: deploy
+        type: choice
+        options:
+          - deploy
+          - rollback
+      keep_releases:
+        description: Number of production releases to keep
+        required: true
+        default: '5'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    if: >-
+      github.event_name == 'push' ||
+      github.event.inputs.operation == 'deploy'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: intl, dom, simplexml
+          tools: composer:v2
+
+      - name: Validate composer config
+        run: composer validate --no-check-publish
+
+      - name: Install dependencies
+        run: composer update --no-interaction --no-progress
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Composer quality checks
+        run: composer qa
+
+      - name: Install yamllint
+        run: python -m pip install --user yamllint
+
+      - name: YAML lint
+        run: composer lint:yaml
+
+  deploy_quality:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: qa
+    runs-on: ubuntu-latest
+    environment:
+      name: quality
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare release archive
+        run: |
+          tar -czf quality-release.tar.gz \
+            --exclude=.git \
+            --exclude=.github \
+            --exclude=.Build \
+            --exclude=node_modules \
+            --exclude=vendor \
+            .
+
+      - name: Upload release archive
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.QUALITY_HOST }}
+          username: ${{ secrets.QUALITY_USERNAME }}
+          key: ${{ secrets.QUALITY_SSH_KEY }}
+          passphrase: ${{ secrets.QUALITY_SSH_PASSPHRASE }}
+          port: ${{ secrets.QUALITY_PORT }}
+          source: quality-release.tar.gz
+          target: ${{ secrets.QUALITY_DEPLOY_PATH }}/incoming
+
+      - name: Activate quality release
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.QUALITY_HOST }}
+          username: ${{ secrets.QUALITY_USERNAME }}
+          key: ${{ secrets.QUALITY_SSH_KEY }}
+          passphrase: ${{ secrets.QUALITY_SSH_PASSPHRASE }}
+          port: ${{ secrets.QUALITY_PORT }}
+          script: |
+            set -eu
+
+            APP_PATH='${{ secrets.QUALITY_DEPLOY_PATH }}'
+            RUN_REF='${{ github.run_id }}-${{ github.run_attempt }}'
+            RELEASE_ID="${RUN_REF}-${{ github.sha }}"
+            RELEASES_PATH="${APP_PATH}/releases"
+            CURRENT_LINK="${APP_PATH}/current"
+            INCOMING_ARCHIVE="${APP_PATH}/incoming/quality-release.tar.gz"
+            NEW_RELEASE_PATH="${RELEASES_PATH}/${RELEASE_ID}"
+
+            mkdir -p "${APP_PATH}/incoming"
+            mkdir -p "${RELEASES_PATH}"
+            mkdir -p "${NEW_RELEASE_PATH}"
+
+            tar -xzf "${INCOMING_ARCHIVE}" -C "${NEW_RELEASE_PATH}"
+            rm -f "${INCOMING_ARCHIVE}"
+
+            ln -sfn "${NEW_RELEASE_PATH}" "${CURRENT_LINK}"
+
+  deploy_production:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.operation == 'deploy'
+    needs: qa
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare release archive
+        run: |
+          tar -czf production-release.tar.gz \
+            --exclude=.git \
+            --exclude=.github \
+            --exclude=.Build \
+            --exclude=node_modules \
+            --exclude=vendor \
+            .
+
+      - name: Upload release archive
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          passphrase: ${{ secrets.PRODUCTION_SSH_PASSPHRASE }}
+          port: ${{ secrets.PRODUCTION_PORT }}
+          source: production-release.tar.gz
+          target: ${{ secrets.PRODUCTION_DEPLOY_PATH }}/incoming
+
+      - name: Activate production release
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          passphrase: ${{ secrets.PRODUCTION_SSH_PASSPHRASE }}
+          port: ${{ secrets.PRODUCTION_PORT }}
+          script: |
+            set -eu
+
+            APP_PATH='${{ secrets.PRODUCTION_DEPLOY_PATH }}'
+            KEEP_RELEASES='${{ github.event.inputs.keep_releases }}'
+            RUN_REF='${{ github.run_id }}-${{ github.run_attempt }}'
+            RELEASE_ID="${RUN_REF}-${{ github.sha }}"
+            RELEASES_PATH="${APP_PATH}/releases"
+            CURRENT_LINK="${APP_PATH}/current"
+            PREVIOUS_LINK="${APP_PATH}/previous"
+            INCOMING_ARCHIVE="${APP_PATH}/incoming/production-release.tar.gz"
+            NEW_RELEASE_PATH="${RELEASES_PATH}/${RELEASE_ID}"
+
+            mkdir -p "${APP_PATH}/incoming"
+            mkdir -p "${RELEASES_PATH}"
+            mkdir -p "${NEW_RELEASE_PATH}"
+
+            if [ -L "${CURRENT_LINK}" ]; then
+              CURRENT_TARGET="$(readlink "${CURRENT_LINK}")"
+              ln -sfn "${CURRENT_TARGET}" "${PREVIOUS_LINK}"
+            fi
+
+            tar -xzf "${INCOMING_ARCHIVE}" -C "${NEW_RELEASE_PATH}"
+            rm -f "${INCOMING_ARCHIVE}"
+
+            ln -sfn "${NEW_RELEASE_PATH}" "${CURRENT_LINK}"
+
+            cd "${RELEASES_PATH}"
+            ls -1dt */ 2>/dev/null \
+              | tail -n "+$((KEEP_RELEASES + 1))" \
+              | xargs -r rm -rf
+
+  rollback_production:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.operation == 'rollback'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+
+    steps:
+      - name: Rollback production to previous release
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          passphrase: ${{ secrets.PRODUCTION_SSH_PASSPHRASE }}
+          port: ${{ secrets.PRODUCTION_PORT }}
+          script: |
+            set -eu
+
+            APP_PATH='${{ secrets.PRODUCTION_DEPLOY_PATH }}'
+            CURRENT_LINK="${APP_PATH}/current"
+            PREVIOUS_LINK="${APP_PATH}/previous"
+
+            if [ ! -L "${CURRENT_LINK}" ] || [ ! -L "${PREVIOUS_LINK}" ]; then
+              echo "Rollback aborted:"
+              echo "link for current or previous release missing."
+              exit 1
+            fi
+
+            CURRENT_TARGET="$(readlink "${CURRENT_LINK}")"
+            PREVIOUS_TARGET="$(readlink "${PREVIOUS_LINK}")"
+
+            ln -sfn "${PREVIOUS_TARGET}" "${CURRENT_LINK}"
+            ln -sfn "${CURRENT_TARGET}" "${PREVIOUS_LINK}"

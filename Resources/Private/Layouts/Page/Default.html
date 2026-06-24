@@ -31,26 +31,26 @@
         }"
         partial="Header" />
 
-    <f:if condition="{stageContent}">
-        <f:render
-            arguments="{column: stageContent}"
-            partial="Column" />
-    </f:if>
-
-    <main
-        class="{containerClass}"
-        id="main-content">
-        <f:render
-            arguments="{queueIdentifier: 'foundation.general'}"
-            partial="../FlashMessages" />
-
-        <f:if condition="{breadcrumbs}">
-            <f:render partial="Navigation/Breadcrumb" />
+    <main id="main-content">
+        <f:if condition="{stageContent}">
+            <f:render
+                arguments="{column: stageContent}"
+                partial="Column" />
         </f:if>
 
-        <f:render section="Main" />
-        <f:render
-            arguments="{footerNavigation: footerNavigation}"
-            partial="Footer" />
+        <div class="{containerClass}">
+            <f:render
+                arguments="{queueIdentifier: 'foundation.general'}"
+                partial="../FlashMessages" />
+
+            <f:if condition="{breadcrumbs}">
+                <f:render partial="Navigation/Breadcrumb" />
+            </f:if>
+
+            <f:render section="Main" />
+            <f:render
+                arguments="{footerNavigation: footerNavigation}"
+                partial="Footer" />
+        </div>
     </main>
 </html>

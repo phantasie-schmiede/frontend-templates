@@ -29,6 +29,14 @@
 				<source>Menu</source>
 				<target>Menü</target>
 			</trans-unit>
+			<trans-unit id="openMainNavigation">
+				<source>Open main navigation</source>
+				<target>Hauptnavigation öffnen</target>
+			</trans-unit>
+			<trans-unit id="closeMainNavigation">
+				<source>Close main navigation</source>
+				<target>Hauptnavigation schließen</target>
+			</trans-unit>
 			<trans-unit id="password">
 				<source>Password</source>
 				<target>Passwort</target>
@@ -40,6 +48,10 @@
 			<trans-unit id="username">
 				<source>Username</source>
 				<target>Benutzername</target>
+			</trans-unit>
+			<trans-unit id="skipToMainContent">
+				<source>Skip to main content</source>
+				<target>Zum Hauptinhalt springen</target>
 			</trans-unit>
 		</body>
 	</file>

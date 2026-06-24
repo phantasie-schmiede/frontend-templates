@@ -1,7 +1,10 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/swiper.xlf" />
+
     <f:comment>
         <!--
             In order to use this partial, the slides must be rendered inside the f:render-tag. The value of the contentAs
@@ -90,8 +93,14 @@
         </f:if>
 
         <f:if condition="{createNavigation}">
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+            <button
+                aria-label="{foundation:translate(id: 'swiper:previousSlide')}"
+                class="swiper-button-prev"
+                type="button"></button>
+            <button
+                aria-label="{foundation:translate(id: 'swiper:nextSlide')}"
+                class="swiper-button-next"
+                type="button"></button>
         </f:if>
 
         <f:if condition="{createScrollbar}">

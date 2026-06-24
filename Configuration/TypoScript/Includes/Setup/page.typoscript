@@ -69,9 +69,5 @@ page {
     bootstrap = {$plugin.tx_templates.publicResourcePath}JavaScript/Vendors/bootstrap.bundle.min.js
   }
 
-  includeJSFooter {
-    skipLink = {$plugin.tx_templates.publicResourcePath}JavaScript/skipLink.js
-  }
-
   shortcutIcon = {$plugin.tx_templates.settings.logos.favicon}
 }

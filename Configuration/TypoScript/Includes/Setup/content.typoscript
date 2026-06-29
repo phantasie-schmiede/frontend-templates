@@ -56,4 +56,13 @@ page.10.dataProcessing {
     where = colPos = 3
     where.postUserFunc < lib.contentBlockDataProcessing.wherePostUserFunc
   }
+
+  1782752750 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+  1782752750 {
+    as = content5
+    orderBy = sorting
+    table < lib.contentBlockDataProcessing.table
+    where = colPos = 4
+    where.postUserFunc < lib.contentBlockDataProcessing.wherePostUserFunc
+  }
 }

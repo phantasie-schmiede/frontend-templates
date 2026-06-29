@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file
+        datatype="plaintext"
+        date="2026-06-29T00:00:00+00:00"
+        original="messages"
+        product-name="templates"
+        source-language="en">
+        <body>
+            <trans-unit id="content1">
+                <source>Top content</source>
+            </trans-unit>
+            <trans-unit id="content2">
+                <source>Main content</source>
+            </trans-unit>
+            <trans-unit id="content3">
+                <source>Right side content</source>
+            </trans-unit>
+            <trans-unit id="content4">
+                <source>Bottom content</source>
+            </trans-unit>
+            <trans-unit id="stage">
+                <source>Stage area</source>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>One column + Two columns (2-1) + One column</source>
+            </trans-unit>
+        </body>
+        <header />
+    </file>
+</xliff>

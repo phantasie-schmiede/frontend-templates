@@ -51,6 +51,15 @@
         </f:switch>
     </f:if>
 
+    <f:variable
+        name="metaAlignment"
+        value="end" />
+    <f:if condition="{data.show_overlay} && {'start' == data.text_align}">
+        <f:variable
+            name="metaAlignment"
+            value="start" />
+    </f:if>
+
     <f:switch expression="{data.text_align}">
         <f:case value="center">
             <f:variable
@@ -70,6 +79,7 @@
                 file: data.image.0,
                 imageClass: 'h-auto hero-block__image w-100',
                 loading: '{f:if(condition: data.eager_loading, then: \'eager\')}',
+                metaAlignment: metaAlignment,
                 metaPosition: 'overlay'
             }"
             partial="Component/Picture/Responsive" />

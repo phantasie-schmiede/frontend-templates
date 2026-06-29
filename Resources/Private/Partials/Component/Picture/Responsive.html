@@ -16,8 +16,35 @@
         name="metaPosition"
         value="{metaPosition -> f:or(alternative: 'below')}" />
     <f:variable
-        name="metaClass"
-        value="{f:if(condition: '{metaPosition} == \'overlay\'', then: 'bottom-0 d-block end-0 p-2 picture-meta picture-meta--overlay position-absolute text-end z-1', else: 'd-block mt-1 picture-meta text-body-secondary text-end')}" />
+        name="metaAlignment"
+        value="{metaAlignment -> f:or(alternative: 'end')}" />
+
+    <f:if condition="'overlay' == {metaPosition}">
+        <f:then>
+            <f:variable
+                name="metaClass"
+                value="bottom-0 d-block p-2 picture-meta picture-meta--overlay position-absolute z-1" />
+
+            <f:if condition="'start' == {metaAlignment}">
+                <f:then>
+                    <f:variable
+                        name="metaClass"
+                        value="{metaClass} start-0 text-start" />
+                </f:then>
+                <f:else>
+                    <f:variable
+                        name="metaClass"
+                        value="{metaClass} end-0 text-end" />
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <f:variable
+                name="metaClass"
+                value="d-block mt-1 picture-meta text-body-secondary text-end" />
+        </f:else>
+    </f:if>
+
     <f:variable
         name="defaultCropVariants"
         value="{

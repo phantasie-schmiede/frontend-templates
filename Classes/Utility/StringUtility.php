@@ -35,9 +35,9 @@ class StringUtility
      */
     public static function createEnumeration(array $items): string
     {
-        $separator = LocalizationUtility::translate(self::LL . 'separator');
+        $separator   = LocalizationUtility::translate(self::LL . 'separator');
         $conjunction = ' ' . LocalizationUtility::translate(self::LL . 'conjunction') . ' ';
-        $result = (string)array_shift($items);
+        $result      = (string)array_shift($items);
 
         // Returns empty string on empty array or first item of an array with only one item
         if (empty($items)) {

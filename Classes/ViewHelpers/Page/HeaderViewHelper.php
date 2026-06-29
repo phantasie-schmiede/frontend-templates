@@ -30,8 +30,9 @@ use function in_array;
  */
 class HeaderViewHelper extends AbstractViewHelper
 {
+    /** @var string[] */
     protected static array $headerDataIdentifiers = [];
-    protected              $escapeOutput          = false;
+    protected $escapeOutput                       = false;
 
     public function initializeArguments(): void
     {
@@ -51,7 +52,7 @@ class HeaderViewHelper extends AbstractViewHelper
         }
 
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        $html = $this->arguments['html'] ?? $this->renderChildren();
+        $html         = $this->arguments['html'] ?? $this->renderChildren();
         $pageRenderer->addHeaderData($html);
         self::$headerDataIdentifiers[] = $this->arguments['identifier'];
 

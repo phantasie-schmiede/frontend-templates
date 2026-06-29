@@ -76,9 +76,9 @@ class ButtonViewHelper extends AbstractViewHelper
         $additionalAttributes = $this->arguments['additionalAttributes'];
 
         /** @var array<string, mixed> $dataAttributes */
-        $dataAttributes = $this->arguments['data'];
+        $dataAttributes  = $this->arguments['data'];
         $argumentClasses = $this->arguments['additionalClasses'];
-        $classes = [];
+        $classes         = [];
 
         if (is_string($argumentClasses)) {
             $classes = GeneralUtility::trimExplode(' ', $argumentClasses, true);
@@ -116,8 +116,8 @@ class ButtonViewHelper extends AbstractViewHelper
     private function processAdditionalAttributes(array &$additionalAttributes): void
     {
         if ($this->arguments['externalLink']) {
-            $this->arguments['rel'] = 'noopener noreferrer';
-            $this->arguments['tag'] = 'a';
+            $this->arguments['rel']    = 'noopener noreferrer';
+            $this->arguments['tag']    = 'a';
             $this->arguments['target'] = '_blank';
         }
 
@@ -161,7 +161,7 @@ class ButtonViewHelper extends AbstractViewHelper
     {
         if (!empty($this->arguments['spinnerText'])) {
             $dataAttributes['psbits-spinner-phase-out'] = '';
-            $dataAttributes['psbits-spinner-text'] = $this->arguments['spinnerText'];
+            $dataAttributes['psbits-spinner-text']      = $this->arguments['spinnerText'];
         } elseif (!empty($this->arguments['spinnerTextHidden'])) {
             $dataAttributes['psbits-spinner-text-hidden'] = $this->arguments['spinnerTextHidden'];
 

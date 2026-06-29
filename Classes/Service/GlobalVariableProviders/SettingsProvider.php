@@ -74,7 +74,7 @@ class SettingsProvider extends AbstractProvider
 
         foreach (self::$sources as $identifier => $source) {
             /** @var SettingSourceInterface $sourceInstance */
-            $sourceInstance = GeneralUtility::makeInstance($source);
+            $sourceInstance              = GeneralUtility::makeInstance($source);
             $pendingSources[$identifier] = $sourceInstance;
         }
 

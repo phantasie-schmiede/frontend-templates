@@ -17,8 +17,8 @@
                 <target>mit KI modifiziert</target>
             </trans-unit>
             <trans-unit id="none">
-                <source></source>
-                <target></target>
+                <source />
+                <target />
             </trans-unit>
         </body>
     </file>

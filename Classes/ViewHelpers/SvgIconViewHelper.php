@@ -64,8 +64,8 @@ class SvgIconViewHelper extends AbstractViewHelper
 
     public function render(): string
     {
-        $icon = $this->iconFactory->getIcon($this->arguments['identifier']);
-        $inlineSvg = $icon->getMarkup(AbstractSvgIconProvider::MARKUP_IDENTIFIER_INLINE);
+        $icon         = $this->iconFactory->getIcon($this->arguments['identifier']);
+        $inlineSvg    = $icon->getMarkup(AbstractSvgIconProvider::MARKUP_IDENTIFIER_INLINE);
         $replacements = [];
 
         foreach ([

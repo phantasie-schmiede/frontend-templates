@@ -14,6 +14,7 @@ namespace PSBits\Templates\ViewHelpers\Image;
 use JsonException;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
+use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Extbase\Service\ImageService;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
@@ -56,7 +57,7 @@ class AspectRatioViewHelper extends AbstractViewHelper
         }
 
         $cropArea = $this->getCropArea($file);
-        $image = $this->imageService->applyProcessingInstructions(
+        $image    = $this->imageService->applyProcessingInstructions(
             $file,
             [
                 'crop'          => $cropArea->isEmpty() ? null : $cropArea->makeAbsoluteBasedOnFile($file),
@@ -75,13 +76,12 @@ class AspectRatioViewHelper extends AbstractViewHelper
     /**
      * @throws JsonException
      */
-    private function getCropArea(mixed $file): Area
+    private function getCropArea(FileReference $file): Area
     {
         $crop = $this->arguments['crop'];
 
         if (
             null === $crop
-            && method_exists($file, 'hasProperty')
             && $file->hasProperty('crop')
             && $file->getProperty('crop')
         ) {
@@ -93,12 +93,12 @@ class AspectRatioViewHelper extends AbstractViewHelper
         }
 
         $cropVariantCollection = CropVariantCollection::create((string)$crop);
-        $cropVariant = $this->arguments['cropVariant'] ?: 'default';
+        $cropVariant           = $this->arguments['cropVariant'] ?: 'default';
 
         return $cropVariantCollection->getCropArea($cropVariant);
     }
 
-    private function normalizeFileReference(mixed $file): mixed
+    private function normalizeFileReference(mixed $file): ?FileReference
     {
         if (null === $file) {
             return null;

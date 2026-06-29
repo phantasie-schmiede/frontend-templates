@@ -54,10 +54,10 @@ class ProgressBarViewHelper extends AbstractViewHelper
      */
     public function render(): string
     {
-        $classes = $this->arguments['classes'];
+        $classes  = $this->arguments['classes'];
         $maxValue = $this->arguments['maxValue'];
         $minValue = $this->arguments['minValue'];
-        $value = $this->arguments['value'];
+        $value    = $this->arguments['value'];
 
         if ($maxValue <= $minValue) {
             throw new InvalidArgumentException(__CLASS__ . ': maxValue must be higher than minValue!', 1758896064);

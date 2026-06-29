@@ -3,50 +3,50 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<section
-    aria-label="{data.header}"
-    class="position-relative">
-    <f:render
-        arguments="{
-            configuration: {
-                loop: data.loop_slides,
-                navigation: data.show_navigation,
-                pagination: '{f:if(condition: data.show_pagination, then: \'{clickable: 1}\', else: 0)}',
-                slidesPerView: 1,
-                spaceBetween: 24
-            },
-            id: 'content-slider-{data.uid}'
-        }"
-        contentAs="slides"
-        partial="Component/Swiper">
-        <f:for
-            as="image"
-            each="{data.image}"
-            iteration="iterator">
-            <f:if condition="{iterator.isFirst} && {data.eager_loading}">
-                <f:variable
-                    name="loading"
-                    value="eager" />
+    <section
+        aria-label="{data.header}"
+        class="position-relative">
+        <f:render
+            arguments="{
+                configuration: {
+                    loop: data.loop_slides,
+                    navigation: data.show_navigation,
+                    pagination: '{f:if(condition: data.show_pagination, then: \'{clickable: 1}\', else: 0)}',
+                    slidesPerView: 1,
+                    spaceBetween: 24
+                },
+                id: 'content-slider-{data.uid}'
+            }"
+            contentAs="slides"
+            partial="Component/Swiper">
+            <f:for
+                as="image"
+                each="{data.image}"
+                iteration="iterator">
+                <f:if condition="{iterator.isFirst} && {data.eager_loading}">
+                    <f:variable
+                        name="loading"
+                        value="eager" />
 
-                <templates:page.header identifier="preloadSlider">
-                    <templates:format.reduceWhitespace>
-                        <f:render
-                            arguments="{file: image}"
-                            partial="Component/Picture/Preload" />
-                    </templates:format.reduceWhitespace>
-                </templates:page.header>
-            </f:if>
-            <div class="swiper-slide">
-                <f:render
-                    arguments="{
-                        height: 1080,
-                        file: image,
-                        imageClass: 'd-block img-fluid w-100',
-                        loading: loading,
-                    }"
-                    partial="Component/Picture/Responsive" />
-            </div>
-        </f:for>
-    </f:render>
-</section>
+                    <templates:page.header identifier="preloadSlider">
+                        <templates:format.reduceWhitespace>
+                            <f:render
+                                arguments="{file: image}"
+                                partial="Component/Picture/Preload" />
+                        </templates:format.reduceWhitespace>
+                    </templates:page.header>
+                </f:if>
+                <div class="swiper-slide">
+                    <f:render
+                        arguments="{
+                            height: 1080,
+                            file: image,
+                            imageClass: 'd-block img-fluid w-100',
+                            loading: loading,
+                        }"
+                        partial="Component/Picture/Responsive" />
+                </div>
+            </f:for>
+        </f:render>
+    </section>
 </html>

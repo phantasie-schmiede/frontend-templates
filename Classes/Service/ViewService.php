@@ -50,7 +50,7 @@ readonly class ViewService
             $templateIdentifier .= '.html';
         }
 
-        $viewSettings = $this->getViewSettings($extensionInformation);
+        $viewSettings    = $this->getViewSettings($extensionInformation);
         $viewFactoryData = new ViewFactoryData(
             partialRootPaths       : $viewSettings['partialRootPaths'],
             layoutRootPaths        : $viewSettings['layoutRootPaths'],

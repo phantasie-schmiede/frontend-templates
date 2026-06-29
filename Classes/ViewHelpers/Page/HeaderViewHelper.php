@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace PSBits\Templates\ViewHelpers\Page;
 
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
 use function in_array;
 
 /**
@@ -27,8 +30,9 @@ use function in_array;
  */
 class HeaderViewHelper extends AbstractViewHelper
 {
+    /** @var string[] */
     protected static array $headerDataIdentifiers = [];
-    protected              $escapeOutput          = false;
+    protected $escapeOutput                       = false;
 
     public function initializeArguments(): void
     {
@@ -48,7 +52,7 @@ class HeaderViewHelper extends AbstractViewHelper
         }
 
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        $html = $this->arguments['html'] ?? $this->renderChildren();
+        $html         = $this->arguments['html'] ?? $this->renderChildren();
         $pageRenderer->addHeaderData($html);
         self::$headerDataIdentifiers[] = $this->arguments['identifier'];
 

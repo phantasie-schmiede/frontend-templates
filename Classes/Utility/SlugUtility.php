@@ -55,7 +55,7 @@ class SlugUtility
 
         // Get field configuration
         $fieldConfig = $GLOBALS['TCA'][$tableName]['columns'][$slugFieldName]['config'];
-        $evalInfo = GeneralUtility::trimExplode(',', $fieldConfig['eval'], true);
+        $evalInfo    = GeneralUtility::trimExplode(',', $fieldConfig['eval'], true);
 
         // Initialize Slug helper
         /** @var SlugHelper $slugHelper */
@@ -67,7 +67,7 @@ class SlugUtility
         );
 
         // Generate slug
-        $slug = $slugHelper->generate($record, $record['pid']);
+        $slug  = $slugHelper->generate($record, $record['pid']);
         $state = RecordStateFactory::forName($tableName)
             ->fromArray($record, $record['pid'], $record['uid']);
 

@@ -1,6 +1,29 @@
 .o-card-grid {
   align-items: stretch;
+  container-type: inline-size;
+  display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  display: flex;
+
+  > .m-card {
+    flex: 0 0 100%;
+  }
+
+  @container (min-width: 576px) {
+    > .m-card {
+      flex: 0 0 calc((100% - 1rem) / 2);
+    }
+  }
+
+  @container (min-width: 768px) {
+    > .m-card {
+      flex: 0 0 calc((100% - 2rem) / 3);
+    }
+  }
+
+  @container (min-width: 992px) {
+    > .m-card {
+      flex: 0 0 calc((100% - 3rem) / 4);
+    }
+  }
 }

@@ -19,6 +19,24 @@ page {
       pagets__oneColumn = TEXT
       pagets__oneColumn.value = {$plugin.tx_templates.view.templateRootPath}Page/OneColumn.html
 
+      pagets__oneColumnThreeColumns-1-1-1 = TEXT
+      pagets__oneColumnThreeColumns-1-1-1.value = {$plugin.tx_templates.view.templateRootPath}Page/OneColumnThreeColumns-1-1-1.html
+
+      pagets__oneColumnThreeColumns-1-1-1-oneColumn = TEXT
+      pagets__oneColumnThreeColumns-1-1-1-oneColumn.value = {$plugin.tx_templates.view.templateRootPath}Page/OneColumnThreeColumns-1-1-1-OneColumn.html
+
+      pagets__oneColumnThreeColumns-1-2-1-oneColumn = TEXT
+      pagets__oneColumnThreeColumns-1-2-1-oneColumn.value = {$plugin.tx_templates.view.templateRootPath}Page/OneColumnThreeColumns-1-2-1-OneColumn.html
+
+      pagets__oneColumnTwoColumns-1-1 = TEXT
+      pagets__oneColumnTwoColumns-1-1.value = {$plugin.tx_templates.view.templateRootPath}Page/OneColumnTwoColumns-1-1.html
+
+      pagets__oneColumnTwoColumns-1-2-oneColumn = TEXT
+      pagets__oneColumnTwoColumns-1-2-oneColumn.value = {$plugin.tx_templates.view.templateRootPath}Page/OneColumnTwoColumns-1-2-OneColumn.html
+
+      pagets__oneColumnTwoColumns-2-1-oneColumn = TEXT
+      pagets__oneColumnTwoColumns-2-1-oneColumn.value = {$plugin.tx_templates.view.templateRootPath}Page/OneColumnTwoColumns-2-1-OneColumn.html
+
       pagets__threeColumns-1-1-1 = TEXT
       pagets__threeColumns-1-1-1.value = {$plugin.tx_templates.view.templateRootPath}Page/ThreeColumns-1-1-1.html
 

@@ -1,0 +1,34 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <f:layout name="Default" />
+
+    <f:section name="Main">
+        <div class="row">
+            <div class="col">
+                <f:render
+                    arguments="{column: content1}"
+                    partial="Column" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <f:render
+                    arguments="{column: content2}"
+                    partial="Column" />
+            </div>
+            <div class="col-md-4">
+                <f:render
+                    arguments="{column: content3}"
+                    partial="Column" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <f:render
+                    arguments="{column: content4}"
+                    partial="Column" />
+            </div>
+        </div>
+    </f:section>
+</html>

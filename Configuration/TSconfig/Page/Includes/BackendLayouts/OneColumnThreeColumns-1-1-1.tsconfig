@@ -1,0 +1,58 @@
+mod {
+  web_layout {
+    BackendLayouts {
+      oneColumnThreeColumns-1-1-1 {
+        config {
+          backend_layout {
+            colCount = 3
+            rowCount = 3
+
+            rows {
+              1 {
+                columns {
+                  1 {
+                    colPos = 100
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnThreeColumns-1-1-1.xlf:stage
+                    colspan = 3
+                  }
+                }
+              }
+
+              2 {
+                columns {
+                  1 {
+                    colPos = 0
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnThreeColumns-1-1-1.xlf:content1
+                    colspan = 3
+                  }
+                }
+              }
+
+              3 {
+                columns {
+                  1 {
+                    colPos = 1
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnThreeColumns-1-1-1.xlf:content2
+                  }
+
+                  2 {
+                    colPos = 2
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnThreeColumns-1-1-1.xlf:content3
+                  }
+
+                  3 {
+                    colPos = 3
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnThreeColumns-1-1-1.xlf:content4
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        icon = EXT:templates/Resources/Public/Icons/BackendLayouts/OneColumnThreeColumns-1-1-1.svg
+        title = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnThreeColumns-1-1-1.xlf:title
+      }
+    }
+  }
+}

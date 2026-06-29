@@ -1,0 +1,63 @@
+mod {
+  web_layout {
+    BackendLayouts {
+      oneColumnTwoColumns-1-2-oneColumn {
+        config {
+          backend_layout {
+            colCount = 2
+            rowCount = 4
+
+            rows {
+              1 {
+                columns {
+                  1 {
+                    colPos = 100
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnTwoColumns-1-2-oneColumn.xlf:stage
+                    colspan = 2
+                  }
+                }
+              }
+
+              2 {
+                columns {
+                  1 {
+                    colPos = 0
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnTwoColumns-1-2-oneColumn.xlf:content1
+                    colspan = 2
+                  }
+                }
+              }
+
+              3 {
+                columns {
+                  1 {
+                    colPos = 1
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnTwoColumns-1-2-oneColumn.xlf:content2
+                  }
+
+                  2 {
+                    colPos = 2
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnTwoColumns-1-2-oneColumn.xlf:content3
+                  }
+                }
+              }
+
+              4 {
+                columns {
+                  1 {
+                    colPos = 3
+                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnTwoColumns-1-2-oneColumn.xlf:content4
+                    colspan = 2
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        icon = EXT:templates/Resources/Public/Icons/BackendLayouts/OneColumnTwoColumns-1-2-OneColumn.svg
+        title = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/oneColumnTwoColumns-1-2-oneColumn.xlf:title
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file
+        datatype="plaintext"
+        date="2026-06-29T00:00:00+00:00"
+        original="messages"
+        product-name="templates"
+        source-language="en"
+        target-language="de">
+        <body>
+            <trans-unit id="content1">
+                <source>Top content</source>
+                <target>Oberer Bereich</target>
+            </trans-unit>
+            <trans-unit id="content2">
+                <source>Left side content</source>
+                <target>Linker Randbereich</target>
+            </trans-unit>
+            <trans-unit id="content3">
+                <source>Main content</source>
+                <target>Hauptbereich</target>
+            </trans-unit>
+            <trans-unit id="content4">
+                <source>Right side content</source>
+                <target>Rechter Randbereich</target>
+            </trans-unit>
+            <trans-unit id="content5">
+                <source>Bottom content</source>
+                <target>Unterer Bereich</target>
+            </trans-unit>
+            <trans-unit id="stage">
+                <source>Stage area</source>
+                <target>Stage-Bereich</target>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>One column + Three columns (1-1-1) + One column</source>
+                <target>Eine Spalte + Drei Spalten (1-1-1) + Eine Spalte</target>
+            </trans-unit>
+        </body>
+        <header />
+    </file>
+</xliff>

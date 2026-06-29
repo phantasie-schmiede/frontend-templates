@@ -24,7 +24,57 @@
             value="container-{currentPage.tx_templates_bs_container_type}" />
     </f:if>
 
-    <section class="hero-block{f:if(condition: data.show_overlay, then: ' hero-block--overlay')} position-relative text-{data.text_align}">
+    <f:variable
+        name="headingClass"
+        value="" />
+    <f:variable
+        name="leadClass"
+        value="" />
+    <f:variable
+        name="overlayClass"
+        value="{f:if(condition: data.show_overlay, then: ' hero-block--overlay')}" />
+    <f:variable
+        name="textConstraintClass"
+        value="" />
+
+    <f:if condition="{data.text_align} != 'center'">
+        <f:variable
+            name="textConstraintClass"
+            value=" hero-block__text--constrained" />
+    </f:if>
+
+    <f:if condition="{data.show_overlay}">
+        <f:switch expression="{data.text_align}">
+            <f:case value="start">
+                <f:variable
+                    name="overlayClass"
+                    value="{overlayClass} hero-block--overlay-start" />
+            </f:case>
+            <f:case value="end">
+                <f:variable
+                    name="overlayClass"
+                    value="{overlayClass} hero-block--overlay-end" />
+                <f:variable
+                    name="headingClass"
+                    value=" ms-auto" />
+            </f:case>
+        </f:switch>
+    </f:if>
+
+    <f:switch expression="{data.text_align}">
+        <f:case value="center">
+            <f:variable
+                name="leadClass"
+                value=" mx-auto" />
+        </f:case>
+        <f:case value="end">
+            <f:variable
+                name="leadClass"
+                value=" ms-auto" />
+        </f:case>
+    </f:switch>
+
+    <section class="hero-block{overlayClass} position-relative text-{data.text_align}">
         <f:render
             arguments="{
                 file: data.image.0,
@@ -38,28 +88,15 @@
             <f:if condition="{data.header}">
                 <f:if condition="{data.header_layout} != 100">
                     <viewHelpers:tag
-                        class="display-5"
+                        class="display-5{headingClass}{textConstraintClass}"
                         tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 1}')}">
                         {data.header}
                     </viewHelpers:tag>
                 </f:if>
             </f:if>
 
-            <f:switch expression="{data.text_align}">
-                <f:case value="center">
-                    <f:variable
-                        name="leadClass"
-                        value=" mx-auto" />
-                </f:case>
-                <f:case value="end">
-                    <f:variable
-                        name="leadClass"
-                        value=" ms-auto" />
-                </f:case>
-            </f:switch>
-
             <f:if condition="{data.bodytext}">
-                <div class="hero-block__lead lead mb-4{leadClass}">
+                <div class="hero-block__lead lead mb-4{leadClass}{textConstraintClass}">
                     <f:format.html>{data.bodytext}</f:format.html>
                 </div>
             </f:if>

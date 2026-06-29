@@ -2,22 +2,14 @@
   background: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  container-type: inline-size;
   display: flex;
-  flex: 0 0 100%;
+  flex: 1 1 100%;
   flex-direction: row;
   overflow: hidden;
 
-  @include media-breakpoint-up(sm) {
-    flex: 0 0 calc((100% - 1rem) / 2);
+  @container (min-width: 576px) {
     flex-direction: column;
-  }
-
-  @include media-breakpoint-up(md) {
-    flex: 0 0 calc((100% - 2rem) / 3);
-  }
-
-  @include media-breakpoint-up(lg) {
-    flex: 0 0 calc((100% - 3rem) / 4);
   }
 
   &__body {
@@ -31,7 +23,7 @@
     flex: 0 0 40%;
     position: relative;
 
-    @include media-breakpoint-up(sm) {
+    @container (min-width: 576px) {
       aspect-ratio: 16 / 9;
       flex: none;
       width: 100%;

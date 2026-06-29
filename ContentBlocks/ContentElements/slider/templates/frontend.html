@@ -9,11 +9,14 @@
         <f:render
             arguments="{
                 configuration: {
+                    keyboard: '{enabled: 1, onlyInViewport: 1}',
                     loop: data.loop_slides,
                     navigation: data.show_navigation,
                     pagination: '{f:if(condition: data.show_pagination, then: \'{clickable: 1}\', else: 0)}',
+                    speed: 350,
                     slidesPerView: 1,
-                    spaceBetween: 24
+                    spaceBetween: 24,
+                    breakpoints: '{768: {spaceBetween: 24}, 0: {spaceBetween: 12}}'
                 },
                 id: 'content-slider-{data.uid}'
             }"

@@ -4,7 +4,7 @@
     <f:if condition="{data.header_link}">
         <f:then>
             <f:link.typolink
-                class="btn btn-{data.bootstrap_type}{f:if(condition: data.button_size != 'md', then: ' btn-{data.button_size}')}{f:if(condition: data.full_width, then: ' w-100')}"
+                class="btn btn-{data.bootstrap_type}{f:if(condition: '\md\' != {data.button_size}', then: ' btn-{data.button_size}')}{f:if(condition: data.full_width, then: ' w-100')}"
                 parameter="{data.header_link}">
                 {data.header}
             </f:link.typolink>

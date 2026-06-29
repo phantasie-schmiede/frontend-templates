@@ -45,13 +45,26 @@
             </f:if>
         </f:if>
 
+        <f:switch expression="{data.text_align}">
+            <f:case value="center">
+                <f:variable
+                    name="leadClass"
+                    value=" mx-auto" />
+            </f:case>
+            <f:case value="end">
+                <f:variable
+                    name="leadClass"
+                    value=" ms-auto" />
+            </f:case>
+        </f:switch>
+
         <f:if condition="{data.bodytext}">
-            <div class="lead mb-4">
+            <div class="hero-block__lead lead mb-4{leadClass}">
                 <f:format.html>{data.bodytext}</f:format.html>
             </div>
         </f:if>
 
-        <f:if condition="{data.header_link}">
+        <f:if condition="{data.cta_label}">
             <f:link.typolink
                 class="btn btn-primary"
                 parameter="{data.header_link}">

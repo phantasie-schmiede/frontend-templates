@@ -24,19 +24,6 @@
             value="container-{currentPage.tx_templates_bs_container_type}" />
     </f:if>
 
-    <f:variable
-        name="headingClass"
-        value="" />
-    <f:variable
-        name="leadClass"
-        value="" />
-    <f:variable
-        name="overlayClass"
-        value="{f:if(condition: data.show_overlay, then: ' hero-block--overlay')}" />
-    <f:variable
-        name="textConstraintClass"
-        value="" />
-
     <f:if condition="{data.text_align} != 'center'">
         <f:variable
             name="textConstraintClass"
@@ -44,12 +31,10 @@
     </f:if>
 
     <f:if condition="{data.show_overlay}">
+        <f:variable
+            name="overlayClass"
+            value=" hero-block--overlay" />
         <f:switch expression="{data.text_align}">
-            <f:case value="start">
-                <f:variable
-                    name="overlayClass"
-                    value="{overlayClass} hero-block--overlay-start" />
-            </f:case>
             <f:case value="end">
                 <f:variable
                     name="overlayClass"
@@ -57,6 +42,11 @@
                 <f:variable
                     name="headingClass"
                     value=" ms-auto" />
+            </f:case>
+            <f:case value="start">
+                <f:variable
+                    name="overlayClass"
+                    value="{overlayClass} hero-block--overlay-start" />
             </f:case>
         </f:switch>
     </f:if>

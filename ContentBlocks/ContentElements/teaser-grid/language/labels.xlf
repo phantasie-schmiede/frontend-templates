@@ -11,7 +11,7 @@
                 <source>Teaser Grid</source>
             </trans-unit>
             <trans-unit id="description">
-                <source>Grid of teaser content elements with optional filter</source>
+                <source>Grid of 1 to 4 teaser content elements with optional filter</source>
             </trans-unit>
             <trans-unit id="teasers.label">
                 <source>Teasers</source>
@@ -20,7 +20,13 @@
                 <source>Enable filter</source>
             </trans-unit>
             <trans-unit id="filter.label">
-                <source>Filter</source>
+                <source>Filter teasers</source>
+            </trans-unit>
+            <trans-unit id="filter.results">
+                <source>matching teasers.</source>
+            </trans-unit>
+            <trans-unit id="filter.total">
+                <source>teasers in total.</source>
             </trans-unit>
             <trans-unit id="preview.type">
                 <source>Teaser grid</source>

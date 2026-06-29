@@ -14,7 +14,7 @@ fields:
     foreign_field: parent_uid
     foreign_table: tt_content
     minitems: 1
-    maxitems: 12
+    maxitems: 4
     type: Collection
 group: content_blocks
 labelField: header

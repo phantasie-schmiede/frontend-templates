@@ -7,7 +7,7 @@
 @import "Component/p-detail-page";
 @import "Component/o-card-grid";
 
-li[data-psbits-filter-match="false"] {
+[data-psbits-filter-match="false"] {
   display: none !important;
 }
 
@@ -255,10 +255,6 @@ body {
   &--grayscale img:hover {
     opacity: 1;
   }
-}
-
-.teaser-grid__item {
-  height: 100%;
 }
 
 .contact-lead__messages {

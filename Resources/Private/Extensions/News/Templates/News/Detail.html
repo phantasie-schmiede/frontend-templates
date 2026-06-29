@@ -211,26 +211,24 @@
 
         <f:if condition="{newsItem.allRelatedSorted}">
             <section class="detail-page__panel mb-4 news-related news-related-news">
-                <h2 class="h5">
+                <h2 class="h5 mb-3">
                     <f:translate key="related-news" />
                 </h2>
-                <ul class="list-group list-group-flush">
+                <f:render
+                    arguments="{
+                        itemCount: '{newsItem.allRelatedSorted -> f:count()}',
+                        variant: 'teaser',
+                    }"
+                    contentAs="cards"
+                    partial="Component/CardGrid">
                     <f:for
                         as="related"
                         each="{newsItem.allRelatedSorted}">
-                        <li class="bg-transparent list-group-item px-0">
-                            <span class="d-block mb-1 small text-body-secondary">
-                                <f:format.date format="{f:translate(key:'dateFormat')}">{related.datetime}</f:format.date>
-                            </span>
-                            <n:link
-                                newsItem="{related}"
-                                settings="{settings}"
-                                title="{related.title}">
-                                {related.title}
-                            </n:link>
-                        </li>
+                        <f:render
+                            arguments="{headerLevel: 3, newsItem: related, settings: settings}"
+                            partial="List/Item" />
                     </f:for>
-                </ul>
+                </f:render>
             </section>
         </f:if>
 

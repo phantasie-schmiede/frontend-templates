@@ -13,8 +13,8 @@
                 <target>Teaser-Raster</target>
             </trans-unit>
             <trans-unit id="description">
-                <source>Grid of teaser content elements with optional filter</source>
-                <target>Raster aus Teaser-Inhaltselementen mit optionalem Filter</target>
+                <source>Grid of 1 to 4 teaser content elements with optional filter</source>
+                <target>Raster aus 1 bis 4 Teaser-Inhaltselementen mit optionalem Filter</target>
             </trans-unit>
             <trans-unit id="teasers.label">
                 <source>Teasers</source>
@@ -25,8 +25,16 @@
                 <target>Filter aktivieren</target>
             </trans-unit>
             <trans-unit id="filter.label">
-                <source>Filter</source>
-                <target>Filter</target>
+                <source>Filter teasers</source>
+                <target>Teaser filtern</target>
+            </trans-unit>
+            <trans-unit id="filter.results">
+                <source>matching teasers.</source>
+                <target>passende Teaser.</target>
+            </trans-unit>
+            <trans-unit id="filter.total">
+                <source>teasers in total.</source>
+                <target>Teaser gesamt.</target>
             </trans-unit>
             <trans-unit id="preview.type">
                 <source>Teaser grid</source>

@@ -12,13 +12,17 @@
             <f:if condition="{settings.hidePagination}">
                 <f:then>
                     <f:render
+                        arguments="{
+                            itemCount: '{indices -> f:count()}',
+                            variant: 'list',
+                        }"
                         contentAs="cards"
                         partial="Component/CardGrid">
                         <f:for
                             as="index"
                             each="{indices}">
                             <f:render
-                                arguments="{index: index}"
+                                arguments="{headerLevel: 2, index: index}"
                                 partial="{index.configuration.partialIdentifier}/ListItem" />
                         </f:for>
                     </f:render>
@@ -31,13 +35,17 @@
                     </f:if>
 
                     <f:render
+                        arguments="{
+                            itemCount: '{pagination.paginator.paginatedItems -> f:count()}',
+                            variant: 'list',
+                        }"
                         contentAs="cards"
                         partial="Component/CardGrid">
                         <f:for
                             as="index"
                             each="{pagination.paginator.paginatedItems}">
                             <f:render
-                                arguments="{index: index}"
+                                arguments="{headerLevel: 2, index: index}"
                                 partial="{index.configuration.partialIdentifier}/ListItem" />
                         </f:for>
                     </f:render>

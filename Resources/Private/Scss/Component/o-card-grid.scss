@@ -1,29 +1,104 @@
 .o-card-grid {
+  --o-card-grid-gap: 1rem;
+
   align-items: stretch;
   container-type: inline-size;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--o-card-grid-gap);
 
   > .m-card {
     flex: 0 0 100%;
+    min-width: 0;
+  }
+
+  &--teaser {
+    --o-card-grid-gap: 1.25rem;
+  }
+
+  &--list {
+    --o-card-grid-gap: 0.75rem;
   }
 
   @container (min-width: 576px) {
     > .m-card {
-      flex: 0 0 calc((100% - 1rem) / 2);
+      flex: 0 0 calc((100% - var(--o-card-grid-gap)) / 2);
     }
   }
 
   @container (min-width: 768px) {
     > .m-card {
-      flex: 0 0 calc((100% - 2rem) / 3);
+      flex: 0 0 calc((100% - (2 * var(--o-card-grid-gap))) / 3);
     }
   }
 
   @container (min-width: 992px) {
     > .m-card {
-      flex: 0 0 calc((100% - 3rem) / 4);
+      flex: 0 0 calc((100% - (3 * var(--o-card-grid-gap))) / 4);
+    }
+  }
+
+  &--items-1 > .m-card {
+    flex-basis: 100%;
+  }
+
+  &--items-2 {
+    @container (min-width: 576px) {
+      > .m-card {
+        flex-basis: calc((100% - var(--o-card-grid-gap)) / 2);
+      }
+    }
+
+    @container (min-width: 768px) {
+      > .m-card {
+        flex-basis: calc((100% - var(--o-card-grid-gap)) / 2);
+      }
+    }
+
+    @container (min-width: 992px) {
+      > .m-card {
+        flex-basis: calc((100% - var(--o-card-grid-gap)) / 2);
+      }
+    }
+  }
+
+  &--items-3 {
+    @container (min-width: 576px) {
+      > .m-card {
+        flex-basis: calc((100% - var(--o-card-grid-gap)) / 2);
+      }
+    }
+
+    @container (min-width: 768px) {
+      > .m-card {
+        flex-basis: calc((100% - (2 * var(--o-card-grid-gap))) / 3);
+      }
+    }
+
+    @container (min-width: 992px) {
+      > .m-card {
+        flex-basis: calc((100% - (2 * var(--o-card-grid-gap))) / 3);
+      }
+    }
+  }
+
+  &--items-4 {
+    @container (min-width: 576px) {
+      > .m-card {
+        flex-basis: calc((100% - var(--o-card-grid-gap)) / 2);
+      }
+    }
+
+    @container (min-width: 768px) {
+      > .m-card {
+        flex-basis: calc((100% - var(--o-card-grid-gap)) / 2);
+      }
+    }
+
+    @container (min-width: 992px) {
+      > .m-card {
+        flex-basis: calc((100% - (3 * var(--o-card-grid-gap))) / 4);
+      }
     }
   }
 }

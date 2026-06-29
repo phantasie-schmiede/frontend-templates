@@ -7,6 +7,7 @@
 
     <f:variable name="additionalContentAppend">
         <n:link
+            aria-label="{f:translate(key: 'more-link')} {newsItem.title}"
             class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
             newsItem="{newsItem}"
             settings="{settings}"
@@ -37,6 +38,7 @@
     <f:render
         arguments="{
             additionalContentAppend: additionalContentAppend,
+            headerLevel: headerLevel,
             image: image,
             imageUrl: imageUrl,
             subtitle: subtitle,

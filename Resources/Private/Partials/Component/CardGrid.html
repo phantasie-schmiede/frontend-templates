@@ -2,5 +2,31 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    <div class="o-card-grid">{cards -> f:format.raw()}</div>
+    <f:variable
+        name="gridClass"
+        value="o-card-grid" />
+
+    <f:if condition="{variant}">
+        <f:variable
+            name="gridClass"
+            value="{gridClass} o-card-grid--{variant}" />
+    </f:if>
+
+    <f:if condition="{additionalClass}">
+        <f:variable
+            name="gridClass"
+            value="{gridClass} {additionalClass}" />
+    </f:if>
+
+    <f:if condition="{itemCount} && {itemCount} <= 4">
+        <f:variable
+            name="gridClass"
+            value="{gridClass} o-card-grid--items-{itemCount}" />
+    </f:if>
+
+    <div
+        class="{gridClass}"
+        id="{id}">
+        {cards -> f:format.raw()}
+    </div>
 </html>

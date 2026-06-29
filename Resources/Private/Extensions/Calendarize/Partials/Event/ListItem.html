@@ -31,6 +31,7 @@
         <f:if condition="{settings.detailPid}">
             <f:variable name="additionalContentAppend">
                 <c:link.index
+                    aria-label="{foundation:translate(id: 'calendarize:details')} {event.title}"
                     class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
                     index="{index}">
                     <foundation:translate id="calendarize:details" />
@@ -43,6 +44,7 @@
                 {additionalContentAppend -> f:format.raw()}
 
                 <c:link.booking
+                    aria-label="{f:translate(key: 'booking')} {event.title}"
                     class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
                     index="{index}">
                     <f:translate key="booking" />
@@ -60,6 +62,7 @@
             arguments="{
                 additionalContentAppend: additionalContentAppend,
                 additionalContentPrepend: additionalContentPrepend,
+                headerLevel: headerLevel,
                 image: image,
                 subtitle: subtitle,
                 text: text,

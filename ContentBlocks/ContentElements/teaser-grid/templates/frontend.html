@@ -7,7 +7,7 @@
         src="EXT:templates/Resources/Public/JavaScript/filter.js"
         type="module" />
 
-    <section class="py-4">
+    <section class="py-3">
         <div class="container">
             <f:if condition="{data.header}">
                 <f:if condition="{data.header_layout} != 100">
@@ -31,26 +31,40 @@
                     <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/teaser-grid/language/labels.xlf:filter.label" />
                 </label>
                 <input
+                    aria-controls="teaser-grid-{data.uid}"
+                    aria-describedby="teaser-filter-status-{data.uid}"
                     class="form-control mb-4"
-                    data-psbits-filter-target="#teaser-grid-{data.uid} .teaser-grid__item"
+                    data-psbits-filter-count="#teaser-filter-status-{data.uid}"
+                    data-psbits-filter-target="#teaser-grid-{data.uid} > *"
                     id="teaser-filter-{data.uid}"
                     type="search" />
+
+                <p
+                    aria-atomic="true"
+                    aria-live="polite"
+                    class="mb-4 small text-body-secondary"
+                    id="teaser-filter-status-{data.uid}"
+                    role="status">
+                    <span data-psbits-filter-count-number>{data._grids.teasers -> f:count()}</span>
+                    <span data-psbits-filter-count-text="{f:translate(key: 'LLL:EXT:templates/ContentBlocks/ContentElements/teaser-grid/language/labels.xlf:filter.results')}">
+                        <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/teaser-grid/language/labels.xlf:filter.total" />
+                    </span>
+                </p>
             </f:if>
 
             <f:render
+                arguments="{
+                    id: 'teaser-grid-{data.uid}',
+                    itemCount: '{data._grids.teasers -> f:count()}',
+                    variant: 'teaser',
+                }"
                 contentAs="cards"
                 partial="Component/CardGrid">
-                <div
-                    class="row"
-                    id="teaser-grid-{data.uid}">
-                    <f:for
-                        as="item"
-                        each="{data._grids.teasers}">
-                        <div class="col-12 col-md-6 col-xl-4 mb-4 teaser-grid__item">
-                            <f:format.raw>{item.content}</f:format.raw>
-                        </div>
-                    </f:for>
-                </div>
+                <f:for
+                    as="item"
+                    each="{data._grids.teasers}">
+                    <f:format.raw>{item.content}</f:format.raw>
+                </f:for>
             </f:render>
         </div>
     </section>

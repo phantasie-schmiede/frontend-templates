@@ -19,8 +19,18 @@
         name="metaAlignment"
         value="{metaAlignment -> f:or(alternative: 'end')}" />
     <f:variable
+        name="overlayMetaClass"
+        value="bottom-0 d-block end-0 p-2 picture-meta picture-meta--overlay position-absolute text-end z-1" />
+    <f:switch expression="{metaAlignment}">
+        <f:case value="start">
+            <f:variable
+                name="overlayMetaClass"
+                value="bottom-0 d-block p-2 picture-meta picture-meta--overlay position-absolute start-0 text-start z-1" />
+        </f:case>
+    </f:switch>
+    <f:variable
         name="metaClass"
-        value="{f:if(condition: '{metaPosition} == \'overlay\'', then: '{f:if(condition: \'{metaAlignment} == \\\'start\\\'\', then: \'bottom-0 d-block p-2 picture-meta picture-meta--overlay position-absolute start-0 text-start z-1\', else: \'bottom-0 d-block end-0 p-2 picture-meta picture-meta--overlay position-absolute text-end z-1\')}', else: 'd-block mt-1 picture-meta text-body-secondary text-end')}" />
+        value="{f:if(condition: '{metaPosition} == \'overlay\'', then: overlayMetaClass, else: 'd-block mt-1 picture-meta text-body-secondary text-end')}" />
     <f:variable
         name="defaultCropVariants"
         value="{

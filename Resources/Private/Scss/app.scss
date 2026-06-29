@@ -190,6 +190,18 @@ body {
     }
   }
 
+  &--overlay-start {
+    picture::after {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+
+  &--overlay-end {
+    picture::after {
+      background: linear-gradient(270deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+
   &__content {
     max-width: 50rem;
     width: min(90vw, 50rem);
@@ -200,6 +212,11 @@ body {
     max-width: 34ch;
   }
 
+  .display-5.hero-block__text--constrained,
+  &__lead.hero-block__text--constrained {
+    max-width: 50%;
+  }
+
   @include media-breakpoint-down(md) {
     &__content {
       width: min(94vw, 34rem);
@@ -207,6 +224,12 @@ body {
 
     &__lead {
       margin-bottom: 1.5rem !important;
+      max-width: 34ch;
+    }
+
+    .display-5.hero-block__text--constrained,
+    &__lead.hero-block__text--constrained {
+      max-width: 100%;
     }
   }
 }

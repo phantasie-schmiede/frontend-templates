@@ -30,6 +30,8 @@ If you haven't already, please read the general agent instructions in `../AGENTS
     - `foundation` (`PSBits/Foundation/ViewHelpers`)
     - `templates` (`PSBits/Templates/ViewHelpers`)
     - `viewHelpers` (`PSBits/ViewHelpers/ViewHelpers`)
+- Don't add empty variable initializations in Fluid templates. They are unnecessary as Fluid will treat undefined
+  variables as `null` and render nothing.
 - Use yoda conditions for better readability and to avoid accidental assignment.
 - Use alphabetical ordering where possible (e.g., in arrays, attributes, imports, properties, variable declarations)
   for consistency;

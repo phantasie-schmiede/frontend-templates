@@ -1,77 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   width="64"
-   height="92"
-   viewBox="0 0 64 92"
-   version="1.1"
-   id="SVGRoot"
-   sodipodi:docname="TwoColumns-1-2.svg"
-   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview104"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="px"
-     showgrid="true"
-     inkscape:zoom="8.9935144"
-     inkscape:cx="36.859895"
-     inkscape:cy="46.589129"
-     inkscape:window-width="2560"
-     inkscape:window-height="1346"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1">
-    <inkscape:grid
-       type="xygrid"
-       id="grid110"
-       originx="0"
-       originy="0" />
-  </sodipodi:namedview>
-  <defs
-     id="defs99" />
-  <g
-     inkscape:label="Ebene 1"
-     inkscape:groupmode="layer"
-     id="layer1">
-    <rect
-       style="fill:#666666;fill-opacity:1;stroke-width:1.33391"
-       id="rect169"
-       width="62"
-       height="90"
-       x="1"
-       y="1" />
-    <rect
-       style="fill:#ffffff;fill-opacity:1;stroke-width:10.8978"
-       id="rect1841"
-       width="58"
-       height="86"
-       x="3"
-       y="3" />
-    <rect
-       style="fill:#666666;fill-opacity:1;stroke-width:2.63314"
-       id="rect1846"
-       width="32"
-       height="78"
-       x="25"
-       y="7" />
-    <rect
-       style="fill:#666666;fill-opacity:1;stroke-width:1.8619"
-       id="rect1846-7"
-       width="16"
-       height="78"
-       x="7"
-       y="7" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="92" viewBox="0 0 64 92" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="1" width="62" height="90" fill="#666666"/>
+  <rect x="3" y="3" width="58" height="86" fill="#ffffff"/>
+  <rect x="7" y="7" width="50" height="14" fill="#666666"/>
+  <rect x="7" y="23" width="16" height="62" fill="#666666"/>
+  <rect x="25" y="23" width="32" height="62" fill="#666666"/>
 </svg>

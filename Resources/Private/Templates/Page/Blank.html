@@ -4,8 +4,10 @@
     <f:layout name="Blank" />
 
     <f:section name="Main">
-        <f:render
-            arguments="{column: content1}"
-            partial="Column" />
+        <div class="page-row page-row--1 {rowHighlightClass1}">
+            <f:render
+                arguments="{column: content1}"
+                partial="Column" />
+        </div>
     </f:section>
 </html>

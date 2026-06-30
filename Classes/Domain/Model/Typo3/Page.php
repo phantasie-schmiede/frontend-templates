@@ -34,9 +34,34 @@ class Page extends AbstractEntity
         'XXL'     => 'xxl',
         'FLUID'   => 'fluid',
     ];
+    public const ROW_HIGHLIGHT_TOKENS = [
+        'NONE'     => 'none',
+        'SUBTLE'   => 'subtle',
+        'EMPHASIS' => 'emphasis',
+    ];
 
     #[Column(position: 'after:layout')]
     #[Field(name: 'tx_templates_bs_container_type')]
     #[Select(items: self::BOOTSTRAP_CONTAINER_TYPES)]
     protected string $bootstrapContainerType = self::BOOTSTRAP_CONTAINER_TYPES['DEFAULT'];
+
+    #[Column(default: self::ROW_HIGHLIGHT_TOKENS['NONE'], position: 'after:tx_templates_bs_container_type')]
+    #[Field(name: 'tx_templates_row_highlight_1')]
+    #[Select(items: self::ROW_HIGHLIGHT_TOKENS)]
+    protected string $rowHighlight1 = self::ROW_HIGHLIGHT_TOKENS['NONE'];
+
+    #[Column(default: self::ROW_HIGHLIGHT_TOKENS['NONE'], position: 'after:tx_templates_row_highlight_1')]
+    #[Field(name: 'tx_templates_row_highlight_2')]
+    #[Select(items: self::ROW_HIGHLIGHT_TOKENS)]
+    protected string $rowHighlight2 = self::ROW_HIGHLIGHT_TOKENS['NONE'];
+
+    #[Column(default: self::ROW_HIGHLIGHT_TOKENS['NONE'], position: 'after:tx_templates_row_highlight_2')]
+    #[Field(name: 'tx_templates_row_highlight_3')]
+    #[Select(items: self::ROW_HIGHLIGHT_TOKENS)]
+    protected string $rowHighlight3 = self::ROW_HIGHLIGHT_TOKENS['NONE'];
+
+    #[Column(default: self::ROW_HIGHLIGHT_TOKENS['NONE'], position: 'after:tx_templates_row_highlight_3')]
+    #[Field(name: 'tx_templates_row_highlight_4')]
+    #[Select(items: self::ROW_HIGHLIGHT_TOKENS)]
+    protected string $rowHighlight4 = self::ROW_HIGHLIGHT_TOKENS['NONE'];
 }

@@ -31,6 +31,69 @@
             <trans-unit id="bootstrapContainerType.fluid">
                 <source>fluid</source>
             </trans-unit>
+            <trans-unit id="rowHighlights.tab">
+                <source>Row highlights</source>
+            </trans-unit>
+            <trans-unit id="rowHighlights.description">
+                <source>Use row highlights only for visual separation and keep combinations minimal.</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight.none">
+                <source>None</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight.subtle">
+                <source>Subtle</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight.emphasis">
+                <source>Emphasis</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight1">
+                <source>Row 1 highlight</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight1.none">
+                <source>None</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight1.subtle">
+                <source>Subtle</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight1.emphasis">
+                <source>Emphasis</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight2">
+                <source>Row 2 highlight</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight2.none">
+                <source>None</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight2.subtle">
+                <source>Subtle</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight2.emphasis">
+                <source>Emphasis</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight3">
+                <source>Row 3 highlight</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight3.none">
+                <source>None</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight3.subtle">
+                <source>Subtle</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight3.emphasis">
+                <source>Emphasis</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight4">
+                <source>Row 4 highlight</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight4.none">
+                <source>None</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight4.subtle">
+                <source>Subtle</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight4.emphasis">
+                <source>Emphasis</source>
+            </trans-unit>
         </body>
         <header />
     </file>

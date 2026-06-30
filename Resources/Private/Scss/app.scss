@@ -61,6 +61,14 @@ body {
   }
 }
 
+.page-row-highlight-subtle {
+  background-color: var(--bs-secondary-bg);
+}
+
+.page-row-highlight-emphasis {
+  background-color: var(--bs-primary-bg-subtle);
+}
+
 .nav button[disabled] {
   opacity: 0.25;
 }

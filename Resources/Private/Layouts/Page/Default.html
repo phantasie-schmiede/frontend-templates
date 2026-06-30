@@ -15,6 +15,18 @@
     <f:variable
         name="templateSettings"
         value="{templates:globalVariables.settings()}" />
+    <f:variable
+        name="rowHighlightClass1"
+        value="{templates:page.rowHighlightClass(currentPage: currentPage, row: 1)}" />
+    <f:variable
+        name="rowHighlightClass2"
+        value="{templates:page.rowHighlightClass(currentPage: currentPage, row: 2)}" />
+    <f:variable
+        name="rowHighlightClass3"
+        value="{templates:page.rowHighlightClass(currentPage: currentPage, row: 3)}" />
+    <f:variable
+        name="rowHighlightClass4"
+        value="{templates:page.rowHighlightClass(currentPage: currentPage, row: 4)}" />
 
     <f:if condition="{currentPage.tx_templates_bs_container_type}">
         <f:variable

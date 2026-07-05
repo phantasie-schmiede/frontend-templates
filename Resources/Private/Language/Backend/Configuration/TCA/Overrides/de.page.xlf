@@ -24,81 +24,17 @@
                 <source>Use row highlights only for visual separation and keep combinations minimal.</source>
                 <target>Verwende Zeilenhervorhebungen nur zur visuellen Trennung und halte die Kombinationen minimal.</target>
             </trans-unit>
-            <trans-unit id="rowHighlight.none">
-                <source>None</source>
-                <target>Keine</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight.subtle">
-                <source>Subtle</source>
-                <target>Dezent</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight.emphasis">
-                <source>Emphasis</source>
-                <target>Betont</target>
-            </trans-unit>
             <trans-unit id="rowHighlight1">
                 <source>Row 1 highlight</source>
-                <target>Zeile 1 Hervorhebung</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight1.none">
-                <source>None</source>
-                <target>Keine</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight1.subtle">
-                <source>Subtle</source>
-                <target>Dezent</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight1.emphasis">
-                <source>Emphasis</source>
-                <target>Betont</target>
+                <target>Hervorhebung Zeile 1</target>
             </trans-unit>
             <trans-unit id="rowHighlight2">
                 <source>Row 2 highlight</source>
-                <target>Zeile 2 Hervorhebung</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight2.none">
-                <source>None</source>
-                <target>Keine</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight2.subtle">
-                <source>Subtle</source>
-                <target>Dezent</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight2.emphasis">
-                <source>Emphasis</source>
-                <target>Betont</target>
+                <target>Hervorhebung Zeile 2</target>
             </trans-unit>
             <trans-unit id="rowHighlight3">
                 <source>Row 3 highlight</source>
-                <target>Zeile 3 Hervorhebung</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight3.none">
-                <source>None</source>
-                <target>Keine</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight3.subtle">
-                <source>Subtle</source>
-                <target>Dezent</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight3.emphasis">
-                <source>Emphasis</source>
-                <target>Betont</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight4">
-                <source>Row 4 highlight</source>
-                <target>Zeile 4 Hervorhebung</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight4.none">
-                <source>None</source>
-                <target>Keine</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight4.subtle">
-                <source>Subtle</source>
-                <target>Dezent</target>
-            </trans-unit>
-            <trans-unit id="rowHighlight4.emphasis">
-                <source>Emphasis</source>
-                <target>Betont</target>
+                <target>Hervorhebung Zeile 3</target>
             </trans-unit>
         </body>
     </file>

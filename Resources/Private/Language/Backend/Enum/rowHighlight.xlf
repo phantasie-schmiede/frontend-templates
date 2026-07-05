@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2026-07-05T13:17:00+01:00"
+        original="messages"
+        product-name="templates"
+        source-language="en">
+        <body>
+            <trans-unit id="emphasis">
+                <source>Emphasis</source>
+            </trans-unit>
+            <trans-unit id="none">
+                <source>None</source>
+            </trans-unit>
+            <trans-unit id="subtle">
+                <source>Subtle</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

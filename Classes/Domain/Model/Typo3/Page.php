@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace PSBits\Templates\Domain\Model\Typo3;
 
 use PSBits\Foundation\Attribute\TCA\Column;
+use PSBits\Foundation\Attribute\TCA\ColumnType\Enum;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Select;
 use PSBits\Foundation\Attribute\TCA\Mapping\Field;
 use PSBits\Foundation\Attribute\TCA\Mapping\Table;
+use PSBits\Templates\Enum\RowHighlight;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
@@ -25,7 +27,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 #[Table(name: 'pages')]
 class Page extends AbstractEntity
 {
-    public const BOOTSTRAP_CONTAINER_TYPES = [
+    public const array   BOOTSTRAP_CONTAINER_TYPES = [
         'DEFAULT' => '',
         'SM'      => 'sm',
         'MD'      => 'md',
@@ -34,34 +36,25 @@ class Page extends AbstractEntity
         'XXL'     => 'xxl',
         'FLUID'   => 'fluid',
     ];
-    public const ROW_HIGHLIGHT_TOKENS = [
-        'NONE'     => 'none',
-        'SUBTLE'   => 'subtle',
-        'EMPHASIS' => 'emphasis',
-    ];
+    private const string DISPLAY_COND_PREFIX       = 'USER:PSBits\Templates\Backend\DisplayCondition\PageRowHighlightDisplayCondition->matches:';
 
     #[Column(position: 'after:layout')]
     #[Field(name: 'tx_templates_bs_container_type')]
     #[Select(items: self::BOOTSTRAP_CONTAINER_TYPES)]
     protected string $bootstrapContainerType = self::BOOTSTRAP_CONTAINER_TYPES['DEFAULT'];
 
-    #[Column(default: self::ROW_HIGHLIGHT_TOKENS['NONE'], position: 'after:tx_templates_bs_container_type')]
+    #[Column(databaseDefinition: 'varchar(8) DEFAULT NULL', default: RowHighlight::None->value, displayCond: self::DISPLAY_COND_PREFIX . '1', l10nMode: 'exclude', position: 'after:backend_layout_next_level')]
+    #[Enum(enumClass: RowHighlight::class)]
     #[Field(name: 'tx_templates_row_highlight_1')]
-    #[Select(items: self::ROW_HIGHLIGHT_TOKENS)]
-    protected string $rowHighlight1 = self::ROW_HIGHLIGHT_TOKENS['NONE'];
+    protected RowHighlight $rowHighlight1 = RowHighlight::None;
 
-    #[Column(default: self::ROW_HIGHLIGHT_TOKENS['NONE'], position: 'after:tx_templates_row_highlight_1')]
+    #[Column(databaseDefinition: 'varchar(8) DEFAULT NULL', default: RowHighlight::None->value, displayCond: self::DISPLAY_COND_PREFIX . '2', l10nMode: 'exclude', position: 'after:tx_templates_row_highlight_1')]
+    #[Enum(enumClass: RowHighlight::class)]
     #[Field(name: 'tx_templates_row_highlight_2')]
-    #[Select(items: self::ROW_HIGHLIGHT_TOKENS)]
-    protected string $rowHighlight2 = self::ROW_HIGHLIGHT_TOKENS['NONE'];
+    protected RowHighlight $rowHighlight2 = RowHighlight::None;
 
-    #[Column(default: self::ROW_HIGHLIGHT_TOKENS['NONE'], position: 'after:tx_templates_row_highlight_2')]
+    #[Column(databaseDefinition: 'varchar(8) DEFAULT NULL', default: RowHighlight::None->value, displayCond: self::DISPLAY_COND_PREFIX . '3', l10nMode: 'exclude', position: 'after:tx_templates_row_highlight_2')]
+    #[Enum(enumClass: RowHighlight::class)]
     #[Field(name: 'tx_templates_row_highlight_3')]
-    #[Select(items: self::ROW_HIGHLIGHT_TOKENS)]
-    protected string $rowHighlight3 = self::ROW_HIGHLIGHT_TOKENS['NONE'];
-
-    #[Column(default: self::ROW_HIGHLIGHT_TOKENS['NONE'], position: 'after:tx_templates_row_highlight_3')]
-    #[Field(name: 'tx_templates_row_highlight_4')]
-    #[Select(items: self::ROW_HIGHLIGHT_TOKENS)]
-    protected string $rowHighlight4 = self::ROW_HIGHLIGHT_TOKENS['NONE'];
+    protected RowHighlight $rowHighlight3 = RowHighlight::None;
 }

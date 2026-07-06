@@ -13,6 +13,9 @@
         name="copyright"
         value="{file.properties.tx_templates_copyright -> f:or(alternative: file.originalResource.properties.tx_templates_copyright)}" />
     <f:variable
+        name="figureClass"
+        value="{figureClass -> f:or(alternative: 'position-relative')}" />
+    <f:variable
         name="metaPosition"
         value="{metaPosition -> f:or(alternative: 'below')}" />
     <f:variable
@@ -71,7 +74,7 @@
             1: 'webp',
         }" />
 
-    <figure class="position-relative">
+    <figure class="{figureClass}">
         <f:render
             arguments="{_all}"
             section="Picture" />

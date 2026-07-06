@@ -1,6 +1,13 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers">
+    <f:variable
+        name="currentPage"
+        value="{templates:globalVariables.currentPage()}" />
+    <f:variable
+        name="rowHighlightClass1"
+        value="{templates:page.rowHighlightClass(currentPage: currentPage, row: 1)}" />
     <main class="container-fluid vh-100">
         <f:render section="Main" />
     </main>

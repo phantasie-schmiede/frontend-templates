@@ -4,8 +4,19 @@
     <f:layout name="Blank" />
 
     <f:section name="Main">
-        <f:render
-            arguments="{column: content1}"
-            partial="Column" />
+        <f:if condition="{rowHighlightClass1}">
+            <f:then>
+                <div class="{rowHighlightClass1}">
+                    <f:render
+                        arguments="{column: content1}"
+                        partial="Column" />
+                </div>
+            </f:then>
+            <f:else>
+                <f:render
+                    arguments="{column: content1}"
+                    partial="Column" />
+            </f:else>
+        </f:if>
     </f:section>
 </html>

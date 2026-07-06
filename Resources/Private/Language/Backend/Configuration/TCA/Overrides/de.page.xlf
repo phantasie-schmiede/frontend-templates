@@ -16,6 +16,26 @@
                 <source>Default</source>
                 <target>Standard</target>
             </trans-unit>
+            <trans-unit id="rowHighlights.tab">
+                <source>Row highlights</source>
+                <target>Zeilenhervorhebungen</target>
+            </trans-unit>
+            <trans-unit id="rowHighlights.description">
+                <source>Use row highlights only for visual separation and keep combinations minimal.</source>
+                <target>Verwende Zeilenhervorhebungen nur zur visuellen Trennung und halte die Kombinationen minimal.</target>
+            </trans-unit>
+            <trans-unit id="rowHighlight1">
+                <source>Row 1 highlight</source>
+                <target>Hervorhebung Zeile 1</target>
+            </trans-unit>
+            <trans-unit id="rowHighlight2">
+                <source>Row 2 highlight</source>
+                <target>Hervorhebung Zeile 2</target>
+            </trans-unit>
+            <trans-unit id="rowHighlight3">
+                <source>Row 3 highlight</source>
+                <target>Hervorhebung Zeile 3</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

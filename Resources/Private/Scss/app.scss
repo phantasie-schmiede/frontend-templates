@@ -61,6 +61,21 @@ body {
   }
 }
 
+.page-row-highlight-subtle,
+.page-row-highlight-emphasis {
+  background-color: var(--bs-page-row-highlight-background-color);
+  box-shadow: 0 0 0 100vmax var(--bs-page-row-highlight-background-color);
+  clip-path: inset(0 -100vmax);
+}
+
+.page-row-highlight-subtle {
+  --bs-page-row-highlight-background-color: var(--bs-secondary-bg);
+}
+
+.page-row-highlight-emphasis {
+  --bs-page-row-highlight-background-color: var(--bs-primary-bg-subtle);
+}
+
 .nav button[disabled] {
   opacity: 0.25;
 }
@@ -169,6 +184,10 @@ body {
 
 .hero-block {
   color: var(--bs-white);
+
+  &__figure {
+    margin: 0;
+  }
 
   &__image {
     max-height: 70vh;

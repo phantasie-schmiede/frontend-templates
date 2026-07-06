@@ -76,6 +76,7 @@
     <section class="hero-block{overlayClass} position-relative text-{data.text_align}">
         <f:render
             arguments="{
+                figureClass: 'hero-block__figure position-relative',
                 file: data.image.0,
                 imageClass: 'h-auto hero-block__image w-100',
                 loading: '{f:if(condition: data.eager_loading, then: \'eager\')}',

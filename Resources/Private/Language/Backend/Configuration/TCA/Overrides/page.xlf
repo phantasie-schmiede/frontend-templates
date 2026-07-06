@@ -31,6 +31,21 @@
             <trans-unit id="bootstrapContainerType.fluid">
                 <source>fluid</source>
             </trans-unit>
+            <trans-unit id="rowHighlights.tab">
+                <source>Row highlights</source>
+            </trans-unit>
+            <trans-unit id="rowHighlights.description">
+                <source>Use row highlights only for visual separation and keep combinations minimal.</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight1">
+                <source>Row 1 highlight</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight2">
+                <source>Row 2 highlight</source>
+            </trans-unit>
+            <trans-unit id="rowHighlight3">
+                <source>Row 3 highlight</source>
+            </trans-unit>
         </body>
         <header />
     </file>

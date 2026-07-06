@@ -4,14 +4,14 @@
     <f:layout name="Default" />
 
     <f:section name="Main">
-        <div class="row">
+        <div class="row {rowHighlightClass1}">
             <div class="col">
                 <f:render
                     arguments="{column: content1}"
                     partial="Column" />
             </div>
         </div>
-        <div class="row">
+        <div class="row {rowHighlightClass2}">
             <div class="col-md">
                 <f:render
                     arguments="{column: content2}"
@@ -28,7 +28,7 @@
                     partial="Column" />
             </div>
         </div>
-        <div class="row">
+        <div class="row {rowHighlightClass3}">
             <div class="col">
                 <f:render
                     arguments="{column: content5}"

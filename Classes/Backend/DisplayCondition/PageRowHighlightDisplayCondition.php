@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace PSBits\Templates\Backend\DisplayCondition;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+
 use function in_array;
 use function is_array;
 

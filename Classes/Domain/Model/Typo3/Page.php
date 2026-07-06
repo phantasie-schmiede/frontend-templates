@@ -36,7 +36,7 @@ class Page extends AbstractEntity
         'XXL'     => 'xxl',
         'FLUID'   => 'fluid',
     ];
-    private const string DISPLAY_COND_PREFIX       = 'USER:PSBits\Templates\Backend\DisplayCondition\PageRowHighlightDisplayCondition->matches:';
+    private const string DISPLAY_COND_PREFIX = 'USER:PSBits\Templates\Backend\DisplayCondition\PageRowHighlightDisplayCondition->matches:';
 
     #[Column(position: 'after:layout')]
     #[Field(name: 'tx_templates_bs_container_type')]

@@ -20,7 +20,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 class RowHighlightClassViewHelper extends AbstractViewHelper
 {
-    private const array CLASS_MAP    = [
+    private const array CLASS_MAP = [
         'emphasis' => 'page-row-highlight-emphasis',
         'subtle'   => 'page-row-highlight-subtle',
     ];
@@ -46,8 +46,8 @@ class RowHighlightClassViewHelper extends AbstractViewHelper
 
         /** @var array<string, mixed> $currentPage */
         $currentPage = $this->arguments['currentPage'];
-        $tokenField = self::TOKEN_FIELDS[$row];
-        $token = (string)($currentPage[$tokenField] ?? 'none');
+        $tokenField  = self::TOKEN_FIELDS[$row];
+        $token       = (string)($currentPage[$tokenField] ?? 'none');
 
         return self::CLASS_MAP[$token] ?? '';
     }

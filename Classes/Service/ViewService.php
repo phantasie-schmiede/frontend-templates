@@ -79,8 +79,8 @@ readonly class ViewService
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
             $extensionInformation->getExtensionName(),
         );
-        $viewSettings['layoutRootPaths'] ??= [];
-        $viewSettings['partialRootPaths'] ??= [];
+        $viewSettings['layoutRootPaths']   ??= [];
+        $viewSettings['partialRootPaths']  ??= [];
         $viewSettings['templateRootPaths'] ??= [];
 
         // Add default paths as fallback.

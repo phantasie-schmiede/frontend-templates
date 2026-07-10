@@ -34,7 +34,10 @@ const dryRunMode = process.argv.includes('--dry-run');
 const fluidExpressionPattern = /[{}]/;
 const lintErrors = [];
 const repositoryRoot = process.cwd();
-const targets = ['Resources/Private/**/*.html', 'ContentBlocks/**/*.html'];
+const targets = [
+    'Resources/Private/**/*.html',
+    'ContentBlocks/**/*.html'
+];
 
 const compareClassNames = (left, right) => {
     // Special rules for bootstrap breakpoints

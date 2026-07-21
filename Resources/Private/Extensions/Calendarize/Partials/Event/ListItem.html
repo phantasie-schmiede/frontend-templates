@@ -58,13 +58,14 @@
 
         <f:render
             arguments="{
-                additionalContentAppend: additionalContentAppend,
-                additionalContentPrepend: additionalContentPrepend,
-                image: image,
-                subtitle: subtitle,
-                text: text,
-                title: '{index.originalObject.title -> c:link.index(index: index)}'
-            }"
+            additionalContentAppend: additionalContentAppend,
+            additionalContentPrepend: additionalContentPrepend,
+            desktopImageUrl: desktopImageUrl,
+            imageUrl: imageUrl,
+            subtitle: subtitle,
+            text: text,
+            title: '{index.originalObject.title -> c:link.index(index: index)}'
+        }"
             partial="Component/Card" />
     </f:alias>
 </html>

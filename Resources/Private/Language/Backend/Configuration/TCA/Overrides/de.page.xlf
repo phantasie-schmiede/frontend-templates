@@ -36,6 +36,12 @@
                 <source>Row 3 highlight</source>
                 <target>Hervorhebung Zeile 3</target>
             </trans-unit>
+
+            <!-- Page types -->
+            <trans-unit id="pageType.menuDropdown">
+                <source>Menu dropdown</source>
+                <target>Menü-Dropdown</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

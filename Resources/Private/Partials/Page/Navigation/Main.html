@@ -4,7 +4,7 @@
     <f:for
         as="page"
         each="{mainNavigation}">
-        <li class="nav-item{page.hasSubpages ? ' dropdown' : ''}">
+        <li class="nav-item{f:if(condition: '{100} == {page.data.doktype} && {page.hasSubpages}', then: ' dropdown')}">
             <f:if condition="{page.current}">
                 <f:then>
                     <a
@@ -14,7 +14,7 @@
                         {page.title}
                     </a>
                 </f:then>
-                <f:else if="{page.hasSubpages}">
+                <f:else if="{100} == {page.data.doktype} && {page.hasSubpages}">
                     <button
                         aria-controls="submenu-{page.data.uid}"
                         aria-expanded="false"

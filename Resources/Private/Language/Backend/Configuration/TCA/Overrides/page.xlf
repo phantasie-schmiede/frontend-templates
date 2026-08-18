@@ -46,6 +46,11 @@
             <trans-unit id="rowHighlight3">
                 <source>Row 3 highlight</source>
             </trans-unit>
+
+            <!-- Page types -->
+            <trans-unit id="pageType.menuDropdown">
+                <source>Menu dropdown</source>
+            </trans-unit>
         </body>
         <header />
     </file>

@@ -20,4 +20,14 @@ use PSBits\Foundation\Data\AbstractExtensionInformation;
  */
 class ExtensionInformation extends AbstractExtensionInformation
 {
+    public const array DOKTYPES = [
+        'MENU_DROPDOWN' => 100,
+    ];
+
+    public const array PAGE_TYPES = [
+        self::DOKTYPES['MENU_DROPDOWN'] => [
+            'allowedTables' => ['pages'],
+            'name'          => 'menuDropdown',
+        ],
+    ];
 }

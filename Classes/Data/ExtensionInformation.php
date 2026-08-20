@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace PSBits\Templates\Data;
 
 use PSBits\Foundation\Data\AbstractExtensionInformation;
+use PSBits\Foundation\Data\PageTypeConfiguration;
 
 /**
  * Class ExtensionInformation
@@ -24,10 +25,15 @@ class ExtensionInformation extends AbstractExtensionInformation
         'MENU_DROPDOWN' => 100,
     ];
 
-    public const array PAGE_TYPES = [
-        self::DOKTYPES['MENU_DROPDOWN'] => [
-            'allowedTables' => ['pages'],
-            'name'          => 'menuDropdown',
-        ],
-    ];
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addPageType(
+            new PageTypeConfiguration(
+                allowedTables: ['pages'],
+                doktype: self::DOKTYPES['MENU_DROPDOWN'],
+                name: 'menuDropdown',
+            )
+        );
+    }
 }

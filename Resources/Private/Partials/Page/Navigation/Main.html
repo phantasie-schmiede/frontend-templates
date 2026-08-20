@@ -4,7 +4,11 @@
     <f:for
         as="page"
         each="{mainNavigation}">
-        <li class="nav-item{f:if(condition: '{100} == {page.data.doktype} && {page.hasSubpages}', then: ' dropdown')}">
+        <f:variable
+            name="hasSubpages"
+            value="{f:if(condition: '100 == {page.data.doktype} && {page.hasSubpages}', then: true)}" />
+
+        <li class="nav-item{f:if(condition: hasSubpages, then: ' dropdown')}">
             <f:if condition="{page.current}">
                 <f:then>
                     <a
@@ -14,17 +18,17 @@
                         {page.title}
                     </a>
                 </f:then>
-                <f:else if="{100} == {page.data.doktype} && {page.hasSubpages}">
+                <f:else if="{hasSubpages}">
                     <button
                         aria-controls="submenu-{page.data.uid}"
                         aria-expanded="false"
-                        class="dropdown-toggle nav-link"
+                        class="dropdown-toggle ms-auto nav-link"
                         data-bs-toggle="dropdown"
                         type="button">
                         {page.title}
                     </button>
                     <ul
-                        class="dropdown-menu"
+                        class="dropdown-menu pe-4 pe-lg-0 py-0"
                         id="submenu-{page.data.uid}">
                         <f:for
                             as="subPage"

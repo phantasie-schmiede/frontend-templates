@@ -21,6 +21,8 @@ use TYPO3\CMS\Core\Http\RedirectResponse;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
+use function is_array;
+
 /**
  * Redirect requests to menu dropdown placeholder pages to their first subpage.
  */
@@ -41,13 +43,11 @@ readonly class MenuDropdownRedirectMiddleware implements MiddlewareInterface
 
         $currentPage = $this->pageRepository->getPage_noCheck($pageArguments->getPageId());
 
-        if (!is_array(
-                $currentPage
-            ) || ExtensionInformation::DOKTYPES['MENU_DROPDOWN'] !== (int)($currentPage['doktype'] ?? 0)) {
+        if (ExtensionInformation::DOKTYPES['MENU_DROPDOWN'] !== (int)($currentPage['doktype'] ?? 0)) {
             return $handler->handle($request);
         }
 
-        $subPages = $this->pageRepository->getMenu((int)$currentPage['uid'], 'uid');
+        $subPages     = $this->pageRepository->getMenu((int)$currentPage['uid'], 'uid');
         $firstSubPage = reset($subPages);
 
         if (!is_array($firstSubPage) || empty($firstSubPage['uid'])) {

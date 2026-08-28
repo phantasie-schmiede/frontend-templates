@@ -54,7 +54,8 @@
     <f:variable
         name="metaAlignment"
         value="end" />
-    <f:if condition="{data.show_overlay} && {'start' == data.text_align}">
+
+    <f:if condition="{data.show_overlay} && 'start' == {data.text_align}">
         <f:variable
             name="metaAlignment"
             value="start" />

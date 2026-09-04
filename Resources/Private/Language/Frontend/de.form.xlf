@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file datatype="plaintext"
+        date="2026-09-04T08:17:00+01:00"
+        original="messages"
+        product-name="templates"
+        source-language="en"
+        target-language="de">
+        <body>
+            <trans-unit id="cancel">
+                <source>Cancel</source>
+                <target>Abbrechen</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>Save</source>
+                <target>Speichern</target>
+            </trans-unit>
+            <trans-unit id="submit.loadingSpinner">
+                <source>Saving ...</source>
+                <target>Wird gespeichert ...</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

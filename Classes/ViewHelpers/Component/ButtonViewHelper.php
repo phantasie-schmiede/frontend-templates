@@ -26,6 +26,10 @@ use function is_string;
 /**
  * Class ButtonViewHelper
  *
+ * Renders a button with optional icon and spinner text. The button renders as button element by default, but can be
+ * rendered as a link by setting the href argument. If the externalLink argument is set to true, the button will be
+ * rendered as a link with target="_blank" and rel="noopener noreferrer".
+ *
  * @package PSBits\Templates\ViewHelpers\Component
  */
 class ButtonViewHelper extends AbstractViewHelper
@@ -50,11 +54,11 @@ class ButtonViewHelper extends AbstractViewHelper
         $this->registerArgument(
             'externalLink',
             'bool',
-            'sets tag to "a", target to _blank and rel to "noopener noreferrer"',
+            'sets target to _blank and rel to "noopener noreferrer", if href is set',
             false,
             false
         );
-        $this->registerArgument('href', 'string', 'href attribute if tag is set to "a"');
+        $this->registerArgument('href', 'string', 'href attribute, sets tag to "a"');
         $this->registerArgument('iconIdentifier', 'string', 'optional icon prepending the label');
         $this->registerArgument('label', 'string', 'the button label');
         $this->registerArgument('rel', 'string', 'the rel attribute if tag is set to "a"');
@@ -115,10 +119,13 @@ class ButtonViewHelper extends AbstractViewHelper
      */
     private function processAdditionalAttributes(array &$additionalAttributes): void
     {
-        if ($this->arguments['externalLink']) {
-            $this->arguments['rel']    = 'noopener noreferrer';
-            $this->arguments['tag']    = 'a';
-            $this->arguments['target'] = '_blank';
+        if ($this->arguments['href']) {
+            $this->arguments['tag'] = 'a';
+
+            if ($this->arguments['externalLink']) {
+                $this->arguments['rel']    = 'noopener noreferrer';
+                $this->arguments['target'] = '_blank';
+            }
         }
 
         $tag = $this->arguments['tag'];
@@ -143,12 +150,9 @@ class ButtonViewHelper extends AbstractViewHelper
      */
     private function processClasses(array &$classes): void
     {
+        $classes[] = 'align-items-center';
         $classes[] = 'btn';
-
-        if (!empty($this->arguments['iconIdentifier'])) {
-            $classes[] = 'align-items-center';
-            $classes[] = 'd-flex';
-        }
+        $classes[] = 'd-flex';
 
         $classes = array_unique($classes);
         sort($classes);

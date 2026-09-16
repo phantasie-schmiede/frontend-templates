@@ -92,10 +92,6 @@
             "npm install",
             "cp Build/GitHooks/pre-commit .git/hooks/pre-commit"
         ],
-        "qa": [
-            "@fix:all",
-            "@lint:all"
-        ],
         "validate:composer": "composer validate --no-check-publish"
     },
     "type": "typo3-cms-extension"

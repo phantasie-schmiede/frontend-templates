@@ -11,11 +11,8 @@ declare(strict_types=1);
 
 namespace PSBits\Templates\ViewHelpers\GlobalVariables;
 
-use Closure;
-use Exception;
 use PSBits\Foundation\ViewHelpers\GlobalVariables\AbstractGlobalVariablesViewHelper;
 use PSBits\Templates\Service\GlobalVariableProviders\SettingsProvider;
-use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 
 /**
  * Class SettingsViewHelper
@@ -24,16 +21,8 @@ use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
  */
 class SettingsViewHelper extends AbstractGlobalVariablesViewHelper
 {
-    /**
-     * @param array<string, mixed> $arguments
-     *
-     * @throws Exception
-     */
-    public static function renderStatic(
-        array                     $arguments,
-        Closure                   $renderChildrenClosure,
-        RenderingContextInterface $renderingContext,
-    ): mixed {
-        return parent::getVariable(SettingsProvider::class, $arguments);
+    protected function getBaseKey(): string
+    {
+        return SettingsProvider::class;
     }
 }

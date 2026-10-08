@@ -21,8 +21,8 @@ use PSBits\Templates\Service\GlobalVariableProviders\CurrentPageProvider;
  */
 class CurrentPageViewHelper extends AbstractGlobalVariablesViewHelper
 {
-    public function render(): mixed
+    protected function getBaseKey(): string
     {
-        return parent::getVariable(CurrentPageProvider::class, $this->arguments);
+        return CurrentPageProvider::class;
     }
 }

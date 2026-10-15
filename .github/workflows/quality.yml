@@ -54,6 +54,12 @@ jobs:
       - name: HTML/XML/XLF lint
         run: composer lint:htmlxml
 
+      - name: JavaScript lint
+        run: composer lint:js
+
+      - name: SCSS lint
+        run: composer lint:scss
+
       - name: TypoScript lint
         run: composer lint:typoscript
 

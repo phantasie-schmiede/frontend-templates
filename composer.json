@@ -51,9 +51,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.95",
-        "georgringer/news": "^12",
         "helmich/typo3-typoscript-lint": "^3.3",
-        "lochmueller/calendarize": "^14",
         "phpstan/phpstan": "^2.2",
         "roave/security-advisories": "dev-latest",
         "saschaegerer/phpstan-typo3": "^2.1"

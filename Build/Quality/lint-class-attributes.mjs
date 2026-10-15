@@ -35,8 +35,8 @@ const fluidExpressionPattern = /[{}]/;
 const lintErrors = [];
 const repositoryRoot = process.cwd();
 const targets = [
-    'Resources/Private/**/*.html',
-    'ContentBlocks/**/*.html'
+    'ContentBlocks/**/*.html',
+    'Resources/Private/**/*.html'
 ];
 
 const compareClassNames = (left, right) => {

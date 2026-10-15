@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/php-cs-fixer/ClassBlockSeparationFixer.php';
+require_once __DIR__ . '/php-cs-fixer/PropertyNamesAlignmentFixer.php';
 
 $finder = PhpCsFixer\Finder::create()
     ->in([
@@ -14,6 +15,7 @@ $finder = PhpCsFixer\Finder::create()
 return (new PhpCsFixer\Config())->setRiskyAllowed(true)
     ->registerCustomFixers([
         new PSBits\Templates\PhpCsFixer\Fixer\ClassBlockSeparationFixer(),
+        new PSBits\Templates\PhpCsFixer\Fixer\PropertyNamesAlignmentFixer(),
     ])
     ->setRules([
         '@PSR12'                          => true,
@@ -42,15 +44,6 @@ return (new PhpCsFixer\Config())->setRiskyAllowed(true)
                 'throw',
                 'try',
                 'while',
-            ],
-        ],
-        'class_attributes_separation'     => [
-            'elements' => [
-                'case'         => 'none',
-                'const'        => 'only_if_meta',
-                'method'       => 'one',
-                'property'     => 'only_if_meta',
-                'trait_import' => 'only_if_meta',
             ],
         ],
         'declare_strict_types'            => true,
@@ -91,7 +84,20 @@ return (new PhpCsFixer\Config())->setRiskyAllowed(true)
             ],
             'sort_algorithm' => 'alpha',
         ],
-        'PSBits/class_block_separation'   => true,
+        'phpdoc_align'                    => [
+            'align' => 'vertical',
+            'tags'  => ['param'],
+        ],
+        'PSBits/class_block_separation'   => [
+            'elements' => [
+                'case'         => 'none',
+                'const'        => 'only_if_meta',
+                'method'       => 'one',
+                'property'     => 'only_if_meta',
+                'trait_import' => 'only_if_meta',
+            ],
+        ],
+        'PSBits/property_names_alignment' => true,
         'single_quote'                    => true,
         'single_space_around_construct'   => [
             'constructs_followed_by_a_single_space' => ['named_argument'],

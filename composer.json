@@ -40,14 +40,14 @@
     "name": "psbits/templates",
     "require": {
         "ext-intl": "*",
-        "friendsoftypo3/content-blocks": "~1.5.0",
+        "friendsoftypo3/content-blocks": "~1.5 || ^2.4",
         "php": "^8.3",
-        "psbits/foundation": "^3.2",
+        "psbits/foundation": "^4.0",
         "psbits/view-helpers": "^3.1",
         "symfony/intl": "^7.1",
-        "typo3/cms-core": "^13.4",
-        "typo3/cms-fluid-styled-content": "^13",
-        "wapplersystems/ws-scss": "^13"
+        "typo3/cms-core": "^13.4 || ^14.3",
+        "typo3/cms-fluid-styled-content": "^13.4 || ^14.3",
+        "wapplersystems/ws-scss": "^13 || ^14"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.95",

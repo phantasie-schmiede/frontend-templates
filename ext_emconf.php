@@ -8,10 +8,10 @@ $EM_CONF[$_EXTKEY] = [
     'constraints'      => [
         'conflicts' => [],
         'depends'   => [
-            'foundation'           => '3.0',
-            'fluid_styled_content' => '12.0.0-12.99.99',
-            'php'                  => '8.3',
-            'typo3'                => '13.4.0-13.4.99',
+            'foundation'           => '4.0',
+            'fluid_styled_content' => '13.0.0-14.99.99',
+            'php'                  => '8.3.0-8.5.99',
+            'typo3'                => '13.4.0-14.99.99',
         ],
     ],
     'description'      => 'Basic templates for TYPO3',

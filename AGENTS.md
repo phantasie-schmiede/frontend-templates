@@ -112,53 +112,10 @@ Content Blocks, and overriding templates for third-party extensions (News, Calen
 - Include punctuation in language files for complete localization (colons after labels go in the `.xlf`, not in the
   template).
 
-### Quick reference: Fluid template skeleton
+### Pattern quick reference
 
-```html
-<html
-    data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
-    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    ...
-</html>
-```
-
-### Quick reference: ViewHelper skeleton
-
-```php
-<?php
-
-declare(strict_types=1);
-
-namespace PSBits\Templates\ViewHelpers\Component;
-
-use PSBits\Templates\Service\ViewService;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-
-final class ExampleViewHelper extends AbstractViewHelper
-{
-    protected $escapeOutput = false;
-
-    public function __construct(
-        protected readonly ViewService $viewService,
-    ) {
-    }
-
-    public function initializeArguments(): void
-    {
-        parent::initializeArguments();
-        $this->registerArgument('label', 'string', 'someone reads this');
-    }
-
-    public function render(): string
-    {
-        return $this->viewService->createStandaloneView(
-            // ExtensionInformation + request + 'ViewHelpers/<Path>/<Name>'
-        )->render();
-    }
-}
-```
+The Fluid template and ViewHelper skeletons are documented in the `templates-patterns`
+skill (`.opencode/skills/templates-patterns/SKILL.md`).
 
 ## Safe change workflow
 

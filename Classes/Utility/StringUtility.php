@@ -15,6 +15,7 @@ use JsonException;
 use PSBits\Foundation\Utility\LocalizationUtility;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use ReflectionException;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 
 /**
@@ -27,11 +28,13 @@ class StringUtility
     public const LL = 'LLL:EXT:templates/Resources/Private/Language/Utility/stringUtility.xlf:';
 
     /**
+     * @param string[] $items
+     *
      * @throws AspectNotFoundException
      * @throws ContainerExceptionInterface
      * @throws JsonException
      * @throws NotFoundExceptionInterface
-     * @param string[] $items
+     * @throws ReflectionException
      */
     public static function createEnumeration(array $items): string
     {

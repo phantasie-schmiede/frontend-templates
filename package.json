@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Basic templates for TYPO3",
   "scripts": {
-    "fix:classes": "node Build/Quality/lint-class-attributes.mjs",
-    "fix:htmlxml": "prettier --config Build/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --write \"**/*.{html,xml,xlf}\"",
-    "lint:classes": "node Build/Quality/lint-class-attributes.mjs --dry-run",
-    "lint:htmlxml": "prettier --config Build/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --check \"**/*.{html,xml,xlf}\"",
+    "fix:classes": "node .Build/vendor/psbits/qa/Resources/Quality/lint-class-attributes.mjs",
+    "fix:htmlxml": "prettier --config .Build/vendor/psbits/qa/Resources/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --write \"**/*.{html,xml,xlf}\"",
+    "lint:classes": "node .Build/vendor/psbits/qa/Resources/Quality/lint-class-attributes.mjs --dry-run",
+    "lint:htmlxml": "prettier --config .Build/vendor/psbits/qa/Resources/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --check \"**/*.{html,xml,xlf}\"",
     "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\" --config Build/Quality/eslint.config.cjs --ignore-pattern \"Resources/Public/JavaScript/Vendors/**\"",
     "lint:scss": "stylelint \"Resources/Private/Scss/**/*.{scss,sass}\" --config Build/Quality/.stylelintrc.json --ignore-path Build/Quality/.stylelintignore"
   },

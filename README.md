@@ -175,7 +175,7 @@ composer lint:yaml
 composer validate:composer
 ```
 
-A pre-commit hook (`Build/GitHooks/pre-commit`) is installed automatically by `composer post-install-cmd` and runs `composer fix:all` followed by `composer lint:all`.
+A pre-commit hook (from the psbits/qa package) is installed automatically via `.Build/bin/qa link` in `composer post-install-cmd` and runs `composer fix:all` followed by `composer lint:all`.
 
 ## License
 

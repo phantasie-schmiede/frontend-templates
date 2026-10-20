@@ -136,7 +136,7 @@ Quality configuration files are centralized in `Build/Quality/` and referenced b
 
 - `fix:all` **rewrites source files** (formats HTML/XML, reorders class attributes, runs php-cs-fixer); `lint:all` is
   the read-only verification.
-- A pre-commit hook (`Build/GitHooks/pre-commit`, auto-installed by `composer post-install-cmd`) runs `composer lint:all`.
+- A pre-commit hook (installed by `.Build/bin/qa link` from the psbits/qa package) runs `composer lint:all`.
 - Individual checks: `lint:php`, `analyze:php` (PHPStan), `lint:typoscript`, `lint:yaml`, `lint:classes`,
   `lint:htmlxml`, `lint:js`, `lint:scss`, `audit:composer`, `validate:composer`.
 

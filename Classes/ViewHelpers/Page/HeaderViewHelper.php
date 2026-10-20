@@ -32,7 +32,7 @@ class HeaderViewHelper extends AbstractViewHelper
 {
     /** @var string[] */
     protected static array $headerDataIdentifiers = [];
-    protected $escapeOutput                       = false;
+    protected              $escapeOutput          = false;
 
     public function initializeArguments(): void
     {

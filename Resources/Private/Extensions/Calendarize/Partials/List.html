@@ -24,7 +24,8 @@
                     </f:render>
                 </f:then>
                 <f:else>
-                    <f:if condition="{settings.paginateConfiguration.insertAbove -> f:or(alternative:0)}">
+                    <f:if
+                        condition="{settings.paginateConfiguration.insertAbove -> f:or(alternative:0)}">
                         <f:render
                             arguments="{pagination: pagination.pagination, paginator: pagination.paginator, searchMode: searchMode}"
                             partial="Pagination" />
@@ -42,7 +43,8 @@
                         </f:for>
                     </f:render>
 
-                    <f:if condition="{settings.paginateConfiguration.insertBelow -> f:or(alternative:1)}">
+                    <f:if
+                        condition="{settings.paginateConfiguration.insertBelow -> f:or(alternative:1)}">
                         <f:render
                             arguments="{pagination: pagination.pagination, paginator: pagination.paginator, searchMode: searchMode}"
                             partial="Pagination" />

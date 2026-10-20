@@ -2,7 +2,8 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers">
-    <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Page/header.xlf" />
+    <foundation:translation.registerLanguageFile
+        file="EXT:templates/Resources/Private/Language/Frontend/Page/header.xlf" />
 
     <a
         class="skip-link"
@@ -50,15 +51,18 @@
                             data-bs-dismiss="offcanvas"
                             type="button"></button>
                     </div>
-                    <div class="d-flex flex-column flex-lg-column-reverse offcanvas-body w-100">
-                        <ul class="align-self-end align-self-lg-center navbar-nav text-end text-lg-center">
+                    <div
+                        class="d-flex flex-column flex-lg-column-reverse offcanvas-body w-100">
+                        <ul
+                            class="align-self-end align-self-lg-center navbar-nav text-end text-lg-center">
                             <f:render
                                 arguments="{mainNavigation: mainNavigation}"
                                 partial="Navigation/Main" />
                         </ul>
 
                         <f:if condition="{templateSettings.headerButtons}">
-                            <div class="align-self-lg-end d-flex flex-column flex-lg-row gap-2 mb-lg-3 mt-auto mt-lg-0">
+                            <div
+                                class="align-self-lg-end d-flex flex-column flex-lg-row gap-2 mb-lg-3 mt-auto mt-lg-0">
                                 <f:for
                                     as="button"
                                     each="{templateSettings.headerButtons}"

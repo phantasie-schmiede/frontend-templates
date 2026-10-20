@@ -19,6 +19,8 @@
         as="width"
         each="{widths -> f:or(alternative: '{defaultWidths.{cropVariant}}')}"
         iteration="iterator">
-        {f:uri.image(image: file, cropVariant: cropVariant, maxWidth: width, fileExtension: fileExtension)} {width}w{f:if(condition: '!{iterator.isLast}', then: ',')}
+        {f:uri.image(image: file, cropVariant: cropVariant, maxWidth: width,
+        fileExtension: fileExtension)} {width}w{f:if(condition:
+        '!{iterator.isLast}', then: ',')}
     </f:for>
 </html>

@@ -28,7 +28,8 @@
                 <label
                     class="form-label"
                     for="teaser-filter-{data.uid}">
-                    <f:translate key="LLL:EXT:templates/ContentBlocks/ContentElements/teaser-grid/language/labels.xlf:filter.label" />
+                    <f:translate
+                        key="LLL:EXT:templates/ContentBlocks/ContentElements/teaser-grid/language/labels.xlf:filter.label" />
                 </label>
                 <input
                     class="form-control mb-4"
@@ -46,7 +47,8 @@
                     <f:for
                         as="item"
                         each="{data._grids.teasers}">
-                        <div class="col-12 col-md-6 col-xl-4 mb-4 teaser-grid__item">
+                        <div
+                            class="col-12 col-md-6 col-xl-4 mb-4 teaser-grid__item">
                             <f:format.raw>{item.content}</f:format.raw>
                         </div>
                     </f:for>

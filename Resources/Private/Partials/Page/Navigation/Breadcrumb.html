@@ -9,7 +9,9 @@
                 <f:if condition="{page.isCurrentPage} == false">
                     <f:then>
                         <li class="breadcrumb-item">
-                            <f:link.page pageUid="{page.uid}">{page.nav_title}</f:link.page>
+                            <f:link.page pageUid="{page.uid}">
+                                {page.nav_title}
+                            </f:link.page>
                         </li>
                     </f:then>
                     <f:else>

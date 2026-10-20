@@ -40,7 +40,8 @@
                                 partial="Component/Picture/Responsive" />
                         </div>
                         <div class="col-12 col-lg-8 text-center">
-                            <f:if condition="{data.header} && {data.header_layout} != 100">
+                            <f:if
+                                condition="{data.header} && {data.header_layout} != 100">
                                 <viewHelpers:tag
                                     class="mb-3"
                                     tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
@@ -58,7 +59,9 @@
                                     <f:for
                                         as="cta"
                                         each="{data._grids.links}">
-                                        <f:format.raw>{cta.content}</f:format.raw>
+                                        <f:format.raw>
+                                            {cta.content}
+                                        </f:format.raw>
                                     </f:for>
                                 </f:render>
                             </f:if>
@@ -67,7 +70,8 @@
                 </f:then>
                 <f:else>
                     <div class="align-items-center row">
-                        <f:if condition="{data.layout_variant} == 'image-right'">
+                        <f:if
+                            condition="{data.layout_variant} == 'image-right'">
                             <f:then>
                                 <f:variable
                                     name="imageColumnClass"
@@ -104,7 +108,8 @@
                         </div>
 
                         <div class="{textColumnClass}">
-                            <f:if condition="{data.header} && {data.header_layout} != 100">
+                            <f:if
+                                condition="{data.header} && {data.header_layout} != 100">
                                 <viewHelpers:tag
                                     class="mb-3 text-center text-lg-start"
                                     tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
@@ -123,7 +128,9 @@
                                     <f:for
                                         as="cta"
                                         each="{data._grids.links}">
-                                        <f:format.raw>{cta.content}</f:format.raw>
+                                        <f:format.raw>
+                                            {cta.content}
+                                        </f:format.raw>
                                     </f:for>
                                 </f:render>
                             </f:if>

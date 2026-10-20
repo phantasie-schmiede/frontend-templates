@@ -4,7 +4,8 @@
     <div class="d-none d-sm-block row">
         <div class="col d-flex justify-content-center">
             <ul class="pagination">
-                <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+                <f:if
+                    condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
                     <f:then>
                         <f:comment>
                             <li class="page-item">
@@ -21,17 +22,23 @@
                                 arguments="{actionName: actionName, page: pagination.previousPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.previous\')}' }"
                                 contentAs="content"
                                 section="PaginationLink">
-                                {f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}
+                                {f:translate(key:'widget.pagination.previous',
+                                extensionName: 'fluid')}
                             </f:render>
                         </li>
                     </f:then>
                     <f:else>
                         <f:comment>
                             <li class="disabled page-item">
-                                <span><i class="material-icons">first_page</i></span>
+                                <span>
+                                    <i class="material-icons">first_page</i>
+                                </span>
                             </li>
                             <li class="disabled page-item">
-                                <span>{f:translate(key:'widget.pagination.previous', extensionName: 'fluid')}</span>
+                                <span>
+                                    {f:translate(key:'widget.pagination.previous',
+                                    extensionName: 'fluid')}
+                                </span>
                             </li>
                         </f:comment>
                     </f:else>
@@ -67,14 +74,16 @@
                         <span class="page-link">…</span>
                     </li>
                 </f:if>
-                <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+                <f:if
+                    condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
                     <f:then>
                         <li class="page-item">
                             <f:render
                                 arguments="{actionName: actionName, page: pagination.nextPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.next\')}' }"
                                 contentAs="content"
                                 section="PaginationLink">
-                                {f:translate(key:'widget.pagination.next', extensionName: 'fluid')}
+                                {f:translate(key:'widget.pagination.next',
+                                extensionName: 'fluid')}
                             </f:render>
                         </li>
                         <f:comment>
@@ -91,7 +100,10 @@
                     <f:else>
                         <f:comment>
                             <li class="disabled page-item">
-                                <span>{f:translate(key:'widget.pagination.next', extensionName: 'fluid')}</span>
+                                <span>
+                                    {f:translate(key:'widget.pagination.next',
+                                    extensionName: 'fluid')}
+                                </span>
                             </li>
                             <li class="disabled page-item">
                                 <span>last page</span>
@@ -111,8 +123,12 @@
                     href="#"
                     onclick="
                         if (document.getElementById('calendarizePage')) {
-                            document.getElementById('calendarizePage').value = { page };
-                            document.getElementById('calendarizeSearchForm').submit();
+                            document.getElementById('calendarizePage').value = {
+                                page,
+                            };
+                            document
+                                .getElementById('calendarizeSearchForm')
+                                .submit();
                             return false;
                         }
                     "

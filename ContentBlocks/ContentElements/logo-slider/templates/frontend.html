@@ -41,7 +41,8 @@
                 <f:for
                     as="image"
                     each="{data.image}">
-                    <div class="swiper-slide d-flex align-items-center justify-content-center logo-slider__slide{f:if(condition: data.grayscale, then: ' logo-slider__slide--grayscale')}">
+                    <div
+                        class="swiper-slide d-flex align-items-center justify-content-center logo-slider__slide{f:if(condition: data.grayscale, then: ' logo-slider__slide--grayscale')}">
                         <f:render
                             arguments="{
                                 alt: image.alternative,

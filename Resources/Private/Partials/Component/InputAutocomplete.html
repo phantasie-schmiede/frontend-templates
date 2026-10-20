@@ -3,7 +3,8 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    <foundation:translation.registerLanguageFile file="EXT:templates/Resources/Private/Language/Frontend/Component/inputAutocomplete.xlf" />
+    <foundation:translation.registerLanguageFile
+        file="EXT:templates/Resources/Private/Language/Frontend/Component/inputAutocomplete.xlf" />
 
     <f:asset.script
         identifier="clearInput"
@@ -169,11 +170,14 @@
                         class="list-group-item psbits-autocomplete-list-item"
                         data="{data}"
                         tag="li">
-                        <viewHelpers:fallback values="{0: '{item.{itemLabelField}}', 1: item.label, 2: item}" />
+                        <viewHelpers:fallback
+                            values="{0: '{item.{itemLabelField}}', 1: item.label, 2: item}" />
                     </viewHelpers:tag>
                 </f:for>
             </f:then>
-            <f:else if="{renderedItems}">{renderedItems -> f:format.raw()}</f:else>
+            <f:else if="{renderedItems}">
+                {renderedItems -> f:format.raw()}
+            </f:else>
             <f:else>
                 <li
                     class="list-group-item psbits-autocomplete-list-item"

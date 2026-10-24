@@ -153,7 +153,10 @@ Fluid templates and partials for **News** (`georgringer/news`) and **Calendarize
 
 ## Quality
 
-All quality checks are defined in `composer.json` and run in CI via `.github/workflows/quality.yml`. Configuration is centralized in `Build/Quality/`.
+All quality checks are defined in `composer.json` and run in the shared `CI` GitHub Actions
+workflow (`.github/workflows/ci.yml`), which calls the shared extension CI of psbits/qa and runs
+the test matrix on the supported core and PHP versions in addition to the checks below.
+Configuration is centralized in `Build/Quality/`.
 
 ```bash
 # Read-only verification (all linters)
@@ -175,7 +178,11 @@ composer lint:yaml
 composer validate:composer
 ```
 
-A pre-commit hook (from the psbits/qa package) is installed automatically via `.Build/bin/qa link` in `composer post-install-cmd` and runs `composer fix:all` followed by `composer lint:all`.
+A pre-commit hook (from the psbits/qa package) is installed automatically via `.Build/bin/qa link` in
+`composer post-install-cmd` and runs `composer lint:all`.
+
+The workflow publishes the extension to TER when a release tag is pushed. Publishing requires the
+`TYPO3_API_TOKEN` repository secret.
 
 ## License
 

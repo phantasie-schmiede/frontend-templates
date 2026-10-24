@@ -5,6 +5,9 @@
 /.php-cs-fixer.cache
 /Build/Quality/.phpstan/
 /composer.lock
+/composer-matrix.json
+/composer-matrix.lock
+/var/
 /node_modules/
 /package-lock.json
 /Resources/Public/Stylesheets/Vendors/app.min.css

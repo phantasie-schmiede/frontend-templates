@@ -92,6 +92,20 @@
         "post-update-cmd": [
             ".Build/bin/qa link"
         ],
+        "qa": [
+            "@fix:all",
+            "@lint:all",
+            "@test:all"
+        ],
+        "test:all": [
+            "@test:unit"
+        ],
+        "test:coverage": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh",
+        "test:coverage:update-baseline": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh --update-baseline",
+        "test:unit": [
+            "php .Build/vendor/psbits/qa/Resources/Testing/renderPhpunitXml.php unit",
+            "php -d memory_limit=1G .Build/bin/phpunit -c .Build/phpunit/UnitTests.xml"
+        ],
         "validate:composer": "composer validate --no-check-publish"
     },
     "type": "typo3-cms-extension"

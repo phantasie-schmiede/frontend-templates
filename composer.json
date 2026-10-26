@@ -23,7 +23,7 @@
     "description": "Basic templates for TYPO3",
     "extra": {
         "typo3/cms": {
-            "extension-key": "templates",
+            "extension-key": "frontend_templates",
             "web-dir": ".Build/public"
         }
     },
@@ -33,7 +33,7 @@
         "typo3"
     ],
     "license": "GPL-3.0-or-later",
-    "name": "psbits/templates",
+    "name": "psbits/frontend-templates",
     "require": {
         "ext-intl": "*",
         "friendsoftypo3/content-blocks": "~1.5 || ^2.4",

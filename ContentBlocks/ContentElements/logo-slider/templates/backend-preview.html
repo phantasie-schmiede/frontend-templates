@@ -4,11 +4,11 @@
     <strong>{data.header}</strong>
     <div class="text-muted">
         <f:translate
-            key="LLL:EXT:templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.type" />
+            key="LLL:EXT:frontend_templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.type" />
     </div>
     <div class="mt-2">
         <f:translate
-            key="LLL:EXT:templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.logos" />
+            key="LLL:EXT:frontend_templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.logos" />
         <f:count subject="{data.image}" />
     </div>
     <f:if condition="{data.image}">
@@ -19,7 +19,7 @@
                 iteration="iteration">
                 <f:if condition="{iteration.cycle} <= 6">
                     <f:image
-                        alt="{f:translate(key: 'LLL:EXT:templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.image')}"
+                        alt="{f:translate(key: 'LLL:EXT:frontend_templates/ContentBlocks/ContentElements/logo-slider/language/labels.xlf:preview.image')}"
                         image="{image}"
                         maxHeight="54"
                         maxWidth="96" />

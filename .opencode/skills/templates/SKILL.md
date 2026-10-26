@@ -1,9 +1,9 @@
 ---
 name: PSBits Templates
-description: psbits/templates — Bootstrap/Content-Blocks template pack for TYPO3. The only psbits extension with page types (menuDropdown), v14 status after the foundation IconRegistry fix, site set and ViewHelpers overview. Use when working on templates or its v13/v14 behavior.
+description: psbits/frontend-templates — Bootstrap/Content-Blocks template pack for TYPO3. The only psbits extension with page types (menuDropdown), v14 status after the foundation IconRegistry fix, site set and ViewHelpers overview. Use when working on templates or its v13/v14 behavior.
 ---
 
-# psbits/templates
+# psbits/frontend-templates
 
 "Basic templates for TYPO3": page layouts, content elements (Content Blocks),
 Fluid ViewHelpers, and TypoScript setup built on Bootstrap. Detailed docs
@@ -15,7 +15,7 @@ settings, ViewHelpers, extensibility) — reference it, do not duplicate it.
 - Depends on `psbits/foundation ^4.2`, `friendsoftypo3/content-blocks
   ~1.5 || ^2.4`, `psbits/view-helpers`, `wapplersystems/ws-scss`,
   `typo3/cms-fluid-styled-content`; core constraint `^13.4 || ^14.3`.
-- Integration via site set (site config `dependencies: - psbits/templates`).
+- Integration via site set (site config `dependencies: - psbits/frontend-templates`).
 
 ## The page type (important)
 

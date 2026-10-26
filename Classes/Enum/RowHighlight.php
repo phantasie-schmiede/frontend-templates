@@ -18,7 +18,7 @@ namespace PSBits\Templates\Enum;
  */
 enum RowHighlight: string
 {
-    public const string BACKEND_LL = 'LLL:EXT:templates/Resources/Private/Language/Backend/Enum/rowHighlight.xlf:';
+    public const string BACKEND_LL = 'LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Enum/rowHighlight.xlf:';
 
     case Emphasis = 'emphasis';
     case None     = 'none';

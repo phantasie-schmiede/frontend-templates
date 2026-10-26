@@ -16,7 +16,7 @@ Basic templates for TYPO3 providing page layouts, content elements, Fluid ViewHe
 ## Installation
 
 ```bash
-composer require psbits/templates
+composer require psbits/frontend-templates
 ```
 
 Activate the site set in your site configuration, or add it as a dependency of your own site set:
@@ -24,7 +24,7 @@ Activate the site set in your site configuration, or add it as a dependency of y
 ```yaml
 # config/sites/your-site/config.yaml
 dependencies:
-  - psbits/templates
+  - psbits/frontend-templates
 ```
 
 ## Content Elements

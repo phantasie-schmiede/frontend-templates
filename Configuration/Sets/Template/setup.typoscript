@@ -1,1 +1,1 @@
-@import 'EXT:templates/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:frontend_templates/Configuration/TypoScript/setup.typoscript'

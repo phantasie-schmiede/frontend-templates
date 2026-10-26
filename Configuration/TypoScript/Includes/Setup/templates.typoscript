@@ -1,6 +1,6 @@
 lib.contentElement {
   partialRootPaths.300 = {$plugin.tx_templates.view.partialRootPath}
-  templateRootPaths.300 = EXT:templates/Resources/Private/Templates/ContentElements/Typo3/
+  templateRootPaths.300 = EXT:frontend_templates/Resources/Private/Templates/ContentElements/Typo3/
 }
 
 plugin.tx_templates {

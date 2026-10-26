@@ -4,17 +4,17 @@
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
     xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers">
     <foundation:translation.registerLanguageFile
-        file="EXT:templates/Resources/Private/Language/Frontend/Component/Form/upload.xlf" />
+        file="EXT:frontend_templates/Resources/Private/Language/Frontend/Component/Form/upload.xlf" />
 
     <f:asset.css
-        href="EXT:templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
+        href="EXT:frontend_templates/Resources/Public/Stylesheets/Vendors/swiper-bundle.min.css"
         identifier="swiper" />
     <f:asset.script
         identifier="swiper-bundle"
-        src="EXT:templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
+        src="EXT:frontend_templates/Resources/Public/JavaScript/Vendors/swiper-bundle.min.js" />
     <f:asset.script
         identifier="uploadPreview"
-        src="EXT:templates/Resources/Public/JavaScript/uploadPreview.js"
+        src="EXT:frontend_templates/Resources/Public/JavaScript/uploadPreview.js"
         type="module" />
 
     <f:if condition="!{accept}">

@@ -68,7 +68,7 @@ For multi-step tasks, state a brief plan:
 
 TYPO3 extension (`type: typo3-cms-extension`) providing page templates, Fluid ViewHelpers, TypoScript setup,
 Content Blocks, and overriding templates for third-party extensions (News, Calendarize). PHP namespace:
-`PSBits\\Templates\\`.
+`PSBits\\FrontendTemplates\\`.
 
 ## Key locations
 

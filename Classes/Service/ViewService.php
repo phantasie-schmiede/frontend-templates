@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Service;
+namespace PSBits\FrontendTemplates\Service;
 
 use JsonException;
 use PSBits\Foundation\Data\ExtensionInformationInterface;
@@ -26,7 +26,7 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 /**
  * Class ViewService
  *
- * @package PSBits\Templates\Service
+ * @package PSBits\FrontendTemplates\Service
  */
 readonly class ViewService
 {

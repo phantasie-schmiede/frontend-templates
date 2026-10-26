@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Service\GlobalVariableProviders;
+namespace PSBits\FrontendTemplates\Service\GlobalVariableProviders;
 
 use PSBits\Foundation\Service\GlobalVariableProviders\AbstractProvider;
 use PSBits\Foundation\Utility\ContextUtility;
@@ -23,7 +23,7 @@ use function in_array;
 /**
  * Class SettingsProvider
  *
- * @package PSBits\Templates\Service\GlobalVariableProviders
+ * @package PSBits\FrontendTemplates\Service\GlobalVariableProviders
  */
 class SettingsProvider extends AbstractProvider
 {

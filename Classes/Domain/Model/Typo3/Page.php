@@ -9,20 +9,20 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Domain\Model\Typo3;
+namespace PSBits\FrontendTemplates\Domain\Model\Typo3;
 
 use PSBits\Foundation\Attribute\TCA\Column;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Enum;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Select;
 use PSBits\Foundation\Attribute\TCA\Mapping\Field;
 use PSBits\Foundation\Attribute\TCA\Mapping\Table;
-use PSBits\Templates\Enum\RowHighlight;
+use PSBits\FrontendTemplates\Enum\RowHighlight;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * Class Page
  *
- * @package PSBits\Templates\Domain\Model\Typo3
+ * @package PSBits\FrontendTemplates\Domain\Model\Typo3
  */
 #[Table(name: 'pages')]
 class Page extends AbstractEntity
@@ -36,7 +36,7 @@ class Page extends AbstractEntity
         'XXL'     => 'xxl',
         'FLUID'   => 'fluid',
     ];
-    private const string DISPLAY_COND_PREFIX = 'USER:PSBits\Templates\Backend\DisplayCondition\PageRowHighlightDisplayCondition->matches:';
+    private const string DISPLAY_COND_PREFIX = 'USER:PSBits\FrontendTemplates\Backend\DisplayCondition\PageRowHighlightDisplayCondition->matches:';
 
     #[Column(position: 'after:layout')]
     #[Field(name: 'tx_templates_bs_container_type')]

@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Utility;
+namespace PSBits\FrontendTemplates\Utility;
 
 use Doctrine\DBAL\Exception;
 use TYPO3\CMS\Core\Database\Connection;
@@ -25,7 +25,7 @@ use function in_array;
 /**
  * Class SlugUtility
  *
- * @package PSBits\Templates\Utility
+ * @package PSBits\FrontendTemplates\Utility
  */
 class SlugUtility
 {

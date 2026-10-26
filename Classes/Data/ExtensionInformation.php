@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Data;
+namespace PSBits\FrontendTemplates\Data;
 
 use PSBits\Foundation\Data\AbstractExtensionInformation;
 use PSBits\Foundation\Data\PageTypeConfiguration;
@@ -17,7 +17,7 @@ use PSBits\Foundation\Data\PageTypeConfiguration;
 /**
  * Class ExtensionInformation
  *
- * @package PSBits\Templates\Data
+ * @package PSBits\FrontendTemplates\Data
  */
 class ExtensionInformation extends AbstractExtensionInformation
 {

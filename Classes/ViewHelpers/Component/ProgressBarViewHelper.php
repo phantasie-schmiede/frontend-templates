@@ -9,13 +9,13 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers\Component;
+namespace PSBits\FrontendTemplates\ViewHelpers\Component;
 
 use InvalidArgumentException;
 use JsonException;
 use PSBits\Foundation\Utility\ContextUtility;
-use PSBits\Templates\Data\ExtensionInformation;
-use PSBits\Templates\Service\ViewService;
+use PSBits\FrontendTemplates\Data\ExtensionInformation;
+use PSBits\FrontendTemplates\Service\ViewService;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -23,7 +23,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * Class ProgressBarViewHelper
  *
- * @package PSBits\Templates\ViewHelpers\Component
+ * @package PSBits\FrontendTemplates\ViewHelpers\Component
  */
 class ProgressBarViewHelper extends AbstractViewHelper
 {

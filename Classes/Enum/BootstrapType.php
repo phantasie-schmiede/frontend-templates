@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Enum;
+namespace PSBits\FrontendTemplates\Enum;
 
 /**
  * Class BootstrapType
  *
- * @package PSBits\Templates\Enum
+ * @package PSBits\FrontendTemplates\Enum
  */
 enum BootstrapType: string
 {

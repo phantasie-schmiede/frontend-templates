@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Tests\Unit\Data;
+namespace PSBits\FrontendTemplates\Tests\Unit\Data;
 
 use PHPUnit\Framework\TestCase;
 use PSBits\Foundation\Data\PageTypeConfiguration;
-use PSBits\Templates\Data\ExtensionInformation;
+use PSBits\FrontendTemplates\Data\ExtensionInformation;
 
 final class ExtensionInformationTest extends TestCase
 {

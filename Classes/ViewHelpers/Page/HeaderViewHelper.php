@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PSBits\Templates\ViewHelpers\Page;
+namespace PSBits\FrontendTemplates\ViewHelpers\Page;
 
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -26,7 +26,7 @@ use function in_array;
  *         name="robots" />
  * </templates:page.header>
  *
- * @package PSBits\Templates\ViewHelpers\Page
+ * @package PSBits\FrontendTemplates\ViewHelpers\Page
  */
 class HeaderViewHelper extends AbstractViewHelper
 {

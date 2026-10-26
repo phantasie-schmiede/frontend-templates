@@ -2,7 +2,7 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
-    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers">
+    xmlns:frontendTemplates="http://typo3.org/ns/PSBits/FrontendTemplates/ViewHelpers">
     <f:variable
         name="containerClass"
         value="container" />
@@ -11,19 +11,19 @@
         value="{foundation:globalVariables.siteConfiguration(path: 'configuration')}" />
     <f:variable
         name="currentPage"
-        value="{templates:globalVariables.currentPage()}" />
+        value="{frontendTemplates:globalVariables.currentPage()}" />
     <f:variable
         name="templateSettings"
-        value="{templates:globalVariables.settings()}" />
+        value="{frontendTemplates:globalVariables.settings()}" />
     <f:variable
         name="rowHighlightClass1"
-        value="{templates:page.rowHighlightClass(currentPage: currentPage, row: 1)}" />
+        value="{frontendTemplates:page.rowHighlightClass(currentPage: currentPage, row: 1)}" />
     <f:variable
         name="rowHighlightClass2"
-        value="{templates:page.rowHighlightClass(currentPage: currentPage, row: 2)}" />
+        value="{frontendTemplates:page.rowHighlightClass(currentPage: currentPage, row: 2)}" />
     <f:variable
         name="rowHighlightClass3"
-        value="{templates:page.rowHighlightClass(currentPage: currentPage, row: 3)}" />
+        value="{frontendTemplates:page.rowHighlightClass(currentPage: currentPage, row: 3)}" />
 
     <f:if condition="{currentPage.tx_templates_bs_container_type}">
         <f:variable

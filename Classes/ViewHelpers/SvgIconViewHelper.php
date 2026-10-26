@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers;
+namespace PSBits\FrontendTemplates\ViewHelpers;
 
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconProvider\AbstractSvgIconProvider;
@@ -20,7 +20,7 @@ use function is_array;
 /**
  * Class SvgIconViewHelper
  *
- * @package PSBits\Templates\ViewHelpers
+ * @package PSBits\FrontendTemplates\ViewHelpers
  */
 class SvgIconViewHelper extends AbstractViewHelper
 {

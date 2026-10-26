@@ -98,7 +98,7 @@ Content Blocks, and overriding templates for third-party extensions (News, Calen
 - Fluid templates commonly use namespaces (declare only the ones actually used):
     - `f` (`TYPO3/CMS/Fluid/ViewHelpers`)
     - `foundation` (`PSBits/Foundation/ViewHelpers`)
-    - `templates` (`PSBits/Templates/ViewHelpers`)
+    - `frontendTemplates` (`PSBits/FrontendTemplates/ViewHelpers`)
     - `viewHelpers` (`PSBits/ViewHelpers/ViewHelpers`)
 - ViewHelpers extend `AbstractViewHelper`, set `protected $escapeOutput = false;`, register arguments in
   `initializeArguments()`, render via `ViewService::createStandaloneView(...)` + an assigned Fluid template under

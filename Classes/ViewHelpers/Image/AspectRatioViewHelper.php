@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers\Image;
+namespace PSBits\FrontendTemplates\ViewHelpers\Image;
 
 use JsonException;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
@@ -23,7 +23,7 @@ use function is_array;
 /**
  * Class AspectRatioViewHelper
  *
- * @package PSBits\Templates\ViewHelpers\Image
+ * @package PSBits\FrontendTemplates\ViewHelpers\Image
  */
 class AspectRatioViewHelper extends AbstractViewHelper
 {

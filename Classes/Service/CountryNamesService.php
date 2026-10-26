@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Service;
+namespace PSBits\FrontendTemplates\Service;
 
 use Locale;
 use PSBits\Foundation\Utility\ContextUtility;
@@ -19,7 +19,7 @@ use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 /**
  * Class CountryNamesService
  *
- * @package PSBits\Templates\Service
+ * @package PSBits\FrontendTemplates\Service
  */
 class CountryNamesService
 {

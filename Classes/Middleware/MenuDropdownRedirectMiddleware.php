@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Middleware;
+namespace PSBits\FrontendTemplates\Middleware;
 
-use PSBits\Templates\Data\ExtensionInformation;
+use PSBits\FrontendTemplates\Data\ExtensionInformation;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;

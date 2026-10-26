@@ -9,15 +9,15 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers\GlobalVariables;
+namespace PSBits\FrontendTemplates\ViewHelpers\GlobalVariables;
 
 use PSBits\Foundation\ViewHelpers\GlobalVariables\AbstractGlobalVariablesViewHelper;
-use PSBits\Templates\Service\GlobalVariableProviders\SettingsProvider;
+use PSBits\FrontendTemplates\Service\GlobalVariableProviders\SettingsProvider;
 
 /**
  * Class SettingsViewHelper
  *
- * @package PSBits\Templates\ViewHelpers\GlobalVariables
+ * @package PSBits\FrontendTemplates\ViewHelpers\GlobalVariables
  */
 class SettingsViewHelper extends AbstractGlobalVariablesViewHelper
 {

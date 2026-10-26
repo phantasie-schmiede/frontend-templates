@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use PSBits\Templates\Data\ExtensionInformation;
+use PSBits\FrontendTemplates\Data\ExtensionInformation;
 
 defined('TYPO3') or die();
 

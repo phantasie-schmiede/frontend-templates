@@ -9,16 +9,16 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers\Image;
+namespace PSBits\FrontendTemplates\ViewHelpers\Image;
 
-use PSBits\Templates\Enum\AiStatus;
+use PSBits\FrontendTemplates\Enum\AiStatus;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Class AiStatusViewHelper
  *
- * @package PSBits\Templates\ViewHelpers\Image
+ * @package PSBits\FrontendTemplates\ViewHelpers\Image
  */
 class AiStatusViewHelper extends AbstractViewHelper
 {

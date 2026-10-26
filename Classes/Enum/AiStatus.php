@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Enum;
+namespace PSBits\FrontendTemplates\Enum;
 
 use JsonException;
 use PSBits\Foundation\Utility\LocalizationUtility;
@@ -20,7 +20,7 @@ use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 /**
  * Class AiStatus
  *
- * @package PSBits\Templates\Enum
+ * @package PSBits\FrontendTemplates\Enum
  */
 enum AiStatus: string
 {

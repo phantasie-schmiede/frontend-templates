@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use PSBits\Templates\Middleware\MenuDropdownRedirectMiddleware;
+use PSBits\FrontendTemplates\Middleware\MenuDropdownRedirectMiddleware;
 
 return [
     'frontend' => [

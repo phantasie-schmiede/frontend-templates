@@ -9,14 +9,14 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers\Format;
+namespace PSBits\FrontendTemplates\ViewHelpers\Format;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Class ReduceWhitespaceViewHelper
  *
- * @package PSBits\Templates\ViewHelpers\Format
+ * @package PSBits\FrontendTemplates\ViewHelpers\Format
  */
 class ReduceWhitespaceViewHelper extends AbstractViewHelper
 {

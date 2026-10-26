@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PSBits\Foundation\Utility\Configuration\FilePathUtility;
-use PSBits\Templates\Data\ExtensionInformation;
+use PSBits\FrontendTemplates\Data\ExtensionInformation;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 

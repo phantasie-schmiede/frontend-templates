@@ -9,14 +9,14 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers\Page;
+namespace PSBits\FrontendTemplates\ViewHelpers\Page;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * Class RowHighlightClassViewHelper
  *
- * @package PSBits\Templates\ViewHelpers\Page
+ * @package PSBits\FrontendTemplates\ViewHelpers\Page
  */
 class RowHighlightClassViewHelper extends AbstractViewHelper
 {

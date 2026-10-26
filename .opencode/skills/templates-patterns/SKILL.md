@@ -18,7 +18,7 @@ HTML in PHP strings.
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
+    xmlns:frontendTemplates="http://typo3.org/ns/PSBits/FrontendTemplates/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
     ...
 </html>
@@ -35,9 +35,9 @@ View helpers are standalone: they render their own template through
 
 declare(strict_types=1);
 
-namespace PSBits\Templates\ViewHelpers\Component;
+namespace PSBits\FrontendTemplates\ViewHelpers\Component;
 
-use PSBits\Templates\Service\ViewService;
+use PSBits\FrontendTemplates\Service\ViewService;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 final class ExampleViewHelper extends AbstractViewHelper

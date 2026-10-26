@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Service\GlobalVariableProviders;
+namespace PSBits\FrontendTemplates\Service\GlobalVariableProviders;
 
 /**
  * Interface SettingSourceInterface
  *
- * @package PSBits\Templates\Service\GlobalVariableProviders
+ * @package PSBits\FrontendTemplates\Service\GlobalVariableProviders
  */
 interface SettingSourceInterface
 {

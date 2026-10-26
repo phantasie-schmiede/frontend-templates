@@ -9,14 +9,14 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Event;
+namespace PSBits\FrontendTemplates\Event;
 
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Class AbstractAdditionalContentEvent
  *
- * @package PSBits\Templates\Event
+ * @package PSBits\FrontendTemplates\Event
  */
 abstract class AbstractAdditionalContentEvent implements AdditionalContentEventInterface
 {

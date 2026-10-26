@@ -145,7 +145,7 @@ Computes and returns the aspect ratio (width / height) of a file reference, resp
 ## Extensibility
 
 The extension provides a PSR-14 event system for additional content. Create a class implementing
-`PSBits\Templates\Event\AdditionalContentEventInterface` (extend `AbstractAdditionalContentEvent` for convenience), register it in `Configuration/Services.yaml`, and dispatch it via the `templates:event.additionalContent` ViewHelper.
+`PSBits\FrontendTemplates\Event\AdditionalContentEventInterface` (extend `AbstractAdditionalContentEvent` for convenience), register it in `Configuration/Services.yaml`, and dispatch it via the `templates:event.additionalContent` ViewHelper.
 
 ## Third-Party Extension Overrides
 

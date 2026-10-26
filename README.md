@@ -1,4 +1,4 @@
-# PSBits Templates
+# PSBits Frontend Templates
 
 Basic templates for TYPO3 providing page layouts, content elements, Fluid ViewHelpers, and TypoScript setup — built on [Bootstrap](https://getbootstrap.com/) with [Content Blocks](https://github.com/FriendsOfTYPO3/content-blocks).
 

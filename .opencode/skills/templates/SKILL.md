@@ -1,5 +1,5 @@
 ---
-name: PSBits Templates
+name: PSBits Frontend Templates
 description: psbits/frontend-templates — Bootstrap/Content-Blocks template pack for TYPO3. The only psbits extension with page types (menuDropdown), v14 status after the foundation IconRegistry fix, site set and ViewHelpers overview. Use when working on templates or its v13/v14 behavior.
 ---
 

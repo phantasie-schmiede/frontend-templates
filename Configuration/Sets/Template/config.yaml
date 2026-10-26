@@ -1,4 +1,4 @@
 dependencies:
   - typo3/fluid-styled-content-css
 name: psbits/frontend-templates
-label: "PSBits Templates"
+label: "PSBits Frontend Templates"

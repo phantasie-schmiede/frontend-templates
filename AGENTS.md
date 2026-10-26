@@ -1,4 +1,4 @@
-# PSBits Templates
+# PSBits Frontend Templates
 
 Instructions for AI coding agents working in this repository. Read this file at session start and follow it.
 
@@ -85,7 +85,7 @@ Content Blocks, and overriding templates for third-party extensions (News, Calen
 ## Architecture and conventions
 
 - Strongly typed PHP (`declare(strict_types=1);`) is standard for classes. Every class file starts with the
-  "This file is part of PSBits Templates." license header block.
+  "This file is part of PSBits Frontend Templates." license header block.
 - Service wiring uses Symfony DI autowiring in `Configuration/Services.yaml`.
 - Global template settings are exposed via `SettingsProvider` and consumed in Fluid through
   `templates:globalVariables.settings()`. New setting sources implement `SettingSourceInterface` and are registered in

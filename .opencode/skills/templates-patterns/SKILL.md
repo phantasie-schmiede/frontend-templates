@@ -1,6 +1,6 @@
 ---
 name: templates-patterns
-description: Code pattern quick reference for the PSBits Templates extension: Fluid template skeleton with psbits namespaces and standalone ViewHelper skeleton using ViewService. Use when writing new Fluid templates or view helpers in the templates repository.
+description: Code pattern quick reference for the PSBits Frontend Templates extension: Fluid template skeleton with psbits namespaces and standalone ViewHelper skeleton using ViewService. Use when writing new Fluid templates or view helpers in the templates repository.
 ---
 
 # Templates code patterns

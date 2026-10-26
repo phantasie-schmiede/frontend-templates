@@ -16,6 +16,6 @@ $EM_CONF[$_EXTKEY] = [
     ],
     'description'      => 'Basic templates for TYPO3',
     'state'            => 'alpha',
-    'title'            => 'PSBits | Templates',
+    'title'            => 'PSBits | Frontend Templates',
     'version'          => '0.1.0',
 ];

@@ -17,10 +17,10 @@ use PSBits\FrontendTemplates\Domain\Model\Settings\HeaderButton;
 use PSBits\FrontendTemplates\Domain\Repository\Settings\HeaderButtonRepository;
 use PSBits\FrontendTemplates\Enum\BootstrapType;
 use PSBits\FrontendTemplates\Service\GlobalVariableProviders\SettingsProvider;
-use PSBits\FrontendTemplates\Tests\Functional\Fixtures\FunctionalRequestFactory;
+use PSBits\Qa\Testing\Fixtures\FrontendRequestFactory;
+use PSBits\Qa\Testing\Support\PersistenceSupportTrait;
 use ReflectionProperty;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -35,6 +35,8 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 #[IgnoreDeprecations]
 class SettingsProviderTest extends FunctionalTestCase
 {
+    use PersistenceSupportTrait;
+
     protected array $testExtensionsToLoad = [
         'typo3/sysext/fluid_styled_content',
         'typo3conf/ext/friendsoftypo3/content-blocks',
@@ -57,12 +59,10 @@ class SettingsProviderTest extends FunctionalTestCase
     #[Test]
     public function theRegisteredSourcesProvideTheSettingsOfTheRootline(): void
     {
-        $repository       = GeneralUtility::makeInstance(HeaderButtonRepository::class);
-        $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
+        $repository = GeneralUtility::makeInstance(HeaderButtonRepository::class);
 
         $repository->add($this->createHeaderButton('GitHub', 'https://github.com', BootstrapType::Primary, 1));
-        $persistenceManager->persistAll();
-        $persistenceManager->clearState();
+        $this->persistAll();
 
         $pageInformation = new PageInformation();
         $pageInformation->setLocalRootLine([
@@ -70,9 +70,11 @@ class SettingsProviderTest extends FunctionalTestCase
             ['uid' => 2, 'pid' => 1],
         ]);
 
-        $GLOBALS['TYPO3_REQUEST'] = FunctionalRequestFactory::createFrontendRequest([
-            'frontend.page.information' => $pageInformation,
-        ]);
+        $GLOBALS['TYPO3_REQUEST'] = FrontendRequestFactory::createFrontendRequest(
+            'tx_frontendtemplates',
+            [],
+            ['frontend.page.information' => $pageInformation]
+        );
 
         $settings = (new SettingsProvider())->getGlobalVariables();
 

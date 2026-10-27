@@ -15,9 +15,9 @@ use PHPUnit\Framework\Attributes\Test;
 use PSBits\FrontendTemplates\Domain\Model\Settings\HeaderButton;
 use PSBits\FrontendTemplates\Domain\Repository\Settings\HeaderButtonRepository;
 use PSBits\FrontendTemplates\Enum\BootstrapType;
+use PSBits\Qa\Testing\Support\PersistenceSupportTrait;
 use ReflectionProperty;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -27,6 +27,8 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 class HeaderButtonRepositoryTest extends FunctionalTestCase
 {
+    use PersistenceSupportTrait;
+
     protected array $testExtensionsToLoad = [
         'typo3/sysext/fluid_styled_content',
         'typo3conf/ext/friendsoftypo3/content-blocks',
@@ -39,13 +41,11 @@ class HeaderButtonRepositoryTest extends FunctionalTestCase
     #[Test]
     public function headerButtonsAreFoundByTheirStoragePage(): void
     {
-        $repository       = GeneralUtility::makeInstance(HeaderButtonRepository::class);
-        $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
+        $repository = GeneralUtility::makeInstance(HeaderButtonRepository::class);
 
         $repository->add($this->createHeaderButton('GitHub', 'https://github.com', BootstrapType::Primary, 1));
         $repository->add($this->createHeaderButton('X', 'https://x.com', BootstrapType::Danger, 2));
-        $persistenceManager->persistAll();
-        $persistenceManager->clearState();
+        $this->persistAll();
 
         $rootButtons = $repository->findByPid(1);
 

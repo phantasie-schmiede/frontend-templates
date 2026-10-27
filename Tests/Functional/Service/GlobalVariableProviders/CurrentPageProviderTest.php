@@ -14,7 +14,7 @@ namespace PSBits\FrontendTemplates\Tests\Functional\Service\GlobalVariableProvid
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use PSBits\FrontendTemplates\Service\GlobalVariableProviders\CurrentPageProvider;
-use PSBits\FrontendTemplates\Tests\Functional\Fixtures\FunctionalRequestFactory;
+use PSBits\Qa\Testing\Fixtures\FrontendRequestFactory;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -50,9 +50,11 @@ class CurrentPageProviderTest extends FunctionalTestCase
         $pageInformation = new PageInformation();
         $pageInformation->setPageRecord($pageRecord);
 
-        $GLOBALS['TYPO3_REQUEST'] = FunctionalRequestFactory::createFrontendRequest([
-            'frontend.page.information' => $pageInformation,
-        ]);
+        $GLOBALS['TYPO3_REQUEST'] = FrontendRequestFactory::createFrontendRequest(
+            'tx_frontendtemplates',
+            [],
+            ['frontend.page.information' => $pageInformation]
+        );
 
         self::assertSame($pageRecord, (new CurrentPageProvider())->getGlobalVariables());
     }

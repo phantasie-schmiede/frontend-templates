@@ -15,7 +15,7 @@ use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use PSBits\FrontendTemplates\Event\AdditionalContentEventInterface;
 use PSBits\FrontendTemplates\Tests\Functional\Fixtures\AdditionalContentEventFixture;
-use PSBits\FrontendTemplates\Tests\Functional\Fixtures\InMemoryListenerProvider;
+use PSBits\Qa\Testing\Fixtures\InMemoryListenerProvider;
 use PSBits\FrontendTemplates\ViewHelpers\Event\AdditionalContentViewHelper;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;

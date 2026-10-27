@@ -15,7 +15,7 @@ use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use PSBits\FrontendTemplates\Data\ExtensionInformation;
 use PSBits\FrontendTemplates\Service\ViewService;
-use PSBits\FrontendTemplates\Tests\Functional\Fixtures\FunctionalRequestFactory;
+use PSBits\Qa\Testing\Fixtures\FrontendRequestFactory;
 use PSBits\FrontendTemplates\ViewHelpers\Component\ButtonViewHelper;
 use PSBits\FrontendTemplates\ViewHelpers\Component\ProgressBarViewHelper;
 use PSBits\Foundation\Service\TypoScriptProviderService;
@@ -186,7 +186,7 @@ class ViewServiceTest extends FunctionalTestCase
 
     private function bootstrapRequest(): void
     {
-        $this->request = FunctionalRequestFactory::createFrontendRequest();
+        $this->request = FrontendRequestFactory::createFrontendRequest('tx_frontendtemplates');
 
         $GLOBALS['TYPO3_REQUEST'] = $this->request;
     }

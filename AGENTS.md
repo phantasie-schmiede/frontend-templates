@@ -92,7 +92,7 @@ Content Blocks, and overriding templates for third-party extensions (News, Calen
   `ext_localconf.php` via `SettingsProvider::registerSource(...)`.
 - TypoScript include order matters; keep `Includes/Setup/templates.typoscript` before `page.typoscript` (as documented
   in `Configuration/TypoScript/setup.typoscript`).
-- New TypoScript settings are added as `plugin.tx_templates.settings.*` constants in
+- New TypoScript settings are added as `plugin.tx_frontendtemplates.settings.*` constants in
   `Configuration/TypoScript/Includes/Constants/` and wired in `template.typoscript`; labels (including the constants
   labels) go into `Resources/Private/Language/Backend/Configuration/TypoScript/*.xlf`.
 - Fluid templates commonly use namespaces (declare only the ones actually used):

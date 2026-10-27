@@ -64,7 +64,7 @@ Content is delivered via `colPos` positions: `0` (content1), `1` (content2), and
 
 ## TypoScript Settings
 
-Settings are configured in the TypoScript constants module under `plugin.tx_templates.settings`:
+Settings are configured in the TypoScript constants module under `plugin.tx_frontendtemplates.settings`:
 
 | Setting                          | Type   | Description                                    |
 |----------------------------------|--------|------------------------------------------------|

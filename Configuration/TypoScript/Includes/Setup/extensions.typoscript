@@ -6,14 +6,14 @@ plugin {
     }
 
     view {
-      layoutRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/Calendarize/Layouts/
+      layoutRootPaths.300 = {$plugin.tx_frontendtemplates.privateResourcePath}Extensions/Calendarize/Layouts/
 
       partialRootPaths {
-        200 = {$plugin.tx_templates.view.partialRootPath}
-        300 = {$plugin.tx_templates.privateResourcePath}Extensions/Calendarize/Partials/
+        200 = {$plugin.tx_frontendtemplates.view.partialRootPath}
+        300 = {$plugin.tx_frontendtemplates.privateResourcePath}Extensions/Calendarize/Partials/
       }
 
-      templateRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/Calendarize/Templates/
+      templateRootPaths.300 = {$plugin.tx_frontendtemplates.privateResourcePath}Extensions/Calendarize/Templates/
     }
   }
 
@@ -21,14 +21,14 @@ plugin {
     settings.detail.layout.showHero = 1
 
     view {
-      layoutRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/News/Layouts/
+      layoutRootPaths.300 = {$plugin.tx_frontendtemplates.privateResourcePath}Extensions/News/Layouts/
 
       partialRootPaths {
-        200 = {$plugin.tx_templates.view.partialRootPath}
-        300 = {$plugin.tx_templates.privateResourcePath}Extensions/News/Partials/
+        200 = {$plugin.tx_frontendtemplates.view.partialRootPath}
+        300 = {$plugin.tx_frontendtemplates.privateResourcePath}Extensions/News/Partials/
       }
 
-      templateRootPaths.300 = {$plugin.tx_templates.privateResourcePath}Extensions/News/Templates/
+      templateRootPaths.300 = {$plugin.tx_frontendtemplates.privateResourcePath}Extensions/News/Templates/
     }
   }
 }

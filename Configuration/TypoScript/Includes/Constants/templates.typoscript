@@ -2,42 +2,42 @@
 # customsubcategory=navigation=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:subCategory.navigation
 # customsubcategory=templates=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:subCategory.templates
 
-plugin.tx_templates {
+plugin.tx_frontendtemplates {
   privateResourcePath = EXT:frontend_templates/Resources/Private/
   publicResourcePath = EXT:frontend_templates/Resources/Public/
 
   settings {
-    # cat=plugin.tx_templates/templates; type=string; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.alternativeWebsiteTitle
+    # cat=plugin.tx_frontendtemplates/templates; type=string; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.alternativeWebsiteTitle
     alternativeWebsiteTitle =
 
     logos {
       default {
-        # cat=plugin.tx_templates/logos; type=string; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.file
+        # cat=plugin.tx_frontendtemplates/logos; type=string; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.file
         file =
-        # cat=plugin.tx_templates/logos; type=int+; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.height
+        # cat=plugin.tx_frontendtemplates/logos; type=int+; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.height
         height =
-        # cat=plugin.tx_templates/logos; type=boolean; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.showWebsiteTitle
+        # cat=plugin.tx_frontendtemplates/logos; type=boolean; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.showWebsiteTitle
         showWebsiteTitle = 0
-        # cat=plugin.tx_templates/logos; type=int+; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.width
+        # cat=plugin.tx_frontendtemplates/logos; type=int+; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.default.width
         width =
       }
 
-      # cat=plugin.tx_templates/logos; type=string; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.favicon
+      # cat=plugin.tx_frontendtemplates/logos; type=string; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.logos.favicon
       favicon =
     }
 
     navigation {
-      # cat=plugin.tx_templates/navigation; type=int+; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.navigation.footer
+      # cat=plugin.tx_frontendtemplates/navigation; type=int+; label=LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TypoScript/constants.xlf:settings.navigation.footer
       footer =
     }
   }
 
   view {
-    # cat=plugin.tx_templates/file; type=string; label=Path to template layouts (FE)
+    # cat=plugin.tx_frontendtemplates/file; type=string; label=Path to template layouts (FE)
     layoutRootPath = EXT:frontend_templates/Resources/Private/Layouts/
-    # cat=plugin.tx_templates/file; type=string; label=Path to template partials (FE)
+    # cat=plugin.tx_frontendtemplates/file; type=string; label=Path to template partials (FE)
     partialRootPath = EXT:frontend_templates/Resources/Private/Partials/
-    # cat=plugin.tx_templates/file; type=string; label=Path to template root (FE)
+    # cat=plugin.tx_frontendtemplates/file; type=string; label=Path to template root (FE)
     templateRootPath = EXT:frontend_templates/Resources/Private/Templates/
   }
 }

@@ -11,6 +11,11 @@
             "PSBits\\FrontendTemplates\\": "Classes/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "PSBits\\FrontendTemplates\\Tests\\": "Tests/"
+        }
+    },
     "config": {
         "allow-plugins": {
             "typo3/class-alias-loader": true,
@@ -98,10 +103,25 @@
             "@test:all"
         ],
         "test:all": [
-            "@test:unit"
+            "@test:unit",
+            "@test:functional",
+            "@test:local",
+            "@test:docker"
         ],
-        "test:coverage": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh",
-        "test:coverage:update-baseline": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh --update-baseline",
+        "test:coverage": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh @additional_args",
+        "test:coverage:update-baseline": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh --update-baseline @additional_args",
+        "test:docker": [
+            "Composer\\Config::disableProcessTimeout",
+            "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runDockerTests.sh @additional_args"
+        ],
+        "test:functional": [
+            "php .Build/vendor/psbits/qa/Resources/Testing/renderPhpunitXml.php functional",
+            "php -d memory_limit=1G .Build/bin/phpunit -c .Build/phpunit/FunctionalTests.xml"
+        ],
+        "test:local": [
+            "Composer\\Config::disableProcessTimeout",
+            "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runLocalTests.sh @additional_args"
+        ],
         "test:unit": [
             "php .Build/vendor/psbits/qa/Resources/Testing/renderPhpunitXml.php unit",
             "php -d memory_limit=1G .Build/bin/phpunit -c .Build/phpunit/UnitTests.xml"

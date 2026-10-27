@@ -43,7 +43,7 @@
         "ext-intl": "*",
         "friendsoftypo3/content-blocks": "~1.5 || ^2.4",
         "php": "^8.3",
-        "psbits/foundation": "^4.2",
+        "psbits/foundation": "^4.2.2",
         "psbits/view-helpers": "@dev",
         "symfony/intl": "^7.1",
         "typo3/cms-core": "^13.4 || ^14.3",

@@ -16,15 +16,15 @@ use function in_array;
  * Adds HTML to the TYPO3 page header once per unique identifier.
  *
  * Usage in Fluid:
- * <templates:page.header
+ * <frontendTemplates:page.header
  *     html="<meta name='robots' content='noindex'>"
  *     identifier="my-header-id" />
  * or with child content:
- * <templates:page.header identifier="my-header-id">
+ * <frontendTemplates:page.header identifier="my-header-id">
  *     <meta
  *         content="noindex"
  *         name="robots" />
- * </templates:page.header>
+ * </frontendTemplates:page.header>
  *
  * @package PSBits\FrontendTemplates\ViewHelpers\Page
  */

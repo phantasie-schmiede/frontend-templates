@@ -17,7 +17,6 @@ use RuntimeException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 
-use function array_key_exists;
 use function in_array;
 
 /**
@@ -39,6 +38,16 @@ class SettingsProvider extends AbstractProvider
             );
         }
 
+        $key = '' !== $identifier ? $identifier : $source;
+
+        /*
+         * The same source registered again with the same identifier is a no-op, so that repeated
+         * bootstraps (e.g. in functional tests) do not fail.
+         */
+        if ((self::$sources[$key] ?? null) === $source) {
+            return;
+        }
+
         if (in_array($source, self::$sources, true)) {
             throw new RuntimeException(
                 __CLASS__ . ': The source "' . $source . '" is already registered!',
@@ -46,14 +55,14 @@ class SettingsProvider extends AbstractProvider
             );
         }
 
-        if (!empty($identifier) && array_key_exists($identifier, self::$sources)) {
+        if (isset(self::$sources[$key])) {
             throw new RuntimeException(
                 __CLASS__ . ': The identifier "' . $identifier . '" is already used for another source!',
                 1773993176
             );
         }
 
-        self::$sources[$identifier ?: $source] = $source;
+        self::$sources[$key] = $source;
     }
 
     /**

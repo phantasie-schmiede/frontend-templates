@@ -18,6 +18,7 @@ use PSBits\FrontendTemplates\Tests\Functional\Fixtures\AdditionalContentEventFix
 use PSBits\Qa\Testing\Fixtures\InMemoryListenerProvider;
 use PSBits\FrontendTemplates\ViewHelpers\Event\AdditionalContentViewHelper;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -49,7 +50,7 @@ class AdditionalContentViewHelperTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->request = new ServerRequest(
+        $this->request = (new ServerRequest(
             'http://example.com/',
             'GET',
             null,
@@ -58,7 +59,8 @@ class AdditionalContentViewHelperTest extends FunctionalTestCase
                 'HTTP_HOST'   => 'example.com',
                 'REQUEST_URI' => '/',
             ]
-        );
+        ))
+            ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE);
         $GLOBALS['TYPO3_REQUEST'] = $this->request;
     }
 

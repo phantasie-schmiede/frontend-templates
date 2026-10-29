@@ -14,7 +14,7 @@ $EM_CONF[$_EXTKEY] = [
             'typo3'                => '13.4.0-14.99.99',
         ],
     ],
-    'description'      => 'Basic templates for TYPO3',
+    'description'      => 'Frontend templates for TYPO3: page layouts, content elements, ViewHelpers and TypoScript setup, built on Bootstrap and Content Blocks',
     'state'            => 'alpha',
     'title'            => 'PSBits | Frontend Templates',
     'version'          => '0.1.0',

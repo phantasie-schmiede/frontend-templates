@@ -25,7 +25,7 @@
         "sort-packages": true,
         "vendor-dir": ".Build/vendor"
     },
-    "description": "Basic templates for TYPO3",
+    "description": "Frontend templates for TYPO3: page layouts, content elements, ViewHelpers and TypoScript setup, built on Bootstrap and Content Blocks",
     "extra": {
         "typo3/cms": {
             "extension-key": "frontend_templates",

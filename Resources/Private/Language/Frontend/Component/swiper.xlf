@@ -4,7 +4,7 @@
         datatype="plaintext"
         date="2026-06-22T18:20:00+01:00"
         original="messages"
-        product-name="templates"
+        product-name="frontend_templates"
         source-language="en">
         <body>
             <trans-unit id="nextSlide">

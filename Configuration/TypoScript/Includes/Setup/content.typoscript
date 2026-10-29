@@ -1,7 +1,7 @@
 lib {
   contentBlock {
     partialRootPaths {
-      200 = {$plugin.tx_templates.view.partialRootPath}
+      200 = {$plugin.tx_frontendtemplates.view.partialRootPath}
     }
   }
 

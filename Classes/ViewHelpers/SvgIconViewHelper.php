@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Templates.
+ * This file is part of PSBits Frontend Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers;
+namespace PSBits\FrontendTemplates\ViewHelpers;
 
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconProvider\AbstractSvgIconProvider;
@@ -20,7 +20,7 @@ use function is_array;
 /**
  * Class SvgIconViewHelper
  *
- * @package PSBits\Templates\ViewHelpers
+ * @package PSBits\FrontendTemplates\ViewHelpers
  */
 class SvgIconViewHelper extends AbstractViewHelper
 {

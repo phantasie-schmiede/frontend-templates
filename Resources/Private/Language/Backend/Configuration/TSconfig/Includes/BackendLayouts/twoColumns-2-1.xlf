@@ -4,7 +4,7 @@
         datatype="plaintext"
         date="2024-03-24T23:06:00+01:00"
         original="messages"
-        product-name="templates"
+        product-name="frontend_templates"
         source-language="en">
         <body>
             <trans-unit id="content1">

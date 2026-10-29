@@ -3,18 +3,18 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Templates.
+ * This file is part of PSBits Frontend Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers\Component;
+namespace PSBits\FrontendTemplates\ViewHelpers\Component;
 
 use JsonException;
 use PSBits\Foundation\Utility\ContextUtility;
-use PSBits\Templates\Data\ExtensionInformation;
-use PSBits\Templates\Service\ViewService;
+use PSBits\FrontendTemplates\Data\ExtensionInformation;
+use PSBits\FrontendTemplates\Service\ViewService;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -30,7 +30,7 @@ use function is_string;
  * rendered as a link by setting the href argument. If the externalLink argument is set to true, the button will be
  * rendered as a link with target="_blank" and rel="noopener noreferrer".
  *
- * @package PSBits\Templates\ViewHelpers\Component
+ * @package PSBits\FrontendTemplates\ViewHelpers\Component
  */
 class ButtonViewHelper extends AbstractViewHelper
 {

@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Templates.
+ * This file is part of PSBits Frontend Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Backend\DisplayCondition;
+namespace PSBits\FrontendTemplates\Backend\DisplayCondition;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 
@@ -19,7 +19,7 @@ use function is_array;
 /**
  * Class PageRowHighlightDisplayCondition
  *
- * @package PSBits\Templates\Backend\DisplayCondition
+ * @package PSBits\FrontendTemplates\Backend\DisplayCondition
  */
 class PageRowHighlightDisplayCondition
 {

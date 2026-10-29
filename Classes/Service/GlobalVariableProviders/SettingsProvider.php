@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Templates.
+ * This file is part of PSBits Frontend Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Service\GlobalVariableProviders;
+namespace PSBits\FrontendTemplates\Service\GlobalVariableProviders;
 
 use PSBits\Foundation\Service\GlobalVariableProviders\AbstractProvider;
 use PSBits\Foundation\Utility\ContextUtility;
@@ -17,13 +17,12 @@ use RuntimeException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 
-use function array_key_exists;
 use function in_array;
 
 /**
  * Class SettingsProvider
  *
- * @package PSBits\Templates\Service\GlobalVariableProviders
+ * @package PSBits\FrontendTemplates\Service\GlobalVariableProviders
  */
 class SettingsProvider extends AbstractProvider
 {
@@ -39,6 +38,16 @@ class SettingsProvider extends AbstractProvider
             );
         }
 
+        $key = '' !== $identifier ? $identifier : $source;
+
+        /*
+         * The same source registered again with the same identifier is a no-op, so that repeated
+         * bootstraps (e.g. in functional tests) do not fail.
+         */
+        if ((self::$sources[$key] ?? null) === $source) {
+            return;
+        }
+
         if (in_array($source, self::$sources, true)) {
             throw new RuntimeException(
                 __CLASS__ . ': The source "' . $source . '" is already registered!',
@@ -46,14 +55,14 @@ class SettingsProvider extends AbstractProvider
             );
         }
 
-        if (!empty($identifier) && array_key_exists($identifier, self::$sources)) {
+        if (isset(self::$sources[$key])) {
             throw new RuntimeException(
                 __CLASS__ . ': The identifier "' . $identifier . '" is already used for another source!',
                 1773993176
             );
         }
 
-        self::$sources[$identifier ?: $source] = $source;
+        self::$sources[$key] = $source;
     }
 
     /**

@@ -4,7 +4,7 @@
         datatype="plaintext"
         date="2020-06-29T19:35:00+01:00"
         original="messages"
-        product-name="templates"
+        product-name="frontend_templates"
         source-language="en">
         <body>
             <trans-unit id="content1">

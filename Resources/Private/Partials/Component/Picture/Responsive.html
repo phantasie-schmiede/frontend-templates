@@ -1,11 +1,11 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:templates="http://typo3.org/ns/PSBits/Templates/ViewHelpers"
+    xmlns:frontendTemplates="http://typo3.org/ns/PSBits/FrontendTemplates/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
     <f:variable
         name="aiStatus"
-        value="{templates:image.aiStatus(file: file)}" />
+        value="{frontendTemplates:image.aiStatus(file: file)}" />
     <f:variable
         name="aiStatusLabel"
         value="{aiStatus.label}" />
@@ -104,7 +104,7 @@
                 key="cropVariant">
                 <f:variable
                     name="aspectRatio"
-                    value="{templates:image.aspectRatio(cropVariant: cropVariant, file: file)}" />
+                    value="{frontendTemplates:image.aspectRatio(cropVariant: cropVariant, file: file)}" />
 
                 <f:comment>
                     <!-- Current data is stored in an extra variable to be able to access the last data for the img tag outside of this loop -->

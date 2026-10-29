@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Templates.
+ * This file is part of PSBits Frontend Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Utility;
+namespace PSBits\FrontendTemplates\Utility;
 
 use JsonException;
 use PSBits\Foundation\Utility\LocalizationUtility;
@@ -21,11 +21,11 @@ use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 /**
  * Class StringUtility
  *
- * @package PSBits\Templates\Utility
+ * @package PSBits\FrontendTemplates\Utility
  */
 class StringUtility
 {
-    public const LL = 'LLL:EXT:templates/Resources/Private/Language/Utility/stringUtility.xlf:';
+    public const LL = 'LLL:EXT:frontend_templates/Resources/Private/Language/Utility/stringUtility.xlf:';
 
     /**
      * @param string[] $items

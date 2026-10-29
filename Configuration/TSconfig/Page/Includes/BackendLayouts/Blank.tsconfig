@@ -12,7 +12,7 @@ mod {
                 columns {
                   1 {
                     colPos = 0
-                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/blank.xlf:content1
+                    name = LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/blank.xlf:content1
                   }
                 }
               }
@@ -20,8 +20,8 @@ mod {
           }
         }
 
-        icon = EXT:templates/Resources/Public/Icons/BackendLayouts/Blank.svg
-        title = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/blank.xlf:title
+        icon = EXT:frontend_templates/Resources/Public/Icons/BackendLayouts/Blank.svg
+        title = LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/blank.xlf:title
       }
     }
   }

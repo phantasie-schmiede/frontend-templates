@@ -1,1 +1,1 @@
-@import 'EXT:templates/Configuration/TSconfig/Page/Includes/BackendLayouts/*.tsconfig'
+@import 'EXT:frontend_templates/Configuration/TSconfig/Page/Includes/BackendLayouts/*.tsconfig'

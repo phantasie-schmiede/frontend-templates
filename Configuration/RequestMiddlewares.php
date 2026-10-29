@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use PSBits\Templates\Middleware\MenuDropdownRedirectMiddleware;
+use PSBits\FrontendTemplates\Middleware\MenuDropdownRedirectMiddleware;
 
 return [
     'frontend' => [
-        'psbits/templates/menu-dropdown-redirect' => [
+        'psbits/frontend-templates/menu-dropdown-redirect' => [
             'target' => MenuDropdownRedirectMiddleware::class,
             'after'  => [
                 'typo3/cms-frontend/page-resolver',

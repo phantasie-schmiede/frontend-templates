@@ -3,25 +3,25 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Templates.
+ * This file is part of PSBits Frontend Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Domain\Model\Typo3;
+namespace PSBits\FrontendTemplates\Domain\Model\Typo3;
 
 use PSBits\Foundation\Attribute\TCA\Column;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Enum;
 use PSBits\Foundation\Attribute\TCA\ColumnType\Input;
 use PSBits\Foundation\Attribute\TCA\Mapping\Field;
 use PSBits\Foundation\Attribute\TCA\Mapping\Table;
-use PSBits\Templates\Enum\AiStatus;
+use PSBits\FrontendTemplates\Enum\AiStatus;
 
 /**
  * Class Page
  *
- * @package PSBits\Templates\Domain\Model\Typo3
+ * @package PSBits\FrontendTemplates\Domain\Model\Typo3
  */
 #[Table(name: 'sys_file_metadata')]
 class SysFileMetaData

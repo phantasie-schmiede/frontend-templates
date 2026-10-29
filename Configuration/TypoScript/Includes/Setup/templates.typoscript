@@ -1,31 +1,31 @@
 lib.contentElement {
-  partialRootPaths.300 = {$plugin.tx_templates.view.partialRootPath}
-  templateRootPaths.300 = EXT:templates/Resources/Private/Templates/ContentElements/Typo3/
+  partialRootPaths.300 = {$plugin.tx_frontendtemplates.view.partialRootPath}
+  templateRootPaths.300 = EXT:frontend_templates/Resources/Private/Templates/ContentElements/Typo3/
 }
 
-plugin.tx_templates {
+plugin.tx_frontendtemplates {
   settings {
-    alternativeWebsiteTitle = {$plugin.tx_templates.settings.alternativeWebsiteTitle}
+    alternativeWebsiteTitle = {$plugin.tx_frontendtemplates.settings.alternativeWebsiteTitle}
 
     logos {
       default {
-        file = {$plugin.tx_templates.settings.logos.default.file}
-        height = {$plugin.tx_templates.settings.logos.default.height}
-        showWebsiteTitle = {$plugin.tx_templates.settings.logos.default.showWebsiteTitle}
-        width = {$plugin.tx_templates.settings.logos.default.width}
+        file = {$plugin.tx_frontendtemplates.settings.logos.default.file}
+        height = {$plugin.tx_frontendtemplates.settings.logos.default.height}
+        showWebsiteTitle = {$plugin.tx_frontendtemplates.settings.logos.default.showWebsiteTitle}
+        width = {$plugin.tx_frontendtemplates.settings.logos.default.width}
       }
 
-      favicon = {$plugin.tx_templates.settings.logos.favicon}
+      favicon = {$plugin.tx_frontendtemplates.settings.logos.favicon}
     }
 
     navigation {
-      footer = {$plugin.tx_templates.settings.navigation.footer}
+      footer = {$plugin.tx_frontendtemplates.settings.navigation.footer}
     }
   }
 
   view {
-    layoutRootPaths.0 = {$plugin.tx_templates.view.layoutRootPath}
-    partialRootPaths.0 = {$plugin.tx_templates.view.partialRootPath}
-    templateRootPaths.0 = {$plugin.tx_templates.view.templateRootPath}
+    layoutRootPaths.0 = {$plugin.tx_frontendtemplates.view.layoutRootPath}
+    partialRootPaths.0 = {$plugin.tx_frontendtemplates.view.partialRootPath}
+    templateRootPaths.0 = {$plugin.tx_frontendtemplates.view.templateRootPath}
   }
 }

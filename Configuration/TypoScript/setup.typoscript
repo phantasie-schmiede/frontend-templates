@@ -1,8 +1,8 @@
 // Needs to be imported before page.typoscript to make sure the settings are available.
-@import 'EXT:templates/Configuration/TypoScript/Includes/Setup/templates.typoscript'
+@import 'EXT:frontend_templates/Configuration/TypoScript/Includes/Setup/templates.typoscript'
 
-@import 'EXT:templates/Configuration/TypoScript/Includes/Setup/content.typoscript'
-@import 'EXT:templates/Configuration/TypoScript/Includes/Setup/extensions.typoscript'
-@import 'EXT:templates/Configuration/TypoScript/Includes/Setup/menu.typoscript'
-@import 'EXT:templates/Configuration/TypoScript/Includes/Setup/page.typoscript'
-@import 'EXT:templates/Configuration/TypoScript/Includes/Setup/ws_scss.typoscript'
+@import 'EXT:frontend_templates/Configuration/TypoScript/Includes/Setup/content.typoscript'
+@import 'EXT:frontend_templates/Configuration/TypoScript/Includes/Setup/extensions.typoscript'
+@import 'EXT:frontend_templates/Configuration/TypoScript/Includes/Setup/menu.typoscript'
+@import 'EXT:frontend_templates/Configuration/TypoScript/Includes/Setup/page.typoscript'
+@import 'EXT:frontend_templates/Configuration/TypoScript/Includes/Setup/ws_scss.typoscript'

@@ -12,12 +12,12 @@ mod {
                 columns {
                   1 {
                     colPos = 0
-                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:content1.1
+                    name = LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:content1.1
                   }
 
                   2 {
                     colPos = 1
-                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:content1.2
+                    name = LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:content1.2
                   }
                 }
               }
@@ -26,12 +26,12 @@ mod {
                 columns {
                   1 {
                     colPos = 2
-                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:content2.1
+                    name = LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:content2.1
                   }
 
                   2 {
                     colPos = 3
-                    name = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:content2.2
+                    name = LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:content2.2
                   }
                 }
               }
@@ -39,8 +39,8 @@ mod {
           }
         }
 
-        icon = EXT:templates/Resources/Public/Icons/BackendLayouts/Grid-2x2.svg
-        title = LLL:EXT:templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:title
+        icon = EXT:frontend_templates/Resources/Public/Icons/BackendLayouts/Grid-2x2.svg
+        title = LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Configuration/TSconfig/Includes/BackendLayouts/grid-2x2.xlf:title
       }
     }
   }

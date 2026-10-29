@@ -3,16 +3,16 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Templates.
+ * This file is part of PSBits Frontend Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\ViewHelpers\Event;
+namespace PSBits\FrontendTemplates\ViewHelpers\Event;
 
 use InvalidArgumentException;
-use PSBits\Templates\Event\AdditionalContentEventInterface;
+use PSBits\FrontendTemplates\Event\AdditionalContentEventInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -20,7 +20,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 /**
  * Class AdditionalContentViewHelper
  *
- * @package PSBits\Templates\ViewHelpers\Event
+ * @package PSBits\FrontendTemplates\ViewHelpers\Event
  */
 class AdditionalContentViewHelper extends AbstractViewHelper
 {

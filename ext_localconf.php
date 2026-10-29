@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 use PSBits\Foundation\Service\GlobalVariableService;
-use PSBits\Templates\Service\GlobalVariableProviders\CurrentPageProvider;
-use PSBits\Templates\Domain\Repository\Settings\HeaderButtonRepository;
-use PSBits\Templates\Service\GlobalVariableProviders\SettingsProvider;
+use PSBits\FrontendTemplates\Service\GlobalVariableProviders\CurrentPageProvider;
+use PSBits\FrontendTemplates\Domain\Repository\Settings\HeaderButtonRepository;
+use PSBits\FrontendTemplates\Service\GlobalVariableProviders\SettingsProvider;
 
 defined('TYPO3') or die();
 

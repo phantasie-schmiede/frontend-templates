@@ -1,22 +1,22 @@
-# PSBits Templates
+# PSBits Frontend Templates
 
 Basic templates for TYPO3 providing page layouts, content elements, Fluid ViewHelpers, and TypoScript setup — built on [Bootstrap](https://getbootstrap.com/) with [Content Blocks](https://github.com/FriendsOfTYPO3/content-blocks).
 
 ## Requirements
 
-| Dependency                                                                        | Version |
-|-----------------------------------------------------------------------------------|---------|
-| TYPO3 CMS                                                                         | 13.4    |
-| PHP                                                                               | 8.3     |
-| [psbits/foundation](https://github.com/phantasie-schmiede/foundation)             | 3.2     |
-| [psbits/view-helpers](https://github.com/phantasie-schmiede/view-helpers)         | 3.1     |
-| [friendsoftypo3/content-blocks](https://github.com/FriendsOfTYPO3/content-blocks) | 1.5     |
-| [wapplersystems/ws-scss](https://github.com/wapplersystems/ws-scss)               | 13      |
+| Dependency                                                                        | Version     |
+|-----------------------------------------------------------------------------------|-------------|
+| TYPO3 CMS                                                                         | 13.4 / 14.3 |
+| PHP                                                                               | 8.3 – 8.5   |
+| [psbits/foundation](https://github.com/phantasie-schmiede/foundation)             | 4.2         |
+| [psbits/view-helpers](https://github.com/phantasie-schmiede/view-helpers)         | 4.0         |
+| [friendsoftypo3/content-blocks](https://github.com/FriendsOfTYPO3/content-blocks) | 1.5 / 2.4   |
+| [wapplersystems/ws-scss](https://github.com/wapplersystems/ws-scss)               | 13 / 14     |
 
 ## Installation
 
 ```bash
-composer require psbits/templates
+composer require psbits/frontend-templates
 ```
 
 Activate the site set in your site configuration, or add it as a dependency of your own site set:
@@ -24,7 +24,7 @@ Activate the site set in your site configuration, or add it as a dependency of y
 ```yaml
 # config/sites/your-site/config.yaml
 dependencies:
-  - psbits/templates
+  - psbits/frontend-templates
 ```
 
 ## Content Elements
@@ -64,7 +64,7 @@ Content is delivered via `colPos` positions: `0` (content1), `1` (content2), and
 
 ## TypoScript Settings
 
-Settings are configured in the TypoScript constants module under `plugin.tx_templates.settings`:
+Settings are configured in the TypoScript constants module under `plugin.tx_frontendtemplates.settings`:
 
 | Setting                          | Type   | Description                                    |
 |----------------------------------|--------|------------------------------------------------|
@@ -145,7 +145,7 @@ Computes and returns the aspect ratio (width / height) of a file reference, resp
 ## Extensibility
 
 The extension provides a PSR-14 event system for additional content. Create a class implementing
-`PSBits\Templates\Event\AdditionalContentEventInterface` (extend `AbstractAdditionalContentEvent` for convenience), register it in `Configuration/Services.yaml`, and dispatch it via the `templates:event.additionalContent` ViewHelper.
+`PSBits\FrontendTemplates\Event\AdditionalContentEventInterface` (extend `AbstractAdditionalContentEvent` for convenience), register it in `Configuration/Services.yaml`, and dispatch it via the `templates:event.additionalContent` ViewHelper.
 
 ## Third-Party Extension Overrides
 

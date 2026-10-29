@@ -1,4 +1,4 @@
-# PSBits Templates
+# PSBits Frontend Templates
 
 Instructions for AI coding agents working in this repository. Read this file at session start and follow it.
 
@@ -68,7 +68,7 @@ For multi-step tasks, state a brief plan:
 
 TYPO3 extension (`type: typo3-cms-extension`) providing page templates, Fluid ViewHelpers, TypoScript setup,
 Content Blocks, and overriding templates for third-party extensions (News, Calendarize). PHP namespace:
-`PSBits\\Templates\\`.
+`PSBits\\FrontendTemplates\\`.
 
 ## Key locations
 
@@ -85,20 +85,20 @@ Content Blocks, and overriding templates for third-party extensions (News, Calen
 ## Architecture and conventions
 
 - Strongly typed PHP (`declare(strict_types=1);`) is standard for classes. Every class file starts with the
-  "This file is part of PSBits Templates." license header block.
+  "This file is part of PSBits Frontend Templates." license header block.
 - Service wiring uses Symfony DI autowiring in `Configuration/Services.yaml`.
 - Global template settings are exposed via `SettingsProvider` and consumed in Fluid through
   `templates:globalVariables.settings()`. New setting sources implement `SettingSourceInterface` and are registered in
   `ext_localconf.php` via `SettingsProvider::registerSource(...)`.
 - TypoScript include order matters; keep `Includes/Setup/templates.typoscript` before `page.typoscript` (as documented
   in `Configuration/TypoScript/setup.typoscript`).
-- New TypoScript settings are added as `plugin.tx_templates.settings.*` constants in
+- New TypoScript settings are added as `plugin.tx_frontendtemplates.settings.*` constants in
   `Configuration/TypoScript/Includes/Constants/` and wired in `template.typoscript`; labels (including the constants
   labels) go into `Resources/Private/Language/Backend/Configuration/TypoScript/*.xlf`.
 - Fluid templates commonly use namespaces (declare only the ones actually used):
     - `f` (`TYPO3/CMS/Fluid/ViewHelpers`)
     - `foundation` (`PSBits/Foundation/ViewHelpers`)
-    - `templates` (`PSBits/Templates/ViewHelpers`)
+    - `frontendTemplates` (`PSBits/FrontendTemplates/ViewHelpers`)
     - `viewHelpers` (`PSBits/ViewHelpers/ViewHelpers`)
 - ViewHelpers extend `AbstractViewHelper`, set `protected $escapeOutput = false;`, register arguments in
   `initializeArguments()`, render via `ViewService::createStandaloneView(...)` + an assigned Fluid template under

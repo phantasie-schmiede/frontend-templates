@@ -8,7 +8,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "PSBits\\Templates\\": "Classes/"
+            "PSBits\\FrontendTemplates\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PSBits\\FrontendTemplates\\Tests\\": "Tests/"
         }
     },
     "config": {
@@ -20,10 +25,10 @@
         "sort-packages": true,
         "vendor-dir": ".Build/vendor"
     },
-    "description": "Basic templates for TYPO3",
+    "description": "Frontend templates for TYPO3: page layouts, content elements, ViewHelpers and TypoScript setup, built on Bootstrap and Content Blocks",
     "extra": {
         "typo3/cms": {
-            "extension-key": "templates",
+            "extension-key": "frontend_templates",
             "web-dir": ".Build/public"
         }
     },
@@ -33,13 +38,13 @@
         "typo3"
     ],
     "license": "GPL-3.0-or-later",
-    "name": "psbits/templates",
+    "name": "psbits/frontend-templates",
     "require": {
         "ext-intl": "*",
         "friendsoftypo3/content-blocks": "~1.5 || ^2.4",
         "php": "^8.3",
-        "psbits/foundation": "^4.2",
-        "psbits/view-helpers": "@dev",
+        "psbits/foundation": "^4.2.2",
+        "psbits/view-helpers": "^4.0",
         "symfony/intl": "^7.1",
         "typo3/cms-core": "^13.4 || ^14.3",
         "typo3/cms-fluid-styled-content": "^13.4 || ^14.3",
@@ -98,10 +103,25 @@
             "@test:all"
         ],
         "test:all": [
-            "@test:unit"
+            "@test:unit",
+            "@test:functional",
+            "@test:local",
+            "@test:docker"
         ],
-        "test:coverage": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh",
-        "test:coverage:update-baseline": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh --update-baseline",
+        "test:coverage": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh @additional_args",
+        "test:coverage:update-baseline": "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runCoverage.sh --update-baseline @additional_args",
+        "test:docker": [
+            "Composer\\Config::disableProcessTimeout",
+            "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runDockerTests.sh @additional_args"
+        ],
+        "test:functional": [
+            "php .Build/vendor/psbits/qa/Resources/Testing/renderPhpunitXml.php functional",
+            "php -d memory_limit=1G .Build/bin/phpunit -c .Build/phpunit/FunctionalTests.xml"
+        ],
+        "test:local": [
+            "Composer\\Config::disableProcessTimeout",
+            "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/runLocalTests.sh @additional_args"
+        ],
         "test:unit": [
             "php .Build/vendor/psbits/qa/Resources/Testing/renderPhpunitXml.php unit",
             "php -d memory_limit=1G .Build/bin/phpunit -c .Build/phpunit/UnitTests.xml"

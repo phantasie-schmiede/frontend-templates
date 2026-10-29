@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 /*
- * This file is part of PSBits Templates.
+ * This file is part of PSBits Frontend Templates.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace PSBits\Templates\Utility;
+namespace PSBits\FrontendTemplates\Utility;
 
 use Doctrine\DBAL\Exception;
 use TYPO3\CMS\Core\Database\Connection;
@@ -25,7 +25,7 @@ use function in_array;
 /**
  * Class SlugUtility
  *
- * @package PSBits\Templates\Utility
+ * @package PSBits\FrontendTemplates\Utility
  */
 class SlugUtility
 {

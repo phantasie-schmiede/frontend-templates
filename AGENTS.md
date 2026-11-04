@@ -82,6 +82,24 @@ Content Blocks, and overriding templates for third-party extensions (News, Calen
 - `Resources/Private/Extensions/` — overriding templates for News and Calendarize.
 - `ext_localconf.php` — global variable provider registration.
 
+## Foundation integration
+
+This extension builds on `psbits/foundation`, so it deliberately deviates from the standard TYPO3
+layout. Full conventions: `psbits-foundation` skill (`.opencode/skills/psbits-foundation/SKILL.md`).
+
+- It ships no own domain models, so there is no `ext_tables.sql`; do not create one.
+- `Classes/Data/ExtensionInformation.php` registers the one and only page type
+  `menuDropdown` (`addPageType()`); the TCA adjustments for it and for the Content Blocks live in
+  `Configuration/TCA/Overrides/pages.php` and `Configuration/TCA/Overrides/tt_content.php` -
+  manual TCA overrides on purpose (the only place manual TCA code belongs).
+- `Configuration/Sets/Template/` is the site set (integrated via site configuration
+  `dependencies: - psbits/frontend-templates`).
+- `ext_localconf.php` exists on purpose: it registers the `CurrentPageProvider` and
+  `SettingsProvider` with the Foundation `GlobalVariableService` (wiring, not plugin
+  registration).
+- Page type labels: `Resources/Private/Language/Backend/Configuration/TCA/Overrides/page.xlf`
+  (key `pageType.[name]`).
+
 ## Architecture and conventions
 
 - Strongly typed PHP (`declare(strict_types=1);`) is standard for classes. Every class file starts with the
@@ -131,7 +149,8 @@ inconsistencies between the codebase and these instructions, mention them - don'
 
 ## Validation
 
-Repository quality checks are defined in `composer.json`, `package.json`, and `.github/workflows/quality.yml`.
+Repository quality checks are defined in `composer.json`, `package.json`, and the shared `CI`
+GitHub Actions workflow (`.github/workflows/ci.yml`).
 Quality configuration files are centralized in `Build/Quality/` and referenced by Composer/NPM scripts and CI.
 
 - `fix:all` **rewrites source files** (formats HTML/XML, reorders class attributes, runs php-cs-fixer); `lint:all` is

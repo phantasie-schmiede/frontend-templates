@@ -1,6 +1,6 @@
 ---
 name: PSBits Frontend Templates
-description: psbits/frontend-templates — Bootstrap/Content-Blocks template pack for TYPO3. The only psbits extension with page types (menuDropdown), v14 status after the foundation IconRegistry fix, site set and ViewHelpers overview. Use when working on templates or its v13/v14 behavior.
+description: psbits/frontend-templates — Bootstrap/Content-Blocks template pack for TYPO3. The only PSBits extension with page types (menuDropdown), v14 status after the foundation IconRegistry fix, site set and ViewHelpers overview. Use when working on templates or its v13/v14 behavior.
 ---
 
 # psbits/frontend-templates
@@ -21,7 +21,7 @@ settings, ViewHelpers, extensibility) — reference it, do not duplicate it.
 
 - `Classes/Data/ExtensionInformation.php` registers **one page type:
   `menuDropdown`** (`DOKTYPES['MENU_DROPDOWN']`) — templates is the **only
-  psbits extension that defines page types**.
+  PSBits extension that defines page types**.
 - That made it the only queue extension affected by the v14
   IconRegistry-at-boot failure in Foundation's `PageTypeService` (see the
   `typo3-v14-migration` skill in the ddev-typo3 project for the mechanism).

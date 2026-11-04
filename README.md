@@ -8,7 +8,7 @@ Basic templates for TYPO3 providing page layouts, content elements, Fluid ViewHe
 |-----------------------------------------------------------------------------------|-------------|
 | TYPO3 CMS                                                                         | 13.4 / 14.3 |
 | PHP                                                                               | 8.3 – 8.5   |
-| [psbits/foundation](https://github.com/phantasie-schmiede/foundation)             | 4.2         |
+| [psbits/foundation](https://github.com/phantasie-schmiede/foundation)             | 4.2.2       |
 | [psbits/view-helpers](https://github.com/phantasie-schmiede/view-helpers)         | 4.0         |
 | [friendsoftypo3/content-blocks](https://github.com/FriendsOfTYPO3/content-blocks) | 1.5 / 2.4   |
 | [wapplersystems/ws-scss](https://github.com/wapplersystems/ws-scss)               | 13 / 14     |

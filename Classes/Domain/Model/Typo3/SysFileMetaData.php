@@ -18,11 +18,6 @@ use PSBits\Foundation\Attribute\TCA\Mapping\Field;
 use PSBits\Foundation\Attribute\TCA\Mapping\Table;
 use PSBits\FrontendTemplates\Enum\AiStatus;
 
-/**
- * Class Page
- *
- * @package PSBits\FrontendTemplates\Domain\Model\Typo3
- */
 #[Table(name: 'sys_file_metadata')]
 class SysFileMetaData
 {

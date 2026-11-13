@@ -12,13 +12,9 @@ declare(strict_types=1);
 namespace PSBits\FrontendTemplates\ViewHelpers\Data;
 
 use PSBits\FrontendTemplates\Service\CountryNamesService;
+use Symfony\Component\Intl\Exception\MissingResourceException;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class CountryNamesViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Data
- */
 class CountryNamesViewHelper extends AbstractViewHelper
 {
     public function __construct(
@@ -34,6 +30,7 @@ class CountryNamesViewHelper extends AbstractViewHelper
 
     /**
      * @return array<string, string>|string
+     * @throws MissingResourceException
      */
     public function render(): array|string
     {

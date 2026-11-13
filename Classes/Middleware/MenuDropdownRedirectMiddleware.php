@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\Middleware;
 
+use InvalidArgumentException;
 use PSBits\FrontendTemplates\Data\ExtensionInformation;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -18,6 +19,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Http\RedirectResponse;
+use TYPO3\CMS\Core\Routing\InvalidRouteArgumentsException;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
@@ -33,6 +35,10 @@ readonly class MenuDropdownRedirectMiddleware implements MiddlewareInterface
     ) {
     }
 
+    /**
+     * @throws InvalidArgumentException
+     * @throws InvalidRouteArgumentsException // t3:14
+     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $pageArguments = $request->getAttribute('routing');

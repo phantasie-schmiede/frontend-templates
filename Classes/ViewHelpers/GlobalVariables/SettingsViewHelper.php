@@ -14,11 +14,6 @@ namespace PSBits\FrontendTemplates\ViewHelpers\GlobalVariables;
 use PSBits\Foundation\ViewHelpers\GlobalVariables\AbstractGlobalVariablesViewHelper;
 use PSBits\FrontendTemplates\Service\GlobalVariableProviders\SettingsProvider;
 
-/**
- * Class SettingsViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\GlobalVariables
- */
 class SettingsViewHelper extends AbstractGlobalVariablesViewHelper
 {
     protected function getBaseKey(): string

@@ -15,12 +15,8 @@ use TYPO3\CMS\Backend\Utility\BackendUtility;
 
 use function in_array;
 use function is_array;
+use function str_replace;
 
-/**
- * Class PageRowHighlightDisplayCondition
- *
- * @package PSBits\FrontendTemplates\Backend\DisplayCondition
- */
 class PageRowHighlightDisplayCondition
 {
     private const array LAYOUT_ROW_MAP = [

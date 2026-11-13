@@ -14,11 +14,6 @@ namespace PSBits\FrontendTemplates\Data;
 use PSBits\Foundation\Data\AbstractExtensionInformation;
 use PSBits\Foundation\Data\PageTypeConfiguration;
 
-/**
- * Class ExtensionInformation
- *
- * @package PSBits\FrontendTemplates\Data
- */
 class ExtensionInformation extends AbstractExtensionInformation
 {
     public const array DOKTYPES = [

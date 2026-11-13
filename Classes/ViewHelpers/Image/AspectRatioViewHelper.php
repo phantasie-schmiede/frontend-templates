@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\ViewHelpers\Image;
 
+use DivisionByZeroError;
+use InvalidArgumentException;
 use JsonException;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
@@ -19,12 +21,9 @@ use TYPO3\CMS\Extbase\Service\ImageService;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 use function is_array;
+use function json_encode;
+use function method_exists;
 
-/**
- * Class AspectRatioViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Image
- */
 class AspectRatioViewHelper extends AbstractViewHelper
 {
     public function __construct(
@@ -46,6 +45,8 @@ class AspectRatioViewHelper extends AbstractViewHelper
     }
 
     /**
+     * @throws DivisionByZeroError
+     * @throws InvalidArgumentException
      * @throws JsonException
      */
     public function render(): float
@@ -74,6 +75,7 @@ class AspectRatioViewHelper extends AbstractViewHelper
     }
 
     /**
+     * @throws InvalidArgumentException
      * @throws JsonException
      */
     private function getCropArea(FileReference $file): Area

@@ -8,29 +8,21 @@
         source-language="en"
         target-language="de">
         <body>
+            <trans-unit id="background_variant.label">
+                <source>Background</source>
+                <target>Hintergrund</target>
+            </trans-unit>
             <trans-unit id="description">
                 <source>Highlight with image, text and link</source>
                 <target>Highlight mit Bild, Text und Link</target>
-            </trans-unit>
-            <trans-unit id="title">
-                <source>Feature</source>
-                <target>Feature</target>
-            </trans-unit>
-            <trans-unit id="links.label">
-                <source>Links</source>
-                <target>Links</target>
             </trans-unit>
             <trans-unit id="layout_variant.label">
                 <source>Layout</source>
                 <target>Layout</target>
             </trans-unit>
-            <trans-unit id="background_variant.label">
-                <source>Background</source>
-                <target>Hintergrund</target>
-            </trans-unit>
-            <trans-unit id="preview.layout">
-                <source>Layout:</source>
-                <target>Layout:</target>
+            <trans-unit id="links.label">
+                <source>Links</source>
+                <target>Links</target>
             </trans-unit>
             <trans-unit id="preview.background">
                 <source>Background:</source>
@@ -39,6 +31,14 @@
             <trans-unit id="preview.image">
                 <source>Image</source>
                 <target>Bild</target>
+            </trans-unit>
+            <trans-unit id="preview.layout">
+                <source>Layout:</source>
+                <target>Layout:</target>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>Feature</source>
+                <target>Feature</target>
             </trans-unit>
         </body>
     </file>

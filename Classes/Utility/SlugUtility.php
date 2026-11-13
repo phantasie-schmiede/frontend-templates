@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace PSBits\FrontendTemplates\Utility;
 
 use Doctrine\DBAL\Exception;
+use InvalidArgumentException;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -22,16 +23,12 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 use function in_array;
 
-/**
- * Class SlugUtility
- *
- * @package PSBits\FrontendTemplates\Utility
- */
 class SlugUtility
 {
     /**
      * @source: https://stackoverflow.com/questions/63304723/typo3-extbase-how-to-create-unique-slug-within-create-action
      * @throws Exception
+     * @throws InvalidArgumentException
      * @throws SiteNotFoundException
      */
     public static function generateUniqueSlug(int $uid, string $tableName, string $slugFieldName = 'slug'): false|string

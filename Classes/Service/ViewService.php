@@ -16,18 +16,15 @@ use PSBits\Foundation\Data\ExtensionInformationInterface;
 use PSBits\Foundation\Service\TypoScriptProviderService;
 use PSBits\Foundation\Utility\Configuration\FilePathUtility;
 use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use ReflectionException;
 use TYPO3\CMS\Core\View\ViewFactoryData;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Core\View\ViewInterface;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
-/**
- * Class ViewService
- *
- * @package PSBits\FrontendTemplates\Service
- */
+use function str_contains;
+
 readonly class ViewService
 {
     public function __construct(
@@ -39,7 +36,7 @@ readonly class ViewService
     /**
      * @throws ContainerExceptionInterface
      * @throws JsonException
-     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function createStandaloneView(
         ExtensionInformationInterface $extensionInformation,
@@ -69,7 +66,7 @@ readonly class ViewService
      * }
      * @throws ContainerExceptionInterface
      * @throws JsonException
-     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     private function getViewSettings(ExtensionInformationInterface $extensionInformation): array
     {

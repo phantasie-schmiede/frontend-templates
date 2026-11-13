@@ -7,26 +7,26 @@
         product-name="frontend_templates"
         source-language="en">
         <body>
-            <trans-unit id="title">
-                <source>Logo Slider</source>
+            <trans-unit id="autoplay.label">
+                <source>Autoplay</source>
             </trans-unit>
             <trans-unit id="description">
                 <source>Partner or testimonial logo slider with no-JS fallback</source>
             </trans-unit>
-            <trans-unit id="autoplay.label">
-                <source>Autoplay</source>
-            </trans-unit>
             <trans-unit id="grayscale.label">
                 <source>Grayscale logos</source>
             </trans-unit>
-            <trans-unit id="preview.type">
-                <source>Logo slider</source>
+            <trans-unit id="preview.image">
+                <source>Image</source>
             </trans-unit>
             <trans-unit id="preview.logos">
                 <source>Logos:</source>
             </trans-unit>
-            <trans-unit id="preview.image">
-                <source>Image</source>
+            <trans-unit id="preview.type">
+                <source>Logo slider</source>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>Logo Slider</source>
             </trans-unit>
         </body>
     </file>

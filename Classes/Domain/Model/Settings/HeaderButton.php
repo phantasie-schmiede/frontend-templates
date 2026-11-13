@@ -19,11 +19,6 @@ use PSBits\Foundation\Attribute\TCA\Ctrl;
 use PSBits\FrontendTemplates\Enum\BootstrapType;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-/**
- * Class HeaderButton
- *
- * @package PSBits\FrontendTemplates\Domain\Model\Settings
- */
 #[Ctrl(ignorePageTypeRestriction: true, label: 'label', labelAlt: 'type', labelAltForce: true)]
 class HeaderButton extends AbstractEntity
 {

@@ -15,11 +15,6 @@ use PSBits\FrontendTemplates\Enum\AiStatus;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class AiStatusViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Image
- */
 class AiStatusViewHelper extends AbstractViewHelper
 {
     public function initializeArguments(): void

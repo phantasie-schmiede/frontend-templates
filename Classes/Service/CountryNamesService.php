@@ -14,13 +14,9 @@ namespace PSBits\FrontendTemplates\Service;
 use Locale;
 use PSBits\Foundation\Utility\ContextUtility;
 use Symfony\Component\Intl\Countries;
+use Symfony\Component\Intl\Exception\MissingResourceException;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 
-/**
- * Class CountryNamesService
- *
- * @package PSBits\FrontendTemplates\Service
- */
 class CountryNamesService
 {
     /**
@@ -41,6 +37,9 @@ class CountryNamesService
         return Countries::getNames();
     }
 
+    /**
+     * @throws MissingResourceException
+     */
     public function getFromCode(string $code): string
     {
         return Countries::getName($code);

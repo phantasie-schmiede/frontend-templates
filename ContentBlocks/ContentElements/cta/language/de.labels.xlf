@@ -8,17 +8,13 @@
         source-language="en"
         target-language="de">
         <body>
-            <trans-unit id="description">
-                <source>Linked action button</source>
-                <target>Verlinkter Action-Button</target>
-            </trans-unit>
-            <trans-unit id="title">
-                <source>CTA</source>
-                <target>CTA</target>
-            </trans-unit>
             <trans-unit id="button_size.label">
                 <source>Button size</source>
                 <target>Buttongröße</target>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>Linked action button</source>
+                <target>Verlinkter Action-Button</target>
             </trans-unit>
             <trans-unit id="full_width.label">
                 <source>Full width</source>
@@ -27,6 +23,10 @@
             <trans-unit id="preview.link_required">
                 <source>Button link is required.</source>
                 <target>Button-Link ist erforderlich.</target>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>CTA</source>
+                <target>CTA</target>
             </trans-unit>
         </body>
     </file>

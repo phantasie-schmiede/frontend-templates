@@ -178,7 +178,7 @@ composer lint:yaml
 composer validate:composer
 ```
 
-A pre-commit hook (from the psbits/qa package) is installed automatically via `.Build/bin/qa link` in
+A pre-commit hook (from the psbits/qa package) is installed automatically via `.Build/bin/qa sync` in
 `composer post-install-cmd` and runs `composer lint:all`.
 
 The workflow publishes the extension to TER when a release tag is pushed. Publishing requires the

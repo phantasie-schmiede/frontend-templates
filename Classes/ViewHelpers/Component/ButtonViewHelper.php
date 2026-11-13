@@ -16,21 +16,20 @@ use PSBits\Foundation\Utility\ContextUtility;
 use PSBits\FrontendTemplates\Data\ExtensionInformation;
 use PSBits\FrontendTemplates\Service\ViewService;
 use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use ReflectionException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
+use function array_unique;
+use function implode;
 use function is_array;
 use function is_string;
+use function sort;
 
 /**
- * Class ButtonViewHelper
- *
  * Renders a button with optional icon and spinner text. The button renders as button element by default, but can be
  * rendered as a link by setting the href argument. If the externalLink argument is set to true, the button will be
  * rendered as a link with target="_blank" and rel="noopener noreferrer".
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Component
  */
 class ButtonViewHelper extends AbstractViewHelper
 {
@@ -72,7 +71,7 @@ class ButtonViewHelper extends AbstractViewHelper
     /**
      * @throws ContainerExceptionInterface
      * @throws JsonException
-     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function render(): string
     {

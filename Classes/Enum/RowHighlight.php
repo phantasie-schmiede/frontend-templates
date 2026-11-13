@@ -11,18 +11,13 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\Enum;
 
-/**
- * Class AiStatus
- *
- * @package PSBits\FrontendTemplates\Enum
- */
 enum RowHighlight: string
 {
-    public const string BACKEND_LL = 'LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Enum/rowHighlight.xlf:';
-
     case Emphasis = 'emphasis';
     case None     = 'none';
     case Subtle   = 'subtle';
+
+    public const string BACKEND_LL = 'LLL:EXT:frontend_templates/Resources/Private/Language/Backend/Enum/rowHighlight.xlf:';
 
     public function getBackendLabel(): string
     {

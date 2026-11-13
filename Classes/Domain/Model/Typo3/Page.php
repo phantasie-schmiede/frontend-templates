@@ -19,22 +19,18 @@ use PSBits\Foundation\Attribute\TCA\Mapping\Table;
 use PSBits\FrontendTemplates\Enum\RowHighlight;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-/**
- * Class Page
- *
- * @package PSBits\FrontendTemplates\Domain\Model\Typo3
- */
 #[Table(name: 'pages')]
 class Page extends AbstractEntity
 {
     public const array   BOOTSTRAP_CONTAINER_TYPES = [
+        // PSBits/alphabetical_array_keys=off
         'DEFAULT' => '',
+        'FLUID'   => 'fluid',
         'SM'      => 'sm',
         'MD'      => 'md',
         'LG'      => 'lg',
         'XL'      => 'xl',
         'XXL'     => 'xxl',
-        'FLUID'   => 'fluid',
     ];
     private const string DISPLAY_COND_PREFIX = 'USER:PSBits\FrontendTemplates\Backend\DisplayCondition\PageRowHighlightDisplayCondition->matches:';
 

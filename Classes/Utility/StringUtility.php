@@ -11,29 +11,25 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\Utility;
 
+use InvalidArgumentException;
 use JsonException;
 use PSBits\Foundation\Utility\LocalizationUtility;
 use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
 use ReflectionException;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 
-/**
- * Class StringUtility
- *
- * @package PSBits\FrontendTemplates\Utility
- */
+use function implode;
+
 class StringUtility
 {
-    public const LL = 'LLL:EXT:frontend_templates/Resources/Private/Language/Utility/stringUtility.xlf:';
+    public const string LL = 'LLL:EXT:frontend_templates/Resources/Private/Language/Utility/stringUtility.xlf:';
 
     /**
      * @param string[] $items
-     *
      * @throws AspectNotFoundException
      * @throws ContainerExceptionInterface
+     * @throws InvalidArgumentException
      * @throws JsonException
-     * @throws NotFoundExceptionInterface
      * @throws ReflectionException
      */
     public static function createEnumeration(array $items): string

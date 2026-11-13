@@ -13,11 +13,6 @@ namespace PSBits\FrontendTemplates\ViewHelpers\Page;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class RowHighlightClassViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Page
- */
 class RowHighlightClassViewHelper extends AbstractViewHelper
 {
     private const array CLASS_MAP = [

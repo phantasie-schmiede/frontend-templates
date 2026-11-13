@@ -13,11 +13,6 @@ namespace PSBits\FrontendTemplates\Event;
 
 use Psr\Http\Message\ServerRequestInterface;
 
-/**
- * Interface AdditionalContentEventInterface
- *
- * @package PSBits\FrontendTemplates\Event
- */
 interface AdditionalContentEventInterface
 {
     public function getContent(): string;

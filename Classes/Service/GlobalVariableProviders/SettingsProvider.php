@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\Service\GlobalVariableProviders;
 
+use InvalidArgumentException;
 use PSBits\Foundation\Service\GlobalVariableProviders\AbstractProvider;
 use PSBits\Foundation\Utility\ContextUtility;
 use RuntimeException;
@@ -19,16 +20,14 @@ use TYPO3\CMS\Frontend\Page\PageInformation;
 
 use function in_array;
 
-/**
- * Class SettingsProvider
- *
- * @package PSBits\FrontendTemplates\Service\GlobalVariableProviders
- */
 class SettingsProvider extends AbstractProvider
 {
     /** @var array<string, class-string<SettingSourceInterface>> */
     protected static array $sources = [];
 
+    /**
+     * @throws RuntimeException
+     */
     public static function registerSource(string $source, string $identifier = ''): void
     {
         if (!is_subclass_of($source, SettingSourceInterface::class)) {
@@ -67,6 +66,7 @@ class SettingsProvider extends AbstractProvider
 
     /**
      * @return array<string, mixed>
+     * @throws InvalidArgumentException
      */
     public function getGlobalVariables(): array
     {

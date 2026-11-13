@@ -11,11 +11,6 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\Service\GlobalVariableProviders;
 
-/**
- * Interface SettingSourceInterface
- *
- * @package PSBits\FrontendTemplates\Service\GlobalVariableProviders
- */
 interface SettingSourceInterface
 {
     public function findByPid(int $pid): mixed;

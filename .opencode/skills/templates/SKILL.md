@@ -39,5 +39,5 @@ settings, ViewHelpers, extensibility) — reference it, do not duplicate it.
 
 - `psbits-extension-dev` (conventions), `typo3-v14-migration` (the v14
   pitfall) — both in the ddev-typo3 project.
-- `vendor/psbits/foundation/.opencode/skills/foundation/SKILL.md` (the fix
-  this extension depends on).
+- The v14 IconRegistry fix this extension depends on: commit `3d2d3f9` in
+  `vendor/psbits/foundation` (mechanism: the `typo3-v14-migration` skill).

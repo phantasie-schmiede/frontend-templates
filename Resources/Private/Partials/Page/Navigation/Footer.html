@@ -1,20 +1,22 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-<ul class="border-bottom justify-content-center mb-3 nav pb-3">
-    <f:for
-        as="page"
-        each="{footerNavigation}">
-        <li class="nav-item">
-            <a
-                {f:if(condition: page.current, then: ' aria-current="page"')}
-                class="link-body-emphasis nav-link px-2"
-                href="{page.link}"
-                {f:if(condition: page.target, then: ' target="{page.target}"')}
-                title="{page.title}">
-            {page.title}
-            </a>
-        </li>
-    </f:for>
-</ul>
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <ul class="border-bottom justify-content-center mb-3 nav pb-3">
+        <f:for
+            as="page"
+            each="{footerNavigation}">
+            <li class="nav-item">
+                <viewHelpers:tag
+                    aria-current="{f:if(condition: page.current, then: 'page')}"
+                    class="link-body-emphasis nav-link px-2"
+                    href="{page.link}"
+                    tag="a"
+                    target="{f:if(condition: page.target, then: page.target)}"
+                    title="{page.title}">
+                    {page.title}
+                </viewHelpers:tag>
+            </li>
+        </f:for>
+    </ul>
 </html>

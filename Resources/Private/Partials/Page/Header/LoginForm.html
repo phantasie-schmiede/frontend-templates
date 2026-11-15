@@ -4,14 +4,14 @@
     xmlns:foundation="http://typo3.org/ns/PSBits/Foundation/ViewHelpers"
     xmlns:frontendTemplates="http://typo3.org/ns/PSBits/FrontendTemplates/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-<viewHelpers:condition.extensionLoaded extensionKey="frontend_users">
-    <f:variable
-        name="frontendUser"
-        value="{psbFrontendUsers:globalVariables.frontendUser()}" />
-</viewHelpers:condition.extensionLoaded>
+    <viewHelpers:condition.extensionLoaded extensionKey="frontend_users">
+        <f:variable
+            name="frontendUser"
+            value="{psbFrontendUsers:globalVariables.frontendUser()}" />
+    </viewHelpers:condition.extensionLoaded>
 
-<f:if condition="{frontendUser.sysFolder.uid}">
-    <div class="dropdown">
+    <f:if condition="{frontendUser.sysFolder.uid}">
+        <div class="dropdown">
             <span
                 aria-expanded="false"
                 aria-haspopup="true"
@@ -20,99 +20,108 @@
                 <frontendTemplates:svgIcon
                     identifier="mimetypes-x-content-user" />
             </span>
-        <div
-            aria-labelledby="dropdownLoginButton"
-            class="dropdown-menu dropdown-menu-end p-2">
-            <form method="post">
-                <f:security.ifAuthenticated>
-                    <f:then>
-                        <div class="list-group list-group-flush text-center text-nowrap">
-                            <li class="list-group-item">{frontendUser.user.fullName}</li>
+            <div
+                aria-labelledby="dropdownLoginButton"
+                class="dropdown-menu dropdown-menu-end p-2">
+                <form method="post">
+                    <f:security.ifAuthenticated>
+                        <f:then>
+                            <div
+                                class="list-group list-group-flush text-center text-nowrap">
+                                <li class="list-group-item">
+                                    {frontendUser.user.fullName}
+                                </li>
 
-                            <viewHelpers:condition.extensionLoaded extensionKey="fe_change_pwd">
-                                <f:if condition="{siteConfiguration.changePasswordPid}">
-                                    <f:link.page
-                                        class="list-group-item list-group-item-action"
-                                        pageUid="{siteConfiguration.changePasswordPid}">
-                                        <foundation:translate id="header:changePassword" />
-                                    </f:link.page>
-                                </f:if>
-                            </viewHelpers:condition.extensionLoaded>
+                                <viewHelpers:condition.extensionLoaded
+                                    extensionKey="fe_change_pwd">
+                                    <f:if
+                                        condition="{siteConfiguration.changePasswordPid}">
+                                        <f:link.page
+                                            class="list-group-item list-group-item-action"
+                                            pageUid="{siteConfiguration.changePasswordPid}">
+                                            <foundation:translate
+                                                id="header:changePassword" />
+                                        </f:link.page>
+                                    </f:if>
+                                </viewHelpers:condition.extensionLoaded>
 
-                            <button
-                                class="active list-group-item list-group-item-action"
-                                type="submit">
-                                <foundation:translate id="header:logout" />
-                            </button>
+                                <button
+                                    class="active list-group-item list-group-item-action"
+                                    type="submit">
+                                    <foundation:translate id="header:logout" />
+                                </button>
+                                <input
+                                    name="logintype"
+                                    type="hidden"
+                                    value="logout" />
+                            </div>
+                        </f:then>
+                        <f:else>
+                            <div class="form-group">
+                                <label for="user">
+                                    <foundation:translate
+                                        id="header:username" />
+                                </label>
+                                <input
+                                    class="form-control"
+                                    id="user"
+                                    name="user"
+                                    type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="pass">
+                                    <foundation:translate
+                                        id="header:password" />
+                                </label>
+                                <input
+                                    class="form-control"
+                                    id="pass"
+                                    name="pass"
+                                    type="password" />
+                            </div>
+
                             <input
                                 name="logintype"
                                 type="hidden"
-                                value="logout">
-                        </div>
-                    </f:then>
-                    <f:else>
-                        <div class="form-group">
-                            <label for="user">
-                                <foundation:translate id="header:username" />
-                            </label>
+                                value="login" />
                             <input
-                                class="form-control"
-                                id="user"
-                                name="user"
-                                type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="pass">
-                                <foundation:translate id="header:password" />
-                            </label>
+                                name="pid"
+                                type="hidden"
+                                value="{frontendUser.sysFolder.uid}" />
                             <input
-                                class="form-control"
-                                id="pass"
-                                name="pass"
-                                type="password">
-                        </div>
+                                name="redirect_url"
+                                type="hidden"
+                                value="" />
+                            <input
+                                name="tx_felogin_pi1[noredirect]"
+                                type="hidden"
+                                value="1" />
 
-                        <input
-                            name="logintype"
-                            type="hidden"
-                            value="login">
-                        <input
-                            name="pid"
-                            type="hidden"
-                            value="{frontendUser.sysFolder.uid}">
-                        <input
-                            name="redirect_url"
-                            type="hidden"
-                            value="">
-                        <input
-                            name="tx_felogin_pi1[noredirect]"
-                            type="hidden"
-                            value="1">
+                            <div class="d-grid gap-2">
+                                <button
+                                    class="btn btn-primary mt-2"
+                                    type="submit">
+                                    <foundation:translate id="header:login" />
+                                </button>
 
-                        <div class="d-grid gap-2">
-                            <button
-                                class="btn btn-primary mt-2"
-                                type="submit">
-                                <foundation:translate id="header:login" />
-                            </button>
-
-                            <f:if condition="{frontendUser.loginPage.uid}">
-                                <f:link.action
-                                    action="recovery"
-                                    class="btn btn-secondary text-nowrap"
-                                    controller="PasswordRecovery"
-                                    extensionName="FeLogin"
-                                    pageUid="{frontendUser.loginPage.uid}"
-                                    pluginName="Login"
-                                    rel="nofollow">
-                                    <foundation:translate id="header:forgotPassword" />
-                                </f:link.action>
-                            </f:if>
-                        </div>
-                    </f:else>
-                </f:security.ifAuthenticated>
-            </form>
+                                <f:if condition="{frontendUser.loginPage.uid}">
+                                    <f:link.action
+                                        action="recovery"
+                                        class="btn btn-secondary text-nowrap"
+                                        controller="PasswordRecovery"
+                                        extensionName="FeLogin"
+                                        pageUid="{frontendUser.loginPage.uid}"
+                                        pluginName="Login"
+                                        rel="nofollow">
+                                        <foundation:translate
+                                            id="header:forgotPassword" />
+                                    </f:link.action>
+                                </f:if>
+                            </div>
+                        </f:else>
+                    </f:security.ifAuthenticated>
+                </form>
+            </div>
         </div>
-    </div>
-</f:if>
+    </f:if>
 </html>

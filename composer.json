@@ -49,6 +49,7 @@
     },
     "config": {
         "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "ergebnis/composer-normalize": true,
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true
@@ -73,10 +74,15 @@
         ],
         "analyze:php": "phpstan analyse --configuration=Build/Quality/phpstan.neon.dist --no-progress",
         "audit:composer": "composer audit --abandoned=report",
+        "docker:images": [
+            "Composer\\Config::disableProcessTimeout",
+            "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/buildTestImages.sh"
+        ],
         "fix:all": [
             "@fix:classes",
             "@fix:composer",
             "@fix:htmlxml",
+            "@fix:json",
             "@fix:throws",
             "@fix:xlf",
             "@fix:php"
@@ -84,7 +90,8 @@
         "fix:classes": "npm run fix:classes",
         "fix:composer": "composer normalize",
         "fix:htmlxml": "npm run fix:htmlxml",
-        "fix:php": "php-cs-fixer fix --config=Build/Quality/.php-cs-fixer.dist.php --verbose",
+        "fix:json": "npm run fix:json",
+        "fix:php": "php .Build/vendor/psbits/qa/Resources/Quality/phpTools.php fix",
         "fix:throws": ".Build/bin/qa throws-fix",
         "fix:xlf": ".Build/bin/qa xlf-fix",
         "lint:all": [
@@ -94,6 +101,7 @@
             "@lint:composer",
             "@lint:htmlxml",
             "@lint:js",
+            "@lint:json",
             "@lint:php",
             "@lint:scss",
             "@lint:typoscript",
@@ -105,7 +113,8 @@
         "lint:composer": "composer normalize --dry-run --diff --no-check-lock --no-update-lock",
         "lint:htmlxml": "npm run lint:htmlxml",
         "lint:js": "npm run lint:js",
-        "lint:php": "php-cs-fixer fix --config=Build/Quality/.php-cs-fixer.dist.php --dry-run --diff --verbose",
+        "lint:json": "npm run lint:json",
+        "lint:php": "php .Build/vendor/psbits/qa/Resources/Quality/phpTools.php lint",
         "lint:scss": "npm run lint:scss",
         "lint:typoscript": "typoscript-lint --config=.Build/vendor/psbits/qa/Resources/Quality/typoscript-lint.yml --ansi Configuration/TypoScript",
         "lint:xlf": ".Build/bin/qa xlf-check",
@@ -116,8 +125,8 @@
             "@test:all"
         ],
         "test:all": [
-            "@test:unit",
             "@test:functional",
+            "@test:unit",
             "@test:local",
             "@test:docker"
         ],

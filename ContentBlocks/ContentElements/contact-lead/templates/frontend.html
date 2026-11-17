@@ -2,11 +2,17 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <f:variable
+        name="textClass"
+        value="{f:if(condition: '{data.emphasis_style} == \'light\'', then: '', else: ' text-white')}" />
+    <f:variable
+        name="buttonStyle"
+        value="{f:if(condition: '{data.emphasis_style} == \'light\'', then: 'dark', else: 'light')}" />
     <section class="contact-lead py-5">
         <div class="container">
             <div class="border-0 card shadow-sm">
                 <div
-                    class="card-body bg-{data.emphasis_style}{f:if(condition: data.emphasis_style == 'dark', then: ' text-white')} rounded-3">
+                    class="card-body bg-{data.emphasis_style}{textClass} rounded-3">
                     <f:if condition="{data.header}">
                         <f:if condition="{data.header_layout} != 100">
                             <viewHelpers:tag
@@ -25,20 +31,11 @@
 
                     <f:if condition="{data.header_link}">
                         <f:link.typolink
-                            class="btn btn-outline-{f:if(condition: data.emphasis_style == 'light', then: 'dark', else: 'light')}"
+                            class="btn btn-outline-{buttonStyle}"
                             parameter="{data.header_link}">
                             {data.header}
                         </f:link.typolink>
                     </f:if>
-
-                    <div class="contact-lead__messages mt-4">
-                        <f:render
-                            arguments="{type: 'success', message: data.success_message, dismissable: 0}"
-                            partial="Component/Alert" />
-                        <f:render
-                            arguments="{type: 'danger', message: data.error_message, dismissable: 0}"
-                            partial="Component/Alert" />
-                    </div>
                 </div>
             </div>
         </div>

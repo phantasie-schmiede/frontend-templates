@@ -10,8 +10,14 @@
             <trans-unit id="nextSlide">
                 <source>Next slide</source>
             </trans-unit>
+            <trans-unit id="pause">
+                <source>Pause slideshow</source>
+            </trans-unit>
             <trans-unit id="previousSlide">
                 <source>Previous slide</source>
+            </trans-unit>
+            <trans-unit id="resume">
+                <source>Resume slideshow</source>
             </trans-unit>
         </body>
     </file>

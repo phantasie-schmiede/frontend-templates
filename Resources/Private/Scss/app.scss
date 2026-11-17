@@ -9,7 +9,7 @@
 @import "Component/p-event";
 @import "Component/p-news";
 
-li[data-psbits-filter-match="false"] {
+[data-psbits-filter-match="false"] {
   display: none !important;
 }
 
@@ -186,13 +186,24 @@ body {
 
 .hero-block {
   color: var(--bs-white);
+  display: flex;
+  min-height: min(70vh, 44rem);
+  padding-block: 3rem;
+  position: relative;
 
   &__figure {
+    inset: 0;
     margin: 0;
+    position: absolute !important;
+
+    picture {
+      display: block;
+      height: 100%;
+    }
   }
 
   &__image {
-    max-height: 70vh;
+    height: 100% !important;
     object-fit: cover;
   }
 
@@ -224,7 +235,14 @@ body {
   }
 
   &__content {
+    align-self: center;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 0.5rem;
+    margin-inline: auto;
     max-width: 50rem;
+    overflow-wrap: anywhere;
+    padding: 1.5rem;
+    position: relative;
     width: min(90vw, 50rem);
     z-index: 1;
   }
@@ -235,7 +253,7 @@ body {
 
   .display-5.hero-block__text--constrained,
   &__lead.hero-block__text--constrained {
-    max-width: 50%;
+    max-width: 34ch;
   }
 
   @include media-breakpoint-down(md) {
@@ -286,6 +304,28 @@ body {
   .alert {
     margin-bottom: 0.5rem;
   }
+}
+
+.contact-lead .text-white a:not(.btn),
+.feature-block.text-white a:not(.btn),
+.hero-block a:not(.btn) {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.swiper .swiper-pagination-bullet {
+  height: 24px;
+  width: 24px;
+}
+
+.swiper-autoplay-toggle {
+  margin-top: 0.75rem;
+}
+
+.accordion-button:focus-visible,
+.swiper:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 2px;
 }
 
 :where(a, button, input, select, textarea):focus-visible {

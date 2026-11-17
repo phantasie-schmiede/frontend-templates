@@ -11,8 +11,11 @@
             </viewHelpers:tag>
         </f:if>
 
+        <f:variable
+            name="accordionClass"
+            value="{f:if(condition: '{data.accordion_style} == \'flush\'', then: 'accordion accordion-flush', else: 'accordion')}" />
         <div
-            class="accordion{f:if(condition: data.accordion_style == 'flush', then: ' accordion-flush')}"
+            class="{accordionClass}"
             id="accordion-{data.uid}">
             <f:for
                 as="item"

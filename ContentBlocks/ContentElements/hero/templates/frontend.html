@@ -76,8 +76,7 @@
         </f:case>
     </f:switch>
 
-    <section
-        class="hero-block{overlayClass} position-relative text-{data.text_align}">
+    <section class="hero-block{overlayClass} text-{data.text_align}">
         <f:render
             arguments="{
                 figureClass: 'hero-block__figure position-relative',
@@ -91,7 +90,7 @@
             partial="Component/Picture/Responsive" />
 
         <div
-            class="{containerClass} hero-block__content position-absolute start-50 text-{data.text_align} top-50 translate-middle">
+            class="{containerClass} hero-block__content text-{data.text_align}">
             <f:if condition="{data.header}">
                 <f:if condition="{data.header_layout} != 100">
                     <viewHelpers:tag

@@ -12,9 +12,17 @@
                 <source>Next slide</source>
                 <target>Nächste Folie</target>
             </trans-unit>
+            <trans-unit id="pause">
+                <source>Pause slideshow</source>
+                <target>Diashow pausieren</target>
+            </trans-unit>
             <trans-unit id="previousSlide">
                 <source>Previous slide</source>
                 <target>Vorherige Folie</target>
+            </trans-unit>
+            <trans-unit id="resume">
+                <source>Resume slideshow</source>
+                <target>Diashow fortsetzen</target>
             </trans-unit>
         </body>
     </file>

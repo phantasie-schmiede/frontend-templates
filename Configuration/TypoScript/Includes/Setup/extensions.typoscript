@@ -18,7 +18,10 @@ plugin {
   }
 
   tx_news {
-    settings.detail.layout.showHero = 1
+    settings {
+      detail.layout.showHero = 1
+      list.headerLevel = 3
+    }
 
     view {
       layoutRootPaths.300 = {$plugin.tx_frontendtemplates.privateResourcePath}Extensions/News/Layouts/

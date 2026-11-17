@@ -1,0 +1,150 @@
+.news {
+  container-name: news;
+  container-type: inline-size;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+
+  @container news (width >= 480px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @container news (width >= 900px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  > .news-card {
+    flex-direction: column;
+    min-width: 0;
+  }
+}
+
+.news-card {
+  overflow-wrap: anywhere;
+
+  &--text-only {
+    align-self: start;
+  }
+
+  .m-card__body {
+    min-width: 0;
+  }
+
+  .m-card__media {
+    aspect-ratio: auto;
+    flex: none;
+    width: 100%;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  picture {
+    aspect-ratio: 16 / 9;
+    display: block;
+  }
+
+  .m-card__image {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .picture-meta-caption {
+    padding: 0 1rem 0.5rem;
+  }
+
+  &__more {
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 0.625rem 1rem;
+    white-space: normal;
+  }
+}
+
+.news-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+
+  dd {
+    margin: 0;
+  }
+}
+
+.detail-page--news {
+  margin: 2rem auto;
+  max-width: 60rem;
+  overflow-wrap: anywhere;
+
+  .detail-page__hero-image {
+    height: auto;
+    max-height: 28rem;
+    object-fit: contain;
+  }
+
+  .detail-page__hero figure {
+    margin: 0;
+  }
+
+  .detail-page__hero {
+    background: var(--bs-tertiary-bg);
+  }
+
+  .detail-page__body {
+    line-height: 1.65;
+  }
+
+  .pagination,
+  .news-related-files .list-group-item {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .detail-page__actions .btn {
+    min-height: 44px;
+    padding: 0.625rem 1rem;
+  }
+}
+
+.news-detail-content {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.news-detail-main {
+  margin-inline: auto;
+  max-width: 70ch;
+  min-width: 0;
+  width: 100%;
+}
+
+.news-detail-sidebar {
+  min-width: 0;
+}
+
+@media (width >= 992px) {
+  .news-detail-content--with-sidebar {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.news-pagination .page-link {
+  min-height: 44px;
+  min-width: 44px;
+  text-align: center;
+}
+
+.news :where(a, button):focus-visible {
+  outline: 3px solid currentcolor;
+  outline-offset: 3px;
+}
+
+.news .btn:focus-visible {
+  box-shadow: 0 0 0 2px #fff;
+  outline: 3px solid #212529;
+  outline-offset: 3px;
+}

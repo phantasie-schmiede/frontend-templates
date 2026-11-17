@@ -3,25 +3,25 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:frontendTemplates="http://typo3.org/ns/PSBits/FrontendTemplates/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    <templates:page.header identifier="preloadHero">
-        <templates:format.reduceWhitespace>
-            <f:render
-                arguments="{file: data.image.0}"
-                partial="Component/Picture/Preload" />
-        </templates:format.reduceWhitespace>
-    </templates:page.header>
+    <f:if condition="{data.eager_loading}">
+        <templates:page.header identifier="preloadHero">
+            <templates:format.reduceWhitespace>
+                <f:render
+                    arguments="{file: data.image.0}"
+                    partial="Component/Picture/Preload" />
+            </templates:format.reduceWhitespace>
+        </templates:page.header>
+    </f:if>
 
-    <f:variable
-        name="containerClass"
-        value="container" />
+    <f:variable name="containerClass" value="container" />
     <f:variable
         name="currentPage"
         value="{frontendTemplates:globalVariables.currentPage()}" />
 
-    <f:if condition="{currentPage.tx_templates_bs_container_type}">
+    <f:if condition="{currentPage.tx_frontendtemplates_bs_container_type}">
         <f:variable
             name="containerClass"
-            value="container-{currentPage.tx_templates_bs_container_type}" />
+            value="container-{currentPage.tx_frontendtemplates_bs_container_type}" />
     </f:if>
 
     <f:if condition="{data.text_align} != 'center'">
@@ -31,17 +31,13 @@
     </f:if>
 
     <f:if condition="{data.show_overlay}">
-        <f:variable
-            name="overlayClass"
-            value=" hero-block--overlay" />
+        <f:variable name="overlayClass" value=" hero-block--overlay" />
         <f:switch expression="{data.text_align}">
             <f:case value="end">
                 <f:variable
                     name="overlayClass"
                     value="{overlayClass} hero-block--overlay-end" />
-                <f:variable
-                    name="headingClass"
-                    value=" ms-auto" />
+                <f:variable name="headingClass" value=" ms-auto" />
             </f:case>
             <f:case value="start">
                 <f:variable
@@ -51,26 +47,18 @@
         </f:switch>
     </f:if>
 
-    <f:variable
-        name="metaAlignment"
-        value="end" />
+    <f:variable name="metaAlignment" value="end" />
 
     <f:if condition="{data.show_overlay} && 'start' == {data.text_align}">
-        <f:variable
-            name="metaAlignment"
-            value="start" />
+        <f:variable name="metaAlignment" value="start" />
     </f:if>
 
     <f:switch expression="{data.text_align}">
         <f:case value="center">
-            <f:variable
-                name="leadClass"
-                value=" mx-auto" />
+            <f:variable name="leadClass" value=" mx-auto" />
         </f:case>
         <f:case value="end">
-            <f:variable
-                name="leadClass"
-                value=" ms-auto" />
+            <f:variable name="leadClass" value=" ms-auto" />
         </f:case>
     </f:switch>
 
@@ -81,7 +69,8 @@
                 figureClass: 'hero-block__figure position-relative',
                 file: data.image.0,
                 imageClass: 'h-auto hero-block__image w-100',
-                loading: '{f:if(condition: data.eager_loading, then: \'eager\')}',
+                loading: '{f:if(condition: data.eager_loading, then: \'eager\', else: \'lazy\')}',
+                fetchpriority: '{f:if(condition: data.eager_loading, then: \'high\', else: \'auto\')}',
                 metaAlignment: metaAlignment,
                 metaPosition: 'overlay'
             }"

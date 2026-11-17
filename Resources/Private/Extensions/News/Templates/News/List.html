@@ -12,8 +12,14 @@
         <!--TYPO3SEARCH_end-->
         <f:if condition="{news}">
             <f:then>
+                <f:if
+                    condition="!{settings.hidePagination} && {settings.list.paginate.insertAbove}">
+                    <f:render
+                        arguments="{pagination: pagination.pagination, paginator: pagination.paginator}"
+                        partial="List/Pagination" />
+                </f:if>
                 <div
-                    class="o-card-grid"
+                    class="o-card-grid news-grid"
                     id="news-container-{contentObjectData.uid}">
                     <f:if condition="{settings.hidePagination}">
                         <f:then>
@@ -27,12 +33,6 @@
                             </f:for>
                         </f:then>
                         <f:else>
-                            <f:if
-                                condition="{settings.list.paginate.insertAbove}">
-                                <f:render
-                                    arguments="{pagination: pagination.pagination, paginator: pagination.paginator}"
-                                    partial="List/Pagination" />
-                            </f:if>
                             <f:for
                                 as="newsItem"
                                 each="{pagination.paginator.paginatedItems}"
@@ -41,15 +41,15 @@
                                     arguments="{iterator: iterator, newsItem: newsItem, settings: settings}"
                                     partial="List/Item" />
                             </f:for>
-                            <f:if
-                                condition="{settings.list.paginate.insertBelow}">
-                                <f:render
-                                    arguments="{pagination: pagination.pagination, paginator: pagination.paginator}"
-                                    partial="List/Pagination" />
-                            </f:if>
                         </f:else>
                     </f:if>
                 </div>
+                <f:if
+                    condition="!{settings.hidePagination} && {settings.list.paginate.insertBelow}">
+                    <f:render
+                        arguments="{pagination: pagination.pagination, paginator: pagination.paginator}"
+                        partial="List/Pagination" />
+                </f:if>
             </f:then>
             <f:else>
                 <div class="no-news-found">

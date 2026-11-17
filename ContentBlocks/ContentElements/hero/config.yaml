@@ -36,4 +36,4 @@ fields:
 group: content_blocks
 labelField: header
 prefixType: vendor
-vendorPrefix: tx_templates
+vendorPrefix: tx_frontendtemplates

@@ -1,0 +1,64 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <f:if condition="1 < {pagination.allPageNumbers -> f:count()}">
+        <nav
+            aria-label="{f:translate(key: 'LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:pagination')}"
+            class="news-pagination my-4">
+            <ul class="pagination flex-wrap gap-2 justify-content-center">
+                <f:if condition="{pagination.previousPageNumber}">
+                    <li class="page-item">
+                        <a
+                            class="page-link"
+                            href="{f:uri.action(action: 'list', arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 'untrusted')}">
+                            <f:translate key="pagination.previous" />
+                        </a>
+                    </li>
+                </f:if>
+                <f:if condition="{pagination.hasLessPages}">
+                    <li class="page-item">
+                        <span class="page-link">…</span>
+                    </li>
+                </f:if>
+                <f:for each="{pagination.allPageNumbers}" as="page">
+                    <li
+                        class="page-item{f:if(condition: '{page} == {paginator.currentPageNumber}', then: ' active')}">
+                        <f:if
+                            condition="{page} == {paginator.currentPageNumber}">
+                            <f:then>
+                                <span
+                                    aria-current="page"
+                                    aria-label="{f:translate(key: 'LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:page', arguments: {0: page})}"
+                                    class="page-link">
+                                    {page}
+                                </span>
+                            </f:then>
+                            <f:else>
+                                <a
+                                    aria-label="{f:translate(key: 'LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:page', arguments: {0: page})}"
+                                    class="page-link"
+                                    href="{f:uri.action(action: 'list', arguments: {currentPage: page}, addQueryString: 'untrusted')}">
+                                    {page}
+                                </a>
+                            </f:else>
+                        </f:if>
+                    </li>
+                </f:for>
+                <f:if condition="{pagination.hasMorePages}">
+                    <li class="page-item">
+                        <span class="page-link">…</span>
+                    </li>
+                </f:if>
+                <f:if condition="{pagination.nextPageNumber}">
+                    <li class="page-item">
+                        <a
+                            class="page-link"
+                            href="{f:uri.action(action: 'list', arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 'untrusted')}">
+                            <f:translate key="pagination.next" />
+                        </a>
+                    </li>
+                </f:if>
+            </ul>
+        </nav>
+    </f:if>
+</html>

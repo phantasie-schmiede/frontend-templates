@@ -1,0 +1,53 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:frontendTemplates="http://typo3.org/ns/PSBits/FrontendTemplates/ViewHelpers">
+    <f:variable
+        name="defaultCropVariants"
+        value="{
+        mobile: {maxWidth: 576, mediaQuery: '(max-width: 576px)'},
+        tablet: {maxWidth: 992, mediaQuery: '(min-width: 576.01px) and (max-width: 992px)'},
+        desktop: {maxWidth: 1600, mediaQuery: '(min-width: 992.01px)'}
+    }" />
+    <f:for
+        as="data"
+        each="{cropVariants -> f:or(alternative: defaultCropVariants)}"
+        key="cropVariant">
+        <f:variable
+            name="aspectRatio"
+            value="{frontendTemplates:image.aspectRatio(cropVariant: cropVariant, file: file)}" />
+        <f:variable name="customWidths" value="{widths.{cropVariant}}" />
+        <f:for
+            as="fileExtension"
+            each="{f:if(condition: preload, then: {0: 'avif'}, else: {0: 'avif', 1: 'webp'})}">
+            <f:variable
+                name="sourceSet"
+                value="{f:render(arguments: {
+                cropVariant: cropVariant,
+                file: file,
+                fileExtension: fileExtension,
+                widths: customWidths
+            }, partial: 'Component/Picture/SourceSet') -> templates:format.reduceWhitespace()}" />
+            <f:if condition="{preload}">
+                <f:then>
+                    <link
+                        as="image"
+                        imagesizes="{sizes.{cropVariant} -> f:or(alternative: '100vw')}"
+                        imagesrcset="{sourceSet}"
+                        media="{data.mediaQuery}"
+                        rel="preload"
+                        type="image/{fileExtension}" />
+                </f:then>
+                <f:else>
+                    <source
+                        height="{f:ceil(value: '{data.maxWidth / aspectRatio}')}"
+                        media="{data.mediaQuery}"
+                        sizes="{sizes.{cropVariant} -> f:or(alternative: '100vw')}"
+                        srcset="{sourceSet}"
+                        type="image/{fileExtension}"
+                        width="{data.maxWidth}" />
+                </f:else>
+            </f:if>
+        </f:for>
+    </f:for>
+</html>

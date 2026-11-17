@@ -20,9 +20,9 @@ class RowHighlightClassViewHelper extends AbstractViewHelper
         'subtle'   => 'page-row-highlight-subtle',
     ];
     private const array TOKEN_FIELDS = [
-        1 => 'tx_templates_row_highlight_1',
-        2 => 'tx_templates_row_highlight_2',
-        3 => 'tx_templates_row_highlight_3',
+        1 => 'tx_frontendtemplates_row_highlight_1',
+        2 => 'tx_frontendtemplates_row_highlight_2',
+        3 => 'tx_frontendtemplates_row_highlight_3',
     ];
 
     public function initializeArguments(): void

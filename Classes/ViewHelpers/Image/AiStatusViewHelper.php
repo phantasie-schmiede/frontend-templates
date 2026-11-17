@@ -35,7 +35,7 @@ class AiStatusViewHelper extends AbstractViewHelper
             $file = $file->getOriginalResource();
         }
 
-        $aiStatus = $file->getProperty('tx_templates_ai_status');
+        $aiStatus = $file->getProperty('tx_frontendtemplates_ai_status');
 
         if (null === $aiStatus) {
             return null;

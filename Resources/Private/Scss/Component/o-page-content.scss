@@ -1,0 +1,52 @@
+.page-content {
+  --page-content-space: clamp(1.5rem, 3vw, 3rem);
+
+  padding-top: var(--page-content-space);
+
+  > .row {
+    --bs-gutter-y: var(--page-content-space);
+
+    padding-block: var(--page-content-space);
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &.page-row-highlight-subtle,
+    &.page-row-highlight-emphasis {
+      padding-top: var(--page-content-space);
+    }
+  }
+}
+
+.page-content-element {
+  display: flow-root;
+
+  + .page-content-element {
+    margin-top: var(--page-content-space, 2rem);
+  }
+
+  &--header + .page-content-element {
+    margin-top: 1rem;
+  }
+
+  &--space-after + .page-content-element,
+  + .page-content-element--space-before {
+    margin-top: 0;
+  }
+
+  > .content-block-section:not(.bg-light, .bg-dark) {
+    padding-block: 0;
+  }
+
+  > .content-block-section {
+    > .container,
+    > .container-fluid {
+      padding-inline: 0;
+    }
+  }
+}
+
+.content-block-section {
+  padding-block: clamp(1.5rem, 3vw, 3rem);
+}

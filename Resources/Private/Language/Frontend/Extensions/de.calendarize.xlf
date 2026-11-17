@@ -36,9 +36,45 @@
                 <source>Location</source>
                 <target>Ort</target>
             </trans-unit>
+            <trans-unit id="pagination">
+                <source>Event pages</source>
+                <target>Veranstaltungsseiten</target>
+            </trans-unit>
             <trans-unit id="status">
                 <source>Status</source>
                 <target>Status</target>
+            </trans-unit>
+            <trans-unit id="time">
+                <source>Time</source>
+                <target>Uhrzeit</target>
+            </trans-unit>
+            <trans-unit id="weekday.1">
+                <source>Mon.</source>
+                <target>Mo.</target>
+            </trans-unit>
+            <trans-unit id="weekday.2">
+                <source>Tue.</source>
+                <target>Di.</target>
+            </trans-unit>
+            <trans-unit id="weekday.3">
+                <source>Wed.</source>
+                <target>Mi.</target>
+            </trans-unit>
+            <trans-unit id="weekday.4">
+                <source>Thu.</source>
+                <target>Do.</target>
+            </trans-unit>
+            <trans-unit id="weekday.5">
+                <source>Fri.</source>
+                <target>Fr.</target>
+            </trans-unit>
+            <trans-unit id="weekday.6">
+                <source>Sat.</source>
+                <target>Sa.</target>
+            </trans-unit>
+            <trans-unit id="weekday.7">
+                <source>Sun.</source>
+                <target>So.</target>
             </trans-unit>
         </body>
     </file>

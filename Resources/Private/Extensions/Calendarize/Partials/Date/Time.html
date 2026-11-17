@@ -1,0 +1,36 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <f:if condition="{index.allDay}">
+        <f:then>
+            <f:translate
+                extensionName="Calendarize"
+                key="all_day" />
+        </f:then>
+        <f:else>
+            <time
+                datetime="{index.startDateComplete -> f:format.date(format: 'c')}">
+                <f:format.date
+                    date="{index.startDateComplete}"
+                    format="{f:translate(key: 'timeFormat', extensionName: 'Calendarize')}" />
+            </time>
+            <f:if condition="{index.openEndTime}">
+                <f:then>
+                    ·
+                    <f:translate
+                        extensionName="Calendarize"
+                        key="open_end" />
+                </f:then>
+                <f:else>
+                    –
+                    <time
+                        datetime="{index.endDateComplete -> f:format.date(format: 'c')}">
+                        <f:format.date
+                            date="{index.endDateComplete}"
+                            format="{f:translate(key: 'timeFormat', extensionName: 'Calendarize')}" />
+                    </time>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+</html>

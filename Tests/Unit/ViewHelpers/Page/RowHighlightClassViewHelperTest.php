@@ -42,15 +42,15 @@ class RowHighlightClassViewHelperTest extends UnitTestCase
     {
         self::assertSame(
             'page-row-highlight-emphasis',
-            $this->render(['row' => 1, 'currentPage' => ['tx_templates_row_highlight_1' => 'emphasis']])
+            $this->render(['row' => 1, 'currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'emphasis']])
         );
         self::assertSame(
             'page-row-highlight-subtle',
-            $this->render(['row' => 2, 'currentPage' => ['tx_templates_row_highlight_2' => 'subtle']])
+            $this->render(['row' => 2, 'currentPage' => ['tx_frontendtemplates_row_highlight_2' => 'subtle']])
         );
         self::assertSame(
             'page-row-highlight-emphasis',
-            $this->render(['row' => 3, 'currentPage' => ['tx_templates_row_highlight_3' => 'emphasis']])
+            $this->render(['row' => 3, 'currentPage' => ['tx_frontendtemplates_row_highlight_3' => 'emphasis']])
         );
     }
 
@@ -60,11 +60,11 @@ class RowHighlightClassViewHelperTest extends UnitTestCase
         self::assertSame('', $this->render(['row' => 1]));
         self::assertSame(
             '',
-            $this->render(['row' => 1, 'currentPage' => ['tx_templates_row_highlight_1' => 'none']])
+            $this->render(['row' => 1, 'currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'none']])
         );
         self::assertSame(
             '',
-            $this->render(['row' => 1, 'currentPage' => ['tx_templates_row_highlight_1' => 'glow']])
+            $this->render(['row' => 1, 'currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'glow']])
         );
     }
 
@@ -73,11 +73,11 @@ class RowHighlightClassViewHelperTest extends UnitTestCase
     {
         self::assertSame(
             '',
-            $this->render(['row' => 0, 'currentPage' => ['tx_templates_row_highlight_1' => 'emphasis']])
+            $this->render(['row' => 0, 'currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'emphasis']])
         );
         self::assertSame(
             '',
-            $this->render(['row' => 4, 'currentPage' => ['tx_templates_row_highlight_4' => 'emphasis']])
+            $this->render(['row' => 4, 'currentPage' => ['tx_frontendtemplates_row_highlight_4' => 'emphasis']])
         );
     }
 

@@ -1,0 +1,14 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <f:render
+        arguments="{index: index}"
+        partial="Date/CalendarDate" />
+    <f:if condition="!{hideTime}">
+        <div class="event-time">
+            <f:render
+                arguments="{index: index}"
+                partial="Date/Time" />
+        </div>
+    </f:if>
+</html>

@@ -8,13 +8,13 @@
             <f:then>
                 <div class="{rowHighlightClass1}">
                     <f:render
-                        arguments="{column: content1}"
+                        arguments="{column: content1, unstyled: 1}"
                         partial="Column" />
                 </div>
             </f:then>
             <f:else>
                 <f:render
-                    arguments="{column: content1}"
+                    arguments="{column: content1, unstyled: 1}"
                     partial="Column" />
             </f:else>
         </f:if>

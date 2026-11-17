@@ -2,9 +2,18 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    <section
-        aria-labelledby="faq-title-{data.uid}"
-        class="py-4">
+    <f:variable
+        name="sectionAttributes"
+        value="{}" />
+    <f:if condition="{data.header} && 100 != {data.header_layout}">
+        <f:variable
+            name="sectionAttributes"
+            value="{aria-labelledby: 'faq-title-{data.uid}'}" />
+    </f:if>
+    <viewHelpers:tag
+        additionalAttributes="{sectionAttributes}"
+        class="content-block-section"
+        tag="section">
         <div class="container">
             <f:if condition="{data.header}">
                 <f:if condition="{data.header_layout} != 100">
@@ -20,7 +29,7 @@
             </f:if>
 
             <div
-                class="accordion"
+                class="accordion accordion-cards d-grid gap-3"
                 id="faq-{data.uid}">
                 <f:for
                     as="item"
@@ -29,13 +38,15 @@
                     <f:variable
                         name="faqId"
                         value="faq-{data.uid}-{iteration.index}" />
-                    <div class="accordion-item">
+                    <div class="accordion-item border rounded">
                         <f:render
                             arguments="{
+                                bodyClass: 'accordion-body',
                                 classes: 'accordion-button',
                                 collapseClass: 'accordion-collapse',
                                 content: item.content,
                                 contentAttributes: {data-bs-parent: '#faq-{data.uid}'},
+                                headingTag: 'h3',
                                 id: faqId,
                                 initiallyOpen: iteration.isFirst,
                                 label: item.data.header,
@@ -54,10 +65,10 @@
                         <f:for as="item" each="{data._grids.faq_items}" iteration="iteration">
                             {
                                 "@type": "Question",
-                                "name": "{item.data.header -> f:format.htmlspecialchars()}",
+                                "name": <f:format.raw><f:format.json value="{item.data.header}" /></f:format.raw>,
                                 "acceptedAnswer": {
                                     "@type": "Answer",
-                                    "text": "{item.data.bodytext -> f:format.stripTags() -> f:format.htmlspecialchars()}"
+                                    "text": <f:format.raw><f:format.json value="{item.data.bodytext -> f:format.stripTags()}" /></f:format.raw>
                                 }
                             }<f:if condition="!{iteration.isLast}">,</f:if>
                         </f:for>
@@ -65,5 +76,5 @@
                 }
             </script>
         </div>
-    </section>
+    </viewHelpers:tag>
 </html>

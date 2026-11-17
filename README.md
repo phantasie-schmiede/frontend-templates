@@ -136,7 +136,7 @@ Returns a CSS class name based on the row highlight setting of the current page 
 
 ### `templates:image.aiStatus`
 
-Returns the `AiStatus` enum value (Created, Modified, or None) from a file reference's `tx_templates_ai_status` property.
+Returns the `AiStatus` enum value (Created, Modified, or None) from a file reference's `tx_frontendtemplates_ai_status` property.
 
 ### `templates:image.aspectRatio`
 

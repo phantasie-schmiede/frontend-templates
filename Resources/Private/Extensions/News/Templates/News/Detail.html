@@ -37,6 +37,12 @@
             <f:variable
                 name="heroMedia"
                 value="{media.0}" />
+            <f:variable
+                name="showGallery"
+                value="{f:if(condition: '{media -> f:count()} > 1 || ({media} && !{settings.detail.layout.showHero})', then: 1)}" />
+            <f:variable
+                name="hasSecondaryContent"
+                value="{f:if(condition: '{showGallery} || {newsItem.allRelatedSorted} || {newsItem.relatedFiles} || {newsItem.relatedLinks}', then: 1)}" />
 
             <article class="detail-page detail-page--news">
                 <f:if condition="{settings.detail.showPrevNext}">
@@ -47,7 +53,7 @@
                         sortField="datetime">
                         <f:if condition="{paginated}">
                             <nav
-                                aria-label="Page navigation"
+                                aria-label="{f:translate(key: 'LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:navigation')}"
                                 class="detail-page__top-nav">
                                 <ul
                                     class="justify-content-between mb-4 pagination">
@@ -88,23 +94,26 @@
                     section="headline" />
 
                 <f:if
-                    condition="{heroMedia} && {settings.detail.layout.showHero -> f:or(alternative: 1)}">
+                    condition="{heroMedia} && {settings.detail.layout.showHero}">
                     <f:render
                         arguments="{_all}"
                         section="hero" />
                 </f:if>
 
-                <div class="align-items-start detail-page__content g-4 row">
-                    <div class="col-12 col-lg-8">
+                <div
+                    class="detail-page__content news-detail-content {f:if(condition: hasSecondaryContent, then: 'news-detail-content--with-sidebar')}">
+                    <div class="news-detail-main">
                         <f:render
                             arguments="{_all}"
                             section="main-content" />
                     </div>
-                    <div class="col-12 col-lg-4">
-                        <f:render
-                            arguments="{_all}"
-                            section="secondary-content" />
-                    </div>
+                    <f:if condition="{hasSecondaryContent}">
+                        <aside class="news-detail-sidebar">
+                            <f:render
+                                arguments="{_all}"
+                                section="secondary-content" />
+                        </aside>
+                    </f:if>
                 </div>
             </article>
         </f:if>
@@ -127,13 +136,14 @@
         <section class="detail-page__hero mb-4 overflow-hidden rounded">
             <f:render
                 arguments="{
-                    alt: newsItem.title,
                     file: heroMedia,
                     imageClass: 'detail-page__hero-image',
+                    loading: 'eager',
+                    fetchpriority: 'high',
                     sizes: {
-                        mobile: '100vw',
-                        tablet: '100vw',
-                        desktop: 'min(100vw, 1200px)'
+                        mobile: 'calc(100vw - 48px)',
+                        tablet: '(min-width: 768px) 696px, 516px',
+                        desktop: 'min(calc(100vw - 48px), 960px)'
                     },
                     widths: {
                         mobile: {0: 576, 1: 768},
@@ -146,8 +156,7 @@
     </f:section>
 
     <f:section name="main-content">
-        <section
-            class="bg-white detail-page__panel mb-4 p-3 p-md-4 rounded shadow-sm">
+        <section class="detail-page__panel mb-4">
             <n:renderMedia
                 audioClass="audio-wrapper"
                 imgClass="img-fluid"
@@ -195,9 +204,12 @@
     </f:section>
 
     <f:section name="secondary-content">
-        <f:if condition="1 < {media -> f:count()}">
+        <f:if condition="{showGallery}">
             <section class="detail-page__panel mb-4">
-                <h2 class="h5 mb-3">Media</h2>
+                <h2 class="h5 mb-3">
+                    <f:translate
+                        key="LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:media" />
+                </h2>
                 <f:render
                     contentAs="items"
                     partial="Component/Masonry">
@@ -205,15 +217,17 @@
                         as="mediaElement"
                         each="{media}"
                         iteration="mediaIterator">
-                        <f:if condition="{mediaIterator.isFirst}">
+                        <f:if
+                            condition="{mediaIterator.isFirst} && {settings.detail.layout.showHero}">
                             <f:then />
                             <f:else>
                                 <div class="m-masonry__item">
                                     <f:render
                                         arguments="{
-                                            alt: newsItem.title,
                                             file: mediaElement,
-                                            imageClass: 'img-fluid rounded'
+                                            imageClass: 'img-fluid rounded',
+                                            sizes: {mobile: 'calc(100vw - 48px)', tablet: '50vw', desktop: '320px'},
+                                            widths: {mobile: {0: 320, 1: 640, 2: 960}, tablet: {0: 320, 1: 640, 2: 960}, desktop: {0: 320, 1: 640, 2: 960}}
                                         }"
                                         partial="Component/Picture/Responsive" />
                                 </div>
@@ -267,9 +281,10 @@
                         <li
                             class="bg-transparent d-flex justify-content-between list-group-item px-0">
                             <a
-                                href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}"
-                                target="_blank">
-                                <i class="fa-file fas me-1"></i>
+                                href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}">
+                                <i
+                                    aria-hidden="true"
+                                    class="fa-file fas me-1" />
                                 {f:if(condition:relatedFile.originalResource.title,
                                 then:relatedFile.originalResource.title,
                                 else:relatedFile.originalResource.name)}
@@ -300,7 +315,9 @@
                                 parameter="{relatedLink.uri}"
                                 target="{n:targetLink(link:relatedLink.uri)}"
                                 title="{relatedLink.title}">
-                                <i class="fa-external-link fas"></i>
+                                <i
+                                    aria-hidden="true"
+                                    class="fa-external-link fas" />
                                 {f:if(condition: relatedLink.title, then:
                                 relatedLink.title, else: relatedLink.uri)}
                             </f:link.typolink>

@@ -28,8 +28,35 @@
             <trans-unit id="location">
                 <source>Location</source>
             </trans-unit>
+            <trans-unit id="pagination">
+                <source>Event pages</source>
+            </trans-unit>
             <trans-unit id="status">
                 <source>Status</source>
+            </trans-unit>
+            <trans-unit id="time">
+                <source>Time</source>
+            </trans-unit>
+            <trans-unit id="weekday.1">
+                <source>Mon.</source>
+            </trans-unit>
+            <trans-unit id="weekday.2">
+                <source>Tue.</source>
+            </trans-unit>
+            <trans-unit id="weekday.3">
+                <source>Wed.</source>
+            </trans-unit>
+            <trans-unit id="weekday.4">
+                <source>Thu.</source>
+            </trans-unit>
+            <trans-unit id="weekday.5">
+                <source>Fri.</source>
+            </trans-unit>
+            <trans-unit id="weekday.6">
+                <source>Sat.</source>
+            </trans-unit>
+            <trans-unit id="weekday.7">
+                <source>Sun.</source>
             </trans-unit>
         </body>
     </file>

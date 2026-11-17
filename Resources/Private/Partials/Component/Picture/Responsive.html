@@ -5,7 +5,9 @@
     <f:variable
         name="aiStatus"
         value="{frontendTemplates:image.aiStatus(file: file)}" />
-    <f:variable name="aiStatusLabel" value="{aiStatus.label}" />
+    <f:variable
+        name="aiStatusLabel"
+        value="{aiStatus.label}" />
     <f:variable
         name="copyright"
         value="{file.properties.tx_frontendtemplates_copyright -> f:or(alternative: file.originalResource.properties.tx_frontendtemplates_copyright)}" />
@@ -46,7 +48,9 @@
     </f:if>
 
     <figure class="{figureClass}">
-        <f:render arguments="{_all}" section="Picture" />
+        <f:render
+            arguments="{_all}"
+            section="Picture" />
 
         <f:if condition="{copyright} || {aiStatusLabel}">
             <figcaption class="picture-meta-caption">
@@ -67,7 +71,9 @@
 
     <f:section name="Picture">
         <picture>
-            <f:render arguments="{_all}" partial="Component/Picture/Sources" />
+            <f:render
+                arguments="{_all}"
+                partial="Component/Picture/Sources" />
             <f:image
                 alt="{alt}"
                 class="{imageClass -> f:or(alternative: 'img-fluid')}"

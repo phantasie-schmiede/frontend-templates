@@ -16,7 +16,9 @@
             }
         }" />
 
-    <f:variable name="variantWidths" value="{defaultWidths.{cropVariant}}" />
+    <f:variable
+        name="variantWidths"
+        value="{defaultWidths.{cropVariant}}" />
     <f:variable
         name="candidateWidths"
         value="{widths -> f:or(alternative: variantWidths)}" />
@@ -24,7 +26,7 @@
         as="candidate"
         each="{frontendTemplates:image.sourceSet(cropVariant: cropVariant, file: file, fileExtension: fileExtension, widths: candidateWidths)}"
         iteration="iterator">
-        {candidate.uri} {candidate.width}w{f:if(condition:
-        '!{iterator.isLast}', then: ',')}
+        {candidate.uri} {candidate.width}w{f:if(condition: '!{iterator.isLast}',
+        then: ',')}
     </f:for>
 </html>

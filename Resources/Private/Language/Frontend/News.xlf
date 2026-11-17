@@ -21,11 +21,11 @@
             <trans-unit id="navigation">
                 <source>Other news</source>
             </trans-unit>
-            <trans-unit id="pagination">
-                <source>News pages</source>
-            </trans-unit>
             <trans-unit id="page">
                 <source>Page %s</source>
+            </trans-unit>
+            <trans-unit id="pagination">
+                <source>News pages</source>
             </trans-unit>
         </body>
     </file>

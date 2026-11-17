@@ -12,11 +12,15 @@
                 <f:if condition="{imageLink}">
                     <f:then>
                         <a href="{imageLink}">
-                            <f:render arguments="{_all}" section="Image" />
+                            <f:render
+                                arguments="{_all}"
+                                section="Image" />
                         </a>
                     </f:then>
                     <f:else>
-                        <f:render arguments="{_all}" section="Image" />
+                        <f:render
+                            arguments="{_all}"
+                            section="Image" />
                     </f:else>
                 </f:if>
             </div>
@@ -30,7 +34,9 @@
                     {title -> f:format.raw()}
                 </viewHelpers:tag>
 
-                <f:variable name="headerLevel" value="{headerLevel + 1}" />
+                <f:variable
+                    name="headerLevel"
+                    value="{headerLevel + 1}" />
             </f:if>
 
             <f:if condition="{subtitle}">

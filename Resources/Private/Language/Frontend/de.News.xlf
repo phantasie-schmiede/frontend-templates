@@ -27,13 +27,13 @@
                 <source>Other news</source>
                 <target>Weitere Meldungen</target>
             </trans-unit>
-            <trans-unit id="pagination">
-                <source>News pages</source>
-                <target>Meldungsseiten</target>
-            </trans-unit>
             <trans-unit id="page">
                 <source>Page %s</source>
                 <target>Seite %s</target>
+            </trans-unit>
+            <trans-unit id="pagination">
+                <source>News pages</source>
+                <target>Meldungsseiten</target>
             </trans-unit>
         </body>
     </file>

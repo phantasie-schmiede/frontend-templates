@@ -4,8 +4,8 @@
     <f:if condition="1 < {pagination.allPageNumbers -> f:count()}">
         <nav
             aria-label="{f:translate(key: 'LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:pagination')}"
-            class="news-pagination my-4">
-            <ul class="pagination flex-wrap gap-2 justify-content-center">
+            class="my-4 news-pagination">
+            <ul class="flex-wrap gap-2 justify-content-center pagination">
                 <f:if condition="{pagination.previousPageNumber}">
                     <li class="page-item">
                         <a
@@ -20,7 +20,9 @@
                         <span class="page-link">…</span>
                     </li>
                 </f:if>
-                <f:for each="{pagination.allPageNumbers}" as="page">
+                <f:for
+                    as="page"
+                    each="{pagination.allPageNumbers}">
                     <li
                         class="page-item{f:if(condition: '{page} == {paginator.currentPageNumber}', then: ' active')}">
                         <f:if

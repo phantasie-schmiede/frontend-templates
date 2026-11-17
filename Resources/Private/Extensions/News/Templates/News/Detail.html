@@ -31,8 +31,12 @@
                 </f:if>
             </n:format.nothing>
 
-            <f:variable name="media" value="{newsItem.mediaNonPreviews}" />
-            <f:variable name="heroMedia" value="{media.0}" />
+            <f:variable
+                name="media"
+                value="{newsItem.mediaNonPreviews}" />
+            <f:variable
+                name="heroMedia"
+                value="{media.0}" />
             <f:variable
                 name="showGallery"
                 value="{f:if(condition: '{media -> f:count()} > 1 || ({media} && !{settings.detail.layout.showHero})', then: 1)}" />
@@ -85,17 +89,23 @@
                     </n:simplePrevNext>
                 </f:if>
 
-                <f:render arguments="{_all}" section="headline" />
+                <f:render
+                    arguments="{_all}"
+                    section="headline" />
 
                 <f:if
                     condition="{heroMedia} && {settings.detail.layout.showHero}">
-                    <f:render arguments="{_all}" section="hero" />
+                    <f:render
+                        arguments="{_all}"
+                        section="hero" />
                 </f:if>
 
                 <div
                     class="detail-page__content news-detail-content {f:if(condition: hasSecondaryContent, then: 'news-detail-content--with-sidebar')}">
                     <div class="news-detail-main">
-                        <f:render arguments="{_all}" section="main-content" />
+                        <f:render
+                            arguments="{_all}"
+                            section="main-content" />
                     </div>
                     <f:if condition="{hasSecondaryContent}">
                         <aside class="news-detail-sidebar">
@@ -111,7 +121,9 @@
 
     <f:section name="headline">
         <header class="detail-page__header mb-4">
-            <h1 class="border-bottom pb-3" itemprop="headline">
+            <h1
+                class="border-bottom pb-3"
+                itemprop="headline">
                 {newsItem.title}
             </h1>
             <f:render
@@ -198,7 +210,9 @@
                     <f:translate
                         key="LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:media" />
                 </h2>
-                <f:render contentAs="items" partial="Component/Masonry">
+                <f:render
+                    contentAs="items"
+                    partial="Component/Masonry">
                     <f:for
                         as="mediaElement"
                         each="{media}"
@@ -231,7 +245,9 @@
                     <f:translate key="related-news" />
                 </h2>
                 <ul class="list-group list-group-flush">
-                    <f:for as="related" each="{newsItem.allRelatedSorted}">
+                    <f:for
+                        as="related"
+                        each="{newsItem.allRelatedSorted}">
                         <li class="bg-transparent list-group-item px-0">
                             <span
                                 class="d-block mb-1 small text-body-secondary">
@@ -259,7 +275,9 @@
                     <f:translate key="related-files" />
                 </h2>
                 <ul class="list-group list-group-flush">
-                    <f:for as="relatedFile" each="{newsItem.relatedFiles}">
+                    <f:for
+                        as="relatedFile"
+                        each="{newsItem.relatedFiles}">
                         <li
                             class="bg-transparent d-flex justify-content-between list-group-item px-0">
                             <a
@@ -288,7 +306,9 @@
                     <f:translate key="related-links" />
                 </h2>
                 <ul class="list-group list-group-flush">
-                    <f:for as="relatedLink" each="{newsItem.relatedLinks}">
+                    <f:for
+                        as="relatedLink"
+                        each="{newsItem.relatedLinks}">
                         <li class="bg-transparent list-group-item px-0">
                             <f:link.typolink
                                 class="d-inline-flex gap-2"

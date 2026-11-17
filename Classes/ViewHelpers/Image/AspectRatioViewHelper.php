@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\ViewHelpers\Image;
 
-use DivisionByZeroError;
 use InvalidArgumentException;
 use JsonException;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
@@ -39,7 +38,6 @@ class AspectRatioViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @throws DivisionByZeroError
      * @throws InvalidArgumentException
      * @throws JsonException
      */
@@ -52,8 +50,8 @@ class AspectRatioViewHelper extends AbstractViewHelper
         }
 
         $cropArea = $this->getCropArea($file);
-        $height = (float)$file->getProperty('height') * $cropArea->getHeight();
-        $width = (float)$file->getProperty('width') * $cropArea->getWidth();
+        $height   = (float)$file->getProperty('height') * $cropArea->getHeight();
+        $width    = (float)$file->getProperty('width') * $cropArea->getWidth();
 
         if (0 >= $height || 0 >= $width) {
             return $this->arguments['fallback'];
@@ -63,7 +61,6 @@ class AspectRatioViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @throws InvalidArgumentException
      * @throws JsonException
      */
     private function getCropArea(FileInterface $file): Area

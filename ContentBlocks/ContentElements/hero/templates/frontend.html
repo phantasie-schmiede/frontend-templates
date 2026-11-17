@@ -13,7 +13,9 @@
         </templates:page.header>
     </f:if>
 
-    <f:variable name="containerClass" value="container" />
+    <f:variable
+        name="containerClass"
+        value="container" />
     <f:variable
         name="currentPage"
         value="{frontendTemplates:globalVariables.currentPage()}" />
@@ -31,13 +33,17 @@
     </f:if>
 
     <f:if condition="{data.show_overlay}">
-        <f:variable name="overlayClass" value=" hero-block--overlay" />
+        <f:variable
+            name="overlayClass"
+            value=" hero-block--overlay" />
         <f:switch expression="{data.text_align}">
             <f:case value="end">
                 <f:variable
                     name="overlayClass"
                     value="{overlayClass} hero-block--overlay-end" />
-                <f:variable name="headingClass" value=" ms-auto" />
+                <f:variable
+                    name="headingClass"
+                    value=" ms-auto" />
             </f:case>
             <f:case value="start">
                 <f:variable
@@ -47,18 +53,26 @@
         </f:switch>
     </f:if>
 
-    <f:variable name="metaAlignment" value="end" />
+    <f:variable
+        name="metaAlignment"
+        value="end" />
 
     <f:if condition="{data.show_overlay} && 'start' == {data.text_align}">
-        <f:variable name="metaAlignment" value="start" />
+        <f:variable
+            name="metaAlignment"
+            value="start" />
     </f:if>
 
     <f:switch expression="{data.text_align}">
         <f:case value="center">
-            <f:variable name="leadClass" value=" mx-auto" />
+            <f:variable
+                name="leadClass"
+                value=" mx-auto" />
         </f:case>
         <f:case value="end">
-            <f:variable name="leadClass" value=" ms-auto" />
+            <f:variable
+                name="leadClass"
+                value=" ms-auto" />
         </f:case>
     </f:switch>
 

@@ -16,7 +16,9 @@
         <f:variable
             name="aspectRatio"
             value="{frontendTemplates:image.aspectRatio(cropVariant: cropVariant, file: file)}" />
-        <f:variable name="customWidths" value="{widths.{cropVariant}}" />
+        <f:variable
+            name="customWidths"
+            value="{widths.{cropVariant}}" />
         <f:for
             as="fileExtension"
             each="{f:if(condition: preload, then: {0: 'avif'}, else: {0: 'avif', 1: 'webp'})}">

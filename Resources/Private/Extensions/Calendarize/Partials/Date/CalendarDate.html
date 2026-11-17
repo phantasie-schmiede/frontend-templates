@@ -1,0 +1,26 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <f:render
+        arguments="{date: index.startDate}"
+        section="Date" />
+    <f:if
+        condition="{index.startDate -> f:format.date(format: 'Y-m-d')} != {index.endDate -> f:format.date(format: 'Y-m-d')}">
+        –
+        <f:render
+            arguments="{date: index.endDate}"
+            section="Date" />
+    </f:if>
+    <f:section name="Date">
+        <f:variable
+            name="weekday"
+            value="{date -> f:format.date(format: 'N')}" />
+        <time datetime="{date -> f:format.date(format: 'Y-m-d')}">
+            {f:translate(key:
+            'LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/Extensions/calendarize.xlf:weekday.{weekday}')},
+            <f:format.date
+                date="{date}"
+                format="{f:translate(key: 'dateFormat', extensionName: 'Calendarize')}" />
+        </time>
+    </f:section>
+</html>

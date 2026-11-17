@@ -2,6 +2,7 @@ plugin {
   tx_calendarize {
     settings {
       detail.layout.showHero = 1
+      list.headerLevel = 3
       paginateConfiguration.maximumNumberOfLinks = 5
     }
 

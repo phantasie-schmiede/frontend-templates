@@ -1,126 +1,138 @@
 <html
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
-    <div class="d-none d-sm-block row">
-        <div class="col d-flex justify-content-center">
-            <ul class="pagination">
-                <f:if
-                    condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
-                    <f:then>
-                        <f:comment>
+    <f:variable
+        name="actionName"
+        value="{actionName -> f:or(alternative: 'list')}" />
+    <f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
+        <nav
+            aria-label="{f:translate(key: 'LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/Extensions/calendarize.xlf:pagination')}"
+            class="event-pagination my-4">
+            <div class="col d-flex justify-content-center">
+                <ul class="flex-wrap gap-2 pagination">
+                    <f:if
+                        condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+                        <f:then>
+                            <f:comment>
+                                <li class="page-item">
+                                    <f:render
+                                        arguments="{actionName: actionName, page: 1, searchMode: searchMode, title: '{f:translate(key:\'pagination.first\')}' }"
+                                        contentAs="content"
+                                        section="PaginationLink">
+                                        first_page
+                                    </f:render>
+                                </li>
+                            </f:comment>
                             <li class="page-item">
                                 <f:render
-                                    arguments="{actionName: actionName, page: 1, searchMode: searchMode, title: '{f:translate(key:\'pagination.first\')}' }"
+                                    arguments="{actionName: actionName, page: pagination.previousPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.previous\', extensionName:\'Calendarize\')}' }"
                                     contentAs="content"
                                     section="PaginationLink">
-                                    first_page
-                                </f:render>
-                            </li>
-                        </f:comment>
-                        <li class="page-item">
-                            <f:render
-                                arguments="{actionName: actionName, page: pagination.previousPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.previous\')}' }"
-                                contentAs="content"
-                                section="PaginationLink">
-                                {f:translate(key:'widget.pagination.previous',
-                                extensionName: 'fluid')}
-                            </f:render>
-                        </li>
-                    </f:then>
-                    <f:else>
-                        <f:comment>
-                            <li class="disabled page-item">
-                                <span>
-                                    <i class="material-icons">first_page</i>
-                                </span>
-                            </li>
-                            <li class="disabled page-item">
-                                <span>
                                     {f:translate(key:'widget.pagination.previous',
                                     extensionName: 'fluid')}
-                                </span>
-                            </li>
-                        </f:comment>
-                    </f:else>
-                </f:if>
-                <f:if condition="{pagination.hasLessPages}">
-                    <li class="page-item">
-                        <span class="page-link">…</span>
-                    </li>
-                </f:if>
-                <f:for
-                    as="page"
-                    each="{pagination.allPageNumbers}">
-                    <f:if condition="{page} == {paginator.currentPageNumber}">
-                        <f:then>
-                            <li class="active page-item">
-                                <span class="page-link">{page}</span>
+                                </f:render>
                             </li>
                         </f:then>
                         <f:else>
-                            <li>
-                                <f:render
-                                    arguments="{actionName: actionName, page: page, searchMode: searchMode, title: page}"
-                                    contentAs="content"
-                                    section="PaginationLink">
-                                    {page}
-                                </f:render>
-                            </li>
+                            <f:comment>
+                                <li class="disabled page-item">
+                                    <span>
+                                        <i class="material-icons">first_page</i>
+                                    </span>
+                                </li>
+                                <li class="disabled page-item">
+                                    <span>
+                                        {f:translate(key:'widget.pagination.previous',
+                                        extensionName: 'fluid')}
+                                    </span>
+                                </li>
+                            </f:comment>
                         </f:else>
                     </f:if>
-                </f:for>
-                <f:if condition="{pagination.hasMorePages}">
-                    <li class="page-item">
-                        <span class="page-link">…</span>
-                    </li>
-                </f:if>
-                <f:if
-                    condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
-                    <f:then>
+                    <f:if condition="{pagination.hasLessPages}">
                         <li class="page-item">
-                            <f:render
-                                arguments="{actionName: actionName, page: pagination.nextPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.next\')}' }"
-                                contentAs="content"
-                                section="PaginationLink">
-                                {f:translate(key:'widget.pagination.next',
-                                extensionName: 'fluid')}
-                            </f:render>
+                            <span class="page-link">…</span>
                         </li>
-                        <f:comment>
+                    </f:if>
+                    <f:for
+                        as="page"
+                        each="{pagination.allPageNumbers}">
+                        <f:if
+                            condition="{page} == {paginator.currentPageNumber}">
+                            <f:then>
+                                <li class="active page-item">
+                                    <span
+                                        aria-current="page"
+                                        class="page-link">
+                                        {page}
+                                    </span>
+                                </li>
+                            </f:then>
+                            <f:else>
+                                <li class="page-item">
+                                    <f:render
+                                        arguments="{actionName: actionName, page: page, searchMode: searchMode, title: page}"
+                                        contentAs="content"
+                                        section="PaginationLink">
+                                        {page}
+                                    </f:render>
+                                </li>
+                            </f:else>
+                        </f:if>
+                    </f:for>
+                    <f:if condition="{pagination.hasMorePages}">
+                        <li class="page-item">
+                            <span class="page-link">…</span>
+                        </li>
+                    </f:if>
+                    <f:if
+                        condition="{pagination.nextPageNumber} && {pagination.lastPageNumber} >= {pagination.nextPageNumber}">
+                        <f:then>
                             <li class="page-item">
                                 <f:render
-                                    arguments="{actionName: actionName, page: pagination.lastPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.last\')}' }"
+                                    arguments="{actionName: actionName, page: pagination.nextPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.next\', extensionName:\'Calendarize\')}' }"
                                     contentAs="content"
                                     section="PaginationLink">
-                                    last
-                                </f:render>
-                            </li>
-                        </f:comment>
-                    </f:then>
-                    <f:else>
-                        <f:comment>
-                            <li class="disabled page-item">
-                                <span>
                                     {f:translate(key:'widget.pagination.next',
                                     extensionName: 'fluid')}
-                                </span>
+                                </f:render>
                             </li>
-                            <li class="disabled page-item">
-                                <span>last page</span>
-                            </li>
-                        </f:comment>
-                    </f:else>
-                </f:if>
-            </ul>
-        </div>
-    </div>
+                            <f:comment>
+                                <li class="page-item">
+                                    <f:render
+                                        arguments="{actionName: actionName, page: pagination.lastPageNumber, searchMode: searchMode, title: '{f:translate(key:\'pagination.last\')}' }"
+                                        contentAs="content"
+                                        section="PaginationLink">
+                                        last
+                                    </f:render>
+                                </li>
+                            </f:comment>
+                        </f:then>
+                        <f:else>
+                            <f:comment>
+                                <li class="disabled page-item">
+                                    <span>
+                                        {f:translate(key:'widget.pagination.next',
+                                        extensionName: 'fluid')}
+                                    </span>
+                                </li>
+                                <li class="disabled page-item">
+                                    <span>last page</span>
+                                </li>
+                            </f:comment>
+                        </f:else>
+                    </f:if>
+                </ul>
+            </div>
+        </nav>
+    </f:if>
 
     <f:section name="PaginationLink">
         <f:if condition="{searchMode}">
             <f:then>
-                <a
+                <button
                     class="page-link"
-                    href="#"
+                    form="calendarizeSearchForm"
                     onclick="
                         if (document.getElementById('calendarizePage')) {
                             document.getElementById('calendarizePage').value = {
@@ -132,9 +144,10 @@
                             return false;
                         }
                     "
-                    title="{title}">
+                    title="{title}"
+                    type="submit">
                     {content}
-                </a>
+                </button>
             </f:then>
             <f:else>
                 <a

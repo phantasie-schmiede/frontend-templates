@@ -12,13 +12,14 @@
             <f:if condition="{settings.hidePagination}">
                 <f:then>
                     <f:render
+                        arguments="{gridClass: 'event-grid'}"
                         contentAs="cards"
                         partial="Component/CardGrid">
                         <f:for
                             as="index"
                             each="{indices}">
                             <f:render
-                                arguments="{index: index}"
+                                arguments="{index: index, settings: settings}"
                                 partial="{index.configuration.partialIdentifier}/ListItem" />
                         </f:for>
                     </f:render>
@@ -32,13 +33,14 @@
                     </f:if>
 
                     <f:render
+                        arguments="{gridClass: 'event-grid'}"
                         contentAs="cards"
                         partial="Component/CardGrid">
                         <f:for
                             as="index"
                             each="{pagination.paginator.paginatedItems}">
                             <f:render
-                                arguments="{index: index}"
+                                arguments="{index: index, settings: settings}"
                                 partial="{index.configuration.partialIdentifier}/ListItem" />
                         </f:for>
                     </f:render>

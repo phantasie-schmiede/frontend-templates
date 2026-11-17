@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\ViewHelpers\Image;
 
-use InvalidArgumentException;
 use JsonException;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
@@ -38,7 +37,6 @@ class AspectRatioViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @throws InvalidArgumentException
      * @throws JsonException
      */
     public function render(): float

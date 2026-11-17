@@ -151,6 +151,26 @@ The extension provides a PSR-14 event system for additional content. Create a cl
 
 Fluid templates and partials for **News** (`georgringer/news`) and **Calendarize** (`lochmueller/calendarize`) are overridden in `Resources/Private/Extensions/` to apply consistent styling. Layout and partial paths are configured in `Configuration/TypoScript/Includes/Setup/extensions.typoscript`.
 
+## Upgrade to 0.2.0
+
+The extension field prefix changes from `tx_templates_` to `tx_frontendtemplates_`.
+Back up the database, then add the new fields using the database analyzer without
+removing the old fields. Run the **PSBits Frontend Templates: migrate extension field
+prefixes** upgrade wizard in the Install Tool, or use:
+
+```bash
+vendor/bin/typo3 upgrade:run frontendTemplatesExtensionFieldPrefix
+```
+
+The wizard migrates values in `pages`, `sys_file_metadata` and `tt_content`, including
+Content Block collection counters and the Feature link relation's `fieldname`.
+All collections continue to use `tt_content`; no collection tables are renamed.
+Standard fields such as `header`, `bodytext` and `image`, and the `CType` values stay unchanged.
+The wizard preserves old columns and refuses to overwrite conflicting non-default
+destination values. Resolve reported conflicts and run it again. Remove obsolete
+columns only after verifying the migrated contents. Update custom templates and
+integrations that reference the old prefix, clear caches and rebuild the reference index.
+
 ## Quality
 
 All quality checks are defined in `composer.json` and run in the shared `CI` GitHub Actions

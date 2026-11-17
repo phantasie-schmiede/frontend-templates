@@ -17,5 +17,5 @@ $EM_CONF[$_EXTKEY] = [
     'description'      => 'Frontend templates for TYPO3: page layouts, content elements, ViewHelpers and TypoScript setup, built on Bootstrap and Content Blocks',
     'state'            => 'alpha',
     'title'            => 'PSBits | Frontend Templates',
-    'version'          => '0.1.0',
+    'version'          => '0.2.0',
 ];

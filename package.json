@@ -1,6 +1,6 @@
 {
   "name": "frontend-templates",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Frontend templates for TYPO3: page layouts, content elements, ViewHelpers and TypoScript setup, built on Bootstrap and Content Blocks",
   "scripts": {
     "fix:classes": "node .Build/vendor/psbits/qa/Resources/Quality/lint-class-attributes.mjs",

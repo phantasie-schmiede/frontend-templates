@@ -2,24 +2,41 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    <viewHelpers:tag
-        additionalAttributes="{additionalAttributes}"
-        aria-controls="{id}"
-        aria-expanded="{f:if(condition: initiallyOpen, then: 'true', else: 'false')}"
-        class="{f:if(condition: initiallyOpen, then: classes, else: '{classes} collapsed')}"
-        data-bs-target="#{id}"
-        data-bs-toggle="collapse"
-        tag="{tag}">
-        <f:if condition="{label}">
-            <f:then>{label -> f:format.raw()}</f:then>
-            <f:else>Toggle item</f:else>
-        </f:if>
-    </viewHelpers:tag>
+    <f:variable name="trigger">
+        <viewHelpers:tag
+            additionalAttributes="{additionalAttributes}"
+            aria-controls="{id}"
+            aria-expanded="{f:if(condition: initiallyOpen, then: 'true', else: 'false')}"
+            class="{f:if(condition: initiallyOpen, then: classes, else: '{classes} collapsed')}"
+            data-bs-target="#{id}"
+            data-bs-toggle="collapse"
+            tag="{tag}">
+            <f:if condition="{label}">
+                <f:then>{label -> f:format.raw()}</f:then>
+                <f:else>Toggle item</f:else>
+            </f:if>
+        </viewHelpers:tag>
+    </f:variable>
+    <f:if condition="{headingTag}">
+        <f:then>
+            <viewHelpers:tag
+                class="accordion-header"
+                tag="{headingTag}">
+                {trigger -> f:format.raw()}
+            </viewHelpers:tag>
+        </f:then>
+        <f:else>{trigger -> f:format.raw()}</f:else>
+    </f:if>
     <viewHelpers:tag
         additionalAttributes="{contentAttributes}"
         class="collapse{f:if(condition: collapseClass, then: ' {collapseClass}')}{f:if(condition: initiallyOpen, then: ' show')}"
         id="{id}"
         tag="div">
-        {content -> f:format.raw()}
+        <f:if condition="{bodyClass}">
+            <f:then>
+                <div class="{bodyClass}">{content -> f:format.raw()}</div>
+            </f:then>
+            <f:else>{content -> f:format.raw()}</f:else>
+        </f:if>
     </viewHelpers:tag>
 </html>

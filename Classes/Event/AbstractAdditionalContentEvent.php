@@ -13,11 +13,6 @@ namespace PSBits\FrontendTemplates\Event;
 
 use Psr\Http\Message\ServerRequestInterface;
 
-/**
- * Class AbstractAdditionalContentEvent
- *
- * @package PSBits\FrontendTemplates\Event
- */
 abstract class AbstractAdditionalContentEvent implements AdditionalContentEventInterface
 {
     protected string $content = '';

@@ -13,6 +13,10 @@
 				<source>Change password</source>
 				<target>Passwort ändern</target>
 			</trans-unit>
+			<trans-unit id="closeMainNavigation">
+				<source>Close main navigation</source>
+				<target>Hauptnavigation schließen</target>
+			</trans-unit>
 			<trans-unit id="forgotPassword">
 				<source>Forgot password?</source>
 				<target>Passwort vergessen?</target>
@@ -33,10 +37,6 @@
 				<source>Open main navigation</source>
 				<target>Hauptnavigation öffnen</target>
 			</trans-unit>
-			<trans-unit id="closeMainNavigation">
-				<source>Close main navigation</source>
-				<target>Hauptnavigation schließen</target>
-			</trans-unit>
 			<trans-unit id="password">
 				<source>Password</source>
 				<target>Passwort</target>
@@ -45,13 +45,13 @@
 				<source>Search</source>
 				<target>Suchen</target>
 			</trans-unit>
-			<trans-unit id="username">
-				<source>Username</source>
-				<target>Benutzername</target>
-			</trans-unit>
 			<trans-unit id="skipToMainContent">
 				<source>Skip to main content</source>
 				<target>Zum Hauptinhalt springen</target>
+			</trans-unit>
+			<trans-unit id="username">
+				<source>Username</source>
+				<target>Benutzername</target>
 			</trans-unit>
 		</body>
 	</file>

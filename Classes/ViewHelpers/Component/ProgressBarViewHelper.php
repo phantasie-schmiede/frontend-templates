@@ -11,20 +11,18 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\ViewHelpers\Component;
 
+use DivisionByZeroError;
 use InvalidArgumentException;
 use JsonException;
 use PSBits\Foundation\Utility\ContextUtility;
 use PSBits\FrontendTemplates\Data\ExtensionInformation;
 use PSBits\FrontendTemplates\Service\ViewService;
 use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use ReflectionException;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class ProgressBarViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Component
- */
+use function max;
+
 class ProgressBarViewHelper extends AbstractViewHelper
 {
     /**
@@ -49,8 +47,10 @@ class ProgressBarViewHelper extends AbstractViewHelper
 
     /**
      * @throws ContainerExceptionInterface
+     * @throws DivisionByZeroError
+     * @throws InvalidArgumentException
      * @throws JsonException
-     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function render(): string
     {

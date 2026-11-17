@@ -2,7 +2,7 @@
     data-namespace-typo3-fluid="true"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    <section class="py-4">
+    <section class="content-block-section">
         <div class="container">
             <f:if condition="{data.header}">
                 <f:if condition="{data.header_layout} != 100">
@@ -25,7 +25,7 @@
                     configuration: {
                         autoplay: '{f:if(condition: data.autoplay, then: \'{delay: 3500, disableOnInteraction: 0}\', else: 0)}',
                         loop: 1,
-                        navigation: 0,
+                        navigation: 1,
                         pagination: 0,
                         slidesPerView: 2,
                         breakpoints: {
@@ -34,7 +34,8 @@
                         },
                         spaceBetween: 24
                     },
-                    id: 'logo-slider-{data.uid}'
+                    id: 'logo-slider-{data.uid}',
+                    label: data.header
                 }"
                 contentAs="slides"
                 partial="Component/Swiper">

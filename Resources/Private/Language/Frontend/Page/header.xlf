@@ -11,6 +11,9 @@
 			<trans-unit id="changePassword">
 				<source>Change password</source>
 			</trans-unit>
+			<trans-unit id="closeMainNavigation">
+				<source>Close main navigation</source>
+			</trans-unit>
 			<trans-unit id="forgotPassword">
 				<source>Forgot password?</source>
 			</trans-unit>
@@ -26,20 +29,17 @@
 			<trans-unit id="openMainNavigation">
 				<source>Open main navigation</source>
 			</trans-unit>
-			<trans-unit id="closeMainNavigation">
-				<source>Close main navigation</source>
-			</trans-unit>
 			<trans-unit id="password">
 				<source>Password</source>
 			</trans-unit>
 			<trans-unit id="search">
 				<source>Search</source>
 			</trans-unit>
-			<trans-unit id="username">
-				<source>Username</source>
-			</trans-unit>
 			<trans-unit id="skipToMainContent">
 				<source>Skip to main content</source>
+			</trans-unit>
+			<trans-unit id="username">
+				<source>Username</source>
 			</trans-unit>
 		</body>
 	</file>

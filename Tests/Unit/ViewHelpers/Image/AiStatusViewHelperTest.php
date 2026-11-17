@@ -52,7 +52,7 @@ class AiStatusViewHelperTest extends UnitTestCase
     {
         $file = $this->createMock(CoreFileReference::class);
         $file->method('getProperty')
-            ->with('tx_templates_ai_status')
+            ->with('tx_frontendtemplates_ai_status')
             ->willReturn('created');
 
         $fileReference = $this->createMock(FileReference::class);
@@ -67,7 +67,7 @@ class AiStatusViewHelperTest extends UnitTestCase
     {
         $file = $this->createMock(File::class);
         $file->method('getProperty')
-            ->with('tx_templates_ai_status')
+            ->with('tx_frontendtemplates_ai_status')
             ->willReturn('modified');
 
         self::assertSame(AiStatus::Modified, $this->render(['file' => $file]));
@@ -78,7 +78,7 @@ class AiStatusViewHelperTest extends UnitTestCase
     {
         $file = $this->createMock(File::class);
         $file->method('getProperty')
-            ->with('tx_templates_ai_status')
+            ->with('tx_frontendtemplates_ai_status')
             ->willReturn(null);
 
         self::assertNull($this->render(['file' => $file]));
@@ -89,7 +89,7 @@ class AiStatusViewHelperTest extends UnitTestCase
     {
         $file = $this->createMock(File::class);
         $file->method('getProperty')
-            ->with('tx_templates_ai_status')
+            ->with('tx_frontendtemplates_ai_status')
             ->willReturn('broken');
 
         self::assertNull($this->render(['file' => $file]));

@@ -3,13 +3,15 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:frontendTemplates="http://typo3.org/ns/PSBits/FrontendTemplates/ViewHelpers"
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
-    <templates:page.header identifier="preloadHero">
-        <templates:format.reduceWhitespace>
-            <f:render
-                arguments="{file: data.image.0}"
-                partial="Component/Picture/Preload" />
-        </templates:format.reduceWhitespace>
-    </templates:page.header>
+    <f:if condition="{data.eager_loading}">
+        <templates:page.header identifier="preloadHero">
+            <templates:format.reduceWhitespace>
+                <f:render
+                    arguments="{file: data.image.0}"
+                    partial="Component/Picture/Preload" />
+            </templates:format.reduceWhitespace>
+        </templates:page.header>
+    </f:if>
 
     <f:variable
         name="containerClass"
@@ -18,10 +20,10 @@
         name="currentPage"
         value="{frontendTemplates:globalVariables.currentPage()}" />
 
-    <f:if condition="{currentPage.tx_templates_bs_container_type}">
+    <f:if condition="{currentPage.tx_frontendtemplates_bs_container_type}">
         <f:variable
             name="containerClass"
-            value="container-{currentPage.tx_templates_bs_container_type}" />
+            value="container-{currentPage.tx_frontendtemplates_bs_container_type}" />
     </f:if>
 
     <f:if condition="{data.text_align} != 'center'">
@@ -74,21 +76,21 @@
         </f:case>
     </f:switch>
 
-    <section
-        class="hero-block{overlayClass} position-relative text-{data.text_align}">
+    <section class="hero-block{overlayClass} text-{data.text_align}">
         <f:render
             arguments="{
-                figureClass: 'hero-block__figure position-relative',
+                figureClass: 'hero-block__figure',
                 file: data.image.0,
-                imageClass: 'h-auto hero-block__image w-100',
-                loading: '{f:if(condition: data.eager_loading, then: \'eager\')}',
+                imageClass: 'hero-block__image w-100',
+                loading: '{f:if(condition: data.eager_loading, then: \'eager\', else: \'lazy\')}',
+                fetchpriority: '{f:if(condition: data.eager_loading, then: \'high\', else: \'auto\')}',
                 metaAlignment: metaAlignment,
                 metaPosition: 'overlay'
             }"
             partial="Component/Picture/Responsive" />
 
         <div
-            class="{containerClass} hero-block__content position-absolute start-50 text-{data.text_align} top-50 translate-middle">
+            class="{containerClass} hero-block__content text-{data.text_align}">
             <f:if condition="{data.header}">
                 <f:if condition="{data.header_layout} != 100">
                     <viewHelpers:tag

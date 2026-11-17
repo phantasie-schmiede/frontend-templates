@@ -13,11 +13,8 @@ namespace PSBits\FrontendTemplates\ViewHelpers\Format;
 
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class ReduceWhitespaceViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Format
- */
+use function trim;
+
 class ReduceWhitespaceViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;

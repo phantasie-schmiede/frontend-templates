@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\ViewHelpers\Page;
 
+use InvalidArgumentException;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -11,8 +12,6 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use function in_array;
 
 /**
- * Class HeaderViewHelper
- *
  * Adds HTML to the TYPO3 page header once per unique identifier.
  *
  * Usage in Fluid:
@@ -25,8 +24,6 @@ use function in_array;
  *         content="noindex"
  *         name="robots" />
  * </frontendTemplates:page.header>
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Page
  */
 class HeaderViewHelper extends AbstractViewHelper
 {
@@ -45,6 +42,9 @@ class HeaderViewHelper extends AbstractViewHelper
         $this->registerArgument('html', 'string', 'The HTML content to be added to the header');
     }
 
+    /**
+     * @throws InvalidArgumentException
+     */
     public function render(): string
     {
         if (in_array($this->arguments['identifier'], self::$headerDataIdentifiers, true)) {

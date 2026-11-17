@@ -8,7 +8,7 @@ Basic templates for TYPO3 providing page layouts, content elements, Fluid ViewHe
 |-----------------------------------------------------------------------------------|-------------|
 | TYPO3 CMS                                                                         | 13.4 / 14.3 |
 | PHP                                                                               | 8.3 – 8.5   |
-| [psbits/foundation](https://github.com/phantasie-schmiede/foundation)             | 4.2         |
+| [psbits/foundation](https://github.com/phantasie-schmiede/foundation)             | 4.2.2       |
 | [psbits/view-helpers](https://github.com/phantasie-schmiede/view-helpers)         | 4.0         |
 | [friendsoftypo3/content-blocks](https://github.com/FriendsOfTYPO3/content-blocks) | 1.5 / 2.4   |
 | [wapplersystems/ws-scss](https://github.com/wapplersystems/ws-scss)               | 13 / 14     |
@@ -136,7 +136,7 @@ Returns a CSS class name based on the row highlight setting of the current page 
 
 ### `templates:image.aiStatus`
 
-Returns the `AiStatus` enum value (Created, Modified, or None) from a file reference's `tx_templates_ai_status` property.
+Returns the `AiStatus` enum value (Created, Modified, or None) from a file reference's `tx_frontendtemplates_ai_status` property.
 
 ### `templates:image.aspectRatio`
 
@@ -150,6 +150,26 @@ The extension provides a PSR-14 event system for additional content. Create a cl
 ## Third-Party Extension Overrides
 
 Fluid templates and partials for **News** (`georgringer/news`) and **Calendarize** (`lochmueller/calendarize`) are overridden in `Resources/Private/Extensions/` to apply consistent styling. Layout and partial paths are configured in `Configuration/TypoScript/Includes/Setup/extensions.typoscript`.
+
+## Upgrade to 0.2.0
+
+The extension field prefix changes from `tx_templates_` to `tx_frontendtemplates_`.
+Back up the database, then add the new fields using the database analyzer without
+removing the old fields. Run the **PSBits Frontend Templates: migrate extension field
+prefixes** upgrade wizard in the Install Tool, or use:
+
+```bash
+vendor/bin/typo3 upgrade:run frontendTemplatesExtensionFieldPrefix
+```
+
+The wizard migrates values in `pages`, `sys_file_metadata` and `tt_content`, including
+Content Block collection counters and the Feature link relation's `fieldname`.
+All collections continue to use `tt_content`; no collection tables are renamed.
+Standard fields such as `header`, `bodytext` and `image`, and the `CType` values stay unchanged.
+The wizard preserves old columns and refuses to overwrite conflicting non-default
+destination values. Resolve reported conflicts and run it again. Remove obsolete
+columns only after verifying the migrated contents. Update custom templates and
+integrations that reference the old prefix, clear caches and rebuild the reference index.
 
 ## Quality
 
@@ -178,7 +198,7 @@ composer lint:yaml
 composer validate:composer
 ```
 
-A pre-commit hook (from the psbits/qa package) is installed automatically via `.Build/bin/qa link` in
+A pre-commit hook (from the psbits/qa package) is installed automatically via `.Build/bin/qa sync` in
 `composer post-install-cmd` and runs `composer lint:all`.
 
 The workflow publishes the extension to TER when a release tag is pushed. Publishing requires the

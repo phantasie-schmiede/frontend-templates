@@ -15,13 +15,10 @@ use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Imaging\IconProvider\AbstractSvgIconProvider;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
+use function implode;
 use function is_array;
+use function str_contains;
 
-/**
- * Class SvgIconViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers
- */
 class SvgIconViewHelper extends AbstractViewHelper
 {
     protected $escapeOutput = false;

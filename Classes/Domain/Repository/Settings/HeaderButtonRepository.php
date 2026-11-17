@@ -16,10 +16,7 @@ use PSBits\FrontendTemplates\Service\GlobalVariableProviders\SettingSourceInterf
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * Class HeaderButtonRepository
- *
  * @extends Repository<HeaderButton>
- * @package PSBits\FrontendTemplates\Domain\Repository\Settings
  */
 class HeaderButtonRepository extends Repository implements SettingSourceInterface
 {

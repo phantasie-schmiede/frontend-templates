@@ -11,8 +11,14 @@
             </viewHelpers:tag>
         </f:if>
 
+        <f:variable
+            name="accordionClass"
+            value="{f:if(condition: '{data.accordion_style} == \'flush\'', then: 'accordion accordion-flush', else: 'accordion accordion-cards d-grid gap-3')}" />
+        <f:variable
+            name="itemClass"
+            value="{f:if(condition: '{data.accordion_style} == \'flush\'', then: 'accordion-item border-bottom', else: 'accordion-item border rounded')}" />
         <div
-            class="accordion{f:if(condition: data.accordion_style == 'flush', then: ' accordion-flush')}"
+            class="{accordionClass}"
             id="accordion-{data.uid}">
             <f:for
                 as="item"
@@ -21,13 +27,15 @@
                 <f:variable
                     name="panelId"
                     value="accordion-{data.uid}-{iteration.index}" />
-                <div class="accordion-item">
+                <div class="{itemClass}">
                     <f:render
                         arguments="{
+                            bodyClass: 'accordion-body',
                             classes: 'accordion-button',
                             collapseClass: 'accordion-collapse',
                             content: item.content,
                             contentAttributes: {data-bs-parent: '#accordion-{data.uid}'},
+                            headingTag: 'h3',
                             id: panelId,
                             initiallyOpen: iteration.isFirst,
                             label: item.data.header,

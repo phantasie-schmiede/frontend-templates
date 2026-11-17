@@ -11,11 +11,6 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\Enum;
 
-/**
- * Class BootstrapType
- *
- * @package PSBits\FrontendTemplates\Enum
- */
 enum BootstrapType: string
 {
     case Danger    = 'danger';

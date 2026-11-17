@@ -8,10 +8,6 @@
         source-language="en"
         target-language="de">
         <body>
-            <trans-unit id="title">
-                <source>FAQ</source>
-                <target>FAQ</target>
-            </trans-unit>
             <trans-unit id="description">
                 <source>Frequently asked questions block with schema markup</source>
                 <target>FAQ-Block mit Schema-Markup</target>
@@ -24,13 +20,17 @@
                 <source>Intro text</source>
                 <target>Einleitungstext</target>
             </trans-unit>
+            <trans-unit id="preview.items">
+                <source>Items:</source>
+                <target>Elemente:</target>
+            </trans-unit>
             <trans-unit id="preview.type">
                 <source>FAQ</source>
                 <target>FAQ</target>
             </trans-unit>
-            <trans-unit id="preview.items">
-                <source>Items:</source>
-                <target>Elemente:</target>
+            <trans-unit id="title">
+                <source>FAQ</source>
+                <target>FAQ</target>
             </trans-unit>
         </body>
     </file>

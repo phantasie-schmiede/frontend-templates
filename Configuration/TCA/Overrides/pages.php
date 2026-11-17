@@ -8,13 +8,13 @@ defined('TYPO3') or die();
 
 (static function() {
     $columnsOverrides = [
-        'no_index'  => [
+        'no_follow' => [
             'config' => [
                 'default'  => true,
                 'readOnly' => true,
             ],
         ],
-        'no_follow' => [
+        'no_index'  => [
             'config' => [
                 'default'  => true,
                 'readOnly' => true,

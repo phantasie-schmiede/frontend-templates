@@ -6,3 +6,8 @@ services:
 
   PSBits\FrontendTemplates\:
     resource: '../Classes/*'
+
+  PSBits\FrontendTemplates\Updates\ExtensionFieldPrefixUpgradeWizard:
+    tags:
+      - name: install.upgradewizard
+        identifier: frontendTemplatesExtensionFieldPrefix

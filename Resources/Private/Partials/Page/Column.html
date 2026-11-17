@@ -4,9 +4,22 @@
     <f:for
         as="contentElement"
         each="{column}">
-        <f:cObject
-            data="{contentElement.data}"
-            table="tt_content"
-            typoscriptObjectPath="tt_content.{contentElement.data.CType}" />
+        <f:if condition="{unstyled}">
+            <f:then>
+                <f:cObject
+                    data="{contentElement.data}"
+                    table="tt_content"
+                    typoscriptObjectPath="tt_content.{contentElement.data.CType}" />
+            </f:then>
+            <f:else>
+                <div
+                    class="page-content-element{f:if(condition: '{contentElement.data.CType} == \'header\'', then: ' page-content-element--header')}{f:if(condition: contentElement.data.space_before_class, then: ' page-content-element--space-before')}{f:if(condition: contentElement.data.space_after_class, then: ' page-content-element--space-after')}">
+                    <f:cObject
+                        data="{contentElement.data}"
+                        table="tt_content"
+                        typoscriptObjectPath="tt_content.{contentElement.data.CType}" />
+                </div>
+            </f:else>
+        </f:if>
     </f:for>
 </html>

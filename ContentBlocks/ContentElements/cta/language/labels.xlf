@@ -7,20 +7,20 @@
         product-name="frontend_templates"
         source-language="en">
         <body>
-            <trans-unit id="description">
-                <source>Linked action button</source>
-            </trans-unit>
-            <trans-unit id="title">
-                <source>CTA</source>
-            </trans-unit>
             <trans-unit id="button_size.label">
                 <source>Button size</source>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>Linked action button</source>
             </trans-unit>
             <trans-unit id="full_width.label">
                 <source>Full width</source>
             </trans-unit>
             <trans-unit id="preview.link_required">
                 <source>Button link is required.</source>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>CTA</source>
             </trans-unit>
         </body>
     </file>

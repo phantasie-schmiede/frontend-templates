@@ -1,0 +1,152 @@
+.event-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+
+  @media (width >= 576px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (width >= 992px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  > .event-card {
+    flex-direction: column;
+    min-width: 0;
+  }
+}
+
+.event-card {
+  overflow-wrap: anywhere;
+
+  .m-card__body {
+    min-width: 0;
+  }
+
+  .m-card__media {
+    aspect-ratio: auto;
+    flex: none;
+    width: 100%;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  picture {
+    aspect-ratio: 16 / 9;
+    display: block;
+  }
+
+  .m-card__image {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .picture-meta-caption {
+    padding: 0 1rem 0.5rem;
+  }
+
+  &__action {
+    align-self: flex-start;
+  }
+}
+
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+
+  dd {
+    align-items: center;
+    display: flex;
+    margin: 0;
+    min-height: 44px;
+  }
+
+  dd > .mb-2 {
+    margin-bottom: 0 !important;
+  }
+
+  dd .btn {
+    padding-block: 0.5rem;
+  }
+}
+
+.event-status,
+.event-time,
+.event-card.state-canceled .card-subtitle {
+  font-weight: 700;
+}
+
+.detail-page--event {
+  margin: 2rem auto;
+  max-width: 60rem;
+  overflow-wrap: anywhere;
+
+  .detail-page__hero-image {
+    height: auto;
+    max-height: 28rem;
+    object-fit: contain;
+  }
+
+  .detail-page__hero {
+    background: var(--bs-tertiary-bg);
+
+    figure {
+      margin: 0;
+    }
+  }
+
+  .detail-page__body {
+    line-height: 1.65;
+  }
+}
+
+.event-detail-content {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.event-detail-main {
+  margin-inline: auto;
+  max-width: 70ch;
+  min-width: 0;
+  width: 100%;
+}
+
+.event-detail-sidebar {
+  min-width: 0;
+}
+
+@media (width >= 992px) {
+  .event-detail-content--with-sidebar {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.event-calendar {
+  .btn,
+  .page-link {
+    min-height: 44px;
+    padding: 0.625rem 1rem;
+    white-space: normal;
+  }
+
+  .page-link {
+    min-width: 44px;
+    text-align: center;
+  }
+
+  :where(a, button):focus-visible {
+    outline: 3px solid currentcolor;
+    outline-offset: 3px;
+  }
+
+  .btn:focus-visible,
+  .page-link:focus-visible {
+    outline: 3px solid #212529;
+    outline-offset: 3px;
+  }
+}

@@ -1,13 +1,15 @@
 {
   "name": "frontend-templates",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Frontend templates for TYPO3: page layouts, content elements, ViewHelpers and TypoScript setup, built on Bootstrap and Content Blocks",
   "scripts": {
     "fix:classes": "node .Build/vendor/psbits/qa/Resources/Quality/lint-class-attributes.mjs",
     "fix:htmlxml": "prettier --config .Build/vendor/psbits/qa/Resources/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --write \"**/*.{html,xml,xlf}\"",
+    "fix:json": "prettier --config .Build/vendor/psbits/qa/Resources/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --write \"package.json\"",
     "lint:classes": "node .Build/vendor/psbits/qa/Resources/Quality/lint-class-attributes.mjs --dry-run",
     "lint:htmlxml": "prettier --config .Build/vendor/psbits/qa/Resources/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --check \"**/*.{html,xml,xlf}\"",
     "lint:js": "eslint \"Resources/Public/JavaScript/**/*.js\" --config Build/Quality/eslint.config.cjs --ignore-pattern \"Resources/Public/JavaScript/Vendors/**\"",
+    "lint:json": "prettier --config .Build/vendor/psbits/qa/Resources/Quality/prettier.config.mjs --ignore-path Build/Quality/.prettierignore --check \"package.json\"",
     "lint:scss": "stylelint \"Resources/Private/Scss/**/*.{scss,sass}\" --config Build/Quality/.stylelintrc.json --ignore-path Build/Quality/.stylelintignore"
   },
   "repository": {
@@ -23,8 +25,8 @@
     "node": ">=24"
   },
   "devDependencies": {
-    "@prettier/plugin-xml": "^3.4.2",
     "@eslint/js": "^10.0.1",
+    "@prettier/plugin-xml": "^3.4.2",
     "eslint": "^10.4.1",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-attributes": "^1.0.0",

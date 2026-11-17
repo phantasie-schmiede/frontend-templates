@@ -25,10 +25,10 @@
         name="rowHighlightClass3"
         value="{frontendTemplates:page.rowHighlightClass(currentPage: currentPage, row: 3)}" />
 
-    <f:if condition="{currentPage.tx_templates_bs_container_type}">
+    <f:if condition="{currentPage.tx_frontendtemplates_bs_container_type}">
         <f:variable
             name="containerClass"
-            value="container-{currentPage.tx_templates_bs_container_type}" />
+            value="container-{currentPage.tx_frontendtemplates_bs_container_type}" />
     </f:if>
 
     <f:render
@@ -43,11 +43,11 @@
     <main id="main-content">
         <f:if condition="{stageContent}">
             <f:render
-                arguments="{column: stageContent}"
+                arguments="{column: stageContent, unstyled: 1}"
                 partial="Column" />
         </f:if>
 
-        <div class="{containerClass}">
+        <div class="page-content {containerClass}">
             <f:render
                 arguments="{queueIdentifier: 'foundation.general'}"
                 partial="../FlashMessages" />

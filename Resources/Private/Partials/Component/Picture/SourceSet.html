@@ -1,6 +1,7 @@
 <html
     data-namespace-typo3-fluid="true"
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:frontendTemplates="http://typo3.org/ns/PSBits/FrontendTemplates/ViewHelpers">
     <f:variable
         name="defaultWidths"
         value="{
@@ -15,12 +16,17 @@
             }
         }" />
 
+    <f:variable
+        name="variantWidths"
+        value="{defaultWidths.{cropVariant}}" />
+    <f:variable
+        name="candidateWidths"
+        value="{widths -> f:or(alternative: variantWidths)}" />
     <f:for
-        as="width"
-        each="{widths -> f:or(alternative: '{defaultWidths.{cropVariant}}')}"
+        as="candidate"
+        each="{frontendTemplates:image.sourceSet(cropVariant: cropVariant, file: file, fileExtension: fileExtension, widths: candidateWidths)}"
         iteration="iterator">
-        {f:uri.image(image: file, cropVariant: cropVariant, maxWidth: width,
-        fileExtension: fileExtension)} {width}w{f:if(condition:
-        '!{iterator.isLast}', then: ',')}
+        {candidate.uri} {candidate.width}w{f:if(condition: '!{iterator.isLast}',
+        then: ',')}
     </f:for>
 </html>

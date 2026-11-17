@@ -46,7 +46,49 @@ class PsbSwiper {
         document.querySelectorAll(this.selector).forEach((swiperContainer) => {
             if (!this.registeredElements.includes(swiperContainer)) {
                 const dataset = swiperContainer.dataset;
-                new Swiper(swiperContainer, JSON.parse(dataset.psbitsSwiperConfiguration || '{}'));
+                const configuration = JSON.parse(dataset.psbitsSwiperConfiguration || '{}');
+                const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+                if (reducedMotion.matches) {
+                    configuration.autoplay = false;
+                    configuration.speed = 0;
+                }
+                const swiper = new Swiper(swiperContainer, configuration);
+                swiperContainer.addEventListener('keydown', (event) => {
+                    if (event.target !== swiperContainer || !['ArrowLeft', 'ArrowRight'].includes(event.key)) {
+                        return;
+                    }
+                    event.preventDefault();
+                    if ('ArrowRight' === event.key) {
+                        swiper.slideNext();
+                    } else {
+                        swiper.slidePrev();
+                    }
+                });
+                if (configuration.autoplay) {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'btn btn-outline-dark swiper-autoplay-toggle';
+                    const updateLabel = () => {
+                        button.textContent = swiper.autoplay.running ? dataset.psbitsSwiperPauseLabel : dataset.psbitsSwiperResumeLabel;
+                    };
+                    button.addEventListener('click', () => {
+                        if (swiper.autoplay.running) {
+                            swiper.autoplay.stop();
+                        } else {
+                            swiper.autoplay.start();
+                        }
+                        updateLabel();
+                    });
+                    swiperContainer.after(button);
+                    updateLabel();
+                    reducedMotion.addEventListener('change', (event) => {
+                        if (event.matches) {
+                            swiper.autoplay.stop();
+                            swiper.params.speed = 0;
+                            updateLabel();
+                        }
+                    });
+                }
                 this.registeredElements.push(swiperContainer);
             }
         });

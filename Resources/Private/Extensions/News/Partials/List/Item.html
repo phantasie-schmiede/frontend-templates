@@ -7,11 +7,12 @@
 
     <f:variable name="additionalContentAppend">
         <n:link
-            class="btn btn-default btn-primary ms-auto ms-sm-0 mt-auto"
+            class="btn btn-primary mt-auto news-card__more"
             newsItem="{newsItem}"
             settings="{settings}"
             title="{newsItem.title}">
             <f:translate key="more-link" />
+            <span class="visually-hidden">: {newsItem.title}</span>
         </n:link>
     </f:variable>
 
@@ -34,11 +35,41 @@
         name="text"
         value="{viewHelpers:fallback(values: {0: newsItem.teaser, 1: newsItem.bodytext})}" />
 
+    <f:variable name="metadata">
+        <p class="news-card__meta small text-body-secondary">
+            <time datetime="{newsItem.datetime -> f:format.date(format: 'c')}">
+                <f:format.date
+                    date="{newsItem.datetime}"
+                    format="{f:translate(key: 'dateFormat')}" />
+            </time>
+            <f:if condition="{newsItem.firstCategory}">
+                <span aria-hidden="true">·</span>
+                {newsItem.firstCategory.title}
+            </f:if>
+        </p>
+    </f:variable>
+
+    <f:variable
+        name="cardClass"
+        value="news-card{f:if(condition: image, else: ' news-card--text-only')}" />
     <f:render
         arguments="{
             additionalContentAppend: additionalContentAppend,
+            additionalContentPrepend: metadata,
+            cardClass: cardClass,
+            headerLevel: settings.list.headerLevel,
             image: image,
             imageUrl: imageUrl,
+            imageSizes: {
+                mobile: 'auto, calc(100vw - 24px)',
+                tablet: 'auto, (min-width: 768px) 340px, 250px',
+                desktop: 'auto, (min-width: 1400px) 422px, (min-width: 1200px) 362px, 302px'
+            },
+            imageWidths: {
+                mobile: {0: 320, 1: 480, 2: 640, 3: 960},
+                tablet: {0: 320, 1: 480, 2: 640, 3: 960},
+                desktop: {0: 320, 1: 480, 2: 640, 3: 960, 4: 1280}
+            },
             subtitle: subtitle,
             text: '{text -> f:format.crop(maxCharacters: \'{settings.cropMaxCharacters}\', respectWordBoundaries: \'1\')}',
             title: '{newsItem.title -> n:link(newsItem: newsItem, settings: settings, title: newsItem.title)}'

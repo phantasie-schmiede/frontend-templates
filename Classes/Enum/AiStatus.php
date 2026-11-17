@@ -11,30 +11,27 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\Enum;
 
+use InvalidArgumentException;
 use JsonException;
 use PSBits\Foundation\Utility\LocalizationUtility;
 use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use ReflectionException;
 use TYPO3\CMS\Core\Context\Exception\AspectNotFoundException;
 
-/**
- * Class AiStatus
- *
- * @package PSBits\FrontendTemplates\Enum
- */
 enum AiStatus: string
 {
-    public const string FRONTEND_LL = 'LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/Enum/aiStatus.xlf:';
-
     case Created  = 'created';
     case Modified = 'modified';
     case None     = 'none';
 
+    public const string FRONTEND_LL = 'LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/Enum/aiStatus.xlf:';
+
     /**
      * @throws AspectNotFoundException
      * @throws ContainerExceptionInterface
+     * @throws InvalidArgumentException
      * @throws JsonException
-     * @throws NotFoundExceptionInterface
+     * @throws ReflectionException
      */
     public function getLabel(): string
     {

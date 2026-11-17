@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file
+        datatype="plaintext"
+        original="messages"
+        product-name="frontend_templates"
+        source-language="en"
+        target-language="de">
+        <body>
+            <trans-unit id="author">
+                <source>Author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="category">
+                <source>Category</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="date">
+                <source>Date</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="media">
+                <source>More images</source>
+                <target>Weitere Bilder</target>
+            </trans-unit>
+            <trans-unit id="navigation">
+                <source>Other news</source>
+                <target>Weitere Meldungen</target>
+            </trans-unit>
+            <trans-unit id="page">
+                <source>Page %s</source>
+                <target>Seite %s</target>
+            </trans-unit>
+            <trans-unit id="pagination">
+                <source>News pages</source>
+                <target>Meldungsseiten</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

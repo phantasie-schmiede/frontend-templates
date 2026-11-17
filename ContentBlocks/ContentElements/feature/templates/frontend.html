@@ -4,21 +4,21 @@
     xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
     <f:variable
         name="sectionClass"
-        value="py-5" />
+        value="content-block-section" />
 
     <f:if condition="{data.background_variant} == 'light'">
         <f:variable
             name="sectionClass"
-            value="py-5 bg-light" />
+            value="content-block-section bg-light" />
     </f:if>
 
     <f:if condition="{data.background_variant} == 'dark'">
         <f:variable
             name="sectionClass"
-            value="py-5 bg-dark text-white" />
+            value="content-block-section bg-dark text-white" />
     </f:if>
 
-    <section class="{sectionClass}">
+    <section class="feature-block {sectionClass}">
         <div class="container-fluid">
             <f:if condition="{data.layout_variant} == 'stacked'">
                 <f:then>

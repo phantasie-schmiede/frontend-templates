@@ -10,58 +10,82 @@
         <f:variable
             name="heroImage"
             value="{event.images.0}" />
+        <f:variable
+            name="showGallery"
+            value="{f:if(condition: '{event.images -> f:count()} > 1 || ({event.images} && !{settings.detail.layout.showHero})', then: 1)}" />
 
         <article class="detail-page detail-page--event state-{index.state}">
             <header class="detail-page__header mb-4">
                 <h1 class="border-bottom pb-3">{event.title}</h1>
-                <div class="m-labelled-list">
-                    <div
-                        class="m-labelled-list__content m-labelled-list__content--no-wrap">
-                        <span class="m-labelled-list__item-label">
+                <dl class="event-meta">
+                    <div>
+                        <dt>
                             <foundation:translate id="calendarize:date" />
-                        </span>
-                        <span class="m-labelled-list__item-value">
+                        </dt>
+                        <dd>
                             <f:render
-                                arguments="{index: index}"
+                                arguments="{index: index, hideLocation: 1, hideTime: 1}"
                                 partial="DateInformation" />
-                        </span>
-
-                        <f:if condition="{event.location}">
-                            <span class="m-labelled-list__item-label">
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>
+                            <foundation:translate id="calendarize:time" />
+                        </dt>
+                        <dd>
+                            <span>
+                                <f:render
+                                    arguments="{index: index}"
+                                    partial="Date/Time" />
+                            </span>
+                        </dd>
+                    </div>
+                    <f:if
+                        condition="{event.location} || {event.linkedLocation}">
+                        <div>
+                            <dt>
                                 <foundation:translate
                                     id="calendarize:location" />
-                            </span>
-                            <span class="m-labelled-list__item-value">
-                                {event.location}
-                            </span>
-                        </f:if>
+                            </dt>
+                            <dd>
+                                <f:if condition="{event.linkedLocation}">
+                                    <f:then>
+                                        <f:render
+                                            arguments="{index: index, hideDate: 1}"
+                                            partial="DateInformation" />
+                                    </f:then>
+                                    <f:else>{event.location}</f:else>
+                                </f:if>
+                            </dd>
+                        </div>
+                    </f:if>
 
-                        <f:if condition="'canceled' == {index.state}">
-                            <span class="m-labelled-list__item-label">
+                    <f:if condition="'canceled' == {index.state}">
+                        <div>
+                            <dt>
                                 <foundation:translate id="calendarize:status" />
-                            </span>
-                            <span
-                                class="m-labelled-list__item-value text-danger">
+                            </dt>
+                            <dd class="event-status">
                                 <foundation:translate
                                     id="calendarize:canceled" />
-                            </span>
-                        </f:if>
-                    </div>
-                </div>
+                            </dd>
+                        </div>
+                    </f:if>
+                </dl>
             </header>
 
-            <f:if
-                condition="{heroImage} && {settings.detail.layout.showHero -> f:or(alternative: 1)}">
+            <f:if condition="{heroImage} && {settings.detail.layout.showHero}">
                 <section class="detail-page__hero mb-4 overflow-hidden rounded">
                     <f:render
                         arguments="{
-                            alt: event.title,
                             file: heroImage,
                             imageClass: 'detail-page__hero-image',
+                            loading: 'eager',
+                            fetchpriority: 'high',
                             sizes: {
-                                mobile: '100vw',
-                                tablet: '100vw',
-                                desktop: 'min(100vw, 1200px)'
+                                mobile: 'calc(100vw - 24px)',
+                                tablet: '(min-width: 768px) 696px, 516px',
+                                desktop: 'min(calc(100vw - 24px), 960px)'
                             },
                             widths: {
                                 mobile: {0: 576, 1: 768},
@@ -73,10 +97,10 @@
                 </section>
             </f:if>
 
-            <div class="align-items-start detail-page__content g-4 row">
-                <div class="col-12 col-lg-8">
-                    <section
-                        class="bg-white detail-page__panel mb-4 p-3 p-md-4 rounded shadow-sm">
+            <div
+                class="event-detail-content {f:if(condition: showGallery, then: 'event-detail-content--with-sidebar')}">
+                <div class="event-detail-main">
+                    <section class="detail-page__panel mb-4">
                         <f:if condition="{event.abstract}">
                             <div class="detail-page__teaser lead mb-3">
                                 {event.abstract -> f:format.nl2br()}
@@ -84,7 +108,9 @@
                         </f:if>
 
                         <div class="detail-page__body">
-                            <f:format.html>{event.description}</f:format.html>
+                            <f:if condition="{event.description}">
+                                {event.description -> f:format.html()}
+                            </f:if>
                         </div>
                     </section>
 
@@ -100,7 +126,7 @@
                         </f:if>
 
                         <f:if
-                            condition="{settings.bookingPid} && {event.bookable}">
+                            condition="{settings.bookingPid} && {event.bookable} && 'canceled' != {index.state}">
                             <c:link.booking
                                 class="btn btn-primary"
                                 index="{index}">
@@ -111,10 +137,9 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-4">
-                    <f:if condition="1 < {event.images -> f:count()}">
-                        <section
-                            class="bg-white detail-page__panel mb-4 p-3 p-md-4 rounded shadow-sm">
+                <f:if condition="{showGallery}">
+                    <aside class="event-detail-sidebar">
+                        <section class="detail-page__panel mb-4">
                             <h2 class="h5 mb-3">
                                 <foundation:translate
                                     id="calendarize:gallery" />
@@ -126,15 +151,17 @@
                                     as="image"
                                     each="{event.images}"
                                     iteration="imageIterator">
-                                    <f:if condition="{imageIterator.isFirst}">
+                                    <f:if
+                                        condition="{imageIterator.isFirst} && {settings.detail.layout.showHero}">
                                         <f:then />
                                         <f:else>
                                             <div class="m-masonry__item">
                                                 <f:render
                                                     arguments="{
-                                                        alt: event.title,
                                                         file: image,
-                                                        imageClass: 'img-fluid rounded'
+                                                        imageClass: 'img-fluid rounded',
+                                                        sizes: {mobile: 'auto, calc(100vw - 24px)', tablet: 'auto, 50vw', desktop: 'auto, 320px'},
+                                                        widths: {mobile: {0: 320, 1: 640, 2: 960}, tablet: {0: 320, 1: 640, 2: 960}, desktop: {0: 320, 1: 640, 2: 960}}
                                                     }"
                                                     partial="Component/Picture/Responsive" />
                                             </div>
@@ -143,8 +170,8 @@
                                 </f:for>
                             </f:render>
                         </section>
-                    </f:if>
-                </div>
+                    </aside>
+                </f:if>
             </div>
         </article>
     </f:alias>

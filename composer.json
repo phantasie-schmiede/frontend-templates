@@ -1,11 +1,43 @@
 {
+    "name": "psbits/frontend-templates",
+    "description": "Frontend templates for TYPO3: page layouts, content elements, ViewHelpers and TypoScript setup, built on Bootstrap and Content Blocks",
+    "license": "GPL-3.0-or-later",
+    "type": "typo3-cms-extension",
+    "keywords": [
+        "extension",
+        "templates",
+        "typo3"
+    ],
     "authors": [
         {
-            "email": "dn@phantasie-schmiede.de",
             "name": "Daniel Ablass",
+            "email": "dn@phantasie-schmiede.de",
             "role": "Developer"
         }
     ],
+    "require": {
+        "php": "^8.3",
+        "ext-intl": "*",
+        "friendsoftypo3/content-blocks": "^1.5 || ^2.4",
+        "psbits/foundation": "^4.2.2",
+        "psbits/view-helpers": "^4.0",
+        "symfony/intl": "^7.1",
+        "typo3/cms-core": "^13.4 || ^14.3",
+        "typo3/cms-fluid-styled-content": "^13.4 || ^14.3",
+        "typo3/cms-install": "^13.4 || ^14.3",
+        "wapplersystems/ws-scss": "^13 || ^14"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.56",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "helmich/typo3-typoscript-lint": "^3.3",
+        "phpstan/phpstan": "^2.2",
+        "phpunit/phpunit": "^11",
+        "psbits/qa": "@dev",
+        "roave/security-advisories": "dev-latest",
+        "saschaegerer/phpstan-typo3": "^2.1 || ^3.0",
+        "typo3/testing-framework": "^9.5"
+    },
     "autoload": {
         "psr-4": {
             "PSBits\\FrontendTemplates\\": "Classes/"
@@ -18,6 +50,8 @@
     },
     "config": {
         "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true,
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true
         },
@@ -25,86 +59,75 @@
         "sort-packages": true,
         "vendor-dir": ".Build/vendor"
     },
-    "description": "Frontend templates for TYPO3: page layouts, content elements, ViewHelpers and TypoScript setup, built on Bootstrap and Content Blocks",
     "extra": {
         "typo3/cms": {
             "extension-key": "frontend_templates",
             "web-dir": ".Build/public"
         }
     },
-    "keywords": [
-        "extension",
-        "templates",
-        "typo3"
-    ],
-    "license": "GPL-3.0-or-later",
-    "name": "psbits/frontend-templates",
-    "require": {
-        "ext-intl": "*",
-        "friendsoftypo3/content-blocks": "~1.5 || ^2.4",
-        "php": "^8.3",
-        "psbits/foundation": "^4.2.2",
-        "psbits/view-helpers": "^4.0",
-        "symfony/intl": "^7.1",
-        "typo3/cms-core": "^13.4 || ^14.3",
-        "typo3/cms-fluid-styled-content": "^13.4 || ^14.3",
-        "wapplersystems/ws-scss": "^13 || ^14"
-    },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.95",
-        "helmich/typo3-typoscript-lint": "^3.3",
-        "phpstan/phpstan": "^2.2",
-        "phpunit/phpunit": "^11",
-        "psbits/qa": "@dev",
-        "roave/security-advisories": "dev-latest",
-        "saschaegerer/phpstan-typo3": "^2.1 || ^3.0",
-        "typo3/testing-framework": "^9.5"
-    },
     "scripts": {
+        "post-install-cmd": [
+            "npm install",
+            ".Build/bin/qa sync"
+        ],
+        "post-update-cmd": [
+            ".Build/bin/qa sync"
+        ],
         "analyze:php": "phpstan analyse --configuration=Build/Quality/phpstan.neon.dist --no-progress",
         "audit:composer": "composer audit --abandoned=report",
+        "docker:images": [
+            "Composer\\Config::disableProcessTimeout",
+            "sh .Build/vendor/psbits/qa/Resources/Testing/Scripts/buildTestImages.sh"
+        ],
         "fix:all": [
             "@fix:classes",
+            "@fix:composer",
             "@fix:htmlxml",
+            "@fix:json",
+            "@fix:throws",
+            "@fix:xlf",
             "@fix:php"
         ],
         "fix:classes": "npm run fix:classes",
+        "fix:composer": "composer normalize",
         "fix:htmlxml": "npm run fix:htmlxml",
-        "fix:php": "php-cs-fixer fix --config=Build/Quality/.php-cs-fixer.dist.php --verbose",
+        "fix:json": "npm run fix:json",
+        "fix:php": "php .Build/vendor/psbits/qa/Resources/Quality/phpTools.php fix",
+        "fix:throws": ".Build/bin/qa throws-fix",
+        "fix:xlf": ".Build/bin/qa xlf-fix",
         "lint:all": [
             "@analyze:php",
             "@audit:composer",
             "@lint:classes",
+            "@lint:composer",
             "@lint:htmlxml",
             "@lint:js",
+            "@lint:json",
             "@lint:php",
             "@lint:scss",
             "@lint:typoscript",
+            "@lint:xlf",
             "@lint:yaml",
             "@validate:composer"
         ],
         "lint:classes": "npm run lint:classes",
+        "lint:composer": "composer normalize --dry-run --diff --no-check-lock --no-update-lock",
         "lint:htmlxml": "npm run lint:htmlxml",
         "lint:js": "npm run lint:js",
-        "lint:php": "php-cs-fixer fix --config=Build/Quality/.php-cs-fixer.dist.php --dry-run --diff --verbose",
+        "lint:json": "npm run lint:json",
+        "lint:php": "php .Build/vendor/psbits/qa/Resources/Quality/phpTools.php lint",
         "lint:scss": "npm run lint:scss",
         "lint:typoscript": "typoscript-lint --config=.Build/vendor/psbits/qa/Resources/Quality/typoscript-lint.yml --ansi Configuration/TypoScript",
+        "lint:xlf": ".Build/bin/qa xlf-check",
         "lint:yaml": "yamllint -c .Build/vendor/psbits/qa/Resources/Quality/yamllint.yml Configuration",
-        "post-install-cmd": [
-            "npm install",
-            ".Build/bin/qa link"
-        ],
-        "post-update-cmd": [
-            ".Build/bin/qa link"
-        ],
         "qa": [
             "@fix:all",
             "@lint:all",
             "@test:all"
         ],
         "test:all": [
-            "@test:unit",
             "@test:functional",
+            "@test:unit",
             "@test:local",
             "@test:docker"
         ],
@@ -127,6 +150,5 @@
             "php -d memory_limit=1G .Build/bin/phpunit -c .Build/phpunit/UnitTests.xml"
         ],
         "validate:composer": "composer validate --no-check-publish"
-    },
-    "type": "typo3-cms-extension"
+    }
 }

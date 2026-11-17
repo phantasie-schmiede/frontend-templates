@@ -14,24 +14,15 @@ namespace PSBits\FrontendTemplates\ViewHelpers\Image;
 use JsonException;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\Area;
 use TYPO3\CMS\Core\Imaging\ImageManipulation\CropVariantCollection;
-use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Extbase\Service\ImageService;
+use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 use function is_array;
+use function json_encode;
+use function method_exists;
 
-/**
- * Class AspectRatioViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Image
- */
 class AspectRatioViewHelper extends AbstractViewHelper
 {
-    public function __construct(
-        protected readonly ImageService $imageService,
-    ) {
-    }
-
     public function initializeArguments(): void
     {
         parent::initializeArguments();
@@ -57,26 +48,20 @@ class AspectRatioViewHelper extends AbstractViewHelper
         }
 
         $cropArea = $this->getCropArea($file);
-        $image    = $this->imageService->applyProcessingInstructions(
-            $file,
-            [
-                'crop'          => $cropArea->isEmpty() ? null : $cropArea->makeAbsoluteBasedOnFile($file),
-                'maxWidth'      => '1000m',
-                'fileExtension' => 'avif',
-            ]
-        );
+        $height   = (float)$file->getProperty('height') * $cropArea->getHeight();
+        $width    = (float)$file->getProperty('width') * $cropArea->getWidth();
 
-        if (!$image->getProperty('width') || !$image->getProperty('height')) {
+        if (0 >= $height || 0 >= $width) {
             return $this->arguments['fallback'];
         }
 
-        return $image->getProperty('width') / $image->getProperty('height');
+        return $width / $height;
     }
 
     /**
      * @throws JsonException
      */
-    private function getCropArea(FileReference $file): Area
+    private function getCropArea(FileInterface $file): Area
     {
         $crop = $this->arguments['crop'];
 
@@ -98,7 +83,7 @@ class AspectRatioViewHelper extends AbstractViewHelper
         return $cropVariantCollection->getCropArea($cropVariant);
     }
 
-    private function normalizeFileReference(mixed $file): ?FileReference
+    private function normalizeFileReference(mixed $file): ?FileInterface
     {
         if (null === $file) {
             return null;

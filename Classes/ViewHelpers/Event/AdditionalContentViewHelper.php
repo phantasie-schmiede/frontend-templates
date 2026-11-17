@@ -17,11 +17,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
-/**
- * Class AdditionalContentViewHelper
- *
- * @package PSBits\FrontendTemplates\ViewHelpers\Event
- */
+use function class_exists;
+
 class AdditionalContentViewHelper extends AbstractViewHelper
 {
     /**
@@ -53,7 +50,7 @@ class AdditionalContentViewHelper extends AbstractViewHelper
     }
 
     /**
-     * @return string
+     * @throws InvalidArgumentException
      */
     public function render(): string
     {

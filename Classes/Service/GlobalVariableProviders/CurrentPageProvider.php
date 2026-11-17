@@ -15,11 +15,6 @@ use PSBits\Foundation\Service\GlobalVariableProviders\AbstractProvider;
 use PSBits\Foundation\Utility\ContextUtility;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 
-/**
- * Class CurrentPageProvider
- *
- * @package PSBits\FrontendTemplates\Service\GlobalVariableProviders
- */
 class CurrentPageProvider extends AbstractProvider
 {
     /**

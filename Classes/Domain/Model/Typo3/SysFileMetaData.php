@@ -18,21 +18,16 @@ use PSBits\Foundation\Attribute\TCA\Mapping\Field;
 use PSBits\Foundation\Attribute\TCA\Mapping\Table;
 use PSBits\FrontendTemplates\Enum\AiStatus;
 
-/**
- * Class Page
- *
- * @package PSBits\FrontendTemplates\Domain\Model\Typo3
- */
 #[Table(name: 'sys_file_metadata')]
 class SysFileMetaData
 {
-    #[Column(databaseDefinition: 'varchar(8) DEFAULT NULL', default: AiStatus::None->value, l10nMode: 'exclude', position: 'after:tx_templates_copyright', required: true)]
-    #[Field(name: 'tx_templates_ai_status')]
+    #[Column(databaseDefinition: 'varchar(8) DEFAULT NULL', default: AiStatus::None->value, l10nMode: 'exclude', position: 'after:tx_frontendtemplates_copyright', required: true)]
+    #[Field(name: 'tx_frontendtemplates_ai_status')]
     #[Enum(AiStatus::class)]
     protected AiStatus $aiStatus = AiStatus::None;
 
     #[Column(l10nMode: 'exclude', position: 'after:title')]
-    #[Field(name: 'tx_templates_copyright')]
+    #[Field(name: 'tx_frontendtemplates_copyright')]
     #[Input]
     protected string $copyright = '';
 }

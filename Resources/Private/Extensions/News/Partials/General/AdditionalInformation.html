@@ -1,0 +1,43 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    <f:if
+        condition="{newsItem.datetime} || {newsItem.author} || {newsItem.firstCategory}">
+        <dl class="news-meta">
+            <f:if condition="{newsItem.datetime}">
+                <div>
+                    <dt>
+                        <f:translate
+                            key="LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:date" />
+                    </dt>
+                    <dd>
+                        <time
+                            datetime="{newsItem.datetime -> f:format.date(format: 'c')}">
+                            <f:format.date
+                                date="{newsItem.datetime}"
+                                format="{f:translate(key: 'dateFormat')}" />
+                        </time>
+                    </dd>
+                </div>
+            </f:if>
+            <f:if condition="{newsItem.author}">
+                <div>
+                    <dt>
+                        <f:translate
+                            key="LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:author" />
+                    </dt>
+                    <dd>{newsItem.author}</dd>
+                </div>
+            </f:if>
+            <f:if condition="{newsItem.firstCategory}">
+                <div>
+                    <dt>
+                        <f:translate
+                            key="LLL:EXT:frontend_templates/Resources/Private/Language/Frontend/News.xlf:category" />
+                    </dt>
+                    <dd>{newsItem.firstCategory.title}</dd>
+                </div>
+            </f:if>
+        </dl>
+    </f:if>
+</html>

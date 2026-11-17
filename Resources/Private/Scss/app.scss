@@ -5,6 +5,7 @@
 @import "Component/m-labelled-list";
 @import "Component/m-masonry";
 @import "Component/o-card-grid";
+@import "Component/o-page-content";
 @import "Component/p-detail-page";
 @import "Component/p-event";
 @import "Component/p-news";
@@ -185,65 +186,65 @@ body {
 }
 
 .hero-block {
+  background: var(--bs-dark);
   color: var(--bs-white);
-  display: flex;
-  min-height: min(70vh, 44rem);
-  padding-block: 3rem;
   position: relative;
 
   &__figure {
-    inset: 0;
     margin: 0;
-    position: absolute !important;
+    position: relative;
 
     picture {
       display: block;
-      height: 100%;
     }
   }
 
   &__image {
-    height: 100% !important;
+    aspect-ratio: 16 / 9;
+    display: block;
+    height: auto;
     object-fit: cover;
   }
 
-  &--overlay {
-    picture {
-      display: block;
-      position: relative;
+  @include media-breakpoint-up(lg) {
+    &--overlay {
+      display: grid;
+      min-height: 32rem;
 
-      &::after {
-        background: rgba(0, 0, 0, 0.4);
-        content: "";
+      .hero-block__figure {
         inset: 0;
-        pointer-events: none;
         position: absolute;
+
+        picture {
+          height: 100%;
+
+          &::after {
+            background: rgba(0, 0, 0, 0.7);
+            content: "";
+            inset: 0;
+            pointer-events: none;
+            position: absolute;
+          }
+        }
+      }
+
+      .hero-block__image {
+        height: 100%;
+      }
+
+      .hero-block__content {
+        align-self: center;
+        padding-block: 4rem;
       }
     }
   }
 
-  &--overlay-start {
-    picture::after {
-      background: linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-    }
-  }
-
-  &--overlay-end {
-    picture::after {
-      background: linear-gradient(270deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
-    }
-  }
-
   &__content {
-    align-self: center;
-    background: rgba(0, 0, 0, 0.75);
-    border-radius: 0.5rem;
     margin-inline: auto;
-    max-width: 50rem;
-    overflow-wrap: anywhere;
-    padding: 1.5rem;
+    overflow-wrap: break-word;
+    padding: 2rem 1.5rem;
     position: relative;
-    width: min(90vw, 50rem);
+    width: 100%;
     z-index: 1;
   }
 
@@ -257,10 +258,6 @@ body {
   }
 
   @include media-breakpoint-down(md) {
-    &__content {
-      width: min(94vw, 34rem);
-    }
-
     &__lead {
       margin-bottom: 1.5rem !important;
       max-width: 34ch;
@@ -270,6 +267,21 @@ body {
     &__lead.hero-block__text--constrained {
       max-width: 100%;
     }
+  }
+}
+
+.accordion-body > .frame > :last-child {
+  margin-bottom: 0;
+}
+
+.accordion-cards {
+  .accordion-button {
+    border-radius: var(--bs-accordion-border-radius);
+  }
+
+  .accordion-button:not(.collapsed) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
 

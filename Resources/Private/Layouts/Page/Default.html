@@ -43,11 +43,11 @@
     <main id="main-content">
         <f:if condition="{stageContent}">
             <f:render
-                arguments="{column: stageContent}"
+                arguments="{column: stageContent, unstyled: 1}"
                 partial="Column" />
         </f:if>
 
-        <div class="{containerClass}">
+        <div class="page-content {containerClass}">
             <f:render
                 arguments="{queueIdentifier: 'foundation.general'}"
                 partial="../FlashMessages" />

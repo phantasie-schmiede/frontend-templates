@@ -79,9 +79,9 @@
     <section class="hero-block{overlayClass} text-{data.text_align}">
         <f:render
             arguments="{
-                figureClass: 'hero-block__figure position-relative',
+                figureClass: 'hero-block__figure',
                 file: data.image.0,
-                imageClass: 'h-auto hero-block__image w-100',
+                imageClass: 'hero-block__image w-100',
                 loading: '{f:if(condition: data.eager_loading, then: \'eager\', else: \'lazy\')}',
                 fetchpriority: '{f:if(condition: data.eager_loading, then: \'high\', else: \'auto\')}',
                 metaAlignment: metaAlignment,

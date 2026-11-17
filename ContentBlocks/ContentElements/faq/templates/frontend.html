@@ -12,7 +12,7 @@
     </f:if>
     <viewHelpers:tag
         additionalAttributes="{sectionAttributes}"
-        class="py-4"
+        class="content-block-section"
         tag="section">
         <div class="container">
             <f:if condition="{data.header}">
@@ -29,7 +29,7 @@
             </f:if>
 
             <div
-                class="accordion"
+                class="accordion accordion-cards d-grid gap-3"
                 id="faq-{data.uid}">
                 <f:for
                     as="item"
@@ -38,13 +38,15 @@
                     <f:variable
                         name="faqId"
                         value="faq-{data.uid}-{iteration.index}" />
-                    <div class="accordion-item">
+                    <div class="accordion-item border rounded">
                         <f:render
                             arguments="{
+                                bodyClass: 'accordion-body',
                                 classes: 'accordion-button',
                                 collapseClass: 'accordion-collapse',
                                 content: item.content,
                                 contentAttributes: {data-bs-parent: '#faq-{data.uid}'},
+                                headingTag: 'h3',
                                 id: faqId,
                                 initiallyOpen: iteration.isFirst,
                                 label: item.data.header,

@@ -171,17 +171,23 @@
                 </f:if>
 
                 <f:if condition="{newsItem.contentElements}">
-                    <f:cObject
-                        typoscriptObjectPath="lib.tx_news.contentElementRendering">
-                        {newsItem.contentElementIdList}
-                    </f:cObject>
+                    <div
+                        class="news-detail-elements"
+                        itemprop="articleBody">
+                        <f:cObject
+                            typoscriptObjectPath="lib.tx_news.contentElementRendering">
+                            {newsItem.contentElementIdList}
+                        </f:cObject>
+                    </div>
                 </f:if>
 
-                <div
-                    class="detail-page__body news-text-wrap"
-                    itemprop="articleBody">
-                    <f:format.html>{newsItem.bodytext}</f:format.html>
-                </div>
+                <f:if condition="{newsItem.bodytext}">
+                    <div
+                        class="detail-page__body news-text-wrap"
+                        itemprop="articleBody">
+                        <f:format.html>{newsItem.bodytext}</f:format.html>
+                    </div>
+                </f:if>
             </n:renderMedia>
         </section>
 

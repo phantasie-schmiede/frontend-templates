@@ -29,7 +29,7 @@ dependencies:
 
 ## Content Elements
 
-Nine content elements are provided via Content Blocks:
+Eleven content elements are provided via Content Blocks:
 
 | Element          | Description                                                                                                                                                         |
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -42,8 +42,28 @@ Nine content elements are provided via Content Blocks:
 | **Feature**      | Content section with image and bodytext; layout variants (image left/right/stacked) and background variants (default/light/dark). Optionally links to CTA elements. |
 | **Teaser Grid**  | Grid of teaser cards with optional category-based filtering, rendered from child content elements.                                                                  |
 | **Accordion**    | Expandable sections in flush or card style, built from child content elements.                                                                                      |
+| **Info box**     | Key facts as label/value pairs, optional introduction and link; information or important-notice appearance. |
+| **Quotation**    | Highlighted plain-text quotation with optional author and role/source attribution. |
 
 All content elements include German and English labels (`language/de.labels.xlf`, `language/labels.xlf`).
+
+### Editorial news articles
+
+Enable `contentElementRelation` in the News extension settings to compose articles from ordered content elements.
+The detail template renders the teaser first, then the content elements, then the optional News bodytext. For an
+article with images, quotations and info boxes between paragraphs, put the entire article body in the ordered
+content elements and leave the News bodytext empty. Existing bodytext-only articles remain supported.
+
+The News renderer wraps each element in `.news-detail-element` for consistent spacing and compact Feature layouts
+within the readable text column. Responsive images display the file reference's description as a caption, with
+file metadata as fallback; alternative text and copyright remain separate.
+
+Info boxes accept up to twelve sortable facts and an optional link with a separate link label. They do not copy
+dates or locations from Calendarize: when using them for announcements, keep event details in the calendar and
+link there, or check manually entered facts before publication. Quotations are plain text; identify the author
+and source, and never attribute editorial sample statements to real people.
+
+After installing new blocks, update the TYPO3 database schema to add their generated fields and the facts table.
 
 ## Page Templates (Backend Layouts)
 

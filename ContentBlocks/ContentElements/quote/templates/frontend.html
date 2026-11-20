@@ -1,0 +1,28 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <f:if condition="{data.header} && 100 != {data.header_layout}">
+        <viewHelpers:tag
+            class="mb-3"
+            tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+            {data.header}
+        </viewHelpers:tag>
+    </f:if>
+
+    <figure class="article-quote mb-0 p-3 p-md-4">
+        <blockquote class="fs-4 mb-0">
+            <p><f:format.nl2br>{data.quote_text}</f:format.nl2br></p>
+        </blockquote>
+        <f:if condition="{data.quote_author} || {data.quote_source}">
+            <figcaption class="mt-3 text-body-secondary">
+                <f:if condition="{data.quote_author}">
+                    <span class="d-block fw-semibold">{data.quote_author}</span>
+                </f:if>
+                <f:if condition="{data.quote_source}">
+                    <cite>{data.quote_source}</cite>
+                </f:if>
+            </figcaption>
+        </f:if>
+    </figure>
+</html>

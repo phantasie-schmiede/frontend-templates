@@ -15,13 +15,11 @@ use PHPUnit\Framework\Attributes\Test;
 use PSBits\FrontendTemplates\Data\ExtensionInformation;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
+use function array_map;
+
 /**
- * Class MenuDropdownPageTypeTest
- *
  * The extension registers the menu dropdown page type on boot; this test guards the registration against the
  * actually built TCA.
- *
- * @package PSBits\FrontendTemplates\Tests\Functional\Data
  */
 class MenuDropdownPageTypeTest extends FunctionalTestCase
 {

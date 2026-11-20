@@ -15,8 +15,8 @@ use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use PSBits\FrontendTemplates\Event\AdditionalContentEventInterface;
 use PSBits\FrontendTemplates\Tests\Functional\Fixtures\AdditionalContentEventFixture;
-use PSBits\Qa\Testing\Fixtures\InMemoryListenerProvider;
 use PSBits\FrontendTemplates\ViewHelpers\Event\AdditionalContentViewHelper;
+use PSBits\Qa\Testing\Fixtures\InMemoryListenerProvider;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\EventDispatcher\EventDispatcher;
@@ -25,13 +25,11 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextFactory;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
+use function method_exists;
+
 /**
- * Class AdditionalContentViewHelperTest
- *
  * Dispatches the event against the real PSR-14 dispatcher with a registered listener, so the listener wiring runs
  * for real.
- *
- * @package PSBits\FrontendTemplates\Tests\Functional\ViewHelpers\Event
  */
 #[IgnoreDeprecations]
 class AdditionalContentViewHelperTest extends FunctionalTestCase
@@ -77,7 +75,7 @@ class AdditionalContentViewHelperTest extends FunctionalTestCase
         $listenerProvider = new InMemoryListenerProvider();
         $listenerProvider->addListener(
             AdditionalContentEventFixture::class,
-            static function (AdditionalContentEventFixture $event): void {
+            static function(AdditionalContentEventFixture $event): void {
                 $event->addContent('<p>Added by listener</p>');
             }
         );
@@ -112,7 +110,7 @@ class AdditionalContentViewHelperTest extends FunctionalTestCase
         $listenerProvider = new InMemoryListenerProvider();
         $listenerProvider->addListener(
             AdditionalContentEventFixture::class,
-            static function (AdditionalContentEventInterface $event) use (&$capturedRequest): void {
+            static function(AdditionalContentEventInterface $event) use (&$capturedRequest): void {
                 $capturedRequest = $event->getRequest();
                 $event->addContent('content');
             }

@@ -23,31 +23,27 @@ use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
- * Class ProgressBarViewHelperTest
- *
  * The standalone view is stubbed, so the tests lock in the percentage calculation, the color thresholds and the
  * view assignment. The real template rendering is covered by the functional ViewServiceTest.
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\ViewHelpers\Component
  */
 class ProgressBarViewHelperTest extends UnitTestCase
 {
-    private ProgressBarViewHelper         $subject;
-    private ViewService&MockObject        $viewService;
-    private ViewInterface&MockObject      $view;
-    private array                         $assignedViewValues = [];
+    private array                    $assignedViewValues = [];
+    private ProgressBarViewHelper    $subject;
+    private ViewInterface&MockObject $view;
+    private ViewService&MockObject   $viewService;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->viewService  = $this->createMock(ViewService::class);
-        $this->view         = $this->createMock(ViewInterface::class);
+        $this->viewService = $this->createMock(ViewService::class);
+        $this->view        = $this->createMock(ViewInterface::class);
         $this->viewService->method('createStandaloneView')
             ->willReturn($this->view);
 
         $this->view->method('assignMultiple')
-            ->willReturnCallback(function (array $values): ViewInterface {
+            ->willReturnCallback(function(array $values): ViewInterface {
                 $this->assignedViewValues = $values;
 
                 return $this->view;
@@ -71,13 +67,36 @@ class ProgressBarViewHelperTest extends UnitTestCase
     }
 
     #[Test]
-    public function thePercentageIsCalculatedFromTheValueRange(): void
+    public function aCustomRangeIsRespected(): void
     {
-        $rendered = $this->render(['value' => 50]);
+        $this->render(['maxValue' => 110, 'minValue' => 10, 'value' => 60]);
 
-        self::assertSame('rendered', $rendered);
         self::assertSame(50.0, $this->assignedViewValues['percentage']);
-        self::assertSame('bg-warning progress-bar-striped', $this->assignedViewValues['classes']);
+    }
+
+    #[Test]
+    public function aNonPositiveRangeIsReported(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionCode(1758896064);
+
+        $this->render(['maxValue' => 10, 'minValue' => 10, 'value' => 1]);
+    }
+
+    #[Test]
+    public function providedClassesOverrideTheColorClasses(): void
+    {
+        $this->render(['classes' => 'custom', 'value' => 50]);
+
+        self::assertSame('custom', $this->assignedViewValues['classes']);
+    }
+
+    #[Test]
+    public function theChildContentIsPassedToTheTemplate(): void
+    {
+        $this->render(['value' => 50], '42 of 100');
+
+        self::assertSame('42 of 100', $this->assignedViewValues['content']);
     }
 
     #[Test]
@@ -101,36 +120,13 @@ class ProgressBarViewHelperTest extends UnitTestCase
     }
 
     #[Test]
-    public function aCustomRangeIsRespected(): void
+    public function thePercentageIsCalculatedFromTheValueRange(): void
     {
-        $this->render(['value' => 60, 'minValue' => 10, 'maxValue' => 110]);
+        $rendered = $this->render(['value' => 50]);
 
+        self::assertSame('rendered', $rendered);
         self::assertSame(50.0, $this->assignedViewValues['percentage']);
-    }
-
-    #[Test]
-    public function aNonPositiveRangeIsReported(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionCode(1758896064);
-
-        $this->render(['value' => 1, 'minValue' => 10, 'maxValue' => 10]);
-    }
-
-    #[Test]
-    public function providedClassesOverrideTheColorClasses(): void
-    {
-        $this->render(['value' => 50, 'classes' => 'custom']);
-
-        self::assertSame('custom', $this->assignedViewValues['classes']);
-    }
-
-    #[Test]
-    public function theChildContentIsPassedToTheTemplate(): void
-    {
-        $this->render(['value' => 50], '42 of 100');
-
-        self::assertSame('42 of 100', $this->assignedViewValues['content']);
+        self::assertSame('bg-warning progress-bar-striped', $this->assignedViewValues['classes']);
     }
 
     /**

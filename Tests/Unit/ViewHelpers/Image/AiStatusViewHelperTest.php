@@ -21,15 +21,10 @@ use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Class AiStatusViewHelperTest
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\ViewHelpers\Image
- */
 class AiStatusViewHelperTest extends UnitTestCase
 {
-    private AiStatusViewHelper            $subject;
-    private RenderingContext&MockObject   $renderingContext;
+    private RenderingContext&MockObject $renderingContext;
+    private AiStatusViewHelper          $subject;
 
     protected function setUp(): void
     {
@@ -48,29 +43,14 @@ class AiStatusViewHelperTest extends UnitTestCase
     }
 
     #[Test]
-    public function theStatusIsReadFromTheOriginalResourceOfAFileReference(): void
-    {
-        $file = $this->createMock(CoreFileReference::class);
-        $file->method('getProperty')
-            ->with('tx_frontendtemplates_ai_status')
-            ->willReturn('created');
-
-        $fileReference = $this->createMock(FileReference::class);
-        $fileReference->method('getOriginalResource')
-            ->willReturn($file);
-
-        self::assertSame(AiStatus::Created, $this->render(['file' => $fileReference]));
-    }
-
-    #[Test]
-    public function rawFilesAreAcceptedAsWell(): void
+    public function anUnknownStatusYieldsNull(): void
     {
         $file = $this->createMock(File::class);
         $file->method('getProperty')
             ->with('tx_frontendtemplates_ai_status')
-            ->willReturn('modified');
+            ->willReturn('broken');
 
-        self::assertSame(AiStatus::Modified, $this->render(['file' => $file]));
+        self::assertNull($this->render(['file' => $file]));
     }
 
     #[Test]
@@ -85,14 +65,29 @@ class AiStatusViewHelperTest extends UnitTestCase
     }
 
     #[Test]
-    public function anUnknownStatusYieldsNull(): void
+    public function rawFilesAreAcceptedAsWell(): void
     {
         $file = $this->createMock(File::class);
         $file->method('getProperty')
             ->with('tx_frontendtemplates_ai_status')
-            ->willReturn('broken');
+            ->willReturn('modified');
 
-        self::assertNull($this->render(['file' => $file]));
+        self::assertSame(AiStatus::Modified, $this->render(['file' => $file]));
+    }
+
+    #[Test]
+    public function theStatusIsReadFromTheOriginalResourceOfAFileReference(): void
+    {
+        $file = $this->createMock(CoreFileReference::class);
+        $file->method('getProperty')
+            ->with('tx_frontendtemplates_ai_status')
+            ->willReturn('created');
+
+        $fileReference = $this->createMock(FileReference::class);
+        $fileReference->method('getOriginalResource')
+            ->willReturn($file);
+
+        self::assertSame(AiStatus::Created, $this->render(['file' => $fileReference]));
     }
 
     /**

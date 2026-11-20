@@ -1,0 +1,45 @@
+.article-quote {
+  background: var(--bs-tertiary-bg);
+  border-inline-start: 0.25rem solid var(--bs-primary);
+  overflow-wrap: anywhere;
+
+  blockquote p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.infobox {
+  background: var(--bs-primary-bg-subtle);
+  border-inline-start: 0.25rem solid var(--bs-primary);
+  overflow-wrap: anywhere;
+
+  &--notice {
+    background: var(--bs-warning-bg-subtle);
+    border-color: var(--bs-warning);
+  }
+
+  &__intro > :last-child {
+    margin-bottom: 1rem;
+  }
+
+  &__facts {
+    display: grid;
+    gap: 1rem;
+
+    > div {
+      display: grid;
+      gap: 0.25rem 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    }
+
+    dd {
+      margin: 0;
+    }
+  }
+}
+
+.picture-description {
+  display: block;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}

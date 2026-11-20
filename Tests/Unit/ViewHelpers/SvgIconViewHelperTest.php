@@ -20,46 +20,33 @@ use TYPO3\CMS\Core\Imaging\IconProvider\AbstractSvgIconProvider;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Class SvgIconViewHelperTest
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\ViewHelpers
- */
 class SvgIconViewHelperTest extends UnitTestCase
 {
     private const string SVG = '<svg width="16" height="16" viewBox="0 0 16 16"><path d="M0 0h16v16H0z"/></svg>';
 
-    private SvgIconViewHelper               $subject;
-    private IconFactory&MockObject          $iconFactory;
-    private RenderingContext&MockObject     $renderingContext;
+    private IconFactory&MockObject      $iconFactory;
+    private RenderingContext&MockObject $renderingContext;
+    private SvgIconViewHelper           $subject;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->iconFactory        = $this->createMock(IconFactory::class);
-        $this->subject            = new SvgIconViewHelper($this->iconFactory);
-        $this->renderingContext   = $this->createMock(RenderingContext::class);
+        $this->iconFactory      = $this->createMock(IconFactory::class);
+        $this->subject          = new SvgIconViewHelper($this->iconFactory);
+        $this->renderingContext = $this->createMock(RenderingContext::class);
         $this->subject->setRenderingContext($this->renderingContext);
         $this->subject->initializeArguments();
     }
 
     #[Test]
-    public function withoutCustomizationsTheMarkupIsReturnedAsIs(): void
-    {
-        $this->provideIcon(self::SVG);
-
-        self::assertSame(self::SVG, $this->render(['identifier' => 'my-icon']));
-    }
-
-    #[Test]
-    public function theWidthHeightAndViewBoxAreReplaced(): void
+    public function additionalClassesAddAMissingClassAttribute(): void
     {
         $this->provideIcon(self::SVG);
 
         self::assertSame(
-            '<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h16v16H0z"/></svg>',
-            $this->render(['identifier' => 'my-icon', 'width' => 24, 'height' => 24, 'viewBox' => '0 0 24 24'])
+            '<svg class=" icon-lg" width="16" height="16" viewBox="0 0 16 16"><path d="M0 0h16v16H0z"/></svg>',
+            $this->render(['additionalClasses' => 'icon-lg', 'identifier' => 'my-icon'])
         );
     }
 
@@ -70,18 +57,7 @@ class SvgIconViewHelperTest extends UnitTestCase
 
         self::assertSame(
             '<svg class="icon-base icon-lg" width="16" height="16"><path d="M0 0h16v16H0z"/></svg>',
-            $this->render(['identifier' => 'my-icon', 'additionalClasses' => 'icon-lg'])
-        );
-    }
-
-    #[Test]
-    public function additionalClassesAddAMissingClassAttribute(): void
-    {
-        $this->provideIcon(self::SVG);
-
-        self::assertSame(
-            '<svg class=" icon-lg" width="16" height="16" viewBox="0 0 16 16"><path d="M0 0h16v16H0z"/></svg>',
-            $this->render(['identifier' => 'my-icon', 'additionalClasses' => 'icon-lg'])
+            $this->render(['additionalClasses' => 'icon-lg', 'identifier' => 'my-icon'])
         );
     }
 
@@ -94,6 +70,36 @@ class SvgIconViewHelperTest extends UnitTestCase
             '<svg class="icon-base icon-lg icon-xl" width="16" height="16"><path d="M0 0h16v16H0z"/></svg>',
             $this->render(['identifier' => 'my-icon', 'additionalClasses' => ['icon-lg', 'icon-xl']])
         );
+    }
+
+    #[Test]
+    public function theWidthHeightAndViewBoxAreReplaced(): void
+    {
+        $this->provideIcon(self::SVG);
+
+        self::assertSame(
+            '<svg width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h16v16H0z"/></svg>',
+            $this->render(['height' => 24, 'identifier' => 'my-icon', 'viewBox' => '0 0 24 24', 'width' => 24])
+        );
+    }
+
+    #[Test]
+    public function withoutCustomizationsTheMarkupIsReturnedAsIs(): void
+    {
+        $this->provideIcon(self::SVG);
+
+        self::assertSame(self::SVG, $this->render(['identifier' => 'my-icon']));
+    }
+
+    private function provideIcon(string $markup): void
+    {
+        $icon = $this->createMock(Icon::class);
+        $icon->method('getMarkup')
+            ->with(AbstractSvgIconProvider::MARKUP_IDENTIFIER_INLINE)
+            ->willReturn($markup);
+
+        $this->iconFactory->method('getIcon')
+            ->willReturn($icon);
     }
 
     /**
@@ -111,16 +117,5 @@ class SvgIconViewHelperTest extends UnitTestCase
         $this->subject->setRenderChildrenClosure(static fn() => null);
 
         return (string)$this->subject->render();
-    }
-
-    private function provideIcon(string $markup): void
-    {
-        $icon = $this->createMock(Icon::class);
-        $icon->method('getMarkup')
-            ->with(AbstractSvgIconProvider::MARKUP_IDENTIFIER_INLINE)
-            ->willReturn($markup);
-
-        $this->iconFactory->method('getIcon')
-            ->willReturn($icon);
     }
 }

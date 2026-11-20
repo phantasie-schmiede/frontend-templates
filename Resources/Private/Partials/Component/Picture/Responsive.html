@@ -12,6 +12,9 @@
         name="copyright"
         value="{file.properties.tx_frontendtemplates_copyright -> f:or(alternative: file.originalResource.properties.tx_frontendtemplates_copyright)}" />
     <f:variable
+        name="description"
+        value="{file.properties.description -> f:or(alternative: file.originalResource.properties.description)}" />
+    <f:variable
         name="figureClass"
         value="{figureClass -> f:or(alternative: 'position-relative')}" />
     <f:variable
@@ -52,8 +55,11 @@
             arguments="{_all}"
             section="Picture" />
 
-        <f:if condition="{copyright} || {aiStatusLabel}">
+        <f:if condition="{description} || {copyright} || {aiStatusLabel}">
             <figcaption class="picture-meta-caption">
+                <f:if condition="{description}">
+                    <span class="picture-description">{description}</span>
+                </f:if>
                 <small class="{metaClass}">
                     <f:if condition="{copyright}">© {copyright}</f:if>
                     <f:if condition="{copyright} && {aiStatusLabel}">

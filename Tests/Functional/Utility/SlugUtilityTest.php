@@ -18,11 +18,6 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-/**
- * Class SlugUtilityTest
- *
- * @package PSBits\FrontendTemplates\Tests\Functional\Utility
- */
 class SlugUtilityTest extends FunctionalTestCase
 {
     protected array $testExtensionsToLoad = [
@@ -38,32 +33,32 @@ class SlugUtilityTest extends FunctionalTestCase
      * @throws Exception
      */
     #[Test]
-    public function aSlugIsGeneratedForAnExistingPage(): void
+    public function aMissingPageYieldsFalse(): void
     {
-        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getConnectionForTable('pages');
-        $connection->insert('pages', [
-            'uid'   => 1,
-            'pid'   => 0,
-            'title' => 'Root Page',
-            'slug'  => '',
-        ]);
-        $connection->insert('pages', [
-            'uid'   => 2,
-            'pid'   => 1,
-            'title' => 'My Test Page',
-            'slug'  => '',
-        ]);
-
-        self::assertSame('/my-test-page', SlugUtility::generateUniqueSlug(2, 'pages'));
+        self::assertFalse(SlugUtility::generateUniqueSlug(999, 'pages'));
     }
 
     /**
      * @throws Exception
      */
     #[Test]
-    public function aMissingPageYieldsFalse(): void
+    public function aSlugIsGeneratedForAnExistingPage(): void
     {
-        self::assertFalse(SlugUtility::generateUniqueSlug(999, 'pages'));
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getConnectionForTable('pages');
+        $connection->insert('pages', [
+            'pid'   => 0,
+            'slug'  => '',
+            'title' => 'Root Page',
+            'uid'   => 1,
+        ]);
+        $connection->insert('pages', [
+            'pid'   => 1,
+            'slug'  => '',
+            'title' => 'My Test Page',
+            'uid'   => 2,
+        ]);
+
+        self::assertSame('/my-test-page', SlugUtility::generateUniqueSlug(2, 'pages'));
     }
 }

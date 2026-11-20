@@ -17,11 +17,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Class CurrentPageProviderTest
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\Service\GlobalVariableProviders
- */
 class CurrentPageProviderTest extends UnitTestCase
 {
     protected function tearDown(): void
@@ -34,7 +29,7 @@ class CurrentPageProviderTest extends UnitTestCase
     #[Test]
     public function theCurrentPageRecordIsReturned(): void
     {
-        $pageRecord = ['uid' => 42, 'title' => 'Test page'];
+        $pageRecord = ['title' => 'Test page', 'uid' => 42];
 
         $pageInformation = new PageInformation();
         $pageInformation->setPageRecord($pageRecord);

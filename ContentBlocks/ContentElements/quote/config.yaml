@@ -1,0 +1,17 @@
+name: psbits/quote
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: header_layout
+    useExistingField: true
+  - identifier: quote_text
+    type: Textarea
+    required: true
+  - identifier: quote_author
+    type: Text
+  - identifier: quote_source
+    type: Text
+group: content_blocks
+labelField: quote_text
+prefixType: vendor
+vendorPrefix: tx_frontendtemplates

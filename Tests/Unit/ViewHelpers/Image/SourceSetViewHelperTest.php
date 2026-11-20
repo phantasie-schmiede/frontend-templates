@@ -18,6 +18,8 @@ use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\ProcessedFile;
 use TYPO3\CMS\Extbase\Service\ImageService;
 
+use function json_encode;
+
 class SourceSetViewHelperTest extends TestCase
 {
     #[Test]
@@ -26,7 +28,7 @@ class SourceSetViewHelperTest extends TestCase
         $file = $this->createMock(File::class);
         $file->method('hasProperty')->willReturn(true);
         $file->method('getProperty')->willReturnMap([
-            ['crop', json_encode(['mobile' => ['cropArea' => ['x' => 0, 'y' => 0, 'width' => 0.5, 'height' => 1]]])],
+            ['crop', json_encode(['mobile' => ['cropArea' => ['height' => 1, 'width' => 0.5, 'x' => 0, 'y' => 0]]])],
             ['width', 800],
             ['height', 600],
         ]);

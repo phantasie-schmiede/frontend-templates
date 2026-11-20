@@ -17,15 +17,10 @@ use PSBits\FrontendTemplates\ViewHelpers\Format\ReduceWhitespaceViewHelper;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Class ReduceWhitespaceViewHelperTest
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\ViewHelpers\Format
- */
 class ReduceWhitespaceViewHelperTest extends UnitTestCase
 {
-    private ReduceWhitespaceViewHelper    $subject;
-    private RenderingContext&MockObject   $renderingContext;
+    private RenderingContext&MockObject $renderingContext;
+    private ReduceWhitespaceViewHelper  $subject;
 
     protected function setUp(): void
     {
@@ -35,6 +30,12 @@ class ReduceWhitespaceViewHelperTest extends UnitTestCase
         $this->renderingContext = $this->createMock(RenderingContext::class);
         $this->subject->setRenderingContext($this->renderingContext);
         $this->subject->initializeArguments();
+    }
+
+    #[Test]
+    public function indentationAroundLinebreaksIsRemoved(): void
+    {
+        self::assertSame("indented\ntext", $this->render(['value' => "  indented\n    text  "]));
     }
 
     #[Test]
@@ -50,9 +51,9 @@ class ReduceWhitespaceViewHelperTest extends UnitTestCase
     }
 
     #[Test]
-    public function indentationAroundLinebreaksIsRemoved(): void
+    public function withoutAValueTheChildContentIsUsed(): void
     {
-        self::assertSame("indented\ntext", $this->render(['value' => "  indented\n    text  "]));
+        self::assertSame("child\ncontent", $this->render([], "child\ncontent"));
     }
 
     #[Test]
@@ -60,14 +61,8 @@ class ReduceWhitespaceViewHelperTest extends UnitTestCase
     {
         self::assertSame(
             'one two three',
-            $this->render(['value' => "one\r\ntwo\n\nthree", 'replaceLinebreaks' => true])
+            $this->render(['replaceLinebreaks' => true, 'value' => "one\r\ntwo\n\nthree"])
         );
-    }
-
-    #[Test]
-    public function withoutAValueTheChildContentIsUsed(): void
-    {
-        self::assertSame("child\ncontent", $this->render([], "child\ncontent"));
     }
 
     /**
@@ -75,9 +70,11 @@ class ReduceWhitespaceViewHelperTest extends UnitTestCase
      */
     private function render(array $arguments, string $children = ''): mixed
     {
-        // prepareArguments() returns ArgumentDefinition objects, not values, so the defaults have
-        // to be unwrapped the way ViewHelperNode::evaluate() does before render() is called.
-        // Without them every optional argument would be an undefined array key inside render().
+        /*
+         * prepareArguments() returns ArgumentDefinition objects, not values, so the defaults have
+         * to be unwrapped the way ViewHelperNode::evaluate() does before render() is called.
+         * Without them every optional argument would be an undefined array key inside render().
+         */
         $defaults = [];
 
         foreach ($this->subject->prepareArguments() as $name => $definition) {

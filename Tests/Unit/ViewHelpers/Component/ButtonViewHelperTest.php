@@ -22,31 +22,27 @@ use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
- * Class ButtonViewHelperTest
- *
  * The standalone view is stubbed, so the tests lock in the attribute, class and data-attribute processing and the
  * view assignment. The real template rendering is covered by the functional ViewServiceTest.
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\ViewHelpers\Component
  */
 class ButtonViewHelperTest extends UnitTestCase
 {
-    private ButtonViewHelper              $subject;
-    private ViewService&MockObject        $viewService;
-    private ViewInterface&MockObject      $view;
-    private array                         $assignedViewValues = [];
+    private array                    $assignedViewValues = [];
+    private ButtonViewHelper         $subject;
+    private ViewInterface&MockObject $view;
+    private ViewService&MockObject   $viewService;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->viewService  = $this->createMock(ViewService::class);
-        $this->view         = $this->createMock(ViewInterface::class);
+        $this->viewService = $this->createMock(ViewService::class);
+        $this->view        = $this->createMock(ViewInterface::class);
         $this->viewService->method('createStandaloneView')
             ->willReturn($this->view);
 
         $this->view->method('assignMultiple')
-            ->willReturnCallback(function (array $values): ViewInterface {
+            ->willReturnCallback(function(array $values): ViewInterface {
                 $this->assignedViewValues = $values;
 
                 return $this->view;
@@ -82,38 +78,6 @@ class ButtonViewHelperTest extends UnitTestCase
     }
 
     #[Test]
-    public function anHrefRendersALinkWithTheHrefAttribute(): void
-    {
-        $this->render(['href' => 'https://example.com']);
-
-        self::assertSame('a', $this->assignedViewValues['tag']);
-        self::assertSame(['href' => 'https://example.com'], $this->assignedViewValues['additionalAttributes']);
-    }
-
-    #[Test]
-    public function anExternalLinkGetsTargetAndRelAttributes(): void
-    {
-        $this->render(['href' => 'https://example.com', 'externalLink' => true]);
-
-        $attributes = $this->assignedViewValues['additionalAttributes'];
-
-        self::assertSame('https://example.com', $attributes['href']);
-        self::assertSame('noopener noreferrer', $attributes['rel']);
-        self::assertSame('_blank', $attributes['target']);
-    }
-
-    #[Test]
-    public function explicitRelAndTargetAttributesAreUsedForLinks(): void
-    {
-        $this->render(['href' => 'https://example.com', 'rel' => 'nofollow', 'target' => 'self']);
-
-        $attributes = $this->assignedViewValues['additionalAttributes'];
-
-        self::assertSame('nofollow', $attributes['rel']);
-        self::assertSame('self', $attributes['target']);
-    }
-
-    #[Test]
     public function additionalClassesAreMergedDeduplicatedAndSorted(): void
     {
         $this->render(['additionalClasses' => 'custom btn']);
@@ -130,19 +94,9 @@ class ButtonViewHelperTest extends UnitTestCase
     }
 
     #[Test]
-    public function theSpinnerTextIsPassedAsDataAttributes(): void
-    {
-        $this->render(['spinnerText' => 'Saving']);
-
-        self::assertTrue($this->assignedViewValues['showSpinner']);
-        self::assertSame('', $this->assignedViewValues['data']['psbits-spinner-phase-out']);
-        self::assertSame('Saving', $this->assignedViewValues['data']['psbits-spinner-text']);
-    }
-
-    #[Test]
     public function aHiddenSpinnerTextOnlyGetsThePhaseOutAttributeWithAnIcon(): void
     {
-        $this->render(['spinnerTextHidden' => 'Saving', 'iconIdentifier' => 'actions-save']);
+        $this->render(['iconIdentifier' => 'actions-save', 'spinnerTextHidden' => 'Saving']);
 
         self::assertTrue($this->assignedViewValues['showSpinner']);
         self::assertSame('Saving', $this->assignedViewValues['data']['psbits-spinner-text-hidden']);
@@ -159,12 +113,54 @@ class ButtonViewHelperTest extends UnitTestCase
     }
 
     #[Test]
+    public function anExternalLinkGetsTargetAndRelAttributes(): void
+    {
+        $this->render(['externalLink' => true, 'href' => 'https://example.com']);
+
+        $attributes = $this->assignedViewValues['additionalAttributes'];
+
+        self::assertSame('https://example.com', $attributes['href']);
+        self::assertSame('noopener noreferrer', $attributes['rel']);
+        self::assertSame('_blank', $attributes['target']);
+    }
+
+    #[Test]
+    public function anHrefRendersALinkWithTheHrefAttribute(): void
+    {
+        $this->render(['href' => 'https://example.com']);
+
+        self::assertSame('a', $this->assignedViewValues['tag']);
+        self::assertSame(['href' => 'https://example.com'], $this->assignedViewValues['additionalAttributes']);
+    }
+
+    #[Test]
+    public function explicitRelAndTargetAttributesAreUsedForLinks(): void
+    {
+        $this->render(['href' => 'https://example.com', 'rel' => 'nofollow', 'target' => 'self']);
+
+        $attributes = $this->assignedViewValues['additionalAttributes'];
+
+        self::assertSame('nofollow', $attributes['rel']);
+        self::assertSame('self', $attributes['target']);
+    }
+
+    #[Test]
     public function labelAndIconArePassedToTheTemplate(): void
     {
-        $this->render(['label' => 'Save', 'iconIdentifier' => 'actions-save']);
+        $this->render(['iconIdentifier' => 'actions-save', 'label' => 'Save']);
 
         self::assertSame('Save', $this->assignedViewValues['label']);
         self::assertSame('actions-save', $this->assignedViewValues['iconIdentifier']);
+    }
+
+    #[Test]
+    public function theSpinnerTextIsPassedAsDataAttributes(): void
+    {
+        $this->render(['spinnerText' => 'Saving']);
+
+        self::assertTrue($this->assignedViewValues['showSpinner']);
+        self::assertSame('', $this->assignedViewValues['data']['psbits-spinner-phase-out']);
+        self::assertSame('Saving', $this->assignedViewValues['data']['psbits-spinner-text']);
     }
 
     /**

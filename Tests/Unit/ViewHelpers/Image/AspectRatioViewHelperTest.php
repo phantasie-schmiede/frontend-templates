@@ -21,15 +21,6 @@ use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 class AspectRatioViewHelperTest extends TestCase
 {
     #[Test]
-    public function rawFileDimensionsAreUsedWithoutImageProcessing(): void
-    {
-        $file = $this->createMock(File::class);
-        $file->method('getProperty')->willReturnMap([['width', 1920], ['height', 1080]]);
-
-        self::assertEqualsWithDelta(16 / 9, $this->render(['file' => $file]), 0.00001);
-    }
-
-    #[Test]
     public function cropGeometryAndExtbaseReferencesAreSupported(): void
     {
         $file = $this->createMock(CoreFileReference::class);
@@ -38,9 +29,9 @@ class AspectRatioViewHelperTest extends TestCase
         $reference->method('getOriginalResource')->willReturn($file);
 
         self::assertSame(1.0, $this->render([
-            'crop' => ['mobile' => ['cropArea' => ['x' => 0, 'y' => 0, 'width' => 0.5, 'height' => 1]]],
+            'crop'        => ['mobile' => ['cropArea' => ['height' => 1, 'width' => 0.5, 'x' => 0, 'y' => 0]]],
             'cropVariant' => 'mobile',
-            'file' => $reference,
+            'file'        => $reference,
         ]));
     }
 
@@ -51,6 +42,15 @@ class AspectRatioViewHelperTest extends TestCase
         $file = $this->createMock(File::class);
         $file->method('getProperty')->willReturn(0);
         self::assertSame(1.5, $this->render(['fallback' => 1.5, 'file' => $file]));
+    }
+
+    #[Test]
+    public function rawFileDimensionsAreUsedWithoutImageProcessing(): void
+    {
+        $file = $this->createMock(File::class);
+        $file->method('getProperty')->willReturnMap([['width', 1920], ['height', 1080]]);
+
+        self::assertEqualsWithDelta(16 / 9, $this->render(['file' => $file]), 0.00001);
     }
 
     private function render(array $arguments): float

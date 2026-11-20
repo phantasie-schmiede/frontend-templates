@@ -14,11 +14,7 @@ namespace PSBits\FrontendTemplates\Tests\Unit\Fixtures;
 use PSBits\FrontendTemplates\Event\AbstractAdditionalContentEvent;
 
 /**
- * Class AdditionalContentEventFixture
- *
  * Concrete additional content event for the AdditionalContentViewHelper tests.
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\Fixtures
  */
 class AdditionalContentEventFixture extends AbstractAdditionalContentEvent
 {

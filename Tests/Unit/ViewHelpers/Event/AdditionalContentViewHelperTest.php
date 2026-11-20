@@ -24,19 +24,15 @@ use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
- * Class AdditionalContentViewHelperTest
- *
  * The event dispatcher is stubbed, so the tests lock in the event validation and wiring. The dispatch against a real
  * PSR-14 dispatcher is covered by the functional test.
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\ViewHelpers\Event
  */
 class AdditionalContentViewHelperTest extends UnitTestCase
 {
-    private AdditionalContentViewHelper           $subject;
-    private RenderingContext&MockObject           $renderingContext;
-    private EventDispatcher&MockObject            $eventDispatcher;
-    private ?AdditionalContentEventInterface      $dispatchedEvent = null;
+    private ?AdditionalContentEventInterface $dispatchedEvent = null;
+    private EventDispatcher&MockObject       $eventDispatcher;
+    private RenderingContext&MockObject      $renderingContext;
+    private AdditionalContentViewHelper      $subject;
 
     protected function setUp(): void
     {
@@ -44,7 +40,7 @@ class AdditionalContentViewHelperTest extends UnitTestCase
 
         $this->eventDispatcher = $this->createMock(EventDispatcher::class);
         $this->eventDispatcher->method('dispatch')
-            ->willReturnCallback(function (object $event) {
+            ->willReturnCallback(function(object $event) {
                 $this->dispatchedEvent = $event;
                 $event->addContent('<p>Additional content</p>');
 
@@ -58,15 +54,6 @@ class AdditionalContentViewHelperTest extends UnitTestCase
     }
 
     #[Test]
-    public function aMissingEventClassIsReported(): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionCode(1721043807);
-
-        $this->render(['eventClass' => 'PSBits\\FrontendTemplates\\DoesNotExist']);
-    }
-
-    #[Test]
     public function aClassWithoutTheEventInterfaceIsReported(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -76,13 +63,12 @@ class AdditionalContentViewHelperTest extends UnitTestCase
     }
 
     #[Test]
-    public function theDispatchedEventProvidesTheContent(): void
+    public function aMissingEventClassIsReported(): void
     {
-        self::assertSame(
-            '<p>Additional content</p>',
-            $this->render(['eventClass' => AdditionalContentEventFixture::class])
-        );
-        self::assertInstanceOf(AdditionalContentEventFixture::class, $this->dispatchedEvent);
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionCode(1721043807);
+
+        $this->render(['eventClass' => 'PSBits\\FrontendTemplates\\DoesNotExist']);
     }
 
     #[Test]
@@ -103,6 +89,16 @@ class AdditionalContentViewHelperTest extends UnitTestCase
 
         self::assertSame(['key' => 'value'], $this->dispatchedEvent->getParameters());
         self::assertSame($request, $this->dispatchedEvent->getRequest());
+    }
+
+    #[Test]
+    public function theDispatchedEventProvidesTheContent(): void
+    {
+        self::assertSame(
+            '<p>Additional content</p>',
+            $this->render(['eventClass' => AdditionalContentEventFixture::class])
+        );
+        self::assertInstanceOf(AdditionalContentEventFixture::class, $this->dispatchedEvent);
     }
 
     #[Test]

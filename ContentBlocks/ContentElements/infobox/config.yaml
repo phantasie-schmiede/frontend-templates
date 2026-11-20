@@ -1,0 +1,37 @@
+name: psbits/infobox
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: header_layout
+    useExistingField: true
+  - identifier: bodytext
+    enableRichtext: true
+    useExistingField: true
+  - identifier: info_variant
+    default: information
+    renderType: selectSingle
+    type: Select
+    items:
+      - label: Information
+        value: information
+      - label: Important notice
+        value: notice
+  - identifier: facts
+    type: Collection
+    labelField: label
+    maxitems: 12
+    fields:
+      - identifier: label
+        type: Text
+        required: true
+      - identifier: value
+        type: Textarea
+        required: true
+  - identifier: header_link
+    useExistingField: true
+  - identifier: link_label
+    type: Text
+group: content_blocks
+labelField: header
+prefixType: vendor
+vendorPrefix: tx_frontendtemplates

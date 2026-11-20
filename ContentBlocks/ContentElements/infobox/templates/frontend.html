@@ -1,0 +1,41 @@
+<html
+    data-namespace-typo3-fluid="true"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:viewHelpers="http://typo3.org/ns/PSBits/ViewHelpers/ViewHelpers">
+    <aside class="infobox infobox--{data.info_variant} rounded p-3 p-md-4">
+        <f:if condition="{data.header} && 100 != {data.header_layout}">
+            <viewHelpers:tag
+                class="h4 mb-3"
+                tag="h{viewHelpers:fallback(values: '{0: data.header_layout, 1: 2}')}">
+                {data.header}
+            </viewHelpers:tag>
+        </f:if>
+
+        <f:if condition="{data.bodytext}">
+            <div class="infobox__intro">
+                <f:format.html>{data.bodytext}</f:format.html>
+            </div>
+        </f:if>
+
+        <f:if condition="{data.facts}">
+            <dl class="infobox__facts mb-0">
+                <f:for
+                    as="fact"
+                    each="{data.facts}">
+                    <div>
+                        <dt>{fact.label}</dt>
+                        <dd><f:format.nl2br>{fact.value}</f:format.nl2br></dd>
+                    </div>
+                </f:for>
+            </dl>
+        </f:if>
+
+        <f:if condition="{data.header_link} && {data.link_label}">
+            <f:link.typolink
+                class="btn btn-primary mt-3"
+                parameter="{data.header_link}">
+                {data.link_label}
+            </f:link.typolink>
+        </f:if>
+    </aside>
+</html>

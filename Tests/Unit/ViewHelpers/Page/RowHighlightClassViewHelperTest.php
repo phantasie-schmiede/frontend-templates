@@ -17,15 +17,10 @@ use PSBits\FrontendTemplates\ViewHelpers\Page\RowHighlightClassViewHelper;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContext;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Class RowHighlightClassViewHelperTest
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\ViewHelpers\Page
- */
 class RowHighlightClassViewHelperTest extends UnitTestCase
 {
-    private RowHighlightClassViewHelper   $subject;
-    private RenderingContext&MockObject   $renderingContext;
+    private RenderingContext&MockObject $renderingContext;
+    private RowHighlightClassViewHelper $subject;
 
     protected function setUp(): void
     {
@@ -42,15 +37,15 @@ class RowHighlightClassViewHelperTest extends UnitTestCase
     {
         self::assertSame(
             'page-row-highlight-emphasis',
-            $this->render(['row' => 1, 'currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'emphasis']])
+            $this->render(['currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'emphasis'], 'row' => 1])
         );
         self::assertSame(
             'page-row-highlight-subtle',
-            $this->render(['row' => 2, 'currentPage' => ['tx_frontendtemplates_row_highlight_2' => 'subtle']])
+            $this->render(['currentPage' => ['tx_frontendtemplates_row_highlight_2' => 'subtle'], 'row' => 2])
         );
         self::assertSame(
             'page-row-highlight-emphasis',
-            $this->render(['row' => 3, 'currentPage' => ['tx_frontendtemplates_row_highlight_3' => 'emphasis']])
+            $this->render(['currentPage' => ['tx_frontendtemplates_row_highlight_3' => 'emphasis'], 'row' => 3])
         );
     }
 
@@ -60,11 +55,11 @@ class RowHighlightClassViewHelperTest extends UnitTestCase
         self::assertSame('', $this->render(['row' => 1]));
         self::assertSame(
             '',
-            $this->render(['row' => 1, 'currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'none']])
+            $this->render(['currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'none'], 'row' => 1])
         );
         self::assertSame(
             '',
-            $this->render(['row' => 1, 'currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'glow']])
+            $this->render(['currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'glow'], 'row' => 1])
         );
     }
 
@@ -73,11 +68,11 @@ class RowHighlightClassViewHelperTest extends UnitTestCase
     {
         self::assertSame(
             '',
-            $this->render(['row' => 0, 'currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'emphasis']])
+            $this->render(['currentPage' => ['tx_frontendtemplates_row_highlight_1' => 'emphasis'], 'row' => 0])
         );
         self::assertSame(
             '',
-            $this->render(['row' => 4, 'currentPage' => ['tx_frontendtemplates_row_highlight_4' => 'emphasis']])
+            $this->render(['currentPage' => ['tx_frontendtemplates_row_highlight_4' => 'emphasis'], 'row' => 4])
         );
     }
 

@@ -13,12 +13,12 @@ namespace PSBits\FrontendTemplates\Tests\Functional\Service;
 
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
+use PSBits\Foundation\Service\TypoScriptProviderService;
 use PSBits\FrontendTemplates\Data\ExtensionInformation;
 use PSBits\FrontendTemplates\Service\ViewService;
-use PSBits\Qa\Testing\Fixtures\FrontendRequestFactory;
 use PSBits\FrontendTemplates\ViewHelpers\Component\ButtonViewHelper;
 use PSBits\FrontendTemplates\ViewHelpers\Component\ProgressBarViewHelper;
-use PSBits\Foundation\Service\TypoScriptProviderService;
+use PSBits\Qa\Testing\Fixtures\FrontendRequestFactory;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -26,16 +26,14 @@ use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Fluid\Core\Rendering\RenderingContextFactory;
-use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
+use function method_exists;
 
 /**
- * Class ViewServiceTest
- *
  * Renders the component view helpers through the real view service, view factory and templates, so the template
  * wiring (namespaces, partials, view settings) runs for real.
- *
- * @package PSBits\FrontendTemplates\Tests\Functional\Service
  */
 #[IgnoreDeprecations]
 class ViewServiceTest extends FunctionalTestCase
@@ -69,19 +67,27 @@ class ViewServiceTest extends FunctionalTestCase
      * @throws NotFoundExceptionInterface
      */
     #[Test]
-    public function theProgressBarIsRenderedFromItsTemplate(): void
+    public function theButtonIsRenderedAsAnExternalLink(): void
     {
-        $viewHelper = new ProgressBarViewHelper(
+        $viewHelper = new ButtonViewHelper(
             GeneralUtility::makeInstance(ExtensionInformation::class),
             $this->createViewService(),
         );
 
-        $output = $this->renderViewHelper($viewHelper, ['value' => 50]);
+        $output = $this->renderViewHelper(
+            $viewHelper,
+            [
+                'externalLink' => true,
+                'href'         => 'https://github.com',
+                'label'        => 'GitHub',
+            ]
+        );
 
-        self::assertStringContainsString('class="progress-bar bg-warning progress-bar-striped"', $output);
-        self::assertStringContainsString('style="width: 50%"', $output);
-        self::assertStringContainsString('aria-valuemax="100"', $output);
-        self::assertStringContainsString('aria-valuenow="50"', $output);
+        self::assertStringContainsString('<a', $output);
+        self::assertStringContainsString('href="https://github.com"', $output);
+        self::assertStringContainsString('rel="noopener noreferrer"', $output);
+        self::assertStringContainsString('target="_blank"', $output);
+        self::assertStringContainsString('GitHub', $output);
     }
 
     /**
@@ -109,32 +115,46 @@ class ViewServiceTest extends FunctionalTestCase
      * @throws NotFoundExceptionInterface
      */
     #[Test]
-    public function theButtonIsRenderedAsAnExternalLink(): void
+    public function theProgressBarIsRenderedFromItsTemplate(): void
     {
-        $viewHelper = new ButtonViewHelper(
+        $viewHelper = new ProgressBarViewHelper(
             GeneralUtility::makeInstance(ExtensionInformation::class),
             $this->createViewService(),
         );
 
-        $output = $this->renderViewHelper(
-            $viewHelper,
-            [
-                'label'        => 'GitHub',
-                'href'         => 'https://github.com',
-                'externalLink' => true,
-            ]
-        );
+        $output = $this->renderViewHelper($viewHelper, ['value' => 50]);
 
-        self::assertStringContainsString('<a', $output);
-        self::assertStringContainsString('href="https://github.com"', $output);
-        self::assertStringContainsString('rel="noopener noreferrer"', $output);
-        self::assertStringContainsString('target="_blank"', $output);
-        self::assertStringContainsString('GitHub', $output);
+        self::assertStringContainsString('class="progress-bar bg-warning progress-bar-striped"', $output);
+        self::assertStringContainsString('style="width: 50%"', $output);
+        self::assertStringContainsString('aria-valuemax="100"', $output);
+        self::assertStringContainsString('aria-valuenow="50"', $output);
+    }
+
+    private function bootstrapRequest(): void
+    {
+        $this->request = FrontendRequestFactory::createFrontendRequest('tx_frontendtemplates');
+
+        $GLOBALS['TYPO3_REQUEST'] = $this->request;
+    }
+
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    private function createViewService(): ViewService
+    {
+        /*
+         * The view service is a private container service that gets inlined when the container is compiled, so it
+         * cannot be retrieved by id; its two dependencies are public and can be instantiated directly.
+         */
+        return new ViewService(
+            GeneralUtility::makeInstance(TypoScriptProviderService::class),
+            GeneralUtility::makeInstance(ViewFactoryInterface::class),
+        );
     }
 
     /**
      * @param array<string, mixed> $arguments
-     *
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
@@ -166,28 +186,5 @@ class ViewServiceTest extends FunctionalTestCase
         $viewHelper->setRenderChildrenClosure(static fn() => null);
 
         return (string)$viewHelper->render();
-    }
-
-    /**
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     */
-    private function createViewService(): ViewService
-    {
-        /*
-         * The view service is a private container service that gets inlined when the container is compiled, so it
-         * cannot be retrieved by id; its two dependencies are public and can be instantiated directly.
-         */
-        return new ViewService(
-            GeneralUtility::makeInstance(TypoScriptProviderService::class),
-            GeneralUtility::makeInstance(ViewFactoryInterface::class),
-        );
-    }
-
-    private function bootstrapRequest(): void
-    {
-        $this->request = FrontendRequestFactory::createFrontendRequest('tx_frontendtemplates');
-
-        $GLOBALS['TYPO3_REQUEST'] = $this->request;
     }
 }

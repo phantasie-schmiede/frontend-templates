@@ -25,21 +25,16 @@ use TYPO3\CMS\Core\Routing\RouterInterface;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Class MenuDropdownRedirectMiddlewareTest
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\Middleware
- */
 class MenuDropdownRedirectMiddlewareTest extends UnitTestCase
 {
-    private MenuDropdownRedirectMiddleware        $subject;
-    private PageRepository&MockObject             $pageRepository;
-    private ServerRequestInterface&MockObject     $request;
-    private RequestHandlerInterface&MockObject    $handler;
-    private Response                              $response;
+    private RequestHandlerInterface&MockObject $handler;
+    private PageRepository&MockObject          $pageRepository;
+    private ServerRequestInterface&MockObject  $request;
 
     /** @var array<string, mixed> */
-    private array                                 $requestAttributes = [];
+    private array                          $requestAttributes = [];
+    private Response                       $response;
+    private MenuDropdownRedirectMiddleware $subject;
 
     protected function setUp(): void
     {
@@ -54,34 +49,33 @@ class MenuDropdownRedirectMiddlewareTest extends UnitTestCase
         $this->handler->method('handle')
             ->willReturn($this->response);
         $this->request->method('getAttribute')
-            ->willReturnCallback(function (string $name, mixed $default = null) {
+            ->willReturnCallback(function(string $name, mixed $default = null) {
                 return $this->requestAttributes[$name] ?? $default;
             });
     }
 
     #[Test]
-    public function requestsWithoutRoutingAttributesArePassedThrough(): void
-    {
-        self::assertSame($this->response, $this->subject->process($this->request, $this->handler));
-    }
-
-    #[Test]
-    public function regularPagesArePassedThrough(): void
-    {
-        $this->provideRoutingPage(['doktype' => 1, 'uid' => 1]);
-
-        self::assertSame($this->response, $this->subject->process($this->request, $this->handler));
-    }
-
-    #[Test]
-    public function menuDropdownPagesWithoutSubPagesArePassedThrough(): void
+    public function menuDropdownPagesRedirectToTheirFirstSubPage(): void
     {
         $this->provideRoutingPage(['doktype' => 100, 'uid' => 1]);
         $this->pageRepository->method('getMenu')
             ->with(1, 'uid')
-            ->willReturn([]);
+            ->willReturn([['uid' => 42], ['uid' => 43]]);
 
-        self::assertSame($this->response, $this->subject->process($this->request, $this->handler));
+        $router = $this->createMock(RouterInterface::class);
+        $router->method('generateUri')
+            ->with(42)
+            ->willReturn(new Uri('https://example.com/sub-page'));
+
+        $site = $this->createMock(Site::class);
+        $site->method('getRouter')
+            ->willReturn($router);
+        $this->requestAttributes['site'] = $site;
+
+        $response = $this->subject->process($this->request, $this->handler);
+
+        self::assertInstanceOf(RedirectResponse::class, $response);
+        self::assertSame('https://example.com/sub-page', $response->getHeaderLine('Location'));
     }
 
     #[Test]
@@ -107,27 +101,28 @@ class MenuDropdownRedirectMiddlewareTest extends UnitTestCase
     }
 
     #[Test]
-    public function menuDropdownPagesRedirectToTheirFirstSubPage(): void
+    public function menuDropdownPagesWithoutSubPagesArePassedThrough(): void
     {
         $this->provideRoutingPage(['doktype' => 100, 'uid' => 1]);
         $this->pageRepository->method('getMenu')
             ->with(1, 'uid')
-            ->willReturn([['uid' => 42], ['uid' => 43]]);
+            ->willReturn([]);
 
-        $router = $this->createMock(RouterInterface::class);
-        $router->method('generateUri')
-            ->with(42)
-            ->willReturn(new Uri('https://example.com/sub-page'));
+        self::assertSame($this->response, $this->subject->process($this->request, $this->handler));
+    }
 
-        $site = $this->createMock(Site::class);
-        $site->method('getRouter')
-            ->willReturn($router);
-        $this->requestAttributes['site'] = $site;
+    #[Test]
+    public function regularPagesArePassedThrough(): void
+    {
+        $this->provideRoutingPage(['doktype' => 1, 'uid' => 1]);
 
-        $response = $this->subject->process($this->request, $this->handler);
+        self::assertSame($this->response, $this->subject->process($this->request, $this->handler));
+    }
 
-        self::assertInstanceOf(RedirectResponse::class, $response);
-        self::assertSame('https://example.com/sub-page', $response->getHeaderLine('Location'));
+    #[Test]
+    public function requestsWithoutRoutingAttributesArePassedThrough(): void
+    {
+        self::assertSame($this->response, $this->subject->process($this->request, $this->handler));
     }
 
     /**

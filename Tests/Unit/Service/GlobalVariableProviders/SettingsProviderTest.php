@@ -22,11 +22,6 @@ use RuntimeException;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Class SettingsProviderTest
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\Service\GlobalVariableProviders
- */
 class SettingsProviderTest extends UnitTestCase
 {
     protected function setUp(): void
@@ -35,7 +30,7 @@ class SettingsProviderTest extends UnitTestCase
 
         // The registered sources are static state, so every test starts clean.
         $this->resetSources();
-        SettingSourceFixture::$results   = [];
+        SettingSourceFixture::$results     = [];
         SettingSourceFixture::$queriedPids = [];
     }
 
@@ -45,35 +40,6 @@ class SettingsProviderTest extends UnitTestCase
         unset($GLOBALS['TYPO3_REQUEST']);
 
         parent::tearDown();
-    }
-
-    #[Test]
-    public function aSourceWithoutTheInterfaceIsRejected(): void
-    {
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionCode(1773992928);
-
-        SettingsProvider::registerSource(stdClass::class);
-    }
-
-    #[Test]
-    public function aDuplicateSourceIsRejected(): void
-    {
-        SettingsProvider::registerSource(SettingSourceFixture::class);
-
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionCode(1773992985);
-
-        SettingsProvider::registerSource(SettingSourceFixture::class, 'buttons');
-    }
-
-    #[Test]
-    public function reRegisteringTheSameSourceIsIgnored(): void
-    {
-        SettingsProvider::registerSource(SettingSourceFixture::class, 'fixtures');
-        SettingsProvider::registerSource(SettingSourceFixture::class, 'fixtures');
-
-        self::assertSame(['fixtures' => SettingSourceFixture::class], $this->getSources());
     }
 
     #[Test]
@@ -88,6 +54,35 @@ class SettingsProviderTest extends UnitTestCase
     }
 
     #[Test]
+    public function aDuplicateSourceIsRejected(): void
+    {
+        SettingsProvider::registerSource(SettingSourceFixture::class);
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionCode(1773992985);
+
+        SettingsProvider::registerSource(SettingSourceFixture::class, 'buttons');
+    }
+
+    #[Test]
+    public function aSourceWithoutTheInterfaceIsRejected(): void
+    {
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionCode(1773992928);
+
+        SettingsProvider::registerSource(stdClass::class);
+    }
+
+    #[Test]
+    public function reRegisteringTheSameSourceIsIgnored(): void
+    {
+        SettingsProvider::registerSource(SettingSourceFixture::class, 'fixtures');
+        SettingsProvider::registerSource(SettingSourceFixture::class, 'fixtures');
+
+        self::assertSame(['fixtures' => SettingSourceFixture::class], $this->getSources());
+    }
+
+    #[Test]
     public function sourcesAreRegisteredUnderTheirClassOrIdentifier(): void
     {
         SettingsProvider::registerSource(SettingSourceFixture::class, 'fixtures');
@@ -95,25 +90,6 @@ class SettingsProviderTest extends UnitTestCase
 
         self::assertSame(SettingSourceFixture::class, $this->getSources()['fixtures']);
         self::assertSame(HeaderButtonRepository::class, $this->getSources()[HeaderButtonRepository::class]);
-    }
-
-    #[Test]
-    public function theSettingsOfTheRootlinePagesAreCollected(): void
-    {
-        SettingsProvider::registerSource(SettingSourceFixture::class, 'fixtures');
-        SettingSourceFixture::$results = [
-            2 => ['label' => 'Button'],
-        ];
-
-        $this->provideRequest([
-            ['uid' => 1, 'pid' => 0],
-            ['uid' => 2, 'pid' => 1],
-        ]);
-
-        $settings = (new SettingsProvider())->getGlobalVariables();
-
-        self::assertSame(['fixtures' => ['label' => 'Button']], $settings);
-        self::assertSame([2], SettingSourceFixture::$queriedPids);
     }
 
     #[Test]
@@ -125,8 +101,8 @@ class SettingsProviderTest extends UnitTestCase
         ];
 
         $this->provideRequest([
-            ['uid' => 1, 'pid' => 0],
-            ['uid' => 2, 'pid' => 1],
+            ['pid' => 0, 'uid' => 1],
+            ['pid' => 1, 'uid' => 2],
         ]);
 
         $settings = (new SettingsProvider())->getGlobalVariables();
@@ -136,17 +112,45 @@ class SettingsProviderTest extends UnitTestCase
     }
 
     #[Test]
+    public function theSettingsOfTheRootlinePagesAreCollected(): void
+    {
+        SettingsProvider::registerSource(SettingSourceFixture::class, 'fixtures');
+        SettingSourceFixture::$results = [
+            2 => ['label' => 'Button'],
+        ];
+
+        $this->provideRequest([
+            ['pid' => 0, 'uid' => 1],
+            ['pid' => 1, 'uid' => 2],
+        ]);
+
+        $settings = (new SettingsProvider())->getGlobalVariables();
+
+        self::assertSame(['fixtures' => ['label' => 'Button']], $settings);
+        self::assertSame([2], SettingSourceFixture::$queriedPids);
+    }
+
+    #[Test]
     public function withoutSettingsAnEmptyArrayIsReturned(): void
     {
         SettingsProvider::registerSource(SettingSourceFixture::class, 'fixtures');
 
         $this->provideRequest([
-            ['uid' => 1, 'pid' => 0],
-            ['uid' => 2, 'pid' => 1],
+            ['pid' => 0, 'uid' => 1],
+            ['pid' => 1, 'uid' => 2],
         ]);
 
         self::assertSame([], (new SettingsProvider())->getGlobalVariables());
         self::assertSame([2, 1], SettingSourceFixture::$queriedPids);
+    }
+
+    /**
+     * @return array<string, class-string<SettingSourceInterface>>
+     */
+    private function getSources(): array
+    {
+        return (new ReflectionProperty(SettingsProvider::class, 'sources'))
+            ->getValue(null);
     }
 
     /**
@@ -168,14 +172,5 @@ class SettingsProviderTest extends UnitTestCase
     {
         (new ReflectionProperty(SettingsProvider::class, 'sources'))
             ->setValue(null, []);
-    }
-
-    /**
-     * @return array<string, class-string<SettingSourceInterface>>
-     */
-    private function getSources(): array
-    {
-        return (new ReflectionProperty(SettingsProvider::class, 'sources'))
-            ->getValue(null);
     }
 }

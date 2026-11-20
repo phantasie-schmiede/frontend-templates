@@ -14,19 +14,15 @@ namespace PSBits\FrontendTemplates\Tests\Unit\Fixtures;
 use PSBits\FrontendTemplates\Service\GlobalVariableProviders\SettingSourceInterface;
 
 /**
- * Class SettingSourceFixture
- *
  * Setting source with static, test-controlled results for the SettingsProvider tests.
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\Fixtures
  */
 class SettingSourceFixture implements SettingSourceInterface
 {
-    /** @var array<int, mixed> */
-    public static array $results     = [];
-
     /** @var int[] */
     public static array $queriedPids = [];
+
+    /** @var array<int, mixed> */
+    public static array $results = [];
 
     public function findByPid(int $pid): mixed
     {

@@ -1,3 +1,9 @@
+lib.tx_news.contentElementRendering.conf.tt_content = COA
+lib.tx_news.contentElementRendering.conf.tt_content {
+  10 =< tt_content
+  wrap = <div class="news-detail-element">|</div>
+}
+
 plugin {
   tx_calendarize {
     settings {

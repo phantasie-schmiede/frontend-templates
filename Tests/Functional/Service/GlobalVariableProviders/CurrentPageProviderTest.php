@@ -18,11 +18,6 @@ use PSBits\Qa\Testing\Fixtures\FrontendRequestFactory;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-/**
- * Class CurrentPageProviderTest
- *
- * @package PSBits\FrontendTemplates\Tests\Functional\Service\GlobalVariableProviders
- */
 #[IgnoreDeprecations]
 class CurrentPageProviderTest extends FunctionalTestCase
 {
@@ -45,7 +40,7 @@ class CurrentPageProviderTest extends FunctionalTestCase
     #[Test]
     public function theCurrentPageRecordIsProvided(): void
     {
-        $pageRecord = ['uid' => 42, 'title' => 'Test page'];
+        $pageRecord = ['title' => 'Test page', 'uid' => 42];
 
         $pageInformation = new PageInformation();
         $pageInformation->setPageRecord($pageRecord);

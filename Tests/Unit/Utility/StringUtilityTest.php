@@ -16,11 +16,9 @@ use PSBits\FrontendTemplates\Utility\StringUtility;
 use PSBits\Qa\Testing\Support\LanguageStackSeeder;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-/**
- * Class StringUtilityTest
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\Utility
- */
+use function strrpos;
+use function substr;
+
 class StringUtilityTest extends UnitTestCase
 {
     use LanguageStackSeeder;
@@ -37,7 +35,7 @@ class StringUtilityTest extends UnitTestCase
          * language stack cannot load in unit tests. The seeder pre-seeds a language service factory that
          * serves them instead.
          */
-        $labels = static function (string $key): string {
+        $labels = static function(string $key): string {
             $position = strrpos($key, ':');
             $key      = false === $position ? $key : substr($key, $position + 1);
 
@@ -63,9 +61,9 @@ class StringUtilityTest extends UnitTestCase
     }
 
     #[Test]
-    public function twoItemsAreJoinedByTheConjunction(): void
+    public function fourItemsAreJoinedBySeparatorAndConjunction(): void
     {
-        self::assertSame('one and two', StringUtility::createEnumeration(['one', 'two']));
+        self::assertSame('one, two, three and four', StringUtility::createEnumeration(['one', 'two', 'three', 'four']));
     }
 
     #[Test]
@@ -75,8 +73,8 @@ class StringUtilityTest extends UnitTestCase
     }
 
     #[Test]
-    public function fourItemsAreJoinedBySeparatorAndConjunction(): void
+    public function twoItemsAreJoinedByTheConjunction(): void
     {
-        self::assertSame('one, two, three and four', StringUtility::createEnumeration(['one', 'two', 'three', 'four']));
+        self::assertSame('one and two', StringUtility::createEnumeration(['one', 'two']));
     }
 }

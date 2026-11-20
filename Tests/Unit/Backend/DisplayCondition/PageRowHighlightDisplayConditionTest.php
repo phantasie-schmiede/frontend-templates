@@ -16,12 +16,8 @@ use PSBits\FrontendTemplates\Backend\DisplayCondition\PageRowHighlightDisplayCon
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
- * Class PageRowHighlightDisplayConditionTest
- *
  * Only the record-based layout resolution is covered here; the rootline resolution reads page records from the
  * database and is therefore exercised by the functional tests.
- *
- * @package PSBits\FrontendTemplates\Tests\Unit\Backend\DisplayCondition
  */
 class PageRowHighlightDisplayConditionTest extends UnitTestCase
 {
@@ -32,6 +28,23 @@ class PageRowHighlightDisplayConditionTest extends UnitTestCase
         parent::setUp();
 
         $this->subject = new PageRowHighlightDisplayCondition();
+    }
+
+    #[Test]
+    public function aMissingRecordDefaultsToRowOne(): void
+    {
+        self::assertTrue($this->conditionMatches(1, []));
+        self::assertFalse($this->conditionMatches(2, []));
+    }
+
+    #[Test]
+    public function aTwoRowLayoutOnlyMatchesRowsOneAndTwo(): void
+    {
+        $parameters = ['record' => ['backend_layout' => ['pagets__oneColumnTwoColumns-1-1']]];
+
+        self::assertTrue($this->conditionMatches(1, $parameters));
+        self::assertTrue($this->conditionMatches(2, $parameters));
+        self::assertFalse($this->conditionMatches(3, $parameters));
     }
 
     #[Test]
@@ -55,16 +68,6 @@ class PageRowHighlightDisplayConditionTest extends UnitTestCase
     }
 
     #[Test]
-    public function aTwoRowLayoutOnlyMatchesRowsOneAndTwo(): void
-    {
-        $parameters = ['record' => ['backend_layout' => ['pagets__oneColumnTwoColumns-1-1']]];
-
-        self::assertTrue($this->conditionMatches(1, $parameters));
-        self::assertTrue($this->conditionMatches(2, $parameters));
-        self::assertFalse($this->conditionMatches(3, $parameters));
-    }
-
-    #[Test]
     public function unknownLayoutsDefaultToOneRow(): void
     {
         $parameters = ['record' => ['backend_layout' => ['pagets__someUnknownLayout']]];
@@ -80,13 +83,6 @@ class PageRowHighlightDisplayConditionTest extends UnitTestCase
 
         self::assertTrue($this->conditionMatches(1, $parameters));
         self::assertFalse($this->conditionMatches(2, $parameters));
-    }
-
-    #[Test]
-    public function aMissingRecordDefaultsToRowOne(): void
-    {
-        self::assertTrue($this->conditionMatches(1, []));
-        self::assertFalse($this->conditionMatches(2, []));
     }
 
     /**

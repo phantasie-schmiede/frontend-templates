@@ -1,0 +1,13 @@
+<f:layout name="Preview" />
+
+<f:section name="Content">
+    <f:format.html>{data.bodytext}</f:format.html>
+    <dl>
+        <f:for
+            as="fact"
+            each="{data.facts}">
+            <dt>{fact.label}</dt>
+            <dd><f:format.nl2br>{fact.value}</f:format.nl2br></dd>
+        </f:for>
+    </dl>
+</f:section>

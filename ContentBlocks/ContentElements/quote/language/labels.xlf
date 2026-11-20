@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file
+        datatype="plaintext"
+        original="messages"
+        product-name="frontend_templates"
+        source-language="en">
+        <body>
+            <trans-unit id="description">
+                <source>Highlighted quotation with author and source</source>
+            </trans-unit>
+            <trans-unit id="quote_author.label">
+                <source>Author</source>
+            </trans-unit>
+            <trans-unit id="quote_source.label">
+                <source>Role or source</source>
+            </trans-unit>
+            <trans-unit id="quote_text.label">
+                <source>Quotation</source>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>Quotation</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

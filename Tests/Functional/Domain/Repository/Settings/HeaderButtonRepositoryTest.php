@@ -20,11 +20,6 @@ use ReflectionProperty;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-/**
- * Class HeaderButtonRepositoryTest
- *
- * @package PSBits\FrontendTemplates\Tests\Functional\Domain\Repository\Settings
- */
 class HeaderButtonRepositoryTest extends FunctionalTestCase
 {
     use PersistenceSupportTrait;

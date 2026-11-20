@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace PSBits\FrontendTemplates\Tests\Functional\Service\GlobalVariableProviders;
 
+use Doctrine\DBAL\Exception;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use PHPUnit\Framework\Attributes\Test;
 use PSBits\FrontendTemplates\Domain\Model\Settings\HeaderButton;
@@ -25,12 +26,8 @@ use TYPO3\CMS\Frontend\Page\PageInformation;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
- * Class SettingsProviderTest
- *
  * Runs the provider against the real source registered in ext_localconf.php: the header buttons of the pages in
  * the (local) rootline are collected from the database.
- *
- * @package PSBits\FrontendTemplates\Tests\Functional\Service\GlobalVariableProviders
  */
 #[IgnoreDeprecations]
 class SettingsProviderTest extends FunctionalTestCase
@@ -54,7 +51,7 @@ class SettingsProviderTest extends FunctionalTestCase
     }
 
     /**
-     * @throws \Doctrine\DBAL\Exception
+     * @throws Exception
      */
     #[Test]
     public function theRegisteredSourcesProvideTheSettingsOfTheRootline(): void
@@ -66,8 +63,8 @@ class SettingsProviderTest extends FunctionalTestCase
 
         $pageInformation = new PageInformation();
         $pageInformation->setLocalRootLine([
-            ['uid' => 1, 'pid' => 0],
-            ['uid' => 2, 'pid' => 1],
+            ['pid' => 0, 'uid' => 1],
+            ['pid' => 1, 'uid' => 2],
         ]);
 
         $GLOBALS['TYPO3_REQUEST'] = FrontendRequestFactory::createFrontendRequest(

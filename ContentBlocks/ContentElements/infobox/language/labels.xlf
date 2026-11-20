@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file
+        datatype="plaintext"
+        original="messages"
+        product-name="frontend_templates"
+        source-language="en">
+        <body>
+            <trans-unit id="description">
+                <source>Key facts and important notices with an optional link</source>
+            </trans-unit>
+            <trans-unit id="facts.label">
+                <source>Facts</source>
+            </trans-unit>
+            <trans-unit id="facts.label.label">
+                <source>Label</source>
+            </trans-unit>
+            <trans-unit id="facts.value.label">
+                <source>Value</source>
+            </trans-unit>
+            <trans-unit id="info_variant.items.information.label">
+                <source>Information</source>
+            </trans-unit>
+            <trans-unit id="info_variant.items.notice.label">
+                <source>Important notice</source>
+            </trans-unit>
+            <trans-unit id="info_variant.label">
+                <source>Appearance</source>
+            </trans-unit>
+            <trans-unit id="link_label.label">
+                <source>Link label</source>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>Info box</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
